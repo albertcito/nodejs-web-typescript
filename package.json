@@ -1,0 +1,39 @@
+{
+  "name": "node2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/connect-redis": "^0.0.14",
+    "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
+    "@types/node": "^14.11.2",
+    "@types/redis": "^2.8.27",
+    "@types/validatorjs": "^3.15.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.18.1",
+    "argon2": "^0.27.0",
+    "connect-redis": "^5.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "graphql": "^15.3.0",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "redis": "^3.0.2",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.0.0",
+    "type-graphql": "^1.0.0",
+    "typeorm": "^0.2.27",
+    "validatorjs": "^3.20.0"
+  }
+}
