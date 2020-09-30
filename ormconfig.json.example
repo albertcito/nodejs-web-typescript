@@ -13,6 +13,8 @@
    "cli": {
       "entitiesDir": "src/db/entities",
       "migrationsDir": "src/db/migrations",
-      "subscribersDir": "src/db/subscribers"
+      "subscribersDir": "src/db/subscribers",
+      "seeds": ["src/db/seeds"],
+      "factories": ["src/db/factories"]
    }
 }
