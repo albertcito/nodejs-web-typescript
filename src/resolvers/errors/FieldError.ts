@@ -1,12 +1,12 @@
-import { ObjectType, Field } from "type-graphql";
+import { ObjectType, Field } from 'type-graphql';
 
 @ObjectType()
-export class FieldError {
-
+class FieldError {
   @Field()
   field: string;
 
   @Field(() => [String])
   messages: string[];
-
 }
+
+export default FieldError;

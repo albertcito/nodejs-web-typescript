@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { Connection } from "typeorm";
+import { Request, Response } from 'express';
+import { Connection } from 'typeorm';
 
 export type ApolloServerContext = {
   db: Connection;

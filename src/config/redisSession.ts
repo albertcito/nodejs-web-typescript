@@ -1,11 +1,11 @@
 import redis from 'redis';
-import session from "express-session";
+import session from 'express-session';
 import connectRedis from 'connect-redis';
 
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient();
 
-export const redisSession: session.SessionOptions =  {
+const redisSession: session.SessionOptions = {
   store: new RedisStore({
     client: redisClient,
     disableTouch: true,
@@ -21,3 +21,5 @@ export const redisSession: session.SessionOptions =  {
   secret: 'alsdlsakd :)',
   name: 'qid',
 };
+
+export default redisSession;
