@@ -33,7 +33,7 @@ Validator.registerAsync(
     //assign array index 0 and 1 to table and column respectively
     const { 0: table,  1: column } = attArr;
 
-    const sql = `SELECT count(${column}) FROM public.${table} WHERE ${column} = $1`;
+    const sql = `SELECT count(${column}) FROM ${table} WHERE ${column} = $1`;
     const data = await getConnection().query(sql, [id]);
     if (data[0].count > 0) {
       return passes(false, `${column} is already in use`);
