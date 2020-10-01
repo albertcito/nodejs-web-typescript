@@ -65,13 +65,23 @@ export function getErrors<T>(
 ) {
   // This is a ESLint config issue
   // eslint-disable-next-line no-unused-vars
-  return new Promise((resolve: (errors?: FieldError[]) => void) => {
+  return new Promise((resolve: (errors?: ValidationErrors) => void) => {
     const validation = new Validator(body, rules, customMessages);
     validation.passes(() => resolve());
-    validation.fails(() => resolve(
-      validationToFieldError(validation.errors.errors),
-    ));
+    validation.fails(() => resolve(validation.errors.errors));
   });
+}
+
+export async function getFieldErrors<T>(
+  body: T,
+  rules: Validator.Rules,
+  customMessages?: Validator.ErrorMessages,
+): Promise<FieldError[] | null> {
+  const errors = await getErrors(body, rules, customMessages);
+  if (errors) {
+    return validationToFieldError(errors);
+  }
+  return null;
 }
 
 export default Validator;

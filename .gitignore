@@ -6,3 +6,4 @@ tmp/
 temp/
 ormconfig.json
 .env
+yarn-error.log

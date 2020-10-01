@@ -14,6 +14,7 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
   ],
+
   rules: {
     'class-methods-use-this': ['off'],
     'import/extensions': [
@@ -25,6 +26,10 @@ module.exports = {
         ts: 'never',
         tsx: 'never',
       },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: true },
     ],
   },
   settings: {

@@ -16,3 +16,8 @@ To populate the DB with faker data. Using [typeorm-seeding](https://github.com/w
 ## Run the server
 - Run `yarn dev`
 - Go to http://localhost:4000/graphql
+
+## Contribute
+Before to send a PR please do it:
+- Run `yarn test` to ensure everithing is working well
+- Run `yarn lint:eslint-fix` to validate the code style.
