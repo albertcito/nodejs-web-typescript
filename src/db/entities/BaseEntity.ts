@@ -13,12 +13,12 @@ class BaseEntity {
 
     @BeforeInsert()
     @BeforeUpdate()
-    updateRow() {
+    updateRowAt() {
       this.updatedAt = new Date();
     }
 
     @BeforeInsert()
-    insertRow() {
+    insertRowAt() {
       this.createdAt = new Date();
     }
 }

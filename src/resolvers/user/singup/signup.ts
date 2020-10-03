@@ -1,7 +1,6 @@
 import {
   Resolver, Mutation, Ctx, Arg,
 } from 'type-graphql';
-import argon2 from 'argon2';
 
 import { ApolloServerContext } from '../../../ApolloServerContext';
 import User from '../../../db/entities/User';
@@ -21,12 +20,11 @@ class SignUpResolver {
       return { errors };
     }
 
-    const hashedPassword = await argon2.hash(options.password);
     const user = new User();
     user.email = options.email;
     user.firstName = options.firstName;
     user.lastName = options.lastName;
-    user.password = hashedPassword;
+    user.password = options.password;
     await db.manager.save(user);
 
     return { user };
