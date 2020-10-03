@@ -22,6 +22,6 @@ export class SignUpInput {
 export const rules = {
   firstName: 'required|string',
   lastName: 'required|string',
-  email: 'required|email|exist:public.user,email',
+  email: 'required|email|unique:public.user,email',
   password: 'required|min:4|confirmed|strict_password',
 };

@@ -1,7 +1,7 @@
 import request from 'supertest';
-import getApp from '../init/app';
+import getApp from '../../init/app';
 
-import { getErrors } from '../util/validatorjs';
+import { getErrors } from '../../util/validatorjs';
 
 describe('GET /graphql query -> "users"', () => {
   it('responds graphql json', async (done) => {
