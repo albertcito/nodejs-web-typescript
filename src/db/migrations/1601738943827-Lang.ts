@@ -1,35 +1,36 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import Lang from '../entities/Lang';
 
-class User1601324674982 implements MigrationInterface {
-    private readonly tableName = 'user';
+class Lang1601738943827 implements MigrationInterface {
+    private readonly tableName = 'lang';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
         name: this.tableName,
         columns: [
           {
-            name: 'user_id',
-            type: 'int',
+            name: 'lang_id',
+            type: 'varchar',
             isPrimary: true,
-            isGenerated: true,
-            generationStrategy: 'increment',
-          },
-          {
-            name: 'first_name',
-            type: 'varchar',
-          },
-          {
-            name: 'last_name',
-            type: 'varchar',
-          },
-          {
-            name: 'email',
-            type: 'varchar',
             isUnique: true,
           },
           {
-            name: 'password',
+            name: 'name',
             type: 'varchar',
+          },
+          {
+            name: 'localname',
+            type: 'varchar',
+          },
+          {
+            name: 'active',
+            type: 'boolean',
+            default: false,
+          },
+          {
+            name: 'is_blocked',
+            type: 'boolean',
+            default: false,
           },
           {
             name: 'created_by',
@@ -51,6 +52,23 @@ class User1601324674982 implements MigrationInterface {
           },
         ],
       }), true);
+
+      const langEN = new Lang();
+      langEN.langID = 'EN';
+      langEN.localname = 'English';
+      langEN.name = 'English';
+      langEN.active = true;
+      langEN.isBlocked = true;
+
+      const langES = new Lang();
+      langES.langID = 'ES';
+      langES.localname = 'Español';
+      langES.name = 'Spanish';
+      langES.active = true;
+      langES.isBlocked = true;
+
+      await queryRunner.manager.save(langEN);
+      await queryRunner.manager.save(langES);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -58,4 +76,4 @@ class User1601324674982 implements MigrationInterface {
     }
 }
 
-export default User1601324674982;
+export default Lang1601738943827;

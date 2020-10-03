@@ -14,10 +14,10 @@ Validator.register(
 
 /**
  * Checks if incoming value already exist for unique and non-unique fields in the database
- * e.g email: required|email|exists:user,email
+ * e.g email: required|email|unique:user,email
  */
 Validator.registerAsync(
-  'exist',
+  'unique',
   async (id, attribute, _, passes) => {
     // Error code
     if (!attribute) {
