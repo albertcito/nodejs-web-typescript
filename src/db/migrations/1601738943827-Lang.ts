@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import columns from './BaseTableColumns/columns';
 import Lang from '../entities/Lang';
 
 class Lang1601738943827 implements MigrationInterface {
@@ -32,24 +33,7 @@ class Lang1601738943827 implements MigrationInterface {
             type: 'boolean',
             default: false,
           },
-          {
-            name: 'created_by',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'updated_by',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-          },
+          ...columns,
         ],
       }), true);
 
