@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import columns from './BaseTableColumns/columns';
 
 class User1601324674982 implements MigrationInterface {
     private readonly tableName = 'user';
@@ -31,24 +32,7 @@ class User1601324674982 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
           },
-          {
-            name: 'created_by',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'updated_by',
-            type: 'integer',
-            isNullable: true,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-          },
+          ...columns,
         ],
       }), true);
     }
