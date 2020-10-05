@@ -1,7 +1,7 @@
 import { Resolver, Query, UseMiddleware } from 'type-graphql';
 
-import Lang from '../../db/entities/Lang';
-import isAuth from '../../util/graphql/isAuth';
+import Lang from '../../../db/entities/Lang';
+import isAuth from '../../../util/graphql/isAuth';
 
 @Resolver()
 class LangResolver {

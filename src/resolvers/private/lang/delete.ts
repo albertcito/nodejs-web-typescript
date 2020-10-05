@@ -2,11 +2,11 @@ import {
   Resolver, Mutation, Ctx, Arg,
 } from 'type-graphql';
 
-import { ApolloServerContext } from '../../init/apollo/ApolloServerContext';
-import Lang from '../../db/entities/Lang';
-import { getFieldErrors } from '../../util/validatorjs';
-import ValidatorError from '../../util/exceptions/ValidatorError';
-import MessageError from '../../util/exceptions/MessageError';
+import { ApolloServerContext } from '../../../init/apollo/ApolloServerContext';
+import Lang from '../../../db/entities/Lang';
+import { getFieldErrors } from '../../../util/validatorjs';
+import ValidatorError from '../../../util/exceptions/ValidatorError';
+import MessageError from '../../../util/exceptions/MessageError';
 
 @Resolver()
 class LangDeleteResolver {

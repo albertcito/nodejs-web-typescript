@@ -1,11 +1,11 @@
 import {
   Resolver, Query, Arg, UseMiddleware,
 } from 'type-graphql';
-import { getFieldErrors } from '../../util/validatorjs';
-import Lang from '../../db/entities/Lang';
-import isAuth from '../../util/graphql/isAuth';
-import ValidatorError from '../../util/exceptions/ValidatorError';
-import MessageError from '../../util/exceptions/MessageError';
+import { getFieldErrors } from '../../../util/validatorjs';
+import Lang from '../../../db/entities/Lang';
+import isAuth from '../../../util/graphql/isAuth';
+import ValidatorError from '../../../util/exceptions/ValidatorError';
+import MessageError from '../../../util/exceptions/MessageError';
 
 @Resolver()
 class LangResolver {

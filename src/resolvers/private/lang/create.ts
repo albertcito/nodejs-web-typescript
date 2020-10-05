@@ -2,10 +2,10 @@ import {
   Resolver, Mutation, Arg,
 } from 'type-graphql';
 
-import Lang from '../../db/entities/Lang';
-import { LangInput, rules } from '../input/LangInput';
-import { getFieldErrors } from '../../util/validatorjs';
-import ValidatorError from '../../util/exceptions/ValidatorError';
+import Lang from '../../../db/entities/Lang';
+import { LangInput, rules } from '../../input/LangInput';
+import { getFieldErrors } from '../../../util/validatorjs';
+import ValidatorError from '../../../util/exceptions/ValidatorError';
 
 @Resolver()
 class LangCreateResolver {
