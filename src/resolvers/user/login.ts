@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
-import login from '../../../logic/user/login';
-import LoginResponse from './LoginResponse';
+import login from '../../logic/user/login';
+import LoginResponse from '../type/LoginResponse';
 
 @Resolver()
 class LoginResolver {
