@@ -1,8 +1,10 @@
 import { Field, ObjectType } from 'type-graphql';
-import { CreateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import {
+  CreateDateColumn, BeforeInsert, BeforeUpdate, BaseEntity,
+} from 'typeorm';
 
 @ObjectType()
-class BaseEntity {
+class BaseDataEntity extends BaseEntity {
     @Field(() => String)
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
@@ -23,4 +25,4 @@ class BaseEntity {
     }
 }
 
-export default BaseEntity;
+export default BaseDataEntity;

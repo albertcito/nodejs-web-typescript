@@ -7,6 +7,7 @@ import User from '../../../db/entities/User';
 import { SignUpInput, rules } from './signupInput';
 import { getFieldErrors } from '../../../util/validatorjs';
 import UserResponse from '../userResponse';
+import ValidatorError from '../../../util/graphql/ValidatorError';
 
 @Resolver()
 class SignUpResolver {
@@ -17,7 +18,7 @@ class SignUpResolver {
   ): Promise<UserResponse> {
     const errors = await getFieldErrors(options, rules);
     if (errors) {
-      return { errors };
+      throw new ValidatorError(errors);
     }
 
     const user = new User();

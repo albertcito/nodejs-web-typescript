@@ -38,11 +38,7 @@ class LangDeleteResolver {
       };
     }
 
-    await db.manager.createQueryBuilder()
-      .delete()
-      .from(Lang)
-      .where('lang_id = :langID', { langID })
-      .execute();
+    await Lang.delete({ langID });
 
     return { lang };
   }

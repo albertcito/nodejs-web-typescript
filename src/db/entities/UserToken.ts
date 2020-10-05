@@ -17,14 +17,18 @@ class UserToken extends BaseEntity {
 
     @Field(() => String)
     @Column()
-    name: string;
+    signature: string;
+
+    @Field(() => String)
+    @Column()
+    token: string;
 
     @Field(() => Boolean)
     @Column()
     revoked: boolean;
 
     @Column({ name: 'expired_at' })
-    expiredAt: string;
+    expiredAt: Date;
 }
 
 export default UserToken;

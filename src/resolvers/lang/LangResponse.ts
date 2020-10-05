@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql';
-import ErrorResponse from '../../util/graphql/ErrorResponse';
+import ErrorResponse from '../../util/graphql/ErrorsResponse';
 import Lang from '../../db/entities/Lang';
 
 @ObjectType()
