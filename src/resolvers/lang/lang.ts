@@ -1,34 +1,26 @@
-import { ApolloServerContext } from 'init/apollo/ApolloServerContext';
 import {
-  Resolver, Query, Arg, Ctx, UseMiddleware,
+  Resolver, Query, Arg, UseMiddleware,
 } from 'type-graphql';
 import { getFieldErrors } from '../../util/validatorjs';
 import Lang from '../../db/entities/Lang';
-import LangResponse from './LangResponse';
 import isAuth from '../../util/graphql/isAuth';
+import ValidatorError from '../../util/exceptions/ValidatorError';
+import MessageError from '../../util/exceptions/MessageError';
 
 @Resolver()
 class LangResolver {
   @Query(() => Lang)
   @UseMiddleware(isAuth)
-  async lang(
-    @Arg('langID') langID: string,
-    @Ctx() { db }: ApolloServerContext,
-  ): Promise<LangResponse> {
+  async lang(@Arg('langID') langID: string): Promise<Lang> {
     const errors = await getFieldErrors({ langID }, { langID: 'required|string' });
     if (errors) {
-      return { errors };
+      throw new ValidatorError(errors);
     }
-    const lang = await db.manager.findOne(Lang, langID);
+    const lang = await Lang.findOne(langID);
     if (!lang) {
-      return {
-        errors: [{
-          field: 'langID',
-          messages: [`The lang ${langID} doesn't exists`],
-        }],
-      };
+      throw new MessageError(`The lang ${langID} doesn't exists`);
     }
-    return { lang };
+    return lang;
   }
 }
 

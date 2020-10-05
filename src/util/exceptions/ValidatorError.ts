@@ -1,4 +1,4 @@
-import FieldError from 'resolvers/errors/FieldError';
+import FieldError from '../../resolvers/type/FieldError';
 
 class ValidatorError extends Error {
   constructor(

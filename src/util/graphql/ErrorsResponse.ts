@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql';
-import FieldError from '../../resolvers/errors/FieldError';
+import FieldError from '../../resolvers/type/FieldError';
 
 @ObjectType()
 class ErrorsResponse {
