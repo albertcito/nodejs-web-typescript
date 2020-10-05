@@ -1,23 +1,19 @@
 import {
-  Resolver, Mutation, Ctx, Arg,
+  Resolver, Mutation, Arg,
 } from 'type-graphql';
 
-import { ApolloServerContext } from '../../../ApolloServerContext';
 import Lang from '../../../db/entities/Lang';
-import { LangInput, rules } from './LangInput';
+import { LangInput, rules } from '../../input/LangInput';
 import { getFieldErrors } from '../../../util/validatorjs';
-import LangResponse from '../LangResponse';
+import ValidatorError from '../../../util/exceptions/ValidatorError';
 
 @Resolver()
 class LangCreateResolver {
-  @Mutation(() => LangResponse)
-  async langCreate(
-    @Arg('options') options: LangInput,
-    @Ctx() { db }: ApolloServerContext,
-  ): Promise<LangResponse> {
+  @Mutation(() => Lang)
+  async langCreate(@Arg('options') options: LangInput): Promise<Lang> {
     const errors = await getFieldErrors(options, rules);
     if (errors) {
-      return { errors };
+      throw new ValidatorError(errors);
     }
 
     const lang = new Lang();
@@ -26,9 +22,9 @@ class LangCreateResolver {
     lang.localname = options.localname;
     lang.isBlocked = options.isBlocked ?? false;
     lang.active = options.active ?? false;
-    await db.manager.save(lang);
+    await lang.save();
 
-    return { lang };
+    return lang;
   }
 }
 

@@ -20,7 +20,11 @@ class UserToken1601770752669 implements MigrationInterface {
           type: 'int',
         },
         {
-          name: 'name',
+          name: 'signature',
+          type: 'varchar',
+        },
+        {
+          name: 'token',
           type: 'varchar',
         },
         {

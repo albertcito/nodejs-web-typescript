@@ -1,10 +1,10 @@
 import { ObjectType, Field } from 'type-graphql';
-import FieldError from '../../resolvers/errors/FieldError';
+import FieldError from '../../graphql/type/FieldError';
 
 @ObjectType()
-class ErrorResponse {
+class ErrorsResponse {
   @Field(() => [FieldError], { nullable: true })
   errors?: FieldError[];
 }
 
-export default ErrorResponse;
+export default ErrorsResponse;
