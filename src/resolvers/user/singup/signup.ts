@@ -2,12 +2,12 @@ import {
   Resolver, Mutation, Ctx, Arg,
 } from 'type-graphql';
 
-import { ApolloServerContext } from '../../../ApolloServerContext';
+import { ApolloServerContext } from '../../../init/apollo/ApolloServerContext';
 import User from '../../../db/entities/User';
 import { SignUpInput, rules } from './signupInput';
 import { getFieldErrors } from '../../../util/validatorjs';
 import UserResponse from '../userResponse';
-import ValidatorError from '../../../util/graphql/ValidatorError';
+import ValidatorError from '../../../util/exceptions/ValidatorError';
 
 @Resolver()
 class SignUpResolver {

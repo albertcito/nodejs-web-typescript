@@ -3,8 +3,8 @@ import argon2 from 'argon2';
 import userTokenCreate from './userTokenCreate';
 import User from '../../db/entities/User';
 import { getFieldErrors } from '../../util/validatorjs';
-import MessageError from '../../util/graphql/MessageError';
-import ValidatorError from '../../util/graphql/ValidatorError';
+import MessageError from '../../util/exceptions/MessageError';
+import ValidatorError from '../../util/exceptions/ValidatorError';
 import LoginResponse from '../../resolvers/user/login/LoginResponse';
 
 const login = async (email: string, password: string): Promise<LoginResponse> => {

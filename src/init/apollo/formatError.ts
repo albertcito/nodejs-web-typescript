@@ -1,6 +1,6 @@
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
-import MessageError from './MessageError';
-import ValidatorError from './ValidatorError';
+import MessageError from '../../util/exceptions/MessageError';
+import ValidatorError from '../../util/exceptions/ValidatorError';
 
 const formatError = (error: GraphQLError): GraphQLFormattedError => {
   const { originalError } = error;

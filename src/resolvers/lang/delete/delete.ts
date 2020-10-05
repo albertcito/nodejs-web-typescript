@@ -2,7 +2,7 @@ import {
   Resolver, Mutation, Ctx, Arg,
 } from 'type-graphql';
 
-import { ApolloServerContext } from '../../../ApolloServerContext';
+import { ApolloServerContext } from '../../../init/apollo/ApolloServerContext';
 import Lang from '../../../db/entities/Lang';
 import { getFieldErrors } from '../../../util/validatorjs';
 import LangResponse from '../LangResponse';

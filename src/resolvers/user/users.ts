@@ -1,4 +1,4 @@
-import { ApolloServerContext } from 'ApolloServerContext';
+import { ApolloServerContext } from 'init/apollo/ApolloServerContext';
 import { Resolver, Query, Ctx } from 'type-graphql';
 import User from '../../db/entities/User';
 

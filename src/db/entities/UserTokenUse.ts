@@ -11,12 +11,16 @@ class UserTokenUse extends BaseEntity {
     @PrimaryGeneratedColumn({ name: 'user_token_use_id' })
     userTokenUseID: number;
 
+    @Field(() => Int)
+    @Column({ name: 'user_token_id' })
+    userTokenID: number;
+
     @Field(() => String)
     @Column()
     ip: string;
 
     @Column({ name: 'used_at' })
-    usedAt: string;
+    usedAt: Date;
 }
 
 export default UserTokenUse;
