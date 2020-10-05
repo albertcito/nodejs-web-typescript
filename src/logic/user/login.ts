@@ -5,7 +5,7 @@ import User from '../../db/entities/User';
 import { getFieldErrors } from '../../util/validatorjs';
 import MessageError from '../../util/exceptions/MessageError';
 import ValidatorError from '../../util/exceptions/ValidatorError';
-import LoginResponse from '../../resolvers/type/LoginResponse';
+import LoginResponse from '../../graphql/type/LoginResponse';
 
 const login = async (email: string, password: string): Promise<LoginResponse> => {
   const errors = await getFieldErrors({ email, password }, {

@@ -1,4 +1,4 @@
-import FieldError from '../../resolvers/type/FieldError';
+import FieldError from '../../graphql/type/FieldError';
 
 class ValidatorError extends Error {
   constructor(

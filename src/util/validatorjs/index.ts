@@ -1,6 +1,6 @@
 import Validator, { ValidationErrors } from 'validatorjs';
 import { getConnection } from 'typeorm';
-import FieldError from '../../resolvers/type/FieldError';
+import FieldError from '../../graphql/type/FieldError';
 /**
  * Password must contain at least one uppercase letter, one lowercase letter and one number
  */
