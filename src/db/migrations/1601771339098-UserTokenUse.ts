@@ -1,4 +1,6 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey,
+} from 'typeorm';
 import columns from './BaseTableColumns/columns';
 
 class UserTokenUse1601771339098 implements MigrationInterface {
@@ -16,6 +18,10 @@ class UserTokenUse1601771339098 implements MigrationInterface {
           generationStrategy: 'increment',
         },
         {
+          name: 'user_token_id',
+          type: 'int',
+        },
+        {
           name: 'ip',
           type: 'varchar',
         },
@@ -26,6 +32,12 @@ class UserTokenUse1601771339098 implements MigrationInterface {
         ...columns,
       ],
     }), true);
+    await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+      columnNames: ['user_token_id'],
+      referencedColumnNames: ['user_token_id'],
+      referencedTableName: 'user_token',
+      onDelete: 'CASCADE',
+    }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
