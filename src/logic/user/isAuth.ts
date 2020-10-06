@@ -2,7 +2,7 @@ import { AuthenticationError } from 'apollo-server-express';
 import { NextFunction, Request } from 'express';
 
 import User from '../../db/entities/User';
-import UserToken from '../../db/entities/UserToken';
+import OauthAccessToken from '../../db/entities/OauthAccessToken';
 
 const getTokenFromHeader = (req: Request) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -18,7 +18,7 @@ const isAuth = async (req: Request, next: NextFunction) => {
     throw new AuthenticationError('Not authorized, please login. (code: 0)');
   }
 
-  const userToken = await UserToken.findOne({ where: { token } });
+  const userToken = await OauthAccessToken.findOne({ where: { token } });
   if (!userToken) {
     throw new AuthenticationError('Not authorized, please login. (code: 1)');
   }

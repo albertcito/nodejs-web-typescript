@@ -3,15 +3,15 @@ import {
 } from 'typeorm';
 import columns from './BaseTableColumns/columns';
 
-class UserToken1601770752669 implements MigrationInterface {
-  private readonly tableName = 'user_token';
+class OauthAccessToken1601770752669 implements MigrationInterface {
+  private readonly tableName = 'oauth_access_tokens';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
       name: this.tableName,
       columns: [
         {
-          name: 'user_token_id',
+          name: 'oauth_access_token_id',
           type: 'int',
           isPrimary: true,
           isGenerated: true,
@@ -55,4 +55,4 @@ class UserToken1601770752669 implements MigrationInterface {
   }
 }
 
-export default UserToken1601770752669;
+export default OauthAccessToken1601770752669;

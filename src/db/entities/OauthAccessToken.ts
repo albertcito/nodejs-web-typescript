@@ -6,10 +6,10 @@ import BaseEntity from './BaseEntity';
 
 @ObjectType()
 @Entity()
-class UserToken extends BaseEntity {
+class OauthAccessToken extends BaseEntity {
  @Field(() => Int)
-    @PrimaryGeneratedColumn({ name: 'user_token_id' })
-    userTokenID: number;
+    @PrimaryGeneratedColumn({ name: 'oauth_access_token_id' })
+    oauthAccessTokenID: number;
 
     @Field(() => Int)
     @Column({ name: 'user_id' })
@@ -31,4 +31,4 @@ class UserToken extends BaseEntity {
     expiredAt: Date;
 }
 
-export default UserToken;
+export default OauthAccessToken;
