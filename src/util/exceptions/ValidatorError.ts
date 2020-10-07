@@ -5,7 +5,7 @@ class ValidatorError extends Error {
     // eslint-disable-next-line no-unused-vars
     public readonly errors: FieldError[],
     // eslint-disable-next-line no-unused-vars
-    public readonly message: string = 'The following errors missing xD',
+    public readonly message: string = 'The following errors missing',
   ) {
     super();
     Object.setPrototypeOf(this, ValidatorError.prototype);

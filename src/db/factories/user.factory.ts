@@ -1,9 +1,9 @@
-import * as Faker from 'faker';
+import * as faker from 'faker';
 import { define } from 'typeorm-seeding';
 
 import User from '../entities/User';
 
-define(User, (faker: typeof Faker) => {
+const getFakerUser = (password: string = '123456') => {
   const email = `albertcito@${faker.random.uuid()}.com`;
   const gender = faker.random.number(1);
   const firstName = faker.name.firstName(gender);
@@ -13,6 +13,10 @@ define(User, (faker: typeof Faker) => {
   user.firstName = firstName;
   user.lastName = lastName;
   user.email = email;
-  user.password = '123456';
+  user.password = password;
   return user;
-});
+};
+
+define(User, () => getFakerUser());
+
+export default getFakerUser;
