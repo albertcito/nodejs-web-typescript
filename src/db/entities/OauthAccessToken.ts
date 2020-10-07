@@ -5,7 +5,7 @@ import {
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'oauth_access_tokens', schema: 'public' })
 class OauthAccessToken extends BaseEntity {
  @Field(() => Int)
     @PrimaryGeneratedColumn({ name: 'oauth_access_token_id' })

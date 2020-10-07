@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 
-import userTokenCreate from './userTokenCreate';
+import userOauthCreate from '../oauth/userOauthCreate';
 import User from '../../db/entities/User';
 import { getFieldErrors } from '../../util/validatorjs';
 import MessageError from '../../util/exceptions/MessageError';
@@ -28,7 +28,7 @@ const login = async (email: string, password: string): Promise<LoginResponse> =>
     throw new MessageError('The email does not exist or the password does not match');
   }
 
-  const userToken = await userTokenCreate(user.userID);
+  const userToken = await userOauthCreate(user.userID);
 
   return {
     user,

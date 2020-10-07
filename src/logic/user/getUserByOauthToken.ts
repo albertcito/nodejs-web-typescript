@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express';
-import { NextFunction, Request } from 'express';
+import { Request } from 'express';
 
 import User from '../../db/entities/User';
 import OauthAccessToken from '../../db/entities/OauthAccessToken';
@@ -11,7 +11,7 @@ const getTokenFromHeader = (req: Request) => {
   return null;
 };
 
-const isAuth = async (req: Request, next: NextFunction) => {
+const getUserByOauthToken = async (req: Request) => {
   const token = getTokenFromHeader(req);
 
   if (!token) {
@@ -29,10 +29,7 @@ const isAuth = async (req: Request, next: NextFunction) => {
     throw new AuthenticationError('Not authorized, please login. (code: 2)');
   }
 
-  const user = await User.findOne(userToken.userID);
-  req.app.set('user', user);
-
-  return next();
+  return User.findOne(userToken.userID);
 };
 
-export default isAuth;
+export default getUserByOauthToken;

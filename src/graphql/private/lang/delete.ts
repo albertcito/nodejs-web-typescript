@@ -1,5 +1,5 @@
 import {
-  Resolver, Mutation, Ctx, Arg,
+  Resolver, Mutation, Ctx, Arg, UseMiddleware,
 } from 'type-graphql';
 
 import { ApolloServerContext } from '../../../init/apollo/ApolloServerContext';
@@ -7,10 +7,12 @@ import Lang from '../../../db/entities/Lang';
 import { getFieldErrors } from '../../../util/validatorjs';
 import ValidatorError from '../../../util/exceptions/ValidatorError';
 import MessageError from '../../../util/exceptions/MessageError';
+import isAuth from '../../../util/graphql/isAuth';
 
 @Resolver()
 class LangDeleteResolver {
   @Mutation(() => Lang)
+  @UseMiddleware(isAuth)
   async langDelete(
     @Arg('langID') langID: string,
     @Ctx() { db }: ApolloServerContext,

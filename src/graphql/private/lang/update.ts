@@ -1,5 +1,5 @@
 import {
-  Resolver, Mutation, Arg,
+  Resolver, Mutation, Arg, UseMiddleware,
 } from 'type-graphql';
 
 import Lang from '../../../db/entities/Lang';
@@ -7,10 +7,12 @@ import { LangInput, rules } from '../../input/LangInput';
 import { getFieldErrors } from '../../../util/validatorjs';
 import ValidatorError from '../../../util/exceptions/ValidatorError';
 import MessageError from '../../../util/exceptions/MessageError';
+import isAuth from '../../../util/graphql/isAuth';
 
 @Resolver()
 class LangUpdateResolver {
   @Mutation(() => Lang)
+  @UseMiddleware(isAuth)
   async langUpdate(@Arg('options') options: LangInput): Promise<Lang> {
     const existsRules = {
       ...rules,

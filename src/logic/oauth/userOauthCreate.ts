@@ -1,7 +1,7 @@
 import argon2 from 'argon2';
 import OauthAccessToken from '../../db/entities/OauthAccessToken';
 
-const userTokenCreate = async (userID: number): Promise<OauthAccessToken> => {
+const userOauthCreate = async (userID: number): Promise<OauthAccessToken> => {
   const signature = 'MySuP3R_z3kr3t';
   const now = new Date();
   now.setHours(now.getHours() + 6);
@@ -14,4 +14,4 @@ const userTokenCreate = async (userID: number): Promise<OauthAccessToken> => {
   return userToken.save();
 };
 
-export default userTokenCreate;
+export default userOauthCreate;
