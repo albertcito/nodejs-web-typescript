@@ -15,7 +15,7 @@ class LangCreateResolver {
   async langCreate(@Arg('options') options: LangInput): Promise<Lang> {
     const errors = await getFieldErrors(options, rules);
     if (errors) {
-      throw new ValidatorError(errors);
+      throw new ValidatorError(errors, 'The options attributes are mandatory');
     }
 
     const lang = new Lang();
