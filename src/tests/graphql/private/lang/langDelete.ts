@@ -33,6 +33,10 @@ const langDeleteTest = async (app: Express, token: string, done: jest.DoneCallba
     .expect('Content-Type', /json/)
     .expect(200)
     .end(async (err, res) => {
+      const user = await Lang.findOne(langID);
+      if (user) {
+        await user.remove();
+      }
       await assertJsonStructureGraphQL(done, res, err, rules);
     });
 };
