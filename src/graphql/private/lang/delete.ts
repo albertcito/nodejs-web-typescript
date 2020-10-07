@@ -11,12 +11,12 @@ import isAuth from '../../../util/graphql/isAuth';
 
 @Resolver()
 class LangDeleteResolver {
-  @Mutation(() => Lang)
+  @Mutation(() => String)
   @UseMiddleware(isAuth)
   async langDelete(
     @Arg('langID') langID: string,
     @Ctx() { db }: ApolloServerContext,
-  ): Promise<Lang> {
+  ): Promise<string> {
     const errors = await getFieldErrors({ langID }, { langID: 'required|string' });
     if (errors) {
       throw new ValidatorError(errors);
@@ -24,16 +24,16 @@ class LangDeleteResolver {
 
     const lang = await db.manager.findOne(Lang, langID);
     if (!lang) {
-      throw new MessageError(`The lang ${langID} doesn't exists`);
+      throw new MessageError(`The lang "${langID}" doesn't exists`);
     }
 
     if (lang.isBlocked) {
-      throw new MessageError(`The lang ${langID} is blocked`);
+      throw new MessageError(`The lang "${langID}" is blocked`);
     }
 
     await lang.remove();
 
-    return lang;
+    return `The lang "${langID}" was successfully removed`;
   }
 }
 
