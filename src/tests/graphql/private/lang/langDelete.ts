@@ -26,7 +26,7 @@ const langDeleteTest = async (app: Express, token: string, done: jest.DoneCallba
   };
 
   request(app)
-    .post('/graphql')
+    .post('/graphql/private')
     .send(data)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${token}`)

@@ -5,7 +5,7 @@ import assertJsonStructureGraphQL from '../../../config/assertJsonStructureGraph
 
 const loginTest = (app: Express, done: jest.DoneCallback) => {
   const data = {
-    query: `mutation login($email: String!, $password:String!) {
+    query: `query login($email: String!, $password:String!) {
       login(email:$email, password:$password) {
         user {
           userID
@@ -31,7 +31,7 @@ const loginTest = (app: Express, done: jest.DoneCallback) => {
   };
 
   request(app)
-    .post('/graphql')
+    .post('/graphql/public')
     .send(data)
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)

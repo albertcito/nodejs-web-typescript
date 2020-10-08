@@ -34,7 +34,7 @@ const signupTest = (app: Express, done: jest.DoneCallback) => {
   };
 
   request(app)
-    .post('/graphql')
+    .post('/graphql/public')
     .send(data)
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)

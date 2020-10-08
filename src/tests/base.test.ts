@@ -19,7 +19,7 @@ beforeAll(async () => {
   token = await getOauthTokenValid();
 });
 
-describe('GET /graphql admin', () => {
+describe('GET /graphql/private', () => {
   it('q: users', (done) => usersTest(app, token, done));
   it('q: lang(langID: $langID)', (done) => langTest(app, token, done));
   it('q: langs', (done) => langsTest(app, token, done));
@@ -28,7 +28,7 @@ describe('GET /graphql admin', () => {
   it('m: langDelete($langID: String!)', async (done) => langDeleteTest(app, token, done));
 });
 
-describe('GET /graphql public', () => {
+describe('GET /graphql/public', () => {
   it('m: login($email: String!, $password:String!)', (done) => loginTest(app, done));
   it('m: signUp($options:SignUpInput!)', (done) => signupTest(app, done));
 });
