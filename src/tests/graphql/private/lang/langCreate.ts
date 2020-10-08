@@ -30,7 +30,7 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
   };
 
   request(app)
-    .post('/graphql')
+    .post('/graphql/private')
     .send(data)
     .set('Accept', 'application/json')
     .set('Authorization', `Bearer ${token}`)

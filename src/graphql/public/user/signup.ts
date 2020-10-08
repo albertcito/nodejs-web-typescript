@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
 import User from '../../../db/entities/User';
-import { SignUpInput, rules } from '../../input/signupInput';
+import { SignUpInput, rules } from '../../input/SignUpInput';
 import { getFieldErrors } from '../../../util/validatorjs';
 import ValidatorError from '../../../util/exceptions/ValidatorError';
 
