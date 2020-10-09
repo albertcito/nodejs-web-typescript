@@ -14,11 +14,11 @@ class BaseDataEntity extends BaseEntity {
     @CreateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     @CreateDateColumn({ name: 'created_by', nullable: true })
     createdBy?: number;
 
-    @Field(() => Int)
+    @Field(() => Int, { nullable: true })
     @CreateDateColumn({ name: 'updated_by', nullable: true })
     updatedBy?: number;
 

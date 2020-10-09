@@ -1,6 +1,8 @@
 import Validator, { ValidationErrors } from 'validatorjs';
+import { createMethodDecorator } from 'type-graphql';
 import { getConnection } from 'typeorm';
 import FieldError from '../../graphql/type/FieldError';
+import ValidatorError from '../exceptions/ValidatorError';
 /**
  * Password must contain at least one uppercase letter, one lowercase letter and one number
  */
@@ -81,6 +83,24 @@ export async function getFieldErrors<T>(
     return validationToFieldError(errors);
   }
   return null;
+}
+
+export async function validateOrFail<T>(
+  body: T,
+  rules: Validator.Rules,
+  customMessages?: Validator.ErrorMessages,
+): Promise<void> {
+  const errors = await getFieldErrors(body, rules, customMessages);
+  if (errors) {
+    throw new ValidatorError(errors, 'Please, review the following errors:');
+  }
+}
+
+export function Validate(rules: Validator.Rules, customMessages?: Validator.ErrorMessages) {
+  return createMethodDecorator(async ({ args }, next) => {
+    await validateOrFail(args, rules, customMessages);
+    return next();
+  });
 }
 
 export default Validator;

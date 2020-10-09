@@ -5,7 +5,7 @@ import User from '../../db/entities/User';
 class Global {
   private static instance: Global;
 
-  private privateUser?: User;
+  private user?: User;
 
   private constructor() {}
 
@@ -17,11 +17,11 @@ class Global {
   }
 
   public setUser(user?: User): void {
-    this.privateUser = user;
+    this.user = user;
   }
 
   public getUser(): User | undefined {
-    return this.privateUser;
+    return this.user;
   }
 }
 
