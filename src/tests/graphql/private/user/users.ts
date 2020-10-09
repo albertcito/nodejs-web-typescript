@@ -7,19 +7,29 @@ const usersTest = (app: Express, token: string, done: jest.DoneCallback) => {
   const data = {
     query: `{
       users {
-        userID
-        firstName
-        lastName
-        email
+        pagination {
+          from
+          to
+          total
+          limit
+          page
+          length
+        }
+        data {
+          userID
+          firstName
+          lastName
+          email
+        }
       }
     }`,
   };
 
   const rules = {
-    'users.*.userID': 'required|integer',
-    'users.*.firstName': 'required|string',
-    'users.*.lastName': 'required|string',
-    'users.*.email': 'required|email',
+    'users.data.*.userID': 'required|integer',
+    'users.data.*.firstName': 'required|string',
+    'users.data.*.lastName': 'required|string',
+    'users.data.*.email': 'required|email',
   };
 
   request(app)
