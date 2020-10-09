@@ -4,8 +4,6 @@ import Pagination from '../../graphql/type/Pagination';
 interface PaginationProperties {
   limit: number;
   page: number;
-  order?: 'ASC' | 'DESC';
-  orderBy?: string;
 }
 async function paginate<T>(
   query: SelectQueryBuilder<T>,
@@ -16,15 +14,10 @@ async function paginate<T>(
 }> {
   const total = await query.getCount();
 
-  const {
-    page, limit, order, orderBy,
-  } = props;
+  const { page, limit } = props;
   const skippedItems = (page - 1) * limit;
 
   const resultPagination = query.offset(skippedItems).limit(limit);
-  if (order && orderBy) {
-    query.orderBy(orderBy, order);
-  }
 
   const data = await resultPagination.getMany();
   const to = (page) * limit;
