@@ -3,7 +3,6 @@ node_js:
   - "12.16.3"
 install:
   - yarn install
-  - cp .env.example .env
   - yarn typeorm migration:run
   - yarn seed:run
 env:
