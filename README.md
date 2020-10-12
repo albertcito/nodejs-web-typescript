@@ -1,13 +1,14 @@
+## Express + GraphQL
+
+[![Build Status](https://travis-ci.com/albertcito/nodejs-web-typescript.svg?branch=production)](https://travis-ci.com/albertcito/nodejs-web-typescript)
+
 ## Requitements
 - Node v12.16.3
 - PostgreSQL 12.2
 
 ## To install:
 - Clone this project
-- Create .env file `cp .env.example .env`
 - Run `yarn install` (Installs all the dependencies for your project)
-- Create db file `sqliteDB.db`
-- Create ormconfig.json file `cp ormconfig.json.example ormconfig.json`
 - Run `yarn typeorm migration:run` (Creates all of the database tables)
 - You can use any database engine in order to do it review the [TypeORM documentation](https://typeorm.io/#/).
 
