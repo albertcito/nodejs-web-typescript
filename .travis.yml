@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8.9.4"
+  - "12.16.3"
 install:
   - yarn install
   - cp .env.example .env
