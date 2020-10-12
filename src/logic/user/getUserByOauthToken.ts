@@ -8,25 +8,21 @@ const getTokenFromHeader = (req: Request) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
     return req.headers.authorization.split(' ')[1];
   }
-  return null;
+  throw new AuthenticationError('Not authorized, please login. (code: notToken)');
 };
 
 const getUserByOauthToken = async (req: Request) => {
   const token = getTokenFromHeader(req);
 
-  if (!token) {
-    throw new AuthenticationError('Not authorized, please login. (code: 0)');
-  }
-
   const userToken = await OauthAccessToken.findOne({ where: { token } });
   if (!userToken) {
-    throw new AuthenticationError('Not authorized, please login. (code: 1)');
+    throw new AuthenticationError('Not authorized, please login. (code: notFound)');
   }
 
   const expiredAt = new Date(userToken.expiredAt);
   const now = new Date();
   if (expiredAt.getTime() < now.getTime()) {
-    throw new AuthenticationError('Not authorized, please login. (code: 2)');
+    throw new AuthenticationError('Not authorized, please login. (code: expired)');
   }
 
   return User.findOne(userToken.userID);
