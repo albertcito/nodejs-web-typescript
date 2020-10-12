@@ -7,8 +7,20 @@ import User from '../../../../db/entities/User';
 const signupTest = (app: Express, done: jest.DoneCallback) => {
   const email = 'me@signuptest.com';
   const data = {
-    query: `mutation signUp($options:SignUpInput!) {
-      signUp(options:$options) {
+    query: `mutation signUp(
+      $email: String!,
+      $password: String!,
+      $password_confirmation: String!,
+      $firstName: String!,
+      $lastName: String!,
+    ) {
+      signUp(
+        email: $email,
+        password: $password,
+        password_confirmation: $password_confirmation,
+        firstName: $firstName,
+        lastName: $lastName,
+      ) {
         userID
         firstName
         lastName
@@ -16,13 +28,11 @@ const signupTest = (app: Express, done: jest.DoneCallback) => {
       }
     }`,
     variables: {
-      options: {
-        email,
-        password: '123456At',
-        password_confirmation: '123456At',
-        firstName: 'Albert',
-        lastName: 'Tjornehoj',
-      },
+      email,
+      password: '123456At',
+      password_confirmation: '123456At',
+      firstName: 'Albert',
+      lastName: 'Tjornehoj',
     },
   };
 

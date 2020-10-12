@@ -7,19 +7,17 @@ import Lang from '../../../../db/entities/Lang';
 const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) => {
   const langID = 'langCreate';
   const data = {
-    query: `mutation langCreate($options: LangInput!){
-      langCreate(options: $options) {
+    query: `mutation langCreate($langID: String!, $name: String!, $localname: String!){
+      langCreate(langID: $langID, name: $name, localname: $localname) {
         langID
         name
         localname
       }
     }`,
     variables: {
-      options: {
-        langID,
-        name: 'Test',
-        localname: 'Test',
-      },
+      langID,
+      name: 'Test',
+      localname: 'Test',
     },
   };
 

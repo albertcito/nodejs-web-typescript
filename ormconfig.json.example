@@ -1,10 +1,6 @@
 {
-   "type": "postgres",
-   "host": "localhost",
-   "port": 5432,
-   "username": "postgres",
-   "password": "",
-   "database": "nodets",
+   "type": "sqlite",
+   "database": "sqliteDB.db",
    "synchronize": false,
    "logging": false,
    "entities": ["src/db/entities/**/*.ts"],

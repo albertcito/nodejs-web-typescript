@@ -3,29 +3,34 @@ import {
 } from 'type-graphql';
 
 import Lang from '../../../db/entities/Lang';
-import { LangInput, rules } from '../../input/LangInput';
-import { getFieldErrors } from '../../../util/validatorjs';
-import ValidatorError from '../../../util/exceptions/ValidatorError';
 import isAuth from '../../../util/graphql/isAuth';
+import Validate from '../../../util/validatorjs/validateGraphQL';
 
 @Resolver()
 class LangCreateResolver {
   @Mutation(() => Lang)
   @UseMiddleware(isAuth)
-  async langCreate(@Arg('options') options: LangInput): Promise<Lang> {
-    const errors = await getFieldErrors(options, rules);
-    if (errors) {
-      throw new ValidatorError(errors, 'The options attributes are mandatory');
-    }
-
+  @Validate({
+    langID: 'required|string|unique:lang,lang_id',
+    name: 'required|string',
+    localname: 'required|string|min:1',
+    active: 'boolean',
+    isBlocked: 'boolean',
+  })
+  async langCreate(
+    @Arg('langID') langID: string,
+    @Arg('name') name: string,
+    @Arg('localname') localname: string,
+    @Arg('active', { nullable: true, defaultValue: false }) active: boolean,
+    @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked: boolean,
+  ): Promise<Lang> {
     const lang = new Lang();
-    lang.langID = options.langID;
-    lang.name = options.name;
-    lang.localname = options.localname;
-    lang.isBlocked = options.isBlocked ?? false;
-    lang.active = options.active ?? false;
+    lang.langID = langID;
+    lang.name = name;
+    lang.localname = localname;
+    lang.isBlocked = isBlocked ?? false;
+    lang.active = active ?? false;
     await lang.save();
-
     return lang;
   }
 }

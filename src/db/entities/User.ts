@@ -7,7 +7,7 @@ import argon2 from 'argon2';
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'user' })
 class User extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn({ name: 'user_id' })

@@ -13,19 +13,17 @@ const langUpdateTest = async (app: Express, token: string, done: jest.DoneCallba
   await lang.save();
 
   const data = {
-    query: `mutation langUpdate($options: LangInput!){
-      langUpdate(options: $options) {
+    query: `mutation langUpdate($langID: String!, $name: String!, $localname: String!){
+      langUpdate(langID: $langID, name: $name, localname: $localname) {
         langID
         name
         localname
       }
     }`,
     variables: {
-      options: {
-        langID,
-        name: 'Test',
-        localname: 'Test',
-      },
+      langID,
+      name: 'Test',
+      localname: 'Test',
     },
   };
 

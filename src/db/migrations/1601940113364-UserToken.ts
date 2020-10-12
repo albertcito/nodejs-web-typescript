@@ -1,19 +1,25 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey,
+} from 'typeorm';
 import columns from './BaseTableColumns/columns';
 
-class Token1601940113364 implements MigrationInterface {
-    private readonly tableName = 'token';
+class UserToken1601940113364 implements MigrationInterface {
+    private readonly tableName = 'user_token';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
         name: this.tableName,
         columns: [
           {
-            name: 'token_id',
-            type: 'int',
+            name: 'user_token_id',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',
+          },
+          {
+            name: 'user_id',
+            type: 'integer',
           },
           {
             name: 'token',
@@ -26,6 +32,7 @@ class Token1601940113364 implements MigrationInterface {
           {
             name: 'used_at',
             type: 'timestamp',
+            isNullable: true,
           },
           {
             name: 'expired_at',
@@ -34,6 +41,13 @@ class Token1601940113364 implements MigrationInterface {
           ...columns,
         ],
       }), true);
+
+      await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        columnNames: ['user_id'],
+        referencedColumnNames: ['user_id'],
+        referencedTableName: 'user',
+        onDelete: 'RESTRICT',
+      }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -41,4 +55,4 @@ class Token1601940113364 implements MigrationInterface {
     }
 }
 
-export default Token1601940113364;
+export default UserToken1601940113364;

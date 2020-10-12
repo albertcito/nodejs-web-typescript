@@ -19,7 +19,7 @@ class UserResolver {
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
   ): Promise<UserPaginationResponse> {
-    return (new Paginate(User.createQueryBuilder())).get(page, limit);
+    return (new Paginate(User.createQueryBuilder())).get(limit, page);
   }
 }
 

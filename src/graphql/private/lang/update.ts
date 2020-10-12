@@ -3,42 +3,41 @@ import {
 } from 'type-graphql';
 
 import Lang from '../../../db/entities/Lang';
-import { LangInput, rules } from '../../input/LangInput';
-import { getFieldErrors } from '../../../util/validatorjs';
-import ValidatorError from '../../../util/exceptions/ValidatorError';
 import MessageError from '../../../util/exceptions/MessageError';
 import isAuth from '../../../util/graphql/isAuth';
+import Validate from '../../../util/validatorjs/validateGraphQL';
 
 @Resolver()
 class LangUpdateResolver {
   @Mutation(() => Lang)
   @UseMiddleware(isAuth)
-  async langUpdate(@Arg('options') options: LangInput): Promise<Lang> {
-    const existsRules = {
-      ...rules,
-      langID: 'required|string',
-    };
-    const errors = await getFieldErrors(options, existsRules);
-    if (errors) {
-      throw new ValidatorError(errors);
-    }
-
-    const lang = await Lang.findOne(options.langID);
+  @Validate({
+    langID: 'required|string',
+    name: 'required|string',
+    localname: 'required|string|min:1',
+    active: 'boolean',
+    isBlocked: 'boolean',
+  })
+  async langUpdate(
+    @Arg('langID') langID: string,
+    @Arg('name') name: string,
+    @Arg('localname') localname: string,
+    @Arg('active', { nullable: true }) active: boolean,
+    @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
+  ): Promise<Lang> {
+    const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(`The lang ${options.langID} doesn't exists`);
+      throw new MessageError(`The lang ${langID} doesn't exists`);
     }
-
-    lang.name = options.name;
-    lang.localname = options.localname;
-    if (options.isBlocked) {
-      lang.isBlocked = options.isBlocked;
+    lang.name = name;
+    lang.localname = localname;
+    if (isBlocked) {
+      lang.isBlocked = isBlocked;
     }
-    if (options.active) {
-      lang.active = options.active;
+    if (active) {
+      lang.active = active;
     }
-
     await lang.save();
-
     return lang;
   }
 }

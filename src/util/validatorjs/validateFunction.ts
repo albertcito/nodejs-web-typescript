@@ -9,6 +9,7 @@ interface NameIndex {
   name: string;
   index: number;
 }
+
 interface Struct {
   [key: string] : any;
 }
