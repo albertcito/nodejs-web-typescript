@@ -1,26 +1,31 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
 import User from '../../../db/entities/User';
-import { SignUpInput, rules } from '../../input/SignUpInput';
-import { getFieldErrors } from '../../../util/validatorjs';
-import ValidatorError from '../../../util/exceptions/ValidatorError';
+import Validate from '../../../util/validatorjs/validateGraphQL';
 
 @Resolver()
 class SignUpResolver {
   @Mutation(() => User)
-  async signUp(@Arg('options') options: SignUpInput): Promise<User> {
-    const errors = await getFieldErrors(options, rules);
-    if (errors) {
-      throw new ValidatorError(errors);
-    }
-
+  @Validate({
+    firstName: 'required|string',
+    lastName: 'required|string',
+    email: 'required|email|unique:user,email',
+    password: 'required|min:4|confirmed|strict_password',
+  })
+  async signUp(
+    @Arg('firstName') firstName: string,
+    @Arg('lastName') lastName: string,
+    @Arg('email') email: string,
+    @Arg('password') password: string,
+    // eslint-disable-next-line no-unused-vars
+    @Arg('password_confirmation') _: string,
+  ): Promise<User> {
     const user = new User();
-    user.email = options.email;
-    user.firstName = options.firstName;
-    user.lastName = options.lastName;
-    user.password = options.password;
+    user.email = email;
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.password = password;
     await user.save();
-
     return user;
   }
 }

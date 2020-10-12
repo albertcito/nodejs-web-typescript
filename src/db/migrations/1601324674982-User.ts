@@ -11,7 +11,7 @@ class User1601324674982 implements MigrationInterface {
         columns: [
           {
             name: 'user_id',
-            type: 'int',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',

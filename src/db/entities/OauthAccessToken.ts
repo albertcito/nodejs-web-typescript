@@ -1,11 +1,11 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity({ name: 'oauth_access_tokens', schema: 'public' })
+@Entity({ name: 'oauth_access_tokens' })
 class OauthAccessToken extends BaseEntity {
  @Field(() => Int)
     @PrimaryGeneratedColumn({ name: 'oauth_access_token_id' })
@@ -29,6 +29,11 @@ class OauthAccessToken extends BaseEntity {
 
     @Column({ name: 'expired_at' })
     expiredAt: Date;
+
+    @BeforeInsert()
+    async insertRow() {
+      this.revoked = !!this.revoked;
+    }
 }
 
 export default OauthAccessToken;

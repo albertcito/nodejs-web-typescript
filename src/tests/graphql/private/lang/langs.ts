@@ -7,17 +7,27 @@ const langsTest = (app: Express, token: string, done: jest.DoneCallback) => {
   const data = {
     query: `{
       langs {
-        langID
-        localname
-        name
+        pagination {
+          from
+          to
+          total
+          limit
+          page
+          length
+        }
+        data {
+          langID
+          localname
+          name
+        }
       }
     }`,
   };
 
   const rules = {
-    'langs.*.langID': 'required|string',
-    'langs.*.localname': 'required|string',
-    'langs.*.name': 'required|string',
+    'langs.data.*.langID': 'required|string',
+    'langs.data.*.localname': 'required|string',
+    'langs.data.*.name': 'required|string',
   };
 
   request(app)

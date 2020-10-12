@@ -1,5 +1,4 @@
 import Validator, { ValidationErrors } from 'validatorjs';
-import { createMethodDecorator } from 'type-graphql';
 import { getConnection } from 'typeorm';
 import FieldError from '../../graphql/type/FieldError';
 import ValidatorError from '../exceptions/ValidatorError';
@@ -94,13 +93,6 @@ export async function validateOrFail<T>(
   if (errors) {
     throw new ValidatorError(errors, 'Please, review the following errors:');
   }
-}
-
-export function Validate(rules: Validator.Rules, customMessages?: Validator.ErrorMessages) {
-  return createMethodDecorator(async ({ args }, next) => {
-    await validateOrFail(args, rules, customMessages);
-    return next();
-  });
 }
 
 export default Validator;

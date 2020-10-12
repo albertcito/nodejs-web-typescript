@@ -12,14 +12,14 @@ class OauthAccessToken1601770752669 implements MigrationInterface {
       columns: [
         {
           name: 'oauth_access_token_id',
-          type: 'int',
+          type: 'integer',
           isPrimary: true,
           isGenerated: true,
           generationStrategy: 'increment',
         },
         {
           name: 'user_id',
-          type: 'int',
+          type: 'integer',
         },
         {
           name: 'signature',

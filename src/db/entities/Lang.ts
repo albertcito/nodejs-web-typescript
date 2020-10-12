@@ -1,6 +1,6 @@
 import { Field, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryColumn, Column,
+  Entity, PrimaryColumn, Column, BeforeInsert,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
@@ -27,6 +27,12 @@ class Lang extends BaseEntity {
   @Field(() => Boolean)
   @Column({ name: 'is_blocked' })
   isBlocked: boolean;
+
+  @BeforeInsert()
+  async insertRow() {
+    this.isBlocked = !!this.isBlocked;
+    this.active = !!this.active;
+  }
 }
 
 export default Lang;
