@@ -1,7 +1,10 @@
 import { Resolver, Mutation, Arg } from 'type-graphql';
+import { getManager } from 'typeorm';
 
 import User from '../../../db/entities/User';
 import Validate from '../../../util/validatorjs/validateGraphQL';
+
+const { tablePath } = getManager().getRepository(User).metadata;
 
 @Resolver()
 class SignUpResolver {
@@ -9,7 +12,7 @@ class SignUpResolver {
   @Validate({
     firstName: 'required|string',
     lastName: 'required|string',
-    email: 'required|email|unique:user,email',
+    email: `required|email|unique:${tablePath},email`,
     password: 'required|min:4|confirmed|strict_password',
   })
   async signUp(

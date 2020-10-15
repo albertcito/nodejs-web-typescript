@@ -43,7 +43,7 @@ Validator.registerAsync(
   '', // I do not know if this attr works for something? But it is mandatory
 );
 
-const validationToFieldError = (validationErrors: ValidationErrors): FieldError[] => {
+export const validationToFieldError = (validationErrors: ValidationErrors): FieldError[] => {
   const fieldErrors: FieldError[] = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const field in validationErrors) {
@@ -72,24 +72,12 @@ export function getErrors<T>(
   });
 }
 
-export async function getFieldErrors<T>(
-  body: T,
-  rules: Validator.Rules,
-  customMessages?: Validator.ErrorMessages,
-): Promise<FieldError[] | null> {
-  const errors = await getErrors(body, rules, customMessages);
-  if (errors) {
-    return validationToFieldError(errors);
-  }
-  return null;
-}
-
 export async function validateOrFail<T>(
   body: T,
   rules: Validator.Rules,
   customMessages?: Validator.ErrorMessages,
 ): Promise<void> {
-  const errors = await getFieldErrors(body, rules, customMessages);
+  const errors = await getErrors(body, rules, customMessages);
   if (errors) {
     throw new ValidatorError(errors, 'Please, review the following errors:');
   }

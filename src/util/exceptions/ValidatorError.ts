@@ -1,9 +1,9 @@
-import FieldError from '../../graphql/type/FieldError';
+import Validator from 'validatorjs';
 
 class ValidatorError extends Error {
   constructor(
     // eslint-disable-next-line no-unused-vars
-    public readonly errors: FieldError[],
+    public readonly errors: Validator.ValidationErrors,
     // eslint-disable-next-line no-unused-vars
     public readonly message: string = 'The following errors missing',
   ) {
