@@ -1,7 +1,14 @@
-// eslint-disable-next-line max-classes-per-file
 import { SelectQueryBuilder } from 'typeorm';
-import { arg, validate } from '../validatorjs/validateFunction';
+import { arg, validateAsync } from '../validatorjs/validateFunction';
 
+interface PaginationFormat {
+  length: number;
+  total: number;
+  page: number;
+  limit: number;
+  from: number;
+  to: number;
+}
 class Paginate<T> {
   private readonly query: SelectQueryBuilder<T>;
 
@@ -9,11 +16,11 @@ class Paginate<T> {
     this.query = query;
   }
 
-  @validate({
-    page: 'required|integer|min:1',
-    limit: 'required|integer|min:1',
-  })
-  async get(@arg('limit') limit: number, @arg('page') page: number) {
+  @validateAsync()
+  async get(
+    @arg('limit', 'required|integer|min:1') limit: number,
+    @arg('page', 'required|integer|min:1') page: number,
+  ) {
     const total = await this.query.getCount();
 
     const skippedItems = (page - 1) * limit;
@@ -24,7 +31,7 @@ class Paginate<T> {
     const to = (page) * limit;
     const from = (page - 1) * limit;
 
-    const pagination = {
+    const pagination: PaginationFormat = {
       length: data.length,
       total,
       page,

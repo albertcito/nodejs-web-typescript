@@ -6,7 +6,7 @@ import {
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'lang' })
 class Lang extends BaseEntity {
   @Field(() => String)
   @PrimaryColumn({ name: 'lang_id' })

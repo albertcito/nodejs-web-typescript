@@ -1,17 +1,20 @@
 import {
   Resolver, Mutation, Arg, UseMiddleware,
 } from 'type-graphql';
+import { getManager } from 'typeorm';
 
 import Lang from '../../../db/entities/Lang';
 import isAuth from '../../../util/graphql/isAuth';
 import Validate from '../../../util/validatorjs/validateGraphQL';
+
+const { tablePath } = getManager().getRepository(Lang).metadata;
 
 @Resolver()
 class LangCreateResolver {
   @Mutation(() => Lang)
   @UseMiddleware(isAuth)
   @Validate({
-    langID: 'required|string|unique:lang,lang_id',
+    langID: `required|string|unique:${tablePath},lang_id`,
     name: 'required|string',
     localname: 'required|string|min:1',
     active: 'boolean',
