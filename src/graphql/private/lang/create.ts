@@ -8,7 +8,6 @@ import isAuth from '../../../util/graphql/isAuth';
 import Validate from '../../../util/validatorjs/validateGraphQL';
 
 const { tablePath } = getManager().getRepository(Lang).metadata;
-
 @Resolver()
 class LangCreateResolver {
   @Mutation(() => Lang)

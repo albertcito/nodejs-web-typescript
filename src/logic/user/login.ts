@@ -1,10 +1,10 @@
 import argon2 from 'argon2';
+import { validateClass, arg } from 'validatorjs-decorators';
 
 import userOauthCreate from '../oauth/userOauthCreate';
 import User from '../../db/entities/User';
 import MessageError from '../../util/exceptions/MessageError';
 import LoginResponse from '../../graphql/type/LoginResponse';
-import { arg, validateClass } from '../../util/validatorjs/validateFunction';
 
 @validateClass()
 class Login {

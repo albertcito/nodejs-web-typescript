@@ -50,7 +50,8 @@
     "type-graphql": "^1.0.0",
     "typeorm": "^0.2.27",
     "typeorm-seeding": "^1.6.1",
-    "validatorjs": "^3.20.0"
+    "validatorjs": "^3.20.0",
+    "validatorjs-decorators": "^0.0.1"
   },
   "jest": {
     "testEnvironment": "node",
