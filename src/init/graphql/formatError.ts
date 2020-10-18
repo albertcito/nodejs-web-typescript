@@ -1,6 +1,7 @@
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
+import { ValidatorError } from 'validatorjs-decorator';
 import MessageError from '../../util/exceptions/MessageError';
-import ValidatorError from '../../util/exceptions/ValidatorError';
+import validationToFieldError from '../../util/validatorjs';
 
 const formatError = (error: GraphQLError): GraphQLFormattedError => {
   const { originalError } = error;
@@ -8,7 +9,7 @@ const formatError = (error: GraphQLError): GraphQLFormattedError => {
     return {
       message: error.message,
       extensions: {
-        errors: originalError.errors,
+        errors: validationToFieldError(originalError.errors),
       },
     };
   }

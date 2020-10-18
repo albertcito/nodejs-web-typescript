@@ -33,6 +33,11 @@ class User1601324674982 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
           },
+          {
+            name: 'email_verified',
+            type: 'boolean',
+            default: false,
+          },
           ...columns,
         ],
       }), true);

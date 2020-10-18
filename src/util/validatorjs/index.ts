@@ -1,7 +1,6 @@
-import Validator, { ValidationErrors } from 'validatorjs';
+import { Validator, ValidationErrors } from 'validatorjs-decorator';
 import { getConnection } from 'typeorm';
 import FieldError from '../../graphql/type/FieldError';
-import ValidatorError from '../exceptions/ValidatorError';
 /**
  * Password must contain at least one uppercase letter, one lowercase letter and one number
  */
@@ -43,7 +42,7 @@ Validator.registerAsync(
   '', // I do not know if this attr works for something? But it is mandatory
 );
 
-export const validationToFieldError = (validationErrors: ValidationErrors): FieldError[] => {
+const validationToFieldError = (validationErrors: ValidationErrors): FieldError[] => {
   const fieldErrors: FieldError[] = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const field in validationErrors) {
@@ -58,29 +57,4 @@ export const validationToFieldError = (validationErrors: ValidationErrors): Fiel
   return fieldErrors;
 };
 
-export function getErrors<T>(
-  body: T,
-  rules: Validator.Rules,
-  customMessages?: Validator.ErrorMessages,
-) {
-  // This is a ESLint config issue
-  // eslint-disable-next-line no-unused-vars
-  return new Promise((resolve: (errors?: ValidationErrors) => void) => {
-    const validation = new Validator(body, rules, customMessages);
-    validation.passes(() => resolve());
-    validation.fails(() => resolve(validation.errors.errors));
-  });
-}
-
-export async function validateOrFail<T>(
-  body: T,
-  rules: Validator.Rules,
-  customMessages?: Validator.ErrorMessages,
-): Promise<void> {
-  const errors = await getErrors(body, rules, customMessages);
-  if (errors) {
-    throw new ValidatorError(errors, 'Please, review the following errors:');
-  }
-}
-
-export default Validator;
+export default validationToFieldError;

@@ -1,7 +1,5 @@
 import { Response } from 'supertest';
-import Validator from 'validatorjs';
-
-import { getErrors } from '../../util/validatorjs';
+import { Validator, getAsyncErrors } from 'validatorjs-decorator/dist';
 
 const assertJsonStructureGraphQL = async (
   done: jest.DoneCallback,
@@ -23,7 +21,7 @@ const assertJsonStructureGraphQL = async (
     done.fail('The query data is empty');
   }
 
-  const errors = await getErrors(res.body.data, rules);
+  const errors = await getAsyncErrors(res.body.data, rules);
 
   if (errors) {
     // eslint-disable-next-line no-console

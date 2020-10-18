@@ -1,4 +1,4 @@
-import Validator from 'validatorjs';
+import { Validator } from 'validatorjs-decorator';
 
 class ValidatorError extends Error {
   constructor(
