@@ -1,5 +1,5 @@
 import { SelectQueryBuilder } from 'typeorm';
-import { validateAsync, arg } from 'validatorjs-decorators';
+import { validateAsync, arg } from 'validatorjs-decorator';
 
 interface PaginationFormat {
   length: number;

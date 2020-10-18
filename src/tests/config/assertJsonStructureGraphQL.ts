@@ -1,5 +1,5 @@
 import { Response } from 'supertest';
-import { Validator, getAsyncErrors } from 'validatorjs-decorators/dist';
+import { Validator, getAsyncErrors } from 'validatorjs-decorator/dist';
 
 const assertJsonStructureGraphQL = async (
   done: jest.DoneCallback,

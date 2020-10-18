@@ -28,11 +28,16 @@ class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Field(() => Boolean)
+  @Column({ name: 'email_verified' })
+  emailVerified: boolean;
+
   @BeforeInsert()
   @BeforeUpdate()
   async updateRow() {
     const hashedPassword = await argon2.hash(this.password);
     this.password = hashedPassword;
+    this.emailVerified = !!this.emailVerified;
   }
 }
 

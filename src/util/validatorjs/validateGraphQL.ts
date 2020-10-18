@@ -1,5 +1,4 @@
-import Validator from 'validatorjs';
-import { ValidatorError, getAsyncErrors } from 'validatorjs-decorators';
+import { ValidatorError, getAsyncErrors, Validator } from 'validatorjs-decorator';
 import { createMethodDecorator } from 'type-graphql';
 
 function Validate(rules: Validator.Rules, customMessages?: Validator.ErrorMessages) {

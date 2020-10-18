@@ -1,5 +1,5 @@
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
-import { ValidatorError } from 'validatorjs-decorators';
+import { ValidatorError } from 'validatorjs-decorator';
 import MessageError from '../../util/exceptions/MessageError';
 import validationToFieldError from '../../util/validatorjs';
 

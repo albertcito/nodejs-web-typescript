@@ -1,5 +1,5 @@
 import argon2 from 'argon2';
-import { validateClass, arg } from 'validatorjs-decorators';
+import { validateClass, arg } from 'validatorjs-decorator';
 
 import userOauthCreate from '../oauth/userOauthCreate';
 import User from '../../db/entities/User';

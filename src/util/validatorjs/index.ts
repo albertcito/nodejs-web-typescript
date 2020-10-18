@@ -1,5 +1,4 @@
-import { Validator } from 'validatorjs-decorators';
-import { ValidationErrors } from 'validatorjs';
+import { Validator, ValidationErrors } from 'validatorjs-decorator';
 import { getConnection } from 'typeorm';
 import FieldError from '../../graphql/type/FieldError';
 /**
