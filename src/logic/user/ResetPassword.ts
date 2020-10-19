@@ -6,26 +6,28 @@ import MessageError from '../../util/exceptions/MessageError';
 import UserTypeEnum from './UserTokenEnum';
 
 @validateClass()
-class ActivateEmail {
+class ResetPassword {
   private readonly token: string;
 
-  constructor(@arg('token', 'required|min:4') token: string) {
+  private readonly password: string;
+
+  constructor(
+    @arg('token', 'required|min:4') token: string,
+    @arg('password', 'required|min:4|strict_password') password: string,
+  ) {
     this.token = token;
+    this.password = password;
   }
 
-  async activate() {
+  async save() {
     const userToken = await UserToken.findOne({
       where: {
         token: this.token,
-        type: UserTypeEnum.ACTIVATE_EMAIL,
+        type: UserTypeEnum.RECOVERY_PASSWORD,
       },
     });
     if (!userToken) {
       throw new MessageError('The token does not exist');
-    }
-
-    if (userToken.usedAt) {
-      throw new MessageError('The token already was used');
     }
 
     const expiredAt = new Date(userToken.expiredAt);
@@ -45,7 +47,7 @@ class ActivateEmail {
 
     await queryRunner.startTransaction();
     try {
-      user.emailVerified = true;
+      user.password = this.password;
       await user.save();
 
       userToken.usedAt = new Date();
@@ -61,4 +63,4 @@ class ActivateEmail {
   }
 }
 
-export default ActivateEmail;
+export default ResetPassword;

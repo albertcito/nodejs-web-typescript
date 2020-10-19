@@ -31,7 +31,7 @@ class UserToken extends BaseEntity {
     expiredAt: Date;
 
     @BeforeInsert()
-    async updateRow() {
+    async insertRow() {
       this.token = await argon2.hash('signature');
     }
 }

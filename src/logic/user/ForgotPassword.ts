@@ -12,7 +12,7 @@ class ForgotPassword {
     this.email = email;
   }
 
-  async activate() {
+  async getToken(): Promise<UserToken> {
     const user = await User.findOne({ where: { email: this.email } });
     if (!user) {
       throw new MessageError(`The email: "${this.email}" doesn't exist`);
@@ -24,7 +24,9 @@ class ForgotPassword {
     const expiredAt = new Date();
     expiredAt.setHours(expiredAt.getHours() + 48);
     userToken.expiredAt = expiredAt;
-    userToken.save();
+    await userToken.save();
+
+    return userToken;
   }
 }
 
