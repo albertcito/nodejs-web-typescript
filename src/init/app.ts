@@ -6,6 +6,7 @@ import publicServer from './graphql/public/server';
 import privateServer from './graphql/private/server';
 import ormconfig from '../../ormconfig.json';
 import isAuthMiddleware from './middleware/isAuthMiddleware';
+import '../util/validatorjs/rules';
 
 const getApp = async (): Promise<Express> => {
   const app = express();

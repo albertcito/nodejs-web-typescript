@@ -1,6 +1,5 @@
-import { Validator, ValidationErrors } from 'validatorjs-decorator';
+import { Validator } from 'validatorjs-decorator';
 import { getConnection } from 'typeorm';
-import FieldError from '../../graphql/type/FieldError';
 /**
  * Password must contain at least one uppercase letter, one lowercase letter and one number
  */
@@ -41,20 +40,3 @@ Validator.registerAsync(
   },
   '', // I do not know if this attr works for something? But it is mandatory
 );
-
-const validationToFieldError = (validationErrors: ValidationErrors): FieldError[] => {
-  const fieldErrors: FieldError[] = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const field in validationErrors) {
-    if (Object.prototype.hasOwnProperty.call(validationErrors, field)) {
-      const messages = validationErrors[field];
-      fieldErrors.push({
-        field,
-        messages,
-      });
-    }
-  }
-  return fieldErrors;
-};
-
-export default validationToFieldError;

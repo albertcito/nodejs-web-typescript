@@ -18,7 +18,7 @@ const loginTest = (app: Express, done: jest.DoneCallback) => {
     }`,
     variables: {
       email: 'me@albertcito.com',
-      password: '123456',
+      password: 'Hola12345',
     },
   };
 

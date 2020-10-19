@@ -2,19 +2,25 @@ import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
 import MessageError from '../../util/exceptions/MessageError';
-import UserTypeEnum from './UserTokenEnum';
+import UserTokenEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
 
 @validateClass()
-class ActivateEmail {
+class ResetPassword {
   private readonly token: string;
 
-  constructor(@arg('token', 'required|min:4') token: string) {
+  private readonly password: string;
+
+  constructor(
+    @arg('token', 'required|min:4') token: string,
+    @arg('password', 'required|min:4|strict_password') password: string,
+  ) {
     this.token = token;
+    this.password = password;
   }
 
-  async activate() {
-    const verifyUserToken = new VerifyUserToken(this.token, UserTypeEnum.ACTIVATE_EMAIL);
+  async save() {
+    const verifyUserToken = new VerifyUserToken(this.token, UserTokenEnum.RECOVERY_PASSWORD);
     const userToken = await verifyUserToken.getToken();
 
     const user = await User.findOne(userToken.userID);
@@ -28,7 +34,7 @@ class ActivateEmail {
 
     await queryRunner.startTransaction();
     try {
-      user.emailVerified = true;
+      user.password = this.password;
       await user.save();
 
       userToken.usedAt = new Date();
@@ -44,4 +50,4 @@ class ActivateEmail {
   }
 }
 
-export default ActivateEmail;
+export default ResetPassword;

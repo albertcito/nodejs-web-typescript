@@ -7,7 +7,7 @@ class ActivateEmailResolver {
   async activateEmail(@Arg('token') token: string): Promise<string> {
     const activateEmail = new ActivateEmail(token);
     await activateEmail.activate();
-    return 'Password updated';
+    return 'User activated';
   }
 }
 

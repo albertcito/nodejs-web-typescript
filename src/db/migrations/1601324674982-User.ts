@@ -46,7 +46,7 @@ class User1601324674982 implements MigrationInterface {
       user.firstName = 'Albert';
       user.lastName = 'Tjornehoj';
       user.email = 'me@albertcito.com';
-      user.password = '123456';
+      user.password = 'Hola12345';
       await queryRunner.manager.save(user);
     }
 
