@@ -1,9 +1,9 @@
 import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
-import UserToken from '../../db/entities/UserToken';
 import MessageError from '../../util/exceptions/MessageError';
-import UserTypeEnum from './UserTokenEnum';
+import UserTokenEnum from './UserTokenEnum';
+import VerifyUserToken from './VerifyUserToken';
 
 @validateClass()
 class ResetPassword {
@@ -20,21 +20,8 @@ class ResetPassword {
   }
 
   async save() {
-    const userToken = await UserToken.findOne({
-      where: {
-        token: this.token,
-        type: UserTypeEnum.RECOVERY_PASSWORD,
-      },
-    });
-    if (!userToken) {
-      throw new MessageError('The token does not exist');
-    }
-
-    const expiredAt = new Date(userToken.expiredAt);
-    const now = new Date();
-    if (expiredAt.getTime() < now.getTime()) {
-      throw new MessageError('The token was expired');
-    }
+    const verifyUserToken = new VerifyUserToken(this.token, UserTokenEnum.RECOVERY_PASSWORD);
+    const userToken = await verifyUserToken.getToken();
 
     const user = await User.findOne(userToken.userID);
     if (!user) {

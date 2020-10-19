@@ -1,9 +1,9 @@
 import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
-import UserToken from '../../db/entities/UserToken';
 import MessageError from '../../util/exceptions/MessageError';
 import UserTypeEnum from './UserTokenEnum';
+import VerifyUserToken from './VerifyUserToken';
 
 @validateClass()
 class ActivateEmail {
@@ -14,25 +14,8 @@ class ActivateEmail {
   }
 
   async activate() {
-    const userToken = await UserToken.findOne({
-      where: {
-        token: this.token,
-        type: UserTypeEnum.ACTIVATE_EMAIL,
-      },
-    });
-    if (!userToken) {
-      throw new MessageError('The token does not exist');
-    }
-
-    if (userToken.usedAt) {
-      throw new MessageError('The token already was used');
-    }
-
-    const expiredAt = new Date(userToken.expiredAt);
-    const now = new Date();
-    if (expiredAt.getTime() < now.getTime()) {
-      throw new MessageError('The token was expired');
-    }
+    const verifyUserToken = new VerifyUserToken(this.token, UserTypeEnum.ACTIVATE_EMAIL);
+    const userToken = await verifyUserToken.getToken();
 
     const user = await User.findOne(userToken.userID);
     if (!user) {

@@ -12,6 +12,7 @@ import loginTest from './graphql/public/user/login';
 import signupTest from './graphql/public/user/signup';
 import forgotPasswordTest from './graphql/public/user/forgotPassword';
 import resetPasswordTest from './graphql/public/user/resetPassword';
+import activateEmailTest from './graphql/public/user/activateEmail';
 
 let app: Express;
 let token = '';
@@ -35,4 +36,5 @@ describe('GET /graphql/public', () => {
   it('m: signUp', (done) => signupTest(app, done));
   it('m: forgotPassword', (done) => forgotPasswordTest(app, done));
   it('m: resetPassword', (done) => resetPasswordTest(app, done));
+  it('m: activateEmail', (done) => activateEmailTest(app, done));
 });
