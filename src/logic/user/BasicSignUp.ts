@@ -27,16 +27,15 @@ class BasicSignUp {
   }
 
   async save() {
+    const email = new Email('emails.activateAccount');
+    await email.send({ to: this.email });
+
     const user = new User();
     user.email = this.email;
     user.firstName = this.firstName;
     user.lastName = this.lastName;
     user.password = this.password;
     await user.save();
-
-    const email = new Email('emails.hola');
-    email.send({ to: 'albert.bar@gmail.com ' });
-
     return user;
   }
 }
