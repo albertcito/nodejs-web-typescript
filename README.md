@@ -26,3 +26,6 @@ Before to send a PR please do it:
 - Run `yarn test` to ensure everithing is working well
 - Run `yarn lint:eslint-fix` to validate the code style.
 - Run `yarn ejslint ` to validate the ejs files.
+
+## Email Debug
+- To debug email in your localhost use this software: https://nodemailer.com/app/

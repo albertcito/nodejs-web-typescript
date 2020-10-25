@@ -10,6 +10,7 @@
     "lint:eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
     "lint:eslint-fix": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}' --fix",
     "test": "jest --config ./jest.config.js",
+    "ci:test": "NODE_ENV=test yarn test",
     "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "ejslint": "ejslint src/resources/view/*"

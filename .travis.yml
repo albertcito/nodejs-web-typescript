@@ -9,7 +9,7 @@ install:
 env:
   - DB_TYPE="sqlite" DB_DATABASE="./testDB.db" DB_LOGGING=false
 script:
-  - yarn test
+  - yarn ci:test
   - yarn lint:eslint
   - yarn ejslint
 notifications:
