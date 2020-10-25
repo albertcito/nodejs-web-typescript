@@ -11,5 +11,6 @@ env:
 script:
   - yarn test
   - yarn lint:eslint
+  - yarn ejslint
 notifications:
   email: false
