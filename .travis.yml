@@ -2,13 +2,15 @@ language: node_js
 node_js:
   - "12.16.3"
 install:
+  - cp .env.example .env
   - yarn install
   - yarn typeorm migration:run
   - yarn seed:run
 env:
   - DB_TYPE="sqlite" DB_DATABASE="./testDB.db" DB_LOGGING=false
 script:
-  - yarn test
+  - yarn ci:test
   - yarn lint:eslint
+  - yarn ejslint
 notifications:
   email: false
