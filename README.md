@@ -8,6 +8,7 @@
 
 ## To install:
 - Clone this project
+- Create .env file `cp .env.example .env`
 - Run `yarn install` (Installs all the dependencies for your project)
 - Run `yarn typeorm migration:run` (Creates all of the database tables)
 - You can use any database engine in order to do it review the [TypeORM documentation](https://typeorm.io/#/).

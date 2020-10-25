@@ -1,10 +1,11 @@
-import { getManager } from 'typeorm';
-import { arg } from 'validatorjs-decorator/dist';
+import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
 import Email from '../../util/email/Email';
+import UserName from './UserName';
+import UserToken from './UserToken';
+import UserTokenEnum from './UserTokenEnum';
 
-const { tablePath } = getManager().getRepository(User).metadata;
-
+@validateClass()
 class BasicSignUp {
   private readonly firstName: string;
 
@@ -17,7 +18,7 @@ class BasicSignUp {
   public constructor(
     @arg('firstName', 'required|string') firstName: string,
     @arg('lastName', 'required|string') lastName: string,
-    @arg('email', `required|email|unique:${tablePath},email`) email: string,
+    @arg('email', 'required|email') email: string,
     @arg('password', 'required|min:4|strict_password') password: string,
   ) {
     this.firstName = firstName;
@@ -27,15 +28,18 @@ class BasicSignUp {
   }
 
   async save() {
-    const email = new Email('emails.activateAccount');
-    await email.send({ to: this.email });
-
     const user = new User();
     user.email = this.email;
     user.firstName = this.firstName;
     user.lastName = this.lastName;
     user.password = this.password;
     await user.save();
+
+    const userToken = new UserToken(user.userID);
+    const link = await userToken.tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
+    const name = (new UserName(user)).getFullName();
+    const email = new Email('emails.activateAccount');
+    await email.send({ to: this.email }, { name, link });
     return user;
   }
 }

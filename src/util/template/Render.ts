@@ -1,6 +1,7 @@
 import ejs from 'ejs';
 import { promises as fs } from 'fs';
 import path from 'path';
+import i18n from 'i18n';
 
 class Render {
   private readonly view: string;
@@ -14,7 +15,8 @@ class Render {
     const pathView = this.view.split('.').join('/');
     const templatePath = path.join(__dirname, `../../../src/resources/view/${pathView}.ejs`);
     const template = await fs.readFile(templatePath, 'utf8');
-    const html = ejs.render(template, params, {
+    const html = ejs.render(template, { ...params, i18n }, {
+      debug: false,
       root: path.join(__dirname, '../../../src/resources/view/'),
     });
     return html;

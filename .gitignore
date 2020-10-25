@@ -4,5 +4,7 @@ node_modules/
 build/
 tmp/
 temp/
+.env
+.DS_Store
 sqliteDB.db
 yarn-error.log
