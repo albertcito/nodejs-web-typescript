@@ -1,4 +1,4 @@
-import User from "db/entities/User";
+import User from '../../db/entities/User';
 
 class UserName {
   private readonly user: User;

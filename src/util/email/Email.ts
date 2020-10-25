@@ -19,14 +19,17 @@ class Email {
   }
 
   private getTransporter() {
-    return nodemailer.createTransport({
-      host: 'localhost',
-      port: 1025,
+    const host = process.env.MAIL_HOST ?? 'localhost';
+    const port = Number(process.env.MAIL_PORT) ?? 1025;
+    const transport = {
+      host,
+      port,
       auth: {
-        user: 'project.1',
-        pass: 'secret.1',
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD,
       },
-    });
+    };
+    return nodemailer.createTransport(transport);
   }
 
   async send(options: EmailOptions, params?: ejsParams) {

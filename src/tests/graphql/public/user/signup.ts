@@ -1,11 +1,14 @@
 import request from 'supertest';
+import * as faker from 'faker';
 import { Express } from 'express';
 
 import assertJsonStructureGraphQL from '../../../config/assertJsonStructureGraphQL';
-import User from '../../../../db/entities/User';
 
 const signupTest = (app: Express, done: jest.DoneCallback) => {
-  const email = 'me@signuptest.com';
+  const email = `signup@${faker.random.uuid()}.com`;
+  const gender = faker.random.number(1);
+  const firstName = faker.name.firstName(gender);
+  const lastName = faker.name.lastName(gender);
   const data = {
     query: `mutation signUp(
       $email: String!,
@@ -31,8 +34,8 @@ const signupTest = (app: Express, done: jest.DoneCallback) => {
       email,
       password: '123456At',
       password_confirmation: '123456At',
-      firstName: 'Albert',
-      lastName: 'Tjornehoj',
+      firstName,
+      lastName,
     },
   };
 
@@ -49,13 +52,7 @@ const signupTest = (app: Express, done: jest.DoneCallback) => {
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
     .expect(200)
-    .end(async (err, res) => {
-      const user = await User.findOne({ where: { email } });
-      if (user) {
-        await user.remove();
-      }
-      await assertJsonStructureGraphQL(done, res, err, rules);
-    });
+    .end(async (err, res) => assertJsonStructureGraphQL(done, res, err, rules));
 };
 
 export default signupTest;

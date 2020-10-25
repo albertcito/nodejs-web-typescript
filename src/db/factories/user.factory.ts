@@ -4,7 +4,7 @@ import { define } from 'typeorm-seeding';
 import User from '../entities/User';
 
 const getFakerUser = (password: string = '123456') => {
-  const email = `albertcito@${faker.random.uuid()}.com`;
+  const email = `faker@${faker.random.uuid()}.com`;
   const gender = faker.random.number(1);
   const firstName = faker.name.firstName(gender);
   const lastName = faker.name.lastName(gender);
