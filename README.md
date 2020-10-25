@@ -25,3 +25,4 @@ To populate the DB with faker data. Using [typeorm-seeding](https://github.com/w
 Before to send a PR please do it:
 - Run `yarn test` to ensure everithing is working well
 - Run `yarn lint:eslint-fix` to validate the code style.
+- Run `yarn ejslint ` to validate the ejs files.
