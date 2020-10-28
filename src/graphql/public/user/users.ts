@@ -12,7 +12,7 @@ import PaginationResponse from '../../type/PaginationResponse';
 class UserPaginationResponse extends PaginationResponse(User) {}
 
 @Resolver()
-class UserResolver {
+class UsersResolver {
   @Query(() => UserPaginationResponse)
   @UseMiddleware(isAuth)
   async users(
@@ -23,4 +23,4 @@ class UserResolver {
   }
 }
 
-export default UserResolver;
+export default UsersResolver;

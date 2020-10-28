@@ -40,3 +40,9 @@ Validator.registerAsync(
   },
   '', // I do not know if this attr works for something? But it is mandatory
 );
+
+Validator.register(
+  'requiredArray',
+  (value) => Array.isArray(value) && value.length > 0,
+  'At least 1 :attribute is required',
+);
