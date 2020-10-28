@@ -5,12 +5,14 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPlugin } from 'apollo-server-plugin-base';
 import { HttpQueryError } from 'apollo-server-core';
 import { buildSchema, BuildSchemaOptions } from 'type-graphql';
-import path from 'path';
+import { join } from 'path';
 
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
 import AuthenticationError from '../../../util/exceptions/AuthenticationError';
 
+// I tried to do it like the Apollo test, but its doen's works
+// https://github.com/apollographql/apollo-server/blob/1af2792ed9e18f2bf218a29c2f4f128b6588f9ca/packages/apollo-server-integration-testsuite/src/ApolloServer.ts#L661
 const HttpStatus403Plugin: ApolloServerPlugin = {
   requestDidStart() {
     return {
@@ -26,8 +28,10 @@ const HttpStatus403Plugin: ApolloServerPlugin = {
   },
 };
 
+export const path = '/graphql/public';
+
 const server = async (app: Express, db: Connection) => {
-  const privatePath = path.join(__dirname, '../../../graphql/public/**/*.ts');
+  const privatePath = join(__dirname, '../../../graphql/public/**/*.ts');
   const apolloSchemeOptions: BuildSchemaOptions = {
     resolvers: [privatePath],
     validate: false,
@@ -41,7 +45,7 @@ const server = async (app: Express, db: Connection) => {
   });
   apolloServer.applyMiddleware({
     app,
-    path: '/graphql/public',
+    path,
   });
 };
 

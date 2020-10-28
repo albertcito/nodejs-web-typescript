@@ -3,9 +3,10 @@ import { Express } from 'express';
 
 import assertJsonStructureGraphQL from './assertJsonStructureGraphQL';
 import GenericTestData from './GenericTestData';
+import { path } from '../../init/graphql/public/server';
 
 class GenericTest {
-  public readonly url = '/graphql/public';
+  public readonly url = path
 
   private readonly app: Express;
 
