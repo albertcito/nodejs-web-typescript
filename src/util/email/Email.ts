@@ -53,7 +53,7 @@ class Email {
     const from = options.from ?? `${process.env.MAIL_FROM_NAME} <${process.env.MAIL_FROM_ADDRESS}>`;
     const render = new Render(this.view);
     const html = await render.getHtml(params);
-    transporter.sendMail({
+    await transporter.sendMail({
       ...options, to, from, html,
     });
     // save send emails in DB and verify is the email was sent succefully

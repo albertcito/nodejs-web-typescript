@@ -37,7 +37,6 @@ describe('GET /graphql/public', () => {
   it('q: users', (done) => genericTest.test(done, new UsersTest(), token));
   it('q: user', (done) => genericTest.test(done, new UserTest(), token));
   it('m: login', (done) => genericTest.test(done, new LoginTest()));
-  // asynchronous "SignUpTest" test with warning -> fix it
   it('m: signUp', (done) => genericTest.test(done, new SignUpTest()));
   it('m: forgotPassword', (done) => genericTest.test(done, new ForgotPasswordTest()));
   it('m: resetPassword', (done) => genericTest.test(done, new ResetPasswordTest()));
