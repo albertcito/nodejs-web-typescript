@@ -10,11 +10,13 @@ import apolloServer from './graphql/public/server';
 import ormconfig from '../../ormconfig.json';
 import '../util/validatorjs/rules';
 import './i18n/index';
+import corsConfig from './cors';
 
 const getApp = async (): Promise<Express> => {
   dotenv.config();
   const app = express();
-  app.use(cors());
+  app.use(cors(corsConfig()));
+  // folder to put files
   app.use('/public', express.static(path.join(__dirname, '../../public')));
   app.use(i18n.init);
   const db = await createConnection(ormconfig as ConnectionOptions);

@@ -10,6 +10,7 @@ import { join } from 'path';
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
 import AuthenticationError from '../../../util/exceptions/AuthenticationError';
+import getCors from '../../cors';
 
 // I tried to do it like the Apollo test, but its doen's works
 // https://github.com/apollographql/apollo-server/blob/1af2792ed9e18f2bf218a29c2f4f128b6588f9ca/packages/apollo-server-integration-testsuite/src/ApolloServer.ts#L661
@@ -44,6 +45,7 @@ const server = async (app: Express, db: Connection) => {
     plugins: [HttpStatus403Plugin],
   });
   apolloServer.applyMiddleware({
+    cors: getCors(),
     app,
     path,
   });
