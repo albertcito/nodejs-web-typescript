@@ -13,7 +13,7 @@ class SignUpResolver {
     password: 'confirmed',
     email: `required|email|unique:${tablePath},email`,
   })
-  async signUp(
+  signUp(
     @Arg('firstName') firstName: string,
     @Arg('lastName') lastName: string,
     @Arg('email') email: string,

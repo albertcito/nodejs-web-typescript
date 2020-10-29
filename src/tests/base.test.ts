@@ -1,40 +1,44 @@
 import { Express } from 'express';
 
 import getApp from '../init/app';
+
 import getOauthTokenValid from './config/getOauthTokenValid';
-import usersTest from './graphql/private/user/users';
-import langTest from './graphql/private/lang/lang';
-import langsTest from './graphql/private/lang/langs';
-import langCreateTest from './graphql/private/lang/langCreate';
-import langUpdateTest from './graphql/private/lang/langUpdate';
-import langDeleteTest from './graphql/private/lang/langDelete';
-import loginTest from './graphql/public/user/login';
-import signupTest from './graphql/public/user/signup';
-import forgotPasswordTest from './graphql/public/user/forgotPassword';
-import resetPasswordTest from './graphql/public/user/resetPassword';
-import activateEmailTest from './graphql/public/user/activateEmail';
+import GenericTest from './config/GenericTest';
+
+import langCreateTest from './graphql/public/lang/langCreate';
+import LangUpdateTest from './graphql/public/lang/langUpdate';
+import LangDeleteTest from './graphql/public/lang/langDelete';
+import LangTest from './graphql/public/lang/lang';
+import LangsTest from './graphql/public/lang/langs';
+import UsersTest from './graphql/public/user/users';
+import UserTest from './graphql/public/user/user';
+import LoginTest from './graphql/public/user/login';
+import SignUpTest from './graphql/public/user/signup';
+import ForgotPasswordTest from './graphql/public/user/forgotPassword';
+import ResetPasswordTest from './graphql/public/user/resetPassword';
+import ActivateEmailTest from './graphql/public/user/activateEmail';
 
 let app: Express;
 let token = '';
+let genericTest: GenericTest;
 
 beforeAll(async () => {
   app = await getApp();
   token = await getOauthTokenValid();
-});
-
-describe('GET /graphql/private', () => {
-  it('q: users', (done) => usersTest(app, token, done));
-  it('q: lang', (done) => langTest(app, token, done));
-  it('q: langs', (done) => langsTest(app, token, done));
-  it('m: langCreate', (done) => langCreateTest(app, token, done));
-  it('m: langUpdate', async (done) => langUpdateTest(app, token, done));
-  it('m: langDelete', async (done) => langDeleteTest(app, token, done));
+  genericTest = new GenericTest(app);
 });
 
 describe('GET /graphql/public', () => {
-  it('m: login', (done) => loginTest(app, done));
-  it('m: signUp', (done) => signupTest(app, done));
-  it('m: forgotPassword', (done) => forgotPasswordTest(app, done));
-  it('m: resetPassword', (done) => resetPasswordTest(app, done));
-  it('m: activateEmail', (done) => activateEmailTest(app, done));
+  it('m: langCreate', (done) => langCreateTest(app, token, done));
+  it('m: langUpdate', async (done) => genericTest.test(done, new LangUpdateTest(), token));
+  it('m: langDelete', async (done) => genericTest.test(done, new LangDeleteTest(), token));
+  it('q: langs', (done) => genericTest.test(done, new LangsTest()));
+  it('q: lang', (done) => genericTest.test(done, new LangTest(), token));
+  it('q: users', (done) => genericTest.test(done, new UsersTest(), token));
+  it('q: user', (done) => genericTest.test(done, new UserTest(), token));
+  it('m: login', (done) => genericTest.test(done, new LoginTest()));
+  it('m: signUp', (done) => genericTest.test(done, new SignUpTest()));
+  it('m: forgotPassword', (done) => genericTest.test(done, new ForgotPasswordTest()));
+  it('m: resetPassword', (done) => genericTest.test(done, new ResetPasswordTest()));
+  it('m: activateEmail', (done) => genericTest.test(done, new ActivateEmailTest()));
 });
