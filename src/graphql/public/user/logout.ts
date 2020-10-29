@@ -11,6 +11,7 @@ class LogoutResolver {
     if (auth) {
       auth.auth.revoked = true;
       await auth.auth.save();
+      Auth.setData();
     }
     return 'logout successfully';
   }
