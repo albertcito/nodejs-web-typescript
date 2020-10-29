@@ -1,11 +1,17 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable no-empty-function */
 import User from '../../db/entities/User';
+import OauthAccessToken from '../../db/entities/OauthAccessToken';
+
+export interface GlobalData {
+  user: User;
+  auth: OauthAccessToken;
+}
 
 class Global {
   private static instance: Global;
 
-  private user?: User;
+  private data?: GlobalData;
 
   private constructor() {}
 
@@ -16,12 +22,12 @@ class Global {
     return Global.instance;
   }
 
-  public setUser(user?: User): void {
-    this.user = user;
+  public setData(data?: GlobalData): void {
+    this.data = data;
   }
 
-  public getUser(): User | undefined {
-    return this.user;
+  public getData(): GlobalData | undefined {
+    return this.data;
   }
 }
 

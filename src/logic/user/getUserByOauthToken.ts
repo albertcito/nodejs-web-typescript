@@ -3,6 +3,7 @@ import { Request } from 'express';
 import User from '../../db/entities/User';
 import OauthAccessToken from '../../db/entities/OauthAccessToken';
 import AuthenticationError from '../../util/exceptions/AuthenticationError';
+import Auth from '../../util/session/Auth';
 
 const getTokenFromHeader = (req: Request) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -14,18 +15,28 @@ const getTokenFromHeader = (req: Request) => {
 const getUserByOauthToken = async (req: Request) => {
   const token = getTokenFromHeader(req);
 
-  const userToken = await OauthAccessToken.findOne({ where: { token } });
-  if (!userToken) {
+  const auth = await OauthAccessToken.findOne({ where: { token } });
+  if (!auth) {
     throw new AuthenticationError('Not authorized, please login. (code: notFound)');
   }
 
-  const expiredAt = new Date(userToken.expiredAt);
+  const expiredAt = new Date(auth.expiredAt);
   const now = new Date();
   if (expiredAt.getTime() < now.getTime()) {
     throw new AuthenticationError('Not authorized, please login. (code: expired)');
   }
 
-  return User.findOne(userToken.userID);
+  const user = await User.findOne(auth.userID);
+  if (!user) {
+    throw new AuthenticationError('Not authorized, please login. (code: user)');
+  }
+
+  Auth.setData({
+    user,
+    auth,
+  });
+
+  return user;
 };
 
 export default getUserByOauthToken;

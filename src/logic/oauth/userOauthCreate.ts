@@ -6,12 +6,13 @@ const userOauthCreate = async (userID: number): Promise<OauthAccessToken> => {
   const now = new Date();
   now.setHours(now.getHours() + 6);
 
-  const userToken = new OauthAccessToken();
-  userToken.token = await argon2.hash(signature);
-  userToken.signature = signature;
-  userToken.userID = userID;
-  userToken.expiredAt = now;
-  return userToken.save();
+  const auth = new OauthAccessToken();
+  auth.token = await argon2.hash(signature);
+  auth.signature = signature;
+  auth.userID = userID;
+  auth.expiredAt = now;
+  await auth.save();
+  return auth;
 };
 
 export default userOauthCreate;
