@@ -20,6 +20,10 @@ const getUserByOauthToken = async (req: Request) => {
     throw new AuthenticationError('Not authorized, please login. (code: notFound)');
   }
 
+  if (auth.revoked) {
+    throw new AuthenticationError('Not authorized, please login. (code: revoked)');
+  }
+
   const expiredAt = new Date(auth.expiredAt);
   const now = new Date();
   if (expiredAt.getTime() < now.getTime()) {

@@ -6,7 +6,7 @@ class Auth {
     return global.getData();
   }
 
-  public static setData(data: GlobalData | undefined) {
+  public static setData(data?: GlobalData) {
     const global = Global.getInstance();
     global.setData(data);
   }
