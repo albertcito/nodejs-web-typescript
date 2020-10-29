@@ -1,15 +1,14 @@
-import Global from './Global';
-import User from '../../db/entities/User';
+import Global, { GlobalData } from './Global';
 
 class Auth {
-  public static user(): User | undefined {
+  public static data(): GlobalData | undefined {
     const global = Global.getInstance();
-    return global.getUser();
+    return global.getData();
   }
 
-  public static setUser(user: User | undefined) {
+  public static setData(data: GlobalData | undefined) {
     const global = Global.getInstance();
-    global.setUser(user);
+    global.setData(data);
   }
 }
 

@@ -5,6 +5,7 @@ import userOauthCreate from '../oauth/userOauthCreate';
 import User from '../../db/entities/User';
 import MessageError from '../../util/exceptions/MessageError';
 import LoginResponse from '../../graphql/type/LoginResponse';
+import Auth from '../../util/session/Auth';
 
 @validateClass()
 class Login {
@@ -32,11 +33,16 @@ class Login {
       throw new MessageError('The email does not exist or the password does not match');
     }
 
-    const userToken = await userOauthCreate(user.userID);
+    const auth = await userOauthCreate(user.userID);
+
+    Auth.setData({
+      user,
+      auth,
+    });
 
     return {
       user,
-      token: userToken.token,
+      token: auth.token,
     };
   }
 }

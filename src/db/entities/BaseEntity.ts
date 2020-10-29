@@ -26,16 +26,16 @@ class BaseDataEntity extends BaseEntity {
     @BeforeUpdate()
     updateRowAt() {
       this.updatedAt = new Date();
-      const user = Auth.user();
-      this.updatedBy = user ? user.userID : undefined;
+      const data = Auth.data();
+      this.updatedBy = data ? data.user.userID : undefined;
     }
 
     @BeforeInsert()
     insertRowAt() {
       this.createdAt = new Date();
-      const user = Auth.user();
-      if (user) {
-        this.createdBy = user.userID;
+      const data = Auth.data();
+      if (data) {
+        this.createdBy = data.user.userID;
       }
     }
 }
