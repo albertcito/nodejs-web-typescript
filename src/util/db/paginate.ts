@@ -19,8 +19,8 @@ class Paginate<T> {
 
   @validateAsync()
   async get(
-    @arg('page', 'required|integer|min:1') page: number,
-    @arg('limit', 'required|integer|min:1') limit: number,
+    @arg('page', 'integer|min:1') page: number = 1,
+    @arg('limit', 'integer|min:1') limit: number = 10,
   ) {
     const total = await this.query.getCount();
 
