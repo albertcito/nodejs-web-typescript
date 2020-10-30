@@ -3,8 +3,8 @@ import express, { Express } from 'express';
 import { ConnectionOptions, createConnection } from 'typeorm';
 import dotenv from 'dotenv';
 import i18n from 'i18n';
-import cors from 'cors';
 import path from 'path';
+import { useExpressServer } from 'routing-controllers';
 
 import apolloServer from './graphql/public/server';
 import ormconfig from '../../ormconfig.json';
@@ -15,12 +15,16 @@ import corsConfig from './cors';
 const getApp = async (): Promise<Express> => {
   dotenv.config();
   const app = express();
-  app.use(cors(corsConfig()));
   // folder to put files
   app.use('/public', express.static(path.join(__dirname, '../../public')));
   app.use(i18n.init);
   const db = await createConnection(ormconfig as ConnectionOptions);
   await apolloServer(app, db);
+  useExpressServer(app, {
+    controllers: [path.join(__dirname, '../../src/controllers/**/*.ts')],
+    cors: corsConfig(),
+    routePrefix: 'api',
+  });
   return app;
 };
 
