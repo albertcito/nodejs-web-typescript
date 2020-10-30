@@ -25,7 +25,9 @@ const assertJsonStructureGraphQL = async (
 
   if (errors) {
     // eslint-disable-next-line no-console
-    console.info(errors);
+    console.error(errors);
+    // eslint-disable-next-line no-console
+    console.info(res.body);
     done.fail('The response does not match with the expected result');
   } else {
     done();
