@@ -12,6 +12,7 @@ import LangTest from './graphql/public/lang/lang';
 import LangsTest from './graphql/public/lang/langs';
 import UsersTest from './graphql/public/user/users';
 import UserTest from './graphql/public/user/user';
+import UserUpdateTest from './graphql/public/user/userUpdate';
 import LoginTest from './graphql/public/user/login';
 import SignUpTest from './graphql/public/user/signup';
 import ForgotPasswordTest from './graphql/public/user/forgotPassword';
@@ -37,6 +38,7 @@ describe('GET /graphql/public', () => {
   it('q: lang', (done) => genericTest.test(done, new LangTest(), token));
   it('q: users', (done) => genericTest.test(done, new UsersTest(), token));
   it('q: user', (done) => genericTest.test(done, new UserTest(), token));
+  it('q: userUpdate', (done) => genericTest.test(done, new UserUpdateTest(), token));
   it('m: login', (done) => genericTest.test(done, new LoginTest()));
   it('m: signUp', (done) => genericTest.test(done, new SignUpTest()));
   it('m: forgotPassword', (done) => genericTest.test(done, new ForgotPasswordTest()));
