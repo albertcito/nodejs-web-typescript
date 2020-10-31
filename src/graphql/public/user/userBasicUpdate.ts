@@ -20,9 +20,7 @@ class UserBasicUpdateResolver {
     if (!user) {
       throw new MessageError(`The user ${userID} doesn't exists`);
     }
-    const userUpdate = new UserBasicUpdate(user);
-    userUpdate.update(firstName, lastName);
-    return user;
+    return (new UserBasicUpdate(user)).update(firstName, lastName);
   }
 }
 

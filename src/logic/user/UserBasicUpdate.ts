@@ -1,4 +1,4 @@
-import { validateAsync, arg } from 'validatorjs-decorator';
+import { validate, arg } from 'validatorjs-decorator';
 import User from '../../db/entities/User';
 
 class UserBasicUpdate {
@@ -8,14 +8,14 @@ class UserBasicUpdate {
       this.user = user;
     }
 
-    @validateAsync()
-    update(
-        @arg('firstName', 'requiere|string|min:1') firstName: string,
-        @arg('lastName', 'requiere|string|min:1') lastName: string,
+    @validate()
+    async update(
+        @arg('firstName', 'required|string|min:1') firstName: string,
+        @arg('lastName', 'required|string|min:1') lastName: string,
     ) {
       this.user.firstName = firstName;
       this.user.lastName = lastName;
-      this.user.save();
+      return this.user.save();
     }
 }
 export default UserBasicUpdate;
