@@ -2,15 +2,16 @@ import {
   Resolver, Mutation, UseMiddleware, Arg, Int,
 } from 'type-graphql';
 
+import UserBasicUpdate from '../../../logic/user/UserBasicUpdate';
 import isAuth from '../../../util/graphql/isAuth';
 import MessageError from '../../../util/exceptions/MessageError';
 import User from '../../../db/entities/User';
 
 @Resolver()
-class UserUpdateResolver {
+class UserBasicUpdateResolver {
   @Mutation(() => User)
   @UseMiddleware(isAuth)
-  async userUpdate(
+  async userBasicUpdate(
     @Arg('userID', () => Int) userID: number,
     @Arg('firstName', () => String) firstName: string,
     @Arg('lastName', () => String) lastName: string,
@@ -19,11 +20,10 @@ class UserUpdateResolver {
     if (!user) {
       throw new MessageError(`The user ${userID} doesn't exists`);
     }
-    user.firstName = firstName;
-    user.lastName = lastName;
-    await user.save();
+    const userUpdate = new UserBasicUpdate(user);
+    userUpdate.update(firstName, lastName);
     return user;
   }
 }
 
-export default UserUpdateResolver;
+export default UserBasicUpdateResolver;
