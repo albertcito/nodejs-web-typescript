@@ -7,7 +7,7 @@ import { join } from 'path';
 
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
-import getCors from '../../cors';
+import { cors } from '../../../config';
 import ErrorHandlePlugin from './errorHandlePlugin';
 
 export const path = '/graphql/public';
@@ -25,7 +25,7 @@ const server = async (app: Express, db: Connection) => {
     plugins: [ErrorHandlePlugin],
   });
   apolloServer.applyMiddleware({
-    cors: getCors(),
+    cors,
     app,
     path,
   });

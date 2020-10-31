@@ -14,3 +14,8 @@ export const config = {
   bugsbag: process.env.BUGSNAG_API_KEY ?? '3e34070a24af2d643b1ea24d1218d4b9',
   versionCode: '0.0.1',
 };
+
+export const cors = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+};
