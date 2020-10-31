@@ -1,7 +1,6 @@
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
 import Email from '../../util/email/Email';
-import UserName from './UserName';
 import UserToken from './UserToken';
 import UserTokenEnum from './UserTokenEnum';
 
@@ -37,9 +36,8 @@ class BasicSignUp {
 
     const userToken = new UserToken(user.userID);
     const link = await userToken.tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
-    const name = (new UserName(user)).getFullName();
     const email = new Email('emails.activateAccount');
-    await email.send({ to: this.email }, { name, link });
+    await email.send({ to: this.email }, { name: user.fullName, link });
     return user;
   }
 }

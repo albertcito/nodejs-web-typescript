@@ -32,6 +32,11 @@ class User extends BaseEntity {
   @Column({ name: 'email_verified' })
   emailVerified: boolean;
 
+  @Field()
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
+
   @BeforeInsert()
   @BeforeUpdate()
   async updateRow() {
