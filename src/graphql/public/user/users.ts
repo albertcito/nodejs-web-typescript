@@ -4,9 +4,9 @@ import {
 } from 'type-graphql';
 
 import isAuth from '../../../util/graphql/isAuth';
-import Paginate from '../../../util/db/paginate';
 import User from '../../../db/entities/User';
 import PaginationResponse from '../../type/PaginationResponse';
+import UsersPagination from '../../../logic/user/UsersPagination';
 
 @ObjectType()
 class UserPaginationResponse extends PaginationResponse(User) {}
@@ -18,8 +18,17 @@ class UsersResolver {
   async users(
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
+    @Arg('search', () => String, { description: 'Search by name, email or ID', nullable: true }) search: string,
+    @Arg('orderBy', () => String, { defaultValue: 'user_id', nullable: true }) orderBy: string,
+    @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
   ): Promise<UserPaginationResponse> {
-    return (new Paginate(User.createQueryBuilder())).get(limit, page);
+    return (new UsersPagination()).getAll({
+      page,
+      limit,
+      search,
+      orderBy,
+      order,
+    });
   }
 }
 
