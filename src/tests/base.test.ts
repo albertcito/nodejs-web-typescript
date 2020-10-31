@@ -1,6 +1,6 @@
 import { Express } from 'express';
 
-import getApp from '../init/app';
+import getServer from '../init/server';
 
 import getOauthTokenValid from './config/getOauthTokenValid';
 import GenericTest from './config/GenericTest';
@@ -13,6 +13,8 @@ import LangsTest from './graphql/public/lang/langs';
 import UsersTest from './graphql/public/user/users';
 import UserTest from './graphql/public/user/user';
 import UserUpdateTest from './graphql/public/user/userUpdate';
+import UserEmailUpdateTest from './graphql/public/user/userEmailUpdate';
+import UserPasswordUpdateTest from './graphql/public/user/userPasswordUpdate';
 import LoginTest from './graphql/public/user/login';
 import SignUpTest from './graphql/public/user/signup';
 import ForgotPasswordTest from './graphql/public/user/forgotPassword';
@@ -25,7 +27,7 @@ let token = '';
 let genericTest: GenericTest;
 
 beforeAll(async () => {
-  app = await getApp();
+  app = await getServer();
   token = await getOauthTokenValid();
   genericTest = new GenericTest(app);
 });
@@ -39,6 +41,8 @@ describe('GET /graphql/public', () => {
   it('q: users', (done) => genericTest.test(done, new UsersTest(), token));
   it('q: user', (done) => genericTest.test(done, new UserTest(), token));
   it('q: userUpdate', (done) => genericTest.test(done, new UserUpdateTest(), token));
+  it('m: userEmailUpdate', (done) => genericTest.test(done, new UserEmailUpdateTest(), token));
+  it('m: userPasswordUpdate', (done) => genericTest.test(done, new UserPasswordUpdateTest(), token));
   it('m: login', (done) => genericTest.test(done, new LoginTest()));
   it('m: signUp', (done) => genericTest.test(done, new SignUpTest()));
   it('m: forgotPassword', (done) => genericTest.test(done, new ForgotPasswordTest()));
