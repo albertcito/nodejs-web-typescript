@@ -4,7 +4,7 @@ import User from '../../db/entities/User';
 import Paginate from '../../util/db/paginate';
 
 interface UsersGetAll extends PaginateArgs, OrderByArgs {
-  name: string;
+  search: string;
 }
 
 export default class UsersPagination {
@@ -20,14 +20,23 @@ export default class UsersPagination {
       limit,
       orderBy,
       order,
-      name,
+      search,
     } = parameters;
 
-    if (name) {
-      this.query.where(
-        'first_name like :firstName OR last_name like :lastName',
-        { firstName: '%dean%', lastName: `%${name}%` },
-      );
+    if (search) {
+      if (/^[-]?\d+$/.test(search)) {
+        this.query.where(
+          'user_id like :search',
+          { search: `%${search}%` },
+        );
+      } else {
+        this.query.where(
+          `first_name like :search
+          OR last_name like :search
+          OR email like :search`,
+          { search: `%${search}%` },
+        );
+      }
     }
     if (orderBy && order) {
       this.query.orderBy(orderBy, order);

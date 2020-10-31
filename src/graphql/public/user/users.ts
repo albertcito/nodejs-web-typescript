@@ -18,14 +18,14 @@ class UsersResolver {
   async users(
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
-    @Arg('name', () => String, { description: 'Search by name', nullable: true }) name: string,
-    @Arg('orderBy', () => String, { defaultValue: 'user_id', description: 'Column order by', nullable: true }) orderBy: string,
+    @Arg('search', () => String, { description: 'Search by name, email or ID', nullable: true }) search: string,
+    @Arg('orderBy', () => String, { defaultValue: 'user_id', nullable: true }) orderBy: string,
     @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
   ): Promise<UserPaginationResponse> {
     return (new UsersPagination()).getAll({
       page,
       limit,
-      name,
+      search,
       orderBy,
       order,
     });
