@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Resolver, Query, UseMiddleware, Arg, Int,
 } from 'type-graphql';
@@ -15,7 +16,7 @@ class UserResolver {
   ): Promise<User> {
     const user = await User.findOne(userID);
     if (!user) {
-      throw new MessageError(`The lang ${userID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', `${userID}`));
     }
     return user;
   }

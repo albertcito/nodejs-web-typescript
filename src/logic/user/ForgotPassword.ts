@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
 import UserTokenEntity from '../../db/entities/UserToken';
@@ -16,7 +17,7 @@ class ForgotPassword {
   async getToken(): Promise<UserTokenEntity> {
     const user = await User.findOne({ where: { email: this.email } });
     if (!user) {
-      throw new MessageError(`The email: "${this.email}" doesn't exist`);
+      throw new MessageError(__('The item %s does not exists', this.email));
     }
     const userToken = new UserToken(user.userID);
     const token = await userToken.newToken(48, UserTypeEnum.RECOVERY_PASSWORD);

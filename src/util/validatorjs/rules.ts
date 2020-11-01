@@ -1,5 +1,7 @@
 import { Validator } from 'validatorjs-decorator';
 import { getConnection } from 'typeorm';
+import { __ } from 'i18n';
+
 /**
  * Password must contain at least one uppercase letter, one lowercase letter and one number
  */
@@ -7,7 +9,7 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
 Validator.register(
   'strict_password',
   (password) => passwordRegex.test(password as string),
-  'password must contain at least one uppercase letter, one lowercase letter and one number',
+  __('password must contain at least one uppercase letter, one lowercase letter and one number'),
 );
 
 /**
@@ -34,7 +36,7 @@ Validator.registerAsync(
     const sql = `SELECT count(${column}) FROM ${table} WHERE ${column} = $1`;
     const data = await getConnection().query(sql, [id]);
     if (data[0].count > 0) {
-      return passes(false, `${column} is already in use`);
+      return passes(false, __('%s is already in use'));
     }
     return passes();
   },
@@ -44,5 +46,5 @@ Validator.registerAsync(
 Validator.register(
   'requiredArray',
   (value) => Array.isArray(value) && value.length > 0,
-  'At least 1 :attribute is required',
+  __('At least 1 :attribute is required'),
 );

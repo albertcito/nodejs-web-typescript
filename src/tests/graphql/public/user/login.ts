@@ -1,7 +1,9 @@
 import GenericTestData from '../../../config/GenericTestData';
+import dbUSers from '../../../../db/util/dbUser';
 
 export default class LoginTest implements GenericTestData {
   resolver() {
+    const { admin } = dbUSers();
     return {
       query: `query login($email: String!, $password:String!) {
         login(email:$email, password:$password) {
@@ -15,8 +17,8 @@ export default class LoginTest implements GenericTestData {
         }
       }`,
       variables: {
-        email: 'me@albertcito.com',
-        password: 'Hola12345',
+        email: admin.email,
+        password: admin.password,
       },
     };
   }

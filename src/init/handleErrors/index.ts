@@ -1,4 +1,5 @@
 import { NextFunction, Response, Request } from 'express';
+import { __ } from 'i18n';
 import notify from '../bugsnag/notify';
 import { config } from '../../config';
 import isValidException from '../../util/exceptions/isValidException';
@@ -11,7 +12,7 @@ const handleErrors = (error: Error, req: Request, res: Response, _next: NextFunc
     notify(error, req);
     res.status(500).json({
       status: 'error',
-      message: 'We are working in this issue ... etc. bla bla bla xD',
+      message: __('error500'),
     });
   } else {
     res.status(500).send({

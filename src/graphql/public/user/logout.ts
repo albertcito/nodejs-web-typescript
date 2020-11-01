@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import { Resolver, Query, UseMiddleware } from 'type-graphql';
 import isAuth from '../../../util/graphql/isAuth';
 import Auth from '../../../util/session/Auth';
@@ -13,7 +14,7 @@ class LogoutResolver {
       await auth.auth.save();
       Auth.setData();
     }
-    return 'logout successfully';
+    return __('Your session was suscefully closed');
   }
 }
 

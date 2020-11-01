@@ -12,9 +12,11 @@ export default class LangUpdateTest implements GenericTestData {
     return {
       query: `mutation langUpdate($langID: String!, $name: String!, $localname: String!){
         langUpdate(langID: $langID, name: $name, localname: $localname) {
-          langID
-          name
-          localname
+          data {
+            langID
+            name
+            localname
+          }
         }
       }`,
       variables: {
@@ -28,9 +30,9 @@ export default class LangUpdateTest implements GenericTestData {
   rules() {
     return {
       langUpdate: 'required',
-      'langUpdate.langID': 'required|string',
-      'langUpdate.localname': 'required|string',
-      'langUpdate.name': 'required|string',
+      'langUpdate.data.langID': 'required|string',
+      'langUpdate.data.localname': 'required|string',
+      'langUpdate.data.name': 'required|string',
     };
   }
 }

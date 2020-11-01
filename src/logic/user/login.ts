@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 import { validateClass, arg } from 'validatorjs-decorator';
-
+import { __ } from 'i18n';
 import userOauthCreate from '../oauth/userOauthCreate';
 import User from '../../db/entities/User';
 import MessageError from '../../util/exceptions/MessageError';
@@ -25,12 +25,12 @@ class Login {
     const user = await User.findOne({ where: { email: this.email } });
 
     if (!user) {
-      throw new MessageError('The email does not exist or the password does not match');
+      throw new MessageError(__('emailPasswordError'));
     }
 
     const valid = await argon2.verify(user.password, this.password);
     if (!valid) {
-      throw new MessageError('The email does not exist or the password does not match');
+      throw new MessageError(__('emailPasswordError'));
     }
 
     const auth = await userOauthCreate(user.userID);

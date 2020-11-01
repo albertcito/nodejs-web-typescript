@@ -7,4 +7,6 @@ Bugsnag.start({
   plugins: [BugsnagPluginExpress],
   releaseStage: config.env,
   appVersion: config.versionCode,
+  enabledReleaseStages: ['production'],
+  logger: null,
 });

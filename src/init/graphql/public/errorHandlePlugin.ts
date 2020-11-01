@@ -3,7 +3,6 @@ import { HttpQueryError } from 'apollo-server-core';
 
 import AuthenticationError from '../../../util/exceptions/AuthenticationError';
 import isValidException from '../../../util/exceptions/isValidException';
-import { config } from '../../../config';
 import { ApolloServerContext } from '../ApolloServerContext';
 import notify from '../../bugsnag/notify';
 
@@ -20,11 +19,7 @@ const ErrorHandlePlugin: ApolloServerPlugin = {
           if (originalError instanceof AuthenticationError) {
             throw new HttpQueryError(403, originalError.message, false);
           }
-          if (
-            config.env === 'production'
-            && originalError
-            && !isValidException(originalError)
-          ) {
+          if (originalError && !isValidException(originalError)) {
             notify(originalError, requestContext.context.req);
           }
         }

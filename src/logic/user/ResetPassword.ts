@@ -1,7 +1,7 @@
+import argon2 from 'argon2';
 import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
-import MessageError from '../../util/exceptions/MessageError';
 import UserTokenEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
 
@@ -25,7 +25,7 @@ class ResetPassword {
 
     const user = await User.findOne(userToken.userID);
     if (!user) {
-      throw new MessageError('The user does not exist');
+      throw new Error('The user does not exist. It never should happens.');
     }
 
     const connection = getConnection();
@@ -34,7 +34,7 @@ class ResetPassword {
 
     await queryRunner.startTransaction();
     try {
-      user.password = this.password;
+      user.password = await argon2.hash(this.password);
       await user.save();
 
       userToken.usedAt = new Date();
