@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Resolver, Mutation, Arg, UseMiddleware,
 } from 'type-graphql';
@@ -15,16 +16,16 @@ class LangDeleteResolver {
   async langDelete(@Arg('langID') langID: string): Promise<string> {
     const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(`The lang "${langID}" doesn't exists`);
+      throw new MessageError(__('The item %s was successfully removed', langID));
     }
 
     if (lang.isBlocked) {
-      throw new MessageError(`The lang "${langID}" is blocked`);
+      throw new MessageError(__('The item %s is blocked', langID));
     }
 
     await lang.remove();
 
-    return `The lang "${langID}" was successfully removed`;
+    return __('The item %s was successfully removed');
   }
 }
 

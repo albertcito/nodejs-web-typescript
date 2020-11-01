@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import UserToken from '../../db/entities/UserToken';
 import MessageError from '../../util/exceptions/MessageError';
 import UserTokenEnum from './UserTokenEnum';
@@ -20,17 +21,17 @@ class VerifyUserToken {
       },
     });
     if (!userToken) {
-      throw new MessageError('The token does not exist');
+      throw new MessageError(__('The token does not exist'));
     }
 
     if (userToken.usedAt) {
-      throw new MessageError('The token already was used');
+      throw new MessageError(__('The token already was used'));
     }
 
     const expiredAt = new Date(userToken.expiredAt);
     const now = new Date();
     if (expiredAt.getTime() < now.getTime()) {
-      throw new MessageError('The token was expired');
+      throw new MessageError(__('The token was expired'));
     }
 
     return userToken;

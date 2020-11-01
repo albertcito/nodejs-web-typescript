@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Resolver, Mutation, Arg, UseMiddleware,
 } from 'type-graphql';
@@ -27,7 +28,7 @@ class LangUpdateResolver {
   ): Promise<Lang> {
     const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(`The lang ${langID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', langID));
     }
     lang.name = name;
     lang.localname = localname;

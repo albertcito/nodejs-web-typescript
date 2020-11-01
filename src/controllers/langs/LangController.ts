@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Controller, Param, Get,
 } from 'routing-controllers';
@@ -16,7 +17,7 @@ export default class LangController {
   async getOne(@Param('langID') langID: string) {
     const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(`The lang ${langID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', langID));
     }
     return lang;
   }

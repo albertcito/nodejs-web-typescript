@@ -5,5 +5,22 @@
 	"If you received this email by mistake, please disregard it or let us know at %s.": "If you received this email by mistake, please disregard it or let us know at %s.",
 	"%s, welcome to Miaum.": "%s, welcome to Miaum.",
 	"thanks": "Thanks",
-	"Thanks": "Thanks"
+	"Thanks": "Thanks",
+	"Your account have been activated": "Your account have been activated",
+	"recoveryPasswordMessage": "A link to recovery your password was sent to your address",
+	"Your session was suscefully closed": "Your session was suscefully closed",
+	"Your password was suscefully updated": "Your password was suscefully updated",
+	"The item %s was successfully removed": "The item %s was successfully removed",
+	"The item %s does not exists": "The item %s doesn't exists",
+	"The item %s is blocked": "The item %s is blocked",
+	"error500": "The application has encountered an unknown error. It doesn't appear to have affected your data, but our technical staff have been automatically notified and will be looking into this with the utmost urgency.",
+	"emailPasswordError": "The email does not exist or the password does not match",
+	"passwordNotRight": "The password doesn't match",
+	"The token does not exist": "The token does not exist",
+	"The token already was used": "The token already was used",
+	"The token was expired": "The token was expired",
+	"Please, review the following errors:": "Please, review the following errors:",
+	"password must contain at least one uppercase letter, one lowercase letter and one number": "password must contain at least one uppercase letter, one lowercase letter and one number",
+	"%s is already in use": "%s is already in use",
+	"At least 1 :attribute is required": "At least 1 :attribute is required"
 }
