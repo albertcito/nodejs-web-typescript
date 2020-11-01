@@ -10,10 +10,12 @@ export default class ProfileEmailUpdate implements GenericTestData {
         $password: String!
       ) {
         profileUpdateEmail(email: $email, password: $password) {
-          userID
-          firstName
-          lastName
-          email
+          data {
+            userID
+            firstName
+            lastName
+            email
+          }
         }
       }`,
       variables: {
@@ -26,10 +28,10 @@ export default class ProfileEmailUpdate implements GenericTestData {
   rules() {
     return {
       profileUpdateEmail: 'required',
-      'profileUpdateEmail.userID': 'required|integer',
-      'profileUpdateEmail.firstName': 'required|string',
-      'profileUpdateEmail.lastName': 'required|string',
-      'profileUpdateEmail.email': 'required|email',
+      'profileUpdateEmail.data.userID': 'required|integer',
+      'profileUpdateEmail.data.firstName': 'required|string',
+      'profileUpdateEmail.data.lastName': 'required|string',
+      'profileUpdateEmail.data.email': 'required|email',
     };
   }
 }

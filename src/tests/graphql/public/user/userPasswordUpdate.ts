@@ -7,10 +7,12 @@ export default class UserPasswordUpdate implements GenericTestData {
     return {
       query: `mutation userUpdatePassword($userID: Int!, $password: String!) {
         userUpdatePassword(userID: $userID, password: $password) {
-          userID
-          firstName
-          lastName
-          email
+          data {
+            userID
+            firstName
+            lastName
+            email
+          }
         }
       }
       `,
@@ -24,10 +26,10 @@ export default class UserPasswordUpdate implements GenericTestData {
   rules() {
     return {
       userUpdatePassword: 'required',
-      'userUpdatePassword.userID': 'required|integer',
-      'userUpdatePassword.firstName': 'required|string',
-      'userUpdatePassword.lastName': 'required|string',
-      'userUpdatePassword.email': 'required|email',
+      'userUpdatePassword.data.userID': 'required|integer',
+      'userUpdatePassword.data.firstName': 'required|string',
+      'userUpdatePassword.data.lastName': 'required|string',
+      'userUpdatePassword.data.email': 'required|email',
     };
   }
 }

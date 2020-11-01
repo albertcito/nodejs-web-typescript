@@ -22,5 +22,6 @@
 	"Please, review the following errors:": "Please, review the following errors:",
 	"password must contain at least one uppercase letter, one lowercase letter and one number": "password must contain at least one uppercase letter, one lowercase letter and one number",
 	"%s is already in use": "%s is already in use",
-	"At least 1 :attribute is required": "At least 1 :attribute is required"
+	"At least 1 :attribute is required": "At least 1 :attribute is required",
+	"The item %s was updated succesfully": "The item %s was updated succesfully"
 }
