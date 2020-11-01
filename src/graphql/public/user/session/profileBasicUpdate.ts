@@ -19,7 +19,7 @@ class ProfileBasicUpdateResponse extends MessageResponse(User) {}
 export default class ProfileBasicUpdateResolver {
   @Mutation(() => ProfileBasicUpdateResponse)
   @UseMiddleware(isAuth)
-  async userBasicUpdate(
+  async profileBasicUpdate(
     @Arg('firstName', () => String) firstName: string,
     @Arg('lastName', () => String) lastName: string,
   ): Promise<ProfileBasicUpdateResponse> {

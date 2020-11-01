@@ -17,6 +17,7 @@ import UserEmailUpdateTest from './graphql/public/user/session/userEmailUpdate';
 import UserPasswordUpdateTest from './graphql/public/user/session/userPasswordUpdate';
 import ProfileEmailUpdate from './graphql/public/user/session/profileEmailUpdate';
 import ProfilePasswordUpdate from './graphql/public/user/session/profilePasswordUpdate';
+import ProfileBasicUpdate from './graphql/public/user/session/profileBasicUpdate';
 import LoginTest from './graphql/public/user/session/login';
 import SignUpTest from './graphql/public/user/session/signup';
 import ForgotPasswordTest from './graphql/public/user/session/forgotPassword';
@@ -48,6 +49,7 @@ describe('GET /graphql/public', () => {
   it('m: userPasswordUpdate', (done) => genericTest.test(done, new UserPasswordUpdateTest(), superAdminToken));
   it('m: profileEmailUpdate', (done) => genericTest.test(done, new ProfileEmailUpdate(), superAdminToken));
   it('m: profilePasswordUpdate', (done) => genericTest.test(done, new ProfilePasswordUpdate(), superAdminToken));
+  it('m: profileBasicUpdate', (done) => genericTest.test(done, new ProfileBasicUpdate(), superAdminToken));
   it('m: login', (done) => genericTest.test(done, new LoginTest()));
   it('m: signUp', (done) => genericTest.test(done, new SignUpTest()));
   it('m: forgotPassword', (done) => genericTest.test(done, new ForgotPasswordTest()));
