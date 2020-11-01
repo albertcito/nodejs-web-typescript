@@ -9,6 +9,7 @@ import Lang from '../../../db/entities/Lang';
 import isAuth from '../../../util/graphql/isAuth';
 import Validate from '../../../util/validatorjs/validateGraphQL';
 import MessageResponse from '../../type/MessageResponse';
+import MessageType from '../../type/MessageType.enum';
 
 @ObjectType()
 class LangCreateResponse extends MessageResponse(Lang) {}
@@ -43,7 +44,7 @@ class LangCreateResolver {
       data: lang,
       message: {
         message: __('The item %s was created', `${langID}`),
-        type: 'success',
+        type: MessageType.success,
       },
     };
   }

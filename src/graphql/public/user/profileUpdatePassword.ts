@@ -9,6 +9,7 @@ import isAuth from '../../../util/graphql/isAuth';
 import MessageError from '../../../util/exceptions/MessageError';
 import UserUpdatePassword from '../../../logic/user/UserUpdatePassword';
 import MessageResponse from '../../type/MessageResponse';
+import MessageType from '../../type/MessageType.enum';
 import User from '../../../db/entities/User';
 
 @ObjectType()
@@ -32,7 +33,7 @@ export default class ProfileUpdatePasswordResolver {
       data: user,
       message: {
         message: __('The item %s was updated', ''),
-        type: 'success',
+        type: MessageType.success,
       },
     };
   }

@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { ObjectType, Field } from 'type-graphql';
+import MessageType from './MessageType.enum';
 
 @ObjectType()
 class MessageField {
-  @Field()
-  type: 'success' | 'info' | 'warning' | 'error' = 'success';
+  @Field(() => MessageType)
+  type: MessageType;
 
   @Field(() => String)
   message: string;
