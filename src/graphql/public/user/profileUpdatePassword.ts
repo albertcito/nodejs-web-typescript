@@ -30,10 +30,10 @@ export default class ProfileUpdatePasswordResolver {
     await updatePassword.update(newPassword, password);
     return {
       data: user,
-      messages: [{
-        message: __('The item %s was updated succesfully', ''),
+      messages: {
+        message: __('The item %s was updated', ''),
         type: 'success',
-      }],
+      },
     };
   }
 }

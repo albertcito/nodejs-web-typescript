@@ -29,10 +29,10 @@ export default class ProfileUpdateEmailResolver {
     await (new UserUpdateEmail(user)).update(email, password);
     return {
       data: user,
-      messages: [{
-        message: __('The item %s was updated succesfully', `${user.userID}`),
+      messages: {
+        message: __('The item %s was updated', `${user.userID}`),
         type: 'success',
-      }],
+      },
     };
   }
 }

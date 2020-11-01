@@ -8,9 +8,11 @@
 	"Thanks": "Thanks",
 	"Your account have been activated": "Your account have been activated",
 	"recoveryPasswordMessage": "A link to recovery your password was sent to your address",
-	"Your session was suscefully closed": "Your session was suscefully closed",
-	"Your password was suscefully updated": "Your password was suscefully updated",
-	"The item %s was successfully removed": "The item %s was successfully removed",
+	"Your session was closed": "Your session was closed",
+	"Your password was updated": "Your password was updated",
+	"The item %s was removed": "The item %s was removed",
+	"The item %s was created": "The item %s was created",
+	"The item %s was updated": "The item %s was updated",
 	"The item %s does not exists": "The item %s doesn't exists",
 	"The item %s is blocked": "The item %s is blocked",
 	"error500": "The application has encountered an unknown error. It doesn't appear to have affected your data, but our technical staff have been automatically notified and will be looking into this with the utmost urgency.",
@@ -23,5 +25,6 @@
 	"password must contain at least one uppercase letter, one lowercase letter and one number": "password must contain at least one uppercase letter, one lowercase letter and one number",
 	"%s is already in use": "%s is already in use",
 	"At least 1 :attribute is required": "At least 1 :attribute is required",
-	"The item %s was updated succesfully": "The item %s was updated succesfully"
+	"Your password was suscefully updated": "Your password was suscefully updated",
+	"Your session was suscefully closed": "Your session was suscefully closed"
 }

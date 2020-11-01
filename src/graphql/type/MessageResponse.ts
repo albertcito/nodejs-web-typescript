@@ -9,7 +9,7 @@ export default function MessageResponse<TItem>(TItemClass: ClassType<TItem>) {
     data: TItem;
 
     @Field(() => MessageField)
-    messages: MessageField[];
+    messages: MessageField;
   }
   return PaginatedResponseClass;
 }
