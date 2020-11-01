@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
 import argon2 from 'argon2';
 
