@@ -4,12 +4,12 @@ import {
   Resolver, Mutation, UseMiddleware, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import isAuth from '../../../util/graphql/isAuth';
-import MessageError from '../../../util/exceptions/MessageError';
-import User from '../../../db/entities/User';
-import UserUpdateEmail from '../../../logic/user/UserUpdateEmail';
-import MessageResponse from '../../type/MessageResponse';
-import MessageType from '../../type/MessageType.enum';
+import isAuth from '../../../../util/graphql/isAuth';
+import MessageError from '../../../../util/exceptions/MessageError';
+import User from '../../../../db/entities/User';
+import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
+import MessageResponse from '../../../type/MessageResponse';
+import MessageType from '../../../type/MessageType.enum';
 
 @ObjectType()
 class UserUpdateEmailResponse extends MessageResponse(User) {}

@@ -1,6 +1,6 @@
 import GenericTestData from '../../../config/GenericTestData';
 import dbUSers from '../../../../db/util/dbUser';
-import ForgotPassword from '../../../../logic/user/ForgotPassword';
+import ForgotPassword from '../../../../logic/user/session/ForgotPassword';
 
 export default class ResetPasswordTest implements GenericTestData {
   async resolver() {

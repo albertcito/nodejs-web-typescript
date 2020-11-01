@@ -4,13 +4,13 @@ import {
   Resolver, Mutation, UseMiddleware, Arg, ObjectType,
 } from 'type-graphql';
 
-import Auth from '../../../util/session/Auth';
-import isAuth from '../../../util/graphql/isAuth';
-import MessageError from '../../../util/exceptions/MessageError';
-import UserUpdatePassword from '../../../logic/user/UserUpdatePassword';
-import MessageResponse from '../../type/MessageResponse';
-import MessageType from '../../type/MessageType.enum';
-import User from '../../../db/entities/User';
+import Auth from '../../../../util/session/Auth';
+import isAuth from '../../../../util/graphql/isAuth';
+import MessageError from '../../../../util/exceptions/MessageError';
+import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
+import MessageResponse from '../../../type/MessageResponse';
+import MessageType from '../../../type/MessageType.enum';
+import User from '../../../../db/entities/User';
 
 @ObjectType()
 class ProfileUpdatePasswordResponse extends MessageResponse(User) {}

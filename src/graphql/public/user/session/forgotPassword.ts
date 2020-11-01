@@ -1,6 +1,6 @@
 import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import ForgotPassword from '../../../logic/user/ForgotPassword';
+import ForgotPassword from '../../../../logic/user/session/ForgotPassword';
 
 @Resolver()
 class ForgotPasswordResolver {

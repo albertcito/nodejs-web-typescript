@@ -1,4 +1,4 @@
-import Login from '../../logic/user/login';
+import Login from '../../logic/user/session/login';
 import dbUSers from '../../db/util/dbUser';
 
 const getAdminUser = async () => {

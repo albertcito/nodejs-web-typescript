@@ -1,7 +1,7 @@
 import GenericTestData from '../../../config/GenericTestData';
 import getFakerUser from '../../../../db/factories/user.factory';
-import UserToken from '../../../../logic/user/UserToken';
-import UserTokenEnum from '../../../../logic/user/UserTokenEnum';
+import UserToken from '../../../../logic/user/session/UserToken';
+import UserTokenEnum from '../../../../logic/user/session/UserTokenEnum';
 
 export default class ActivateEmailTest implements GenericTestData {
   async resolver() {

@@ -1,9 +1,9 @@
 import { Request } from 'express';
 
-import User from '../../db/entities/User';
-import OauthAccessToken from '../../db/entities/OauthAccessToken';
-import AuthenticationError from '../../util/exceptions/AuthenticationError';
-import Auth from '../../util/session/Auth';
+import User from '../../../db/entities/User';
+import OauthAccessToken from '../../../db/entities/OauthAccessToken';
+import AuthenticationError from '../../../util/exceptions/AuthenticationError';
+import Auth from '../../../util/session/Auth';
 
 const getTokenFromHeader = (req: Request) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
