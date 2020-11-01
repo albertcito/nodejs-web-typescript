@@ -1,7 +1,9 @@
 import GenericTestData from '../../../config/GenericTestData';
+import dbUSers from '../../../../db/util/dbUser';
 
 export default class UserPasswordUpdate implements GenericTestData {
   resolver() {
+    const { admin } = dbUSers();
     return {
       query: `mutation userUpdatePassword($userID: Int!, $password: String!) {
         userUpdatePassword(userID: $userID, password: $password) {
@@ -13,8 +15,8 @@ export default class UserPasswordUpdate implements GenericTestData {
       }
       `,
       variables: {
-        userID: 1,
-        password: 'Hola12345',
+        userID: admin.userID,
+        password: admin.password,
       },
     };
   }

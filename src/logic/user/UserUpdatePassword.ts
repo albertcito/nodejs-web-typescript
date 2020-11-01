@@ -18,10 +18,10 @@ export default class UserUpdatePassword {
     if (password) {
       const valid = await argon2.verify(this.user.password, password);
       if (!valid) {
-        throw new MessageError('The password does not match with the user password');
+        throw new MessageError('The password does not match');
       }
     }
-    this.user.password = newPassword;
-    this.user.save();
+    this.user.password = await argon2.hash(newPassword);
+    return this.user.save();
   }
 }

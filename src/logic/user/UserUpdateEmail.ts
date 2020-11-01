@@ -11,17 +11,14 @@ export default class UserUpdateEmail {
   }
 
   @validateAsync()
-  async update(
-    @arg('email', 'required|email') email: string,
-    @arg('password', 'strict_password') password?: string,
-  ) {
+  async update(@arg('email', 'required|email') email: string, password?: string) {
     if (password) {
       const valid = await argon2.verify(this.user.password, password);
       if (!valid) {
-        throw new MessageError('The email does not exist or the password does not match');
+        throw new MessageError('The password does not match');
       }
     }
     this.user.email = email;
-    this.user.save();
+    return this.user.save();
   }
 }

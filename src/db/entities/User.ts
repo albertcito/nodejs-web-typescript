@@ -38,8 +38,7 @@ class User extends BaseEntity {
   }
 
   @BeforeInsert()
-  @BeforeUpdate()
-  async updateRow() {
+  async insertRow() {
     const hashedPassword = await argon2.hash(this.password);
     this.password = hashedPassword;
     this.emailVerified = !!this.emailVerified;

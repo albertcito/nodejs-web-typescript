@@ -1,3 +1,4 @@
+import argon2 from 'argon2';
 import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 import User from '../../db/entities/User';
@@ -34,7 +35,7 @@ class ResetPassword {
 
     await queryRunner.startTransaction();
     try {
-      user.password = this.password;
+      user.password = await argon2.hash(this.password);
       await user.save();
 
       userToken.usedAt = new Date();
