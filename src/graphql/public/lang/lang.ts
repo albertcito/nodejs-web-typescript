@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Resolver, Query, Arg,
 } from 'type-graphql';
@@ -13,7 +14,7 @@ class LangResolver {
   async lang(@Arg('langID') langID: string): Promise<Lang> {
     const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(`The lang ${langID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', langID));
     }
     return lang;
   }

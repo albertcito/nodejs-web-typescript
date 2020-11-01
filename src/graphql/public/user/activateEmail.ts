@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import ActivateEmail from '../../../logic/user/ActivateEmail';
 
@@ -7,7 +8,7 @@ class ActivateEmailResolver {
   async activateEmail(@Arg('token') token: string): Promise<string> {
     const activateEmail = new ActivateEmail(token);
     await activateEmail.activate();
-    return 'User activated';
+    return __('Your account have been activated');
   }
 }
 

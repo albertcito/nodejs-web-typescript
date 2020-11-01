@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import {
   Resolver, Mutation, UseMiddleware, Arg, Int,
 } from 'type-graphql';
@@ -17,7 +18,7 @@ class UserUpdateEmailResolver {
   ): Promise<User> {
     const user = await User.findOne(userID);
     if (!user) {
-      throw new MessageError(`The user ${userID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', `${userID}`));
     }
     const updateEmail = new UserUpdateEmail(user);
     await updateEmail.update(email);

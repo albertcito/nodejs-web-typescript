@@ -1,6 +1,7 @@
 import {
   Resolver, Mutation, UseMiddleware, Arg, Int,
 } from 'type-graphql';
+import { __ } from 'i18n';
 
 import isAuth from '../../../util/graphql/isAuth';
 import MessageError from '../../../util/exceptions/MessageError';
@@ -17,7 +18,7 @@ class UserUpdatePasswordResolver {
   ): Promise<User> {
     const user = await User.findOne(userID);
     if (!user) {
-      throw new MessageError(`The user ${userID} doesn't exists`);
+      throw new MessageError(__('The item %s does not exists', `${userID}`));
     }
     const updateEmail = new UserUpdatePassword(user);
     await updateEmail.update(password);

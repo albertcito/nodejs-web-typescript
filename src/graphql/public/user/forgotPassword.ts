@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 import ForgotPassword from '../../../logic/user/ForgotPassword';
 
@@ -7,7 +8,7 @@ class ForgotPasswordResolver {
   async forgotPassword(@Arg('email') email: string): Promise<string> {
     const forgotPassword = new ForgotPassword(email);
     await forgotPassword.getToken();
-    return 'Please, review your email';
+    return __('recoveryPasswordMessage');
   }
 }
 

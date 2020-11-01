@@ -1,3 +1,4 @@
+import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
 import Validate from '../../../util/validatorjs/validateGraphQL';
@@ -18,7 +19,7 @@ class ResetPasswordResolver {
   ): Promise<string> {
     const resetPassword = new ResetPassword(token, password);
     await resetPassword.save();
-    return 'Password updated';
+    return __('Your password was suscefully updated');
   }
 }
 
