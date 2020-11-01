@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
 import argon2 from 'argon2';
 
@@ -38,8 +38,7 @@ class User extends BaseEntity {
   }
 
   @BeforeInsert()
-  @BeforeUpdate()
-  async updateRow() {
+  async insertRow() {
     const hashedPassword = await argon2.hash(this.password);
     this.password = hashedPassword;
     this.emailVerified = !!this.emailVerified;

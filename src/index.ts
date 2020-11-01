@@ -1,8 +1,8 @@
-import getApp from './init/app';
+import getServer from './init/server';
 
 const main = async () => {
-  const app = await getApp();
-  app.listen(4000, () => {
+  const server = await getServer();
+  server.listen(4000, () => {
     // eslint-disable-next-line no-console
     console.info('Server started at localhost:4000');
   });

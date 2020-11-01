@@ -6,7 +6,7 @@ const assertJsonStructureGraphQL = async (
   res: Response,
   err: any,
   rules: Validator.Rules,
-) => {
+): Promise<boolean> => {
   if (err) { done.fail(err); }
 
   if (res.body.errors) {
@@ -31,7 +31,9 @@ const assertJsonStructureGraphQL = async (
     done.fail('The response does not match with the expected result');
   } else {
     done();
+    return true;
   }
+  return false;
 };
 
 export default assertJsonStructureGraphQL;
