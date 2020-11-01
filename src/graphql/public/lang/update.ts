@@ -9,6 +9,7 @@ import MessageError from '../../../util/exceptions/MessageError';
 import isAuth from '../../../util/graphql/isAuth';
 import Validate from '../../../util/validatorjs/validateGraphQL';
 import MessageResponse from '../../type/MessageResponse';
+import MessageType from '../../type/MessageType.enum';
 
 @ObjectType()
 class LangUpdateResponse extends MessageResponse(Lang) {}
@@ -48,7 +49,7 @@ class LangUpdateResolver {
       data: lang,
       message: {
         message: __('The item %s was updated', `${langID}`),
-        type: 'success',
+        type: MessageType.success,
       },
     };
   }

@@ -9,6 +9,7 @@ import MessageError from '../../../util/exceptions/MessageError';
 import User from '../../../db/entities/User';
 import UserUpdatePassword from '../../../logic/user/UserUpdatePassword';
 import MessageResponse from '../../type/MessageResponse';
+import MessageType from '../../type/MessageType.enum';
 
 @ObjectType()
 class UserUpdatePasswordResponse extends MessageResponse(User) {}
@@ -30,7 +31,7 @@ class UserUpdatePasswordResolver {
       data: user,
       message: {
         message: __('The item %s was updated', `${userID}`),
-        type: 'success',
+        type: MessageType.success,
       },
     };
   }
