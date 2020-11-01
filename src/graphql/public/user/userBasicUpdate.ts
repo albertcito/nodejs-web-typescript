@@ -29,7 +29,7 @@ class UserBasicUpdateResolver {
     await (new UserBasicUpdate(user)).update(firstName, lastName);
     return {
       data: user,
-      messages: {
+      message: {
         message: __('The item %s was updated', `${userID}`),
         type: 'success',
       },

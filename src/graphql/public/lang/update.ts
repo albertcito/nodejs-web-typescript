@@ -46,7 +46,7 @@ class LangUpdateResolver {
     await lang.save();
     return {
       data: lang,
-      messages: {
+      message: {
         message: __('The item %s was updated', `${langID}`),
         type: 'success',
       },

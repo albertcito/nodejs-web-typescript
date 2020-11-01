@@ -41,7 +41,7 @@ class LangCreateResolver {
     await lang.save();
     return {
       data: lang,
-      messages: {
+      message: {
         message: __('The item %s was created', `${langID}`),
         type: 'success',
       },

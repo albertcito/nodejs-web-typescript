@@ -13,6 +13,10 @@ export default class UserPasswordUpdate implements GenericTestData {
             lastName
             email
           }
+          message {
+            type
+            message
+          }
         }
       }
       `,
@@ -30,6 +34,8 @@ export default class UserPasswordUpdate implements GenericTestData {
       'userUpdatePassword.data.firstName': 'required|string',
       'userUpdatePassword.data.lastName': 'required|string',
       'userUpdatePassword.data.email': 'required|email',
+      'userUpdatePassword.message.type': 'required|string',
+      'userUpdatePassword.message.message': 'required|string',
     };
   }
 }

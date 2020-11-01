@@ -11,6 +11,10 @@ export default class UserBasicUpdateTest implements GenericTestData {
             lastName
             email
           }
+          message {
+            type
+            message
+          }
         }
       }`,
       variables: {
@@ -28,6 +32,8 @@ export default class UserBasicUpdateTest implements GenericTestData {
       'userBasicUpdate.data.firstName': 'required|string',
       'userBasicUpdate.data.lastName': 'required|string',
       'userBasicUpdate.data.email': 'required|email',
+      'userBasicUpdate.message.type': 'required|string',
+      'userBasicUpdate.message.message': 'required|string',
     };
   }
 }

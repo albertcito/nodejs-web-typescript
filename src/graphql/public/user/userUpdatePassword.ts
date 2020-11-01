@@ -28,7 +28,7 @@ class UserUpdatePasswordResolver {
     await (new UserUpdatePassword(user)).update(password);
     return {
       data: user,
-      messages: {
+      message: {
         message: __('The item %s was updated', `${userID}`),
         type: 'success',
       },

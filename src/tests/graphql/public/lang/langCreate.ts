@@ -14,6 +14,10 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
           name
           localname
         }
+        message {
+          type
+          message
+        }
       }
     }`,
     variables: {
@@ -27,6 +31,8 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
     'langCreate.data.langID': 'required|string',
     'langCreate.data.localname': 'required|string',
     'langCreate.data.name': 'required|string',
+    'langCreate.message.type': 'required|string',
+    'langCreate.message.message': 'required|string',
   };
 
   request(app)

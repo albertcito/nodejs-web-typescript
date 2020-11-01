@@ -17,6 +17,10 @@ export default class LangUpdateTest implements GenericTestData {
             name
             localname
           }
+          message {
+            type
+            message
+          }
         }
       }`,
       variables: {
@@ -33,6 +37,8 @@ export default class LangUpdateTest implements GenericTestData {
       'langUpdate.data.langID': 'required|string',
       'langUpdate.data.localname': 'required|string',
       'langUpdate.data.name': 'required|string',
+      'langUpdate.message.type': 'required|string',
+      'langUpdate.message.message': 'required|string',
     };
   }
 }

@@ -29,7 +29,7 @@ class UserUpdateEmailResolver {
     await updateEmail.update(email);
     return {
       data: user,
-      messages: {
+      message: {
         message: __('The item %s was updated', `${userID}`),
         type: 'success',
       },
