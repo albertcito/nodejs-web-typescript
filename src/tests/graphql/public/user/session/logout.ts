@@ -1,6 +1,6 @@
-import GenericTestData from '../../../config/GenericTestData';
-import getFakerUser from '../../../../db/factories/user.factory';
-import Login from '../../../../logic/user/session/login';
+import GenericTestData from '../../../../config/GenericTestData';
+import getFakerUser from '../../../../../db/factories/user.factory';
+import Login from '../../../../../logic/user/session/login';
 
 export default class LogoutTest implements GenericTestData {
   async resolver() {

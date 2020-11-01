@@ -1,4 +1,4 @@
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from '../../../../config/GenericTestData';
 
 export default class ForgotPasswordTest implements GenericTestData {
   resolver() {

@@ -1,5 +1,5 @@
-import GenericTestData from '../../../config/GenericTestData';
-import dbUSers from '../../../../db/util/dbUser';
+import GenericTestData from '../../../../config/GenericTestData';
+import dbUSers from '../../../../../db/util/dbUser';
 
 export default class ProfilePasswordUpdate implements GenericTestData {
   resolver() {
