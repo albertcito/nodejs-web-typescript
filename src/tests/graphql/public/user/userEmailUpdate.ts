@@ -11,6 +11,10 @@ export default class UserEmailUpdate implements GenericTestData {
             lastName
             email
           }
+          message {
+            type
+            message
+          }
         }
       }`,
       variables: {
@@ -27,6 +31,8 @@ export default class UserEmailUpdate implements GenericTestData {
       'userUpdateEmail.data.firstName': 'required|string',
       'userUpdateEmail.data.lastName': 'required|string',
       'userUpdateEmail.data.email': 'required|email',
+      'userUpdateEmail.message.type': 'required|string',
+      'userUpdateEmail.message.message': 'required|string',
     };
   }
 }

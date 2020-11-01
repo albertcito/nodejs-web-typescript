@@ -13,6 +13,10 @@ export default class ProfilePasswordUpdate implements GenericTestData {
             lastName
             email
           }
+          message {
+            type
+            message
+          }
         }
       }`,
       variables: {
@@ -29,6 +33,8 @@ export default class ProfilePasswordUpdate implements GenericTestData {
       'profileUpdatePassword.data.firstName': 'required|string',
       'profileUpdatePassword.data.lastName': 'required|string',
       'profileUpdatePassword.data.email': 'required|email',
+      'profileUpdatePassword.message.type': 'required|string',
+      'profileUpdatePassword.message.message': 'required|string',
     };
   }
 }
