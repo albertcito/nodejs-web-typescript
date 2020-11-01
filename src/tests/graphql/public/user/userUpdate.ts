@@ -5,10 +5,12 @@ export default class UserUpdateTest implements GenericTestData {
     return {
       query: `mutation userUpdate($userID: Int!, $firstName: String!, $lastName: String!) {
         userUpdate(userID: $userID, lastName: $lastName, firstName: $firstName) {
-          userID
-          firstName
-          lastName
-          email
+          data {
+            userID
+            firstName
+            lastName
+            email
+          }
         }
       }`,
       variables: {
@@ -22,10 +24,10 @@ export default class UserUpdateTest implements GenericTestData {
   rules() {
     return {
       userUpdate: 'required',
-      'userUpdate.userID': 'required|integer',
-      'userUpdate.firstName': 'required|string',
-      'userUpdate.lastName': 'required|string',
-      'userUpdate.email': 'required|email',
+      'userUpdate.data.userID': 'required|integer',
+      'userUpdate.data.firstName': 'required|string',
+      'userUpdate.data.lastName': 'required|string',
+      'userUpdate.data.email': 'required|email',
     };
   }
 }

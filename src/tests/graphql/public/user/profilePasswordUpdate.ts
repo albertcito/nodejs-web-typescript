@@ -7,13 +7,14 @@ export default class ProfilePasswordUpdate implements GenericTestData {
     return {
       query: `mutation profileUpdatePassword($password: String!, $newPassword: String!) {
         profileUpdatePassword(newPassword: $newPassword, password: $password) {
-          userID
-          firstName
-          lastName
-          email
+          data {
+            userID
+            firstName
+            lastName
+            email
+          }
         }
-      }
-      `,
+      }`,
       variables: {
         password: admin.password,
         newPassword: admin.password,
@@ -24,10 +25,10 @@ export default class ProfilePasswordUpdate implements GenericTestData {
   rules() {
     return {
       profileUpdatePassword: 'required',
-      'profileUpdatePassword.userID': 'required|integer',
-      'profileUpdatePassword.firstName': 'required|string',
-      'profileUpdatePassword.lastName': 'required|string',
-      'profileUpdatePassword.email': 'required|email',
+      'profileUpdatePassword.data.userID': 'required|integer',
+      'profileUpdatePassword.data.firstName': 'required|string',
+      'profileUpdatePassword.data.lastName': 'required|string',
+      'profileUpdatePassword.data.email': 'required|email',
     };
   }
 }
