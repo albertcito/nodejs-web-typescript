@@ -16,7 +16,7 @@ class LangDeleteResolver {
   async langDelete(@Arg('langID') langID: string): Promise<string> {
     const lang = await Lang.findOne(langID);
     if (!lang) {
-      throw new MessageError(__('The item %s was successfully removed', langID));
+      throw new MessageError(__('The item %s was removed', langID));
     }
 
     if (lang.isBlocked) {
@@ -25,7 +25,7 @@ class LangDeleteResolver {
 
     await lang.remove();
 
-    return __('The item %s was successfully removed');
+    return __('The item %s was removed');
   }
 }
 

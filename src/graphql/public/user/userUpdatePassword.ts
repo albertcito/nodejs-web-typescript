@@ -28,10 +28,10 @@ class UserUpdatePasswordResolver {
     await (new UserUpdatePassword(user)).update(password);
     return {
       data: user,
-      messages: [{
-        message: __('The item %s was updated succesfully', `${userID}`),
+      messages: {
+        message: __('The item %s was updated', `${userID}`),
         type: 'success',
-      }],
+      },
     };
   }
 }

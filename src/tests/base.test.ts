@@ -12,7 +12,7 @@ import LangTest from './graphql/public/lang/lang';
 import LangsTest from './graphql/public/lang/langs';
 import UsersTest from './graphql/public/user/users';
 import UserTest from './graphql/public/user/user';
-import UserUpdateTest from './graphql/public/user/userUpdate';
+import UserBasicUpdateTest from './graphql/public/user/userBasicUpdate';
 import UserEmailUpdateTest from './graphql/public/user/userEmailUpdate';
 import UserPasswordUpdateTest from './graphql/public/user/userPasswordUpdate';
 import ProfileEmailUpdate from './graphql/public/user/profileEmailUpdate';
@@ -43,7 +43,7 @@ describe('GET /graphql/public', () => {
   it('q: lang', (done) => genericTest.test(done, new LangTest(), superAdminToken));
   it('q: users', (done) => genericTest.test(done, new UsersTest(), superAdminToken));
   it('q: user', (done) => genericTest.test(done, new UserTest(), superAdminToken));
-  it('q: userUpdate', (done) => genericTest.test(done, new UserUpdateTest(), superAdminToken));
+  it('q: userUpdate', (done) => genericTest.test(done, new UserBasicUpdateTest(), superAdminToken));
   it('m: userEmailUpdate', (done) => genericTest.test(done, new UserEmailUpdateTest(), superAdminToken));
   it('m: userPasswordUpdate', (done) => genericTest.test(done, new UserPasswordUpdateTest(), superAdminToken));
   it('m: profileEmailUpdate', (done) => genericTest.test(done, new ProfileEmailUpdate(), superAdminToken));

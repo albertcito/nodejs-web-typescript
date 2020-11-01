@@ -1,41 +1,40 @@
 // eslint-disable-next-line max-classes-per-file
-import { __ } from 'i18n';
 import {
   Resolver, Mutation, UseMiddleware, Arg, Int, ObjectType,
 } from 'type-graphql';
+import { __ } from 'i18n';
 
+import UserBasicUpdate from '../../../logic/user/UserBasicUpdate';
 import isAuth from '../../../util/graphql/isAuth';
 import MessageError from '../../../util/exceptions/MessageError';
 import User from '../../../db/entities/User';
 import MessageResponse from '../../type/MessageResponse';
 
 @ObjectType()
-class UserUpdateResponse extends MessageResponse(User) {}
+class UserBasicUpdateResponse extends MessageResponse(User) {}
 
 @Resolver()
-class UserUpdateResolver {
-  @Mutation(() => UserUpdateResponse)
+class UserBasicUpdateResolver {
+  @Mutation(() => UserBasicUpdateResponse)
   @UseMiddleware(isAuth)
-  async userUpdate(
+  async userBasicUpdate(
     @Arg('userID', () => Int) userID: number,
     @Arg('firstName', () => String) firstName: string,
     @Arg('lastName', () => String) lastName: string,
-  ): Promise<UserUpdateResponse> {
+  ): Promise<UserBasicUpdateResponse> {
     const user = await User.findOne(userID);
     if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${userID}`));
+      throw new MessageError(`The user ${userID} doesn't exists`);
     }
-    user.firstName = firstName;
-    user.lastName = lastName;
-    await user.save();
+    await (new UserBasicUpdate(user)).update(firstName, lastName);
     return {
       data: user,
-      messages: [{
-        message: __('The item %s was updated succesfully', `${userID}`),
+      messages: {
+        message: __('The item %s was updated', `${userID}`),
         type: 'success',
-      }],
+      },
     };
   }
 }
 
-export default UserUpdateResolver;
+export default UserBasicUpdateResolver;

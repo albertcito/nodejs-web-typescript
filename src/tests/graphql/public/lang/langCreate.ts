@@ -9,9 +9,11 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
   const data = {
     query: `mutation langCreate($langID: String!, $name: String!, $localname: String!){
       langCreate(langID: $langID, name: $name, localname: $localname) {
-        langID
-        name
-        localname
+        data {
+          langID
+          name
+          localname
+        }
       }
     }`,
     variables: {
@@ -22,9 +24,9 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
   };
 
   const rules = {
-    'langCreate.langID': 'required|string',
-    'langCreate.localname': 'required|string',
-    'langCreate.name': 'required|string',
+    'langCreate.data.langID': 'required|string',
+    'langCreate.data.localname': 'required|string',
+    'langCreate.data.name': 'required|string',
   };
 
   request(app)
