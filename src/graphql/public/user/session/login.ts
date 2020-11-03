@@ -1,11 +1,11 @@
-import { Resolver, Query, Arg } from 'type-graphql';
+import { Resolver, Mutation, Arg } from 'type-graphql';
 
 import Login from '../../../../logic/user/session/login';
 import LoginResponse from '../../../type/LoginResponse';
 
 @Resolver()
 class LoginResolver {
-  @Query(() => LoginResponse)
+  @Mutation(() => LoginResponse)
   async login(
     @Arg('email') email: string,
     @Arg('password') password: string,
