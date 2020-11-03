@@ -1,9 +1,9 @@
 import GenericTestData from '../../../../config/GenericTestData';
-import dbUSers from '../../../../../db/util/dbUser';
+import dbUsers from '../../../../../db/util/dbUser';
 
 export default class ProfileBasicUpdate implements GenericTestData {
   resolver() {
-    const { admin } = dbUSers();
+    const { superAdmin } = dbUsers();
     return {
       query: `mutation profileBasicUpdate(
         $firstName: String!
@@ -23,8 +23,8 @@ export default class ProfileBasicUpdate implements GenericTestData {
         }
       }`,
       variables: {
-        firstName: admin.firstName,
-        lastName: admin.lastName,
+        firstName: superAdmin.firstName,
+        lastName: superAdmin.lastName,
       },
     };
   }

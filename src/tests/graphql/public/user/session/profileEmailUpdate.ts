@@ -1,9 +1,9 @@
 import GenericTestData from '../../../../config/GenericTestData';
-import dbUSers from '../../../../../db/util/dbUser';
+import dbUsers from '../../../../../db/util/dbUser';
 
 export default class ProfileEmailUpdate implements GenericTestData {
   resolver() {
-    const { admin } = dbUSers();
+    const { superAdmin } = dbUsers();
     return {
       query: `mutation profileUpdateEmail(
         $email: String!
@@ -23,8 +23,8 @@ export default class ProfileEmailUpdate implements GenericTestData {
         }
       }`,
       variables: {
-        password: admin.password,
-        email: admin.email,
+        password: superAdmin.password,
+        email: superAdmin.email,
       },
     };
   }

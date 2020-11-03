@@ -1,11 +1,11 @@
 import GenericTestData from '../../../../config/GenericTestData';
-import dbUSers from '../../../../../db/util/dbUser';
+import dbUsers from '../../../../../db/util/dbUser';
 import ForgotPassword from '../../../../../logic/user/session/ForgotPassword';
 
 export default class ResetPasswordTest implements GenericTestData {
   async resolver() {
-    const { admin } = dbUSers();
-    const forgotPassword = new ForgotPassword(admin.email);
+    const { superAdmin } = dbUsers();
+    const forgotPassword = new ForgotPassword(superAdmin.email);
     const token = await forgotPassword.getToken();
     return {
       query: `mutation resetPassword(
@@ -21,8 +21,8 @@ export default class ResetPasswordTest implements GenericTestData {
       }`,
       variables: {
         token: token.token,
-        password: admin.password,
-        passwordConfirm: admin.password,
+        password: superAdmin.password,
+        passwordConfirm: superAdmin.password,
       },
     };
   }

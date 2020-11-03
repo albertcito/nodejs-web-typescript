@@ -1,17 +1,18 @@
-import {
-  MigrationInterface, QueryRunner, Table, TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 import columns from './BaseTableColumns/columns';
+import dbUsers from '../util/dbUser';
+import UserRole from '../entities/UserRole';
+import roles from '../../logic/role/role.enum';
 
-class UserToken1601940113364 implements MigrationInterface {
-    private readonly tableName = 'user_token';
+export default class UserRole1601324675000 implements MigrationInterface {
+    private readonly tableName = 'user_role';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
         name: this.tableName,
         columns: [
           {
-            name: 'user_token_id',
+            name: 'user_role_id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
@@ -22,21 +23,8 @@ class UserToken1601940113364 implements MigrationInterface {
             type: 'integer',
           },
           {
-            name: 'token',
+            name: 'role_id',
             type: 'varchar',
-          },
-          {
-            name: 'type',
-            type: 'varchar',
-          },
-          {
-            name: 'used_at',
-            type: 'datetime',
-            isNullable: true,
-          },
-          {
-            name: 'expired_at',
-            type: 'datetime',
           },
           ...columns,
         ],
@@ -48,11 +36,22 @@ class UserToken1601940113364 implements MigrationInterface {
         referencedTableName: 'user',
         onDelete: 'RESTRICT',
       }));
+
+      await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        columnNames: ['role_id'],
+        referencedColumnNames: ['role_id'],
+        referencedTableName: 'role',
+        onDelete: 'RESTRICT',
+      }));
+
+      const { superAdmin } = dbUsers();
+      const userRole = new UserRole();
+      userRole.userID = superAdmin.userID;
+      userRole.roleID = roles.superAdmin;
+      await queryRunner.manager.save(userRole);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.dropTable(this.tableName);
     }
 }
-
-export default UserToken1601940113364;
