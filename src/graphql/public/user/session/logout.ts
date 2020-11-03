@@ -1,12 +1,12 @@
 import { __ } from 'i18n';
-import { Resolver, Query, UseMiddleware } from 'type-graphql';
+import { Resolver, Mutation, UseMiddleware } from 'type-graphql';
 import isAuth from '../../../../util/graphql/isAuth';
 import Auth from '../../../../util/session/Auth';
 
 @Resolver()
 class LogoutResolver {
   @UseMiddleware(isAuth)
-  @Query(() => String, { description: 'Logout from current session' })
+  @Mutation(() => String, { description: 'Logout from current session' })
   async logout(): Promise<String> {
     const auth = Auth.data();
     if (auth) {
