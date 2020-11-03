@@ -13,10 +13,10 @@ export default class UserRole extends BaseEntity {
   userRoleID: number;
 
   @Field(() => roles)
-  @Column()
+  @Column({ name: 'role_id' })
   roleID: roles;
 
   @Field(() => Int)
-  @Column()
+  @Column({ name: 'user_id' })
   userID: number;
 }

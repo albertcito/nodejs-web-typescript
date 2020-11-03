@@ -1,7 +1,5 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 import columns from './BaseTableColumns/columns';
-import dbUsers from '../util/dbUser';
-import UserRole from '../entities/UserRole';
 import roles from '../../logic/role/role.enum';
 
 export default class UserRole1601324675000 implements MigrationInterface {
@@ -44,11 +42,18 @@ export default class UserRole1601324675000 implements MigrationInterface {
         onDelete: 'RESTRICT',
       }));
 
-      const { superAdmin } = dbUsers();
-      const userRole = new UserRole();
-      userRole.userID = superAdmin.userID;
-      userRole.roleID = roles.superAdmin;
-      await queryRunner.manager.save(userRole);
+      await queryRunner.manager.query(
+        'INSERT INTO user_role (user_id, role_id, created_at, updated_at) VALUES (?, ?, datetime(\'now\'), datetime(\'now\'))',
+        [
+          1, roles.superAdmin,
+        ],
+      );
+      await queryRunner.manager.query(
+        'INSERT INTO user_role (user_id, role_id, created_at, updated_at) VALUES (?, ?, datetime(\'now\'), datetime(\'now\'))',
+        [
+          2, roles.admin,
+        ],
+      );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

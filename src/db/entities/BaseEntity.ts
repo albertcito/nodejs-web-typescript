@@ -22,16 +22,22 @@ class BaseDataEntity extends BaseEntity {
     @CreateDateColumn({ name: 'updated_by', nullable: true })
     updatedBy?: number;
 
+    /**
+     * Update the updated at and the updated by
+     */
     @BeforeInsert()
     @BeforeUpdate()
-    updateRowAt() {
+    protected updateRowAt() {
       this.updatedAt = new Date();
       const data = Auth.data();
       this.updatedBy = data ? data.user.userID : undefined;
     }
 
+    /**
+     * Update the created at and the created by
+     */
     @BeforeInsert()
-    insertRowAt() {
+    protected insertRowAt() {
       this.createdAt = new Date();
       const data = Auth.data();
       if (data) {

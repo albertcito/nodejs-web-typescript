@@ -27,12 +27,11 @@ export default class Role1601324674992 implements MigrationInterface {
       const roleSA = new Role();
       roleSA.roleID = roles.superAdmin;
       roleSA.description = 'Right to modify anything in the system';
+      await queryRunner.manager.save(roleSA);
 
       const roleA = new Role();
-      roleSA.roleID = roles.admin;
-      roleSA.description = 'Right to modify ... to be defined';
-
-      await queryRunner.manager.save(roleSA);
+      roleA.roleID = roles.admin;
+      roleA.description = 'Right to modify ... to be defined';
       await queryRunner.manager.save(roleA);
     }
 
