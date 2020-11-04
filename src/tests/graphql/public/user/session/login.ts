@@ -5,7 +5,7 @@ export default class LoginTest implements GenericTestData {
   resolver() {
     const { admin } = dbUSers();
     return {
-      query: `query login($email: String!, $password:String!) {
+      query: `mutation login($email: String!, $password:String!) {
         login(email:$email, password:$password) {
           user {
             userID
