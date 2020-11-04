@@ -6,7 +6,6 @@ import { registerEnumType } from 'type-graphql';
 enum roles {
   superAdmin='super_admin',
   admin='admin',
-  test='test',
 }
 
 registerEnumType(roles, {

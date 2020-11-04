@@ -43,6 +43,7 @@ class UserToken1601940113364 implements MigrationInterface {
       }), true);
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'user_token_user_id',
         columnNames: ['user_id'],
         referencedColumnNames: ['user_id'],
         referencedTableName: 'user',

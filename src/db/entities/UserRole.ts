@@ -1,22 +1,26 @@
+/* eslint-disable camelcase */
 import { Field, ObjectType, Int } from 'type-graphql';
 import {
-  Entity, PrimaryColumn, Column,
+  Entity, PrimaryGeneratedColumn, Column,
 } from 'typeorm';
-import roles from '../../logic/role/role.enum';
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
 @Entity({ name: 'user_role' })
 export default class UserRole extends BaseEntity {
   @Field(() => Int)
-  @PrimaryColumn({ name: 'user_role_id' })
+  @PrimaryGeneratedColumn({ name: 'user_role_id' })
   userRoleID: number;
 
-  @Field(() => roles)
+  /**
+   * If I change the column name as camelcase typeORM will print error
+   */
   @Column({ name: 'role_id' })
-  roleID: roles;
+  role_id: string;
 
-  @Field(() => Int)
+  /**
+   * If I change the column name as camelcase typeORM will print error
+   */
   @Column({ name: 'user_id' })
-  userID: number;
+  user_id: number;
 }

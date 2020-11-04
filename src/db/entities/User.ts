@@ -23,7 +23,7 @@ class User extends BaseEntity {
   lastName: string;
 
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -38,8 +38,13 @@ class User extends BaseEntity {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  @ManyToMany(() => Role, (role) => role.users, { cascade: true })
-  @JoinTable()
+  @Field(() => [Role])
+  @ManyToMany(() => Role, { eager: true })
+  @JoinTable({
+    name: 'user_role',
+    joinColumn: { name: 'user_id' },
+    inverseJoinColumn: { name: 'role_id' },
+  })
   roles: Role[];
 
   @BeforeInsert()

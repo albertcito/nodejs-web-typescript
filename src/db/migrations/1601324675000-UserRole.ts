@@ -1,4 +1,6 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey, TableUnique,
+} from 'typeorm';
 import columns from './BaseTableColumns/columns';
 import roles from '../../logic/role/role.enum';
 
@@ -29,6 +31,7 @@ export default class UserRole1601324675000 implements MigrationInterface {
       }), true);
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'user_role_user_id',
         columnNames: ['user_id'],
         referencedColumnNames: ['user_id'],
         referencedTableName: 'user',
@@ -36,10 +39,16 @@ export default class UserRole1601324675000 implements MigrationInterface {
       }));
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'user_role_role_id',
         columnNames: ['role_id'],
         referencedColumnNames: ['role_id'],
         referencedTableName: 'role',
         onDelete: 'RESTRICT',
+      }));
+
+      await queryRunner.createUniqueConstraint(this.tableName, new TableUnique({
+        name: 'user_role_role_id_user_id',
+        columnNames: ['role_id', 'user_id'],
       }));
 
       await queryRunner.manager.query(
