@@ -36,13 +36,14 @@ class OauthAccessToken1601770752669 implements MigrationInterface {
         },
         {
           name: 'expired_at',
-          type: 'timestamp',
+          type: 'datetime',
         },
         ...columns,
       ],
     }), true);
 
     await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+      name: 'oauth_access_tokens_user_id',
       columnNames: ['user_id'],
       referencedColumnNames: ['user_id'],
       referencedTableName: 'user',

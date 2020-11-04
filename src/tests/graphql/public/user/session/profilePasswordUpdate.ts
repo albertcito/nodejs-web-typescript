@@ -1,9 +1,9 @@
 import GenericTestData from '../../../../config/GenericTestData';
-import dbUSers from '../../../../../db/util/dbUser';
+import dbUsers from '../../../../../db/util/dbUser';
 
 export default class ProfilePasswordUpdate implements GenericTestData {
   resolver() {
-    const { admin } = dbUSers();
+    const { superAdmin } = dbUsers();
     return {
       query: `mutation profileUpdatePassword($password: String!, $newPassword: String!) {
         profileUpdatePassword(newPassword: $newPassword, password: $password) {
@@ -20,8 +20,8 @@ export default class ProfilePasswordUpdate implements GenericTestData {
         }
       }`,
       variables: {
-        password: admin.password,
-        newPassword: admin.password,
+        password: superAdmin.password,
+        newPassword: superAdmin.password,
       },
     };
   }

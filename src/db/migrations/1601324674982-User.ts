@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import columns from './BaseTableColumns/columns';
 import User from '../entities/User';
-import dbUSers from '../util/dbUser';
+import dbUsers from '../util/dbUser';
 
 class User1601324674982 implements MigrationInterface {
     private readonly tableName = 'user';
@@ -43,13 +43,23 @@ class User1601324674982 implements MigrationInterface {
         ],
       }), true);
 
-      const { admin } = dbUSers();
+      const { superAdmin } = dbUsers();
       const user = new User();
-      user.firstName = admin.firstName;
-      user.lastName = admin.lastName;
-      user.email = admin.email;
-      user.password = admin.password;
+      user.firstName = superAdmin.firstName;
+      user.lastName = superAdmin.lastName;
+      user.email = superAdmin.email;
+      user.password = superAdmin.password;
+      user.emailVerified = true;
       await queryRunner.manager.save(user);
+
+      const { admin } = dbUsers();
+      const userAdmin = new User();
+      userAdmin.firstName = admin.firstName;
+      userAdmin.lastName = admin.lastName;
+      userAdmin.email = admin.email;
+      userAdmin.password = admin.password;
+      userAdmin.emailVerified = true;
+      await queryRunner.manager.save(userAdmin);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

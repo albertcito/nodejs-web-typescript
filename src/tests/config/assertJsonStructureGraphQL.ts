@@ -7,18 +7,23 @@ const assertJsonStructureGraphQL = async (
   err: any,
   rules: Validator.Rules,
 ): Promise<boolean> => {
-  if (err) { done.fail(err); }
+  if (err) {
+    done.fail(err);
+    return false;
+  }
 
   if (res.body.errors) {
     // eslint-disable-next-line no-console
     console.info(res.body);
     done.fail('The query return errors');
+    return false;
   }
 
   if (!res.body.data) {
     // eslint-disable-next-line no-console
     console.info(res.body);
     done.fail('The query data is empty');
+    return false;
   }
 
   const errors = await getAsyncErrors(res.body.data, rules);
@@ -29,11 +34,11 @@ const assertJsonStructureGraphQL = async (
     // eslint-disable-next-line no-console
     console.info(res.body);
     done.fail('The response does not match with the expected result');
-  } else {
-    done();
-    return true;
+    return false;
   }
-  return false;
+
+  done();
+  return true;
 };
 
 export default assertJsonStructureGraphQL;

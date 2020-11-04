@@ -13,11 +13,11 @@ const columns: TableColumnOptions[] = [
   },
   {
     name: 'created_at',
-    type: 'timestamp',
+    type: 'datetime',
   },
   {
     name: 'updated_at',
-    type: 'timestamp',
+    type: 'datetime',
   },
 ];
 

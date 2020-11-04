@@ -31,18 +31,19 @@ class UserToken1601940113364 implements MigrationInterface {
           },
           {
             name: 'used_at',
-            type: 'timestamp',
+            type: 'datetime',
             isNullable: true,
           },
           {
             name: 'expired_at',
-            type: 'timestamp',
+            type: 'datetime',
           },
           ...columns,
         ],
       }), true);
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'user_token_user_id',
         columnNames: ['user_id'],
         referencedColumnNames: ['user_id'],
         referencedTableName: 'user',

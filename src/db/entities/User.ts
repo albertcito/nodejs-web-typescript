@@ -1,10 +1,11 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert, ManyToMany, JoinTable,
 } from 'typeorm';
 import argon2 from 'argon2';
 
 import BaseEntity from './BaseEntity';
+import Role from './Role';
 
 @ObjectType()
 @Entity({ name: 'user' })
@@ -22,7 +23,7 @@ class User extends BaseEntity {
   lastName: string;
 
   @Field(() => String)
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -36,6 +37,15 @@ class User extends BaseEntity {
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  @Field(() => [Role])
+  @ManyToMany(() => Role, { eager: true })
+  @JoinTable({
+    name: 'user_role',
+    joinColumn: { name: 'user_id' },
+    inverseJoinColumn: { name: 'role_id' },
+  })
+  roles: Role[];
 
   @BeforeInsert()
   async insertRow() {
