@@ -18,7 +18,7 @@ class SignUpResolver {
     @Arg('lastName') lastName: string,
     @Arg('email') email: string,
     @Arg('password') password: string,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Arg('password_confirmation') _: string,
   ): Promise<User> {
     const basicSignUp = new BasicSignUp(

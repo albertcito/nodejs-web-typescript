@@ -14,7 +14,7 @@ class ResetPasswordResolver {
   async resetPassword(
     @Arg('token') token: string,
     @Arg('password') password: string,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Arg('password_confirmation') _: string,
   ): Promise<string> {
     const resetPassword = new ResetPassword(token, password);

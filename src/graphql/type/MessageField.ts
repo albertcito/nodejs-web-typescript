@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { ObjectType, Field } from 'type-graphql';
 import MessageType from './MessageType.enum';
 
