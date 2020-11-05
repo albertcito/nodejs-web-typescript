@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "typeorm": "link-module-alias && ts-node ./node_modules/typeorm/cli.js",
     "start": "link-module-alias && ts-node src/index.ts",
     "dev": "link-module-alias && nodemon --exec ts-node src/index.ts",
     "lint:eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
