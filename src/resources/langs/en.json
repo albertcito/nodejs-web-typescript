@@ -27,5 +27,6 @@
 	"At least 1 :attribute is required": "At least 1 :attribute is required",
 	"Your password was suscefully updated": "Your password was suscefully updated",
 	"Your session was suscefully closed": "Your session was suscefully closed",
-	"The item %s was deleted": "The item %s was deleted"
+	"The item %s was deleted": "The item %s was deleted",
+	"You do not have right to use this area": "You do not have right to use this area"
 }
