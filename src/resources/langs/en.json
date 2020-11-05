@@ -26,5 +26,6 @@
 	"%s is already in use": "%s is already in use",
 	"At least 1 :attribute is required": "At least 1 :attribute is required",
 	"Your password was suscefully updated": "Your password was suscefully updated",
-	"Your session was suscefully closed": "Your session was suscefully closed"
+	"Your session was suscefully closed": "Your session was suscefully closed",
+	"The item %s was deleted": "The item %s was deleted"
 }
