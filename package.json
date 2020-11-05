@@ -5,15 +5,18 @@
   "main": "index.js",
   "scripts": {
     "typeorm": "ts-node ./node_modules/typeorm/cli.js",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "start": "link-module-alias && ts-node src/index.ts",
+    "dev": "link-module-alias && nodemon --exec ts-node src/index.ts",
     "lint:eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
     "lint:eslint-fix": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}' --fix",
-    "test": "jest --config ./jest.config.js",
+    "test": "link-module-alias && jest --config ./jest.config.js",
     "ci:test": "NODE_ENV=test yarn test",
     "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "ejslint": "ejslint src/resources/view/*"
+  },
+  "_moduleAliases": {
+    "~src": "src"
   },
   "keywords": [],
   "author": "",
@@ -38,6 +41,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.4.2",
+    "link-module-alias": "^1.2.0",
     "supertest": "^5.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"

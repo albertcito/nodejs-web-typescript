@@ -27,6 +27,12 @@
     "resolveJsonModule": true,
     "baseUrl": "src"
   },
+  "paths": {
+    "~src/*": ["src/*"]
+  },
+  "_moduleAliases": {
+    "~src": "dist"
+  },
   "exclude": [
     "node_modules"
   ],
