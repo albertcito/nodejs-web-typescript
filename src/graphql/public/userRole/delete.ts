@@ -1,17 +1,17 @@
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, Arg, UseMiddleware, Int,
+  Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
 import roles from '../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 import UserRole from '../../../db/entities/UserRole';
 import MessageError from '../../../util/exceptions/MessageError';
-import isAuth from '../../../util/graphql/isAuth';
 
 @Resolver()
 export default class UserRoleDeleteResolver {
   @Mutation(() => String)
-  @UseMiddleware(isAuth)
+  @isAuthRolesGraphQL([roles.superAdmin])
   async userRoleDelete(
     @Arg('userID', () => Int) userID: number,
     @Arg('roleID', () => roles) roleID: roles,

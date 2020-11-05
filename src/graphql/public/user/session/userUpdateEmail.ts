@@ -1,15 +1,16 @@
 // eslint-disable-next-line max-classes-per-file
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, UseMiddleware, Arg, Int, ObjectType,
+  Resolver, Mutation, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import isAuth from '../../../../util/graphql/isAuth';
 import MessageError from '../../../../util/exceptions/MessageError';
 import User from '../../../../db/entities/User';
 import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
+import roles from '../../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class UserUpdateEmailResponse extends MessageResponse(User) {}
@@ -17,7 +18,7 @@ class UserUpdateEmailResponse extends MessageResponse(User) {}
 @Resolver()
 class UserUpdateEmailResolver {
   @Mutation(() => UserUpdateEmailResponse)
-  @UseMiddleware(isAuth)
+  @isAuthRolesGraphQL([roles.superAdmin])
   async userUpdateEmail(
     @Arg('userID', () => Int) userID: number,
     @Arg('email', () => String) email: string,
