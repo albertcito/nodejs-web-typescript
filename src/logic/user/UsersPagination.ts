@@ -1,7 +1,7 @@
 import { SelectQueryBuilder } from 'typeorm';
-import { PaginateArgs, OrderByArgs } from '../../util/db/interfaces';
-import User from '../../db/entities/User';
-import Paginate from '../../util/db/paginate';
+import { PaginateArgs, OrderByArgs } from '~src/util/db/interfaces';
+import User from '~src/db/entities/User';
+import Paginate from '~src/util/db/paginate';
 
 interface UsersGetAll extends PaginateArgs, OrderByArgs {
   search: string;

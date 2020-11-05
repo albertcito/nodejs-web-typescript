@@ -1,5 +1,5 @@
 import rolesEnum from '../role/role.enum';
-import Role from '../../db/entities/Role';
+import Role from '~src/db/entities/Role';
 
 /**
  * The user has to have at least one of those roles

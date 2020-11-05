@@ -2,10 +2,11 @@ import { __ } from 'i18n';
 import {
   Controller, Param, Get, Authorized,
 } from 'routing-controllers';
-import Lang from '../../db/entities/Lang';
-import Paginate from '../../util/db/paginate';
-import MessageError from '../../util/exceptions/MessageError';
-import roles from '../../logic/role/role.enum';
+
+import Lang from '~src/db/entities/Lang';
+import Paginate from '~src/util/db/paginate';
+import MessageError from '~src/util/exceptions/MessageError';
+import roles from '~src/logic/role/role.enum';
 
 @Controller()
 export default class LangController {

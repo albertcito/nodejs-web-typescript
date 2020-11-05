@@ -4,12 +4,12 @@ import {
 } from 'type-graphql';
 import { __ } from 'i18n';
 
-import Auth from '../../../../util/session/Auth';
-import isAuth from '../../../../util/graphql/isAuth';
-import MessageError from '../../../../util/exceptions/MessageError';
-import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
+import Auth from '~src/util/session/Auth';
+import isAuth from '~src/util/graphql/isAuth';
+import MessageError from '~src/util/exceptions/MessageError';
+import UserUpdateEmail from '~src/logic/user/session/UserUpdateEmail';
+import User from '~src/db/entities/User';
 import MessageResponse from '../../../type/MessageResponse';
-import User from '../../../../db/entities/User';
 import MessageType from '../../../type/MessageType.enum';
 
 @ObjectType()

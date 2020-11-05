@@ -1,6 +1,6 @@
 import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
-import User from '../../../db/entities/User';
+import User from '~src/db/entities/User';
 import UserTypeEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
 

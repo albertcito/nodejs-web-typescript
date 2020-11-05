@@ -1,6 +1,7 @@
 import { arg, validateClass } from 'validatorjs-decorator/dist';
-import User from '../../../db/entities/User';
-import Email from '../../../util/email/Email';
+
+import User from '~src/db/entities/User';
+import Email from '~src/util/email/Email';
 import UserToken from './UserToken';
 import UserTokenEnum from './UserTokenEnum';
 

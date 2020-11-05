@@ -1,4 +1,4 @@
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from '~src/tests/config/GenericTestData';
 
 export default class UserTest implements GenericTestData {
   resolver() {

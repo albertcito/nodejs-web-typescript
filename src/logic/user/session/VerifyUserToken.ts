@@ -1,6 +1,6 @@
 import { __ } from 'i18n';
-import UserToken from '../../../db/entities/UserToken';
-import MessageError from '../../../util/exceptions/MessageError';
+import UserToken from '~src/db/entities/UserToken';
+import MessageError from '~src/util/exceptions/MessageError';
 import UserTokenEnum from './UserTokenEnum';
 
 class VerifyUserToken {
