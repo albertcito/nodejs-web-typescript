@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-unused-vars */
-
 import { registerEnumType } from 'type-graphql';
 
 enum roles {

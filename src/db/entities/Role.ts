@@ -3,7 +3,7 @@ import {
   Entity, PrimaryColumn, Column,
 } from 'typeorm';
 
-import roles from '../../logic/role/role.enum';
+import roles from '~src/logic/role/role.enum';
 import BaseEntity from './BaseEntity';
 
 @ObjectType()

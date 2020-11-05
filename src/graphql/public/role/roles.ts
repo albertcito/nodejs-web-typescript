@@ -3,8 +3,8 @@ import {
   Resolver, Query, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import Role from '../../../db/entities/Role';
-import Paginate from '../../../util/db/paginate';
+import Role from '~src/db/entities/Role';
+import Paginate from '~src/util/db/paginate';
 import PaginationResponse from '../../type/PaginationResponse';
 
 @ObjectType()

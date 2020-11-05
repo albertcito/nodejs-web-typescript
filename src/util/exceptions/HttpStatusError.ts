@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 class HttpStatusError extends Error {
   constructor(
     public readonly message: string,

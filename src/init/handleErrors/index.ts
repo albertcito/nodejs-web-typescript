@@ -4,8 +4,8 @@ import notify from '../bugsnag/notify';
 import { config } from '../../config';
 import isValidException from '../../util/exceptions/isValidException';
 
-// eslint-disable-next-line no-unused-vars
-const handleErrors = (error: Error, req: Request, res: Response, _next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const handleErrors = (error: Error, req: Request, res: Response, _: NextFunction) => {
   if (isValidException(error)) {
     res.status(200).send(error);
   } else if (config.env === 'production') {

@@ -1,9 +1,9 @@
 import { Request } from 'express';
 
-import User from '../../../db/entities/User';
-import OauthAccessToken from '../../../db/entities/OauthAccessToken';
-import HttpStatusError from '../../../util/exceptions/HttpStatusError';
-import Auth from '../../../util/session/Auth';
+import User from '~src/db/entities/User';
+import OauthAccessToken from '~src/db/entities/OauthAccessToken';
+import HttpStatusError from '~src/util/exceptions/HttpStatusError';
+import Auth from '~src/util/session/Auth';
 import rolesEnum from '../../role/role.enum';
 import verifyRolesUser from '../../userRole/verifyRolesUser';
 

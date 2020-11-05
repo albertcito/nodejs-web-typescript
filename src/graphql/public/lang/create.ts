@@ -5,9 +5,9 @@ import {
 } from 'type-graphql';
 import { getManager } from 'typeorm';
 
-import Lang from '../../../db/entities/Lang';
-import isAuth from '../../../util/graphql/isAuth';
-import Validate from '../../../util/validatorjs/validateGraphQL';
+import Lang from '~src/db/entities/Lang';
+import isAuth from '~src/util/graphql/isAuth';
+import Validate from '~src/util/validatorjs/validateGraphQL';
 import MessageResponse from '../../type/MessageResponse';
 import MessageType from '../../type/MessageType.enum';
 

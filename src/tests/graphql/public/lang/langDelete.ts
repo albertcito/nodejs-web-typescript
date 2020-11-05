@@ -1,4 +1,4 @@
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from '~src/tests/config/GenericTestData';
 import Lang from '../../../../db/entities/Lang';
 
 export default class LangDeleteTest implements GenericTestData {

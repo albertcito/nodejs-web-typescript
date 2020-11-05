@@ -4,12 +4,12 @@ import {
   Resolver, Mutation, Arg, ObjectType,
 } from 'type-graphql';
 
-import Role from '../../../db/entities/Role';
-import MessageError from '../../../util/exceptions/MessageError';
+import Role from '~src/db/entities/Role';
+import MessageError from '~src/util/exceptions/MessageError';
+import roles from '~src/logic/role/role.enum';
+import isAuthRolesGraphQL from '~src/util/graphql/isAuthRolesGraphQL';
 import MessageResponse from '../../type/MessageResponse';
 import MessageType from '../../type/MessageType.enum';
-import roles from '../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class RoleUpdateResponse extends MessageResponse(Role) {}

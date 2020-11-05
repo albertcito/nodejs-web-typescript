@@ -1,8 +1,8 @@
 import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
-import Validate from '../../../../util/validatorjs/validateGraphQL';
-import ResetPassword from '../../../../logic/user/session/ResetPassword';
+import Validate from '~src/util/validatorjs/validateGraphQL';
+import ResetPassword from '~src/logic/user/session/ResetPassword';
 
 @Resolver()
 class ResetPasswordResolver {
@@ -14,7 +14,7 @@ class ResetPasswordResolver {
   async resetPassword(
     @Arg('token') token: string,
     @Arg('password') password: string,
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Arg('password_confirmation') _: string,
   ): Promise<string> {
     const resetPassword = new ResetPassword(token, password);

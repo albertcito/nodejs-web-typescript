@@ -4,13 +4,13 @@ import {
   Resolver, Mutation, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import MessageError from '../../../../util/exceptions/MessageError';
-import User from '../../../../db/entities/User';
-import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
+import MessageError from '~src/util/exceptions/MessageError';
+import User from '~src/db/entities/User';
+import UserUpdateEmail from '~src/logic/user/session/UserUpdateEmail';
+import roles from '~src/logic/role/role.enum';
+import isAuthRolesGraphQL from '~src/util/graphql/isAuthRolesGraphQL';
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
-import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class UserUpdateEmailResponse extends MessageResponse(User) {}

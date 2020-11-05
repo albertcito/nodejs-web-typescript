@@ -1,4 +1,4 @@
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from '~src/tests/config/GenericTestData';
 import roles from '../../../../logic/role/role.enum';
 import getFakerUser from '../../../../db/factories/user.factory';
 import Role from '../../../../db/entities/Role';

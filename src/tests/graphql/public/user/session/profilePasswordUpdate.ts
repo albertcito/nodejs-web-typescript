@@ -1,4 +1,4 @@
-import GenericTestData from '../../../../config/GenericTestData';
+import GenericTestData from '~src/tests/config/GenericTestData';
 import dbUsers from '../../../../../db/util/dbUser';
 
 export default class ProfilePasswordUpdate implements GenericTestData {

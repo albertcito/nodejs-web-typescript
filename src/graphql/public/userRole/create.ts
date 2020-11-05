@@ -3,11 +3,11 @@ import {
   Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
-import User from '../../../db/entities/User';
-import Role from '../../../db/entities/Role';
-import MessageError from '../../../util/exceptions/MessageError';
-import roles from '../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
+import User from '~src/db/entities/User';
+import Role from '~src/db/entities/Role';
+import MessageError from '~src/util/exceptions/MessageError';
+import roles from '~src/logic/role/role.enum';
+import isAuthRolesGraphQL from '~src/util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class UserRoleCreateResolver {
