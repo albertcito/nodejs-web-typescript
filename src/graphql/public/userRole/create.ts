@@ -26,7 +26,7 @@ export default class UserRoleCreateResolver {
     if (!role) {
       throw new MessageError(__('The item %s does not exists', `${role}`));
     }
-    user.roles = [role];
+    user.roles = [...user.roles, role];
     await user.save();
 
     return __('The item %s was created', '');
