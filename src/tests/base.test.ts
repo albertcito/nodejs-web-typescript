@@ -2,7 +2,7 @@ import { Express } from 'express';
 
 import getServer from '../init/server';
 
-import getSuperAdminUserLogin from './config/getSuperAdminUserLogin';
+import { getSuperAdminUserLogin, getAdminLogin } from './config/getUserLogins';
 import GenericTest from './config/GenericTest';
 
 import langCreateTest from './graphql/public/lang/langCreate';
@@ -30,19 +30,25 @@ import RoleTest from './graphql/public/roles/role';
 import RoleUpdateTest from './graphql/public/roles/roleUpdate';
 import UserRoleCreateTest from './graphql/public/userRole/userRoleCreate';
 import UserRoleDeleteTest from './graphql/public/userRole/userRoleDelete';
+import RoleUpdateRejectTest from './graphql/public/roles/roleUpdateReject';
 
+let genericTest: GenericTest;
 let app: Express;
 let superAdminToken = '';
 let tokenLogout = '';
-let genericTest: GenericTest;
+let adminToken = '';
 
 beforeAll(async () => {
   app = await getServer();
-  const admin = await getSuperAdminUserLogin();
-  superAdminToken = admin.token;
+  const superAdmin = await getSuperAdminUserLogin();
+  superAdminToken = superAdmin.token;
 
   const adminLogout = await getSuperAdminUserLogin();
   tokenLogout = adminLogout.token;
+
+  const admin = await getAdminLogin();
+  adminToken = admin.token;
+
   genericTest = new GenericTest(app);
 });
 
@@ -72,4 +78,5 @@ describe('GET /graphql/public', () => {
   it('m: roleUpdate', (done) => genericTest.test(done, new RoleUpdateTest(), superAdminToken));
   it('m: userRoleCreate', (done) => genericTest.test(done, new UserRoleCreateTest(), superAdminToken));
   it('m: userRoleDelete', (done) => genericTest.test(done, new UserRoleDeleteTest(), superAdminToken));
+  it('m: roleUpdate -> 403', (done) => (new RoleUpdateRejectTest(genericTest.url, app)).test(done, adminToken));
 });
