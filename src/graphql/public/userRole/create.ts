@@ -1,18 +1,18 @@
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, Arg, UseMiddleware, Int,
+  Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
 import User from '../../../db/entities/User';
 import Role from '../../../db/entities/Role';
 import MessageError from '../../../util/exceptions/MessageError';
-import isAuth from '../../../util/graphql/isAuth';
 import roles from '../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class UserRoleCreateResolver {
   @Mutation(() => String)
-  @UseMiddleware(isAuth)
+  @isAuthRolesGraphQL([roles.superAdmin])
   async userRoleCreate(
     @Arg('userID', () => Int) userID: number,
     @Arg('roleID', () => roles) roleID: roles,
@@ -26,7 +26,7 @@ export default class UserRoleCreateResolver {
     if (!role) {
       throw new MessageError(__('The item %s does not exists', `${role}`));
     }
-    user.roles = [role];
+    user.roles = [...user.roles, role];
     await user.save();
 
     return __('The item %s was created', '');

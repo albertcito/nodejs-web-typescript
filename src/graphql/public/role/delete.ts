@@ -1,19 +1,17 @@
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, Arg, UseMiddleware,
+  Resolver, Mutation, Arg,
 } from 'type-graphql';
 
 import Role from '../../../db/entities/Role';
 import MessageError from '../../../util/exceptions/MessageError';
-import isAuth from '../../../util/graphql/isAuth';
-import Validate from '../../../util/validatorjs/validateGraphQL';
 import roles from '../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class RoleDeleteResolver {
   @Mutation(() => String)
-  @UseMiddleware(isAuth)
-  @Validate({ roleID: 'required|string' })
+  @isAuthRolesGraphQL([roles.superAdmin])
   async roleDelete(
     @Arg('roleID', () => roles) roleID: roles,
   ): Promise<string> {

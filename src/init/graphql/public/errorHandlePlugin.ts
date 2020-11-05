@@ -1,7 +1,7 @@
 import { ApolloServerPlugin, GraphQLRequestContextWillSendResponse } from 'apollo-server-plugin-base';
 import { HttpQueryError } from 'apollo-server-core';
 
-import AuthenticationError from '../../../util/exceptions/AuthenticationError';
+import HttpStatusError from '../../../util/exceptions/HttpStatusError';
 import isValidException from '../../../util/exceptions/isValidException';
 import { ApolloServerContext } from '../ApolloServerContext';
 import notify from '../../bugsnag/notify';
@@ -16,8 +16,8 @@ const ErrorHandlePlugin: ApolloServerPlugin = {
         // eslint-disable-next-line no-restricted-syntax
         for (const error of errors) {
           const { originalError } = error;
-          if (originalError instanceof AuthenticationError) {
-            throw new HttpQueryError(403, originalError.message, false);
+          if (originalError instanceof HttpStatusError) {
+            throw new HttpQueryError(originalError.code, originalError.message, false);
           }
           if (originalError && !isValidException(originalError)) {
             notify(originalError, requestContext.context.req);

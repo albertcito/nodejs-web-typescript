@@ -1,16 +1,15 @@
 // eslint-disable-next-line max-classes-per-file
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, Arg, UseMiddleware, ObjectType,
+  Resolver, Mutation, Arg, ObjectType,
 } from 'type-graphql';
 
 import Role from '../../../db/entities/Role';
 import MessageError from '../../../util/exceptions/MessageError';
-import isAuth from '../../../util/graphql/isAuth';
-import Validate from '../../../util/validatorjs/validateGraphQL';
 import MessageResponse from '../../type/MessageResponse';
 import MessageType from '../../type/MessageType.enum';
 import roles from '../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class RoleUpdateResponse extends MessageResponse(Role) {}
@@ -18,11 +17,7 @@ class RoleUpdateResponse extends MessageResponse(Role) {}
 @Resolver()
 class RoleUpdateResolver {
   @Mutation(() => RoleUpdateResponse)
-  @UseMiddleware(isAuth)
-  @Validate({
-    roleID: 'required|string',
-    description: 'required|string',
-  })
+  @isAuthRolesGraphQL([roles.superAdmin])
   async roleUpdate(
     @Arg('roleID', () => roles) roleID: roles,
     @Arg('description') description: string,
