@@ -1,4 +1,5 @@
 import argon2 from 'argon2';
+
 import OauthAccessToken from '~src/db/entities/OauthAccessToken';
 
 const userOauthCreate = async (userID: number): Promise<OauthAccessToken> => {

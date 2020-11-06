@@ -1,4 +1,5 @@
 import { ObjectType, Field } from 'type-graphql';
+
 import MessageType from './MessageType.enum';
 
 @ObjectType()

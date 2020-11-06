@@ -1,5 +1,6 @@
-import GenericTestData from '~src/tests/config/GenericTestData';
 import roles from '../../../../logic/role/role.enum';
+
+import GenericTestData from '~src/tests/config/GenericTestData';
 
 export default class RoleUpdateTest implements GenericTestData {
   async resolver() {

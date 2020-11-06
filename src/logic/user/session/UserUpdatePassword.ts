@@ -1,6 +1,7 @@
 import argon2 from 'argon2';
 import { validateAsync, arg } from 'validatorjs-decorator';
 import { __ } from 'i18n';
+
 import User from '~src/db/entities/User';
 import MessageError from '~src/util/exceptions/MessageError';
 

@@ -1,4 +1,5 @@
 import { ClassType, ObjectType, Field } from 'type-graphql';
+
 import Pagination from './Pagination';
 
 export default function PaginationResponse<TItem>(TItemClass: ClassType<TItem>) {

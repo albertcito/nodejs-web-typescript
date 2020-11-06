@@ -4,13 +4,14 @@ import {
 } from 'type-graphql';
 import { __ } from 'i18n';
 
+import MessageResponse from '../../../type/MessageResponse';
+import MessageType from '../../../type/MessageType.enum';
+
 import Auth from '~src/util/session/Auth';
 import isAuth from '~src/util/graphql/isAuth';
 import MessageError from '~src/util/exceptions/MessageError';
 import UserUpdateEmail from '~src/logic/user/session/UserUpdateEmail';
 import User from '~src/db/entities/User';
-import MessageResponse from '../../../type/MessageResponse';
-import MessageType from '../../../type/MessageType.enum';
 
 @ObjectType()
 class ProfileUpdateEmailResponse extends MessageResponse(User) {}

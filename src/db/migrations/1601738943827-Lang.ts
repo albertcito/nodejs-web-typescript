@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+
 import columns from './BaseTableColumns/columns';
 import Lang from '../entities/Lang';
 

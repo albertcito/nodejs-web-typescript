@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import Bugsnag from '@bugsnag/js';
+
 import Auth from '../../util/session/Auth';
 
 const notify = (error: Error, req: Request) => {

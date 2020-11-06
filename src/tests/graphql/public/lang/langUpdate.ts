@@ -1,5 +1,6 @@
-import GenericTestData from '~src/tests/config/GenericTestData';
 import Lang from '../../../../db/entities/Lang';
+
+import GenericTestData from '~src/tests/config/GenericTestData';
 
 export default class LangUpdateTest implements GenericTestData {
   async resolver() {

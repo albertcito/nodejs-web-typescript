@@ -1,4 +1,5 @@
 import rolesEnum from '../role/role.enum';
+
 import Role from '~src/db/entities/Role';
 
 /**

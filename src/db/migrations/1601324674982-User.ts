@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+
 import columns from './BaseTableColumns/columns';
 import User from '../entities/User';
 import dbUsers from '../util/dbUser';

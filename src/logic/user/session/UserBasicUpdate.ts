@@ -1,4 +1,5 @@
 import { validate, arg } from 'validatorjs-decorator';
+
 import User from '~src/db/entities/User';
 
 class UserBasicUpdate {

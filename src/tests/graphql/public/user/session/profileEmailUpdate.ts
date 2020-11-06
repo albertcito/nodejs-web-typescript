@@ -1,5 +1,6 @@
-import GenericTestData from '~src/tests/config/GenericTestData';
 import dbUsers from '../../../../../db/util/dbUser';
+
+import GenericTestData from '~src/tests/config/GenericTestData';
 
 export default class ProfileEmailUpdate implements GenericTestData {
   resolver() {

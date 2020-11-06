@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import { createMethodDecorator } from 'type-graphql';
+
 import getUserByOauthToken from '../../logic/user/session/getUserByOauthToken';
 import rolesEnum from '../../logic/role/role.enum';
 

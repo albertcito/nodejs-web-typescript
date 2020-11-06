@@ -1,4 +1,5 @@
 import UserTokenEnum from './UserTokenEnum';
+
 import UserTokenEntity from '~src/db/entities/UserToken';
 import { frontend } from '~src/config';
 

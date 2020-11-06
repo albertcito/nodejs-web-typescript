@@ -1,6 +1,7 @@
 import {
   MigrationInterface, QueryRunner, Table, TableForeignKey,
 } from 'typeorm';
+
 import columns from './BaseTableColumns/columns';
 
 class UserToken1601940113364 implements MigrationInterface {

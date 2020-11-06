@@ -1,5 +1,6 @@
 import { NextFunction, Response, Request } from 'express';
 import { __ } from 'i18n';
+
 import notify from '../bugsnag/notify';
 import { config } from '../../config';
 import isValidException from '../../util/exceptions/isValidException';

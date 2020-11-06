@@ -3,6 +3,7 @@ import {
   Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
 import argon2 from 'argon2';
+
 import BaseEntity from './BaseEntity';
 
 @ObjectType()

@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+
 import columns from './BaseTableColumns/columns';
 import Role from '../entities/Role';
 import roles from '../../logic/role/role.enum';

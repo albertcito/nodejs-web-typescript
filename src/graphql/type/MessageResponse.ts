@@ -1,4 +1,5 @@
 import { ClassType, ObjectType, Field } from 'type-graphql';
+
 import MessageField from './MessageField';
 
 export default function MessageResponse<TItem>(TItemClass: ClassType<TItem>) {

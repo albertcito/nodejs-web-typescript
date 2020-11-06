@@ -31,6 +31,13 @@ module.exports = {
       'error',
       { devDependencies: true },
     ],
+    'import/order': ['error', {
+      groups: [
+        ['external', 'builtin'],
+        ['internal', 'index', 'sibling', 'parent'],
+      ],
+      'newlines-between': 'always',
+    }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'no-unused-vars': 'off',
