@@ -20,6 +20,9 @@ const formatError = (error: GraphQLError): GraphQLFormattedError => {
     return GraphQLFormatError(new ApolloError(
       error.message,
       'MessageError',
+      {
+        message: error.message,
+      },
     ));
   }
 
