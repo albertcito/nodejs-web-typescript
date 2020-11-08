@@ -1,9 +1,9 @@
 import { Field, InputType } from 'type-graphql';
 
-import TextInputCreate from './TextInputCreate';
+import TextInputBase from './TextInputCreate';
 
-@InputType('TextInputCreate')
-export default class TextInputUpdate extends TextInputCreate {
+@InputType('TextInputUpdate')
+export default class TextInputUpdate extends TextInputBase {
   @Field()
   textID?: number;
 }

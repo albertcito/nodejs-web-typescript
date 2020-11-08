@@ -1,4 +1,4 @@
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import Translation from '~src/db/entities/Translation';
 import Text from '~src/db/entities/Text';
@@ -19,7 +19,7 @@ export default class TranslationCreate {
   async save(options: TranslationCreateSave): Promise<Translation> {
     const { code, isBlocked = false } = options;
     const translation = new Translation();
-    translation.code = code ?? 'uuidv4()';
+    translation.code = code ?? uuidv4();
     translation.isBlocked = isBlocked;
     await translation.save();
 
