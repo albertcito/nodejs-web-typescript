@@ -6,6 +6,8 @@ import {
 import User from '~src/db/entities/User';
 import UserRole from '~src/db/entities/UserRole';
 import roles from '~src/logic/role/role.enum';
+import MessageType from '~src/graphql/type/MessageType.enum';
+import MessageField from '~src/graphql/type/MessageField';
 
 export default class UserRolesUpdate {
   private readonly user: User
@@ -14,7 +16,7 @@ export default class UserRolesUpdate {
     this.user = user;
   }
 
-  async save(rolesID: roles[]) {
+  async save(rolesID: roles[]): Promise<MessageField> {
     await getManager()
       .createQueryBuilder(UserRole, 'user_role')
       .where({
@@ -32,6 +34,9 @@ export default class UserRolesUpdate {
         await UserRole.insert({ role_id: roleID, user_id: this.user.userID });
       }
     });
-    return __('The item %s was updated');
+    return {
+      message: __('The item %s was updated', ''),
+      type: MessageType.success,
+    };
   }
 }

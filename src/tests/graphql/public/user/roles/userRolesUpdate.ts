@@ -5,8 +5,11 @@ export default class UserRolesUpdateTest implements GenericTestData {
   resolver() {
     return {
       query: `mutation userRolesUpdate($userID: Int!, $rolesID: [String!]!) {
-        userRolesUpdate(userID: $userID, rolesID: $rolesID)
-    }`,
+        userRolesUpdate(userID: $userID, rolesID: $rolesID) {
+          message
+          type
+        }
+      }`,
       variables: {
         userID: 1,
         rolesID: [roles.admin, roles.superAdmin],
@@ -16,7 +19,9 @@ export default class UserRolesUpdateTest implements GenericTestData {
 
   rules() {
     return {
-      userRolesUpdate: 'required|string',
+      userRolesUpdate: 'required',
+      'userRolesUpdate.message': 'required|string',
+      'userRolesUpdate.type': 'required|string',
     };
   }
 }
