@@ -25,11 +25,12 @@ export default class UserRolesUpdate {
       .execute();
 
     rolesID.forEach(async (roleID) => {
-      /* const userRole = new UserRole();
-      userRole.role_id = roleID;
-      userRole.userRoleID = this.user.userID;
-      await userRole.save(); */
-      await UserRole.insert({ role_id: roleID, user_id: this.user.userID });
+      const userRole = UserRole.findOne({
+        where: { role_id: rolesID, user_id: this.user.userID },
+      });
+      if (!userRole) {
+        await UserRole.insert({ role_id: roleID, user_id: this.user.userID });
+      }
     });
     return __('The item %s was updated');
   }
