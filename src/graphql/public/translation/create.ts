@@ -21,8 +21,8 @@ export default class TranslationCreateResolver {
   @UseMiddleware(isAuth)
   async translationCreate(
     @Arg('texts', () => [TextInputCreate]) texts: TextInputCreate[],
-    @Arg('code') code: string,
-    @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked: boolean,
+    @Arg('code', { nullable: true }) code?: string,
+    @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked?: boolean,
   ): Promise<TranslationCreateResponse> {
     const translation = await (new TranslationCreate(texts)).save({ code, isBlocked });
     return {

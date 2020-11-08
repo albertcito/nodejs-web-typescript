@@ -12,14 +12,12 @@ import Paginate from '~src/util/db/paginate';
 class TranslationPaginationResponse extends PaginationResponse(Translation) {}
 
 @Resolver()
-class TranslationResolver {
+export default class TranslationsResolver {
   @Query(() => TranslationPaginationResponse)
-  translation(
+  translations(
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
   ): Promise<TranslationPaginationResponse> {
     return (new Paginate(Translation.createQueryBuilder())).get(page, limit);
   }
 }
-
-export default TranslationResolver;

@@ -1,4 +1,6 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey, TableUnique
+} from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
 
@@ -15,6 +17,10 @@ export default class Text1601738943827 implements MigrationInterface {
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',
+          },
+          {
+            name: 'text',
+            type: 'varchar',
           },
           {
             name: 'lang_id',
@@ -42,6 +48,11 @@ export default class Text1601738943827 implements MigrationInterface {
         referencedColumnNames: ['lang_id'],
         referencedTableName: 'lang',
         onDelete: 'RESTRICT',
+      }));
+
+      await queryRunner.createUniqueConstraint(this.tableName, new TableUnique({
+        name: 'test_translation_lang',
+        columnNames: ['lang_id', 'translation_id'],
       }));
     }
 
