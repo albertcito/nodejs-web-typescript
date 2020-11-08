@@ -26,9 +26,8 @@ import ActivateEmailTest from './graphql/public/user/session/activateEmail';
 import RolesTest from './graphql/public/roles/roles';
 import RoleTest from './graphql/public/roles/role';
 import RoleUpdateTest from './graphql/public/roles/roleUpdate';
-import UserRoleCreateTest from './graphql/public/userRole/userRoleCreate';
-import UserRoleDeleteTest from './graphql/public/userRole/userRoleDelete';
 import RoleUpdateRejectTest from './graphql/public/roles/roleUpdateReject';
+import UserRolesUpdateTest from './graphql/public/user/roles/userRolesUpdate';
 
 let genericTest: GenericTest;
 let app: Express;
@@ -74,7 +73,6 @@ describe('GET /graphql/public', () => {
   it('q: roles', (done) => genericTest.test(done, new RolesTest(), superAdminToken));
   it('q: role', (done) => genericTest.test(done, new RoleTest(), superAdminToken));
   it('m: roleUpdate', (done) => genericTest.test(done, new RoleUpdateTest(), superAdminToken));
-  it('m: userRoleCreate', (done) => genericTest.test(done, new UserRoleCreateTest(), superAdminToken));
-  it('m: userRoleDelete', (done) => genericTest.test(done, new UserRoleDeleteTest(), superAdminToken));
+  it('m: userRolesCreate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
   it('m: roleUpdate -> 403', (done) => (new RoleUpdateRejectTest(genericTest.url, app)).test(done, adminToken));
 });

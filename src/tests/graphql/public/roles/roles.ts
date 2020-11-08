@@ -3,7 +3,7 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class RolesTest implements GenericTestData {
   resolver() {
     return {
-      query: `{
+      query: `query roles {
         roles {
           pagination {
             from
