@@ -4,7 +4,7 @@ import {
 
 import columns from './BaseTableColumns/columns';
 
-export default class Text1601738944027 implements MigrationInterface {
+export default class Text1601324673095 implements MigrationInterface {
     private readonly tableName = 'text';
 
     public async up(queryRunner: QueryRunner): Promise<void> {

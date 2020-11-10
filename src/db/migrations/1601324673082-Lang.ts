@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import columns from './BaseTableColumns/columns';
 import Lang from '../entities/Lang';
 
-class Lang1601738943827 implements MigrationInterface {
+export default class Lang1601324673082 implements MigrationInterface {
     private readonly tableName = 'lang';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -61,4 +61,3 @@ class Lang1601738943827 implements MigrationInterface {
     }
 }
 
-export default Lang1601738943827;
