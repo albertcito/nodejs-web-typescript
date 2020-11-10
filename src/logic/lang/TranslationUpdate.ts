@@ -1,9 +1,6 @@
-import { __ } from 'i18n';
-
 import Translation from '~src/db/entities/Translation';
 import Text from '~src/db/entities/Text';
 import TextInputUpdate from '~src/graphql/input/TextInputUpdate';
-import MessageError from '~src/util/exceptions/MessageError';
 
 interface TranslationUpdateSave {
   code?: string;
@@ -21,6 +18,12 @@ export default class TranslationUpdate {
   }
 
   async save(options: TranslationUpdateSave): Promise<Translation> {
+    await this.saveTranslation(options);
+    await this.saveTexts();
+    return this.translation;
+  }
+
+  private async saveTranslation(options: TranslationUpdateSave) {
     const { code, isBlocked } = options;
     if (code) {
       this.translation.code = code;
@@ -29,22 +32,33 @@ export default class TranslationUpdate {
       this.translation.isBlocked = isBlocked;
     }
     await this.translation.save();
+  }
 
-    this.texts.forEach(async (text) => {
-      if (text.textID) {
-        const textEntity = await Text.findOne(text.textID);
-        if (!textEntity) {
-          throw new MessageError(__('The item %s does not exists', `${text.textID}`));
-        }
-      } else {
-        const textEntity = new Text();
-        textEntity.text = text.text;
-        textEntity.langID = text.langID;
-        textEntity.translationID = this.translation.translationID;
-        await textEntity.save();
-      }
+  private async saveTexts() {
+    const textPromises = [];
+    for (let i = 0; i < this.texts.length; i += 1) {
+      const text = this.texts[i];
+      textPromises.push(this.saveText(text));
+    }
+    await Promise.all(textPromises);
+  }
+
+  private async saveText(text: TextInputUpdate) {
+    const textEntity = await Text.findOne({
+      where: {
+        translationID: this.translation.translationID,
+        langID: text.langID,
+      },
     });
-
-    return this.translation;
+    if (textEntity) {
+      textEntity.text = text.text;
+      await textEntity.save();
+    } else {
+      const newText = new Text();
+      newText.text = text.text;
+      newText.langID = text.langID;
+      newText.translationID = this.translation.translationID;
+      await newText.save();
+    }
   }
 }

@@ -1,10 +1,12 @@
-import { Field, Int, ObjectType } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn,
+  Arg, Field, Int, ObjectType,
+} from 'type-graphql';
+import {
+  Entity, PrimaryGeneratedColumn, Column,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
-import Text from './Text';
+import VText from './VText';
 
 @ObjectType()
 @Entity({ name: 'translation' })
@@ -21,8 +23,18 @@ export default class Translation extends BaseEntity {
   @Column({ name: 'is_blocked' })
   isBlocked: boolean;
 
-  @Field(() => [Text])
-  @OneToMany(() => Text, (text) => text.translation, { eager: true })
-  @JoinColumn({ name: 'translation_id' })
-  texts: Text[];
+  @Field(() => [VText])
+  async texts() {
+    return VText.find({ where: { translationID: this.translationID } });
+  }
+
+  @Field(() => VText)
+  async text(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
+    return VText.findOne({
+      where: {
+        translationID: this.translationID,
+        langID,
+      },
+    });
+  }
 }

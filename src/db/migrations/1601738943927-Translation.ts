@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
 
-export default class Translation1601738943827 implements MigrationInterface {
+export default class Translation1601738943927 implements MigrationInterface {
     private readonly tableName = 'translation';
 
     public async up(queryRunner: QueryRunner): Promise<void> {

@@ -21,14 +21,14 @@ export default class TranslationUpdateResolver {
   @Mutation(() => TranslationUpdateResponse)
   @UseMiddleware(isAuth)
   async translationUpdate(
-    @Arg('translationID') translationID: string,
+    @Arg('translationID') translationID: number,
     @Arg('texts', () => [TextInputUpdate]) texts: TextInputUpdate[],
-    @Arg('code') code: string,
-    @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked: boolean,
+    @Arg('code', { nullable: true }) code: string,
+    @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
   ): Promise<TranslationUpdateResponse> {
     const translation = await Translation.findOne(translationID);
     if (!translation) {
-      throw new MessageError(__('The item %s does not exists', translationID));
+      throw new MessageError(__('The item %s does not exists', `${translationID}`));
     }
     const translationUpdated = await (new TranslationUpdate(
       translation,
