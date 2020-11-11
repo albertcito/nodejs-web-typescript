@@ -3,7 +3,7 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class LangTest implements GenericTestData {
   resolver() {
     return {
-      query: `{
+      query: `query langs {
         langs {
           pagination {
             from

@@ -1,29 +1,27 @@
 import {
-  Field, ObjectType, Int, Arg,
+  Arg, Field, Int, ObjectType,
 } from 'type-graphql';
 import {
-  Entity, PrimaryColumn, Column,
+  Entity, PrimaryGeneratedColumn, Column,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
 import VText from './VText';
 
-import roles from '~src/logic/role/role.enum';
-
 @ObjectType()
-@Entity({ name: 'role' })
-export default class Role extends BaseEntity {
-  @Field(() => roles)
-  @PrimaryColumn({ name: 'role_id' })
-  roleID: roles;
-
+@Entity({ name: 'translation' })
+export default class Translation extends BaseEntity {
   @Field(() => Int)
-  @Column({ name: 'translation_id' })
+  @PrimaryGeneratedColumn({ name: 'translation_id' })
   translationID: number;
 
   @Field(() => String)
   @Column()
-  description: string;
+  code: string;
+
+  @Field(() => Boolean)
+  @Column({ name: 'is_blocked' })
+  isBlocked: boolean;
 
   @Field(() => [VText])
   async texts() {
