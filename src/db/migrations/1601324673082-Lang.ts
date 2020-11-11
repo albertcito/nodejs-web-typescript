@@ -60,4 +60,3 @@ export default class Lang1601324673082 implements MigrationInterface {
       await queryRunner.dropTable(this.tableName);
     }
 }
-

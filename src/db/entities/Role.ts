@@ -1,4 +1,6 @@
-import { Field, ObjectType, Int, Arg } from 'type-graphql';
+import {
+  Field, ObjectType, Int, Arg,
+} from 'type-graphql';
 import {
   Entity, PrimaryColumn, Column,
 } from 'typeorm';
