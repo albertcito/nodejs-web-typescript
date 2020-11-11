@@ -15,11 +15,11 @@ export default class RoleUpdateTest {
 
   resolver() {
     return {
-      query: `mutation roleUpdate($roleID: roles!, $description: String!){
-        roleUpdate(roleID: $roleID, description: $description) {
+      query: `mutation roleUpdate($roleID: roles!, $descriptionID: Int!){
+        roleUpdate(roleID: $roleID, descriptionID: $descriptionID) {
           data {
             roleID
-            description
+            descriptionID
           }
           message {
             type
@@ -29,7 +29,7 @@ export default class RoleUpdateTest {
       }`,
       variables: {
         roleID: roles.superAdmin,
-        description: 'roleUpdate mutation test',
+        descriptionID: 1,
       },
     };
   }

@@ -18,23 +18,38 @@ export default class Role extends BaseEntity {
   roleID: roles;
 
   @Field(() => Int)
-  @Column({ name: 'translation_id' })
-  translationID: number;
+  @Column({ name: 'name_id' })
+  nameID: number;
 
-  @Field(() => String)
-  @Column()
-  description: string;
+  @Field(() => Int, { nullable: true })
+  @Column({ name: 'description_id' })
+  descriptionID: number;
 
   @Field(() => [VText])
-  async texts() {
-    return VText.find({ where: { translationID: this.translationID } });
+  async names() {
+    return VText.find({ where: { translationID: this.nameID } });
   }
 
   @Field(() => VText)
-  async text(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
+  async name(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
     return VText.findOne({
       where: {
-        translationID: this.translationID,
+        translationID: this.nameID,
+        langID,
+      },
+    });
+  }
+
+  @Field(() => [VText], { nullable: true })
+  async descriptions() {
+    return VText.find({ where: { translationID: this.descriptionID } });
+  }
+
+  @Field(() => VText, { nullable: true })
+  async description(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
+    return VText.findOne({
+      where: {
+        translationID: this.descriptionID,
         langID,
       },
     });

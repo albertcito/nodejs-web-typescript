@@ -8,7 +8,7 @@ export default class RoleTest implements GenericTestData {
       query: `query role($roleID: roles!) {
         role(roleID: $roleID) {
           roleID
-          description
+          descriptionID
         }
       }`,
       variables: {
@@ -21,7 +21,7 @@ export default class RoleTest implements GenericTestData {
     return {
       role: 'required',
       'role.roleID': 'required|string',
-      'role.description': 'required|string',
+      'role.descriptionID': 'integer',
     };
   }
 }
