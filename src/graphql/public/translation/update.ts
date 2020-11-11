@@ -1,6 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
 import {
-  Resolver, Mutation, Arg, UseMiddleware, ObjectType,
+  Resolver, Mutation, Arg, UseMiddleware, ObjectType, Int,
 } from 'type-graphql';
 import { __ } from 'i18n';
 
@@ -21,7 +21,7 @@ export default class TranslationUpdateResolver {
   @Mutation(() => TranslationUpdateResponse)
   @UseMiddleware(isAuth)
   async translationUpdate(
-    @Arg('translationID') translationID: number,
+    @Arg('translationID', () => Int) translationID: number,
     @Arg('texts', () => [TextInputUpdate]) texts: TextInputUpdate[],
     @Arg('code', { nullable: true }) code: string,
     @Arg('isBlocked', { nullable: true }) isBlocked: boolean,

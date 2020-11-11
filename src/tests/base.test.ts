@@ -28,6 +28,11 @@ import RoleTest from './graphql/public/roles/role';
 import RoleUpdateTest from './graphql/public/roles/roleUpdate';
 import RoleUpdateRejectTest from './graphql/public/roles/roleUpdateReject';
 import UserRolesUpdateTest from './graphql/public/user/roles/userRolesUpdate';
+import TranslationsTest from './graphql/public/translation/translations';
+import TranslationTest from './graphql/public/translation/translation';
+import TranslationCreateTest from './graphql/public/translation/translationCreate';
+import TranslationUpdateTest from './graphql/public/translation/translationUpdate';
+import TranslationDeleteTest from './graphql/public/translation/translationDelete';
 
 let genericTest: GenericTest;
 let app: Express;
@@ -75,4 +80,9 @@ describe('GET /graphql/public', () => {
   it('m: roleUpdate', (done) => genericTest.test(done, new RoleUpdateTest(), superAdminToken));
   it('m: userRolesCreate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
   it('m: roleUpdate -> 403', (done) => (new RoleUpdateRejectTest(genericTest.url, app)).test(done, adminToken));
+  it('q: translations', (done) => genericTest.test(done, new TranslationsTest(), adminToken));
+  it('q: translation', (done) => genericTest.test(done, new TranslationTest(), adminToken));
+  it('m: translationCreate', (done) => genericTest.test(done, new TranslationCreateTest(), adminToken));
+  it('m: translationUpdate', (done) => genericTest.test(done, new TranslationUpdateTest(), adminToken));
+  it('m: translationDelete', (done) => genericTest.test(done, new TranslationDeleteTest(), adminToken));
 });
