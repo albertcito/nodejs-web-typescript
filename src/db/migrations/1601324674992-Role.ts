@@ -1,4 +1,6 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey,
+} from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
 import Role from '../entities/Role';
@@ -20,16 +22,33 @@ export default class Role1601324674992 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'translation_id',
+            name: 'name_id',
             type: 'integer',
           },
           {
-            name: 'description',
-            type: 'varchar',
+            name: 'description_id',
+            type: 'integer',
+            isNullable: true,
           },
           ...columns,
         ],
       }), true);
+
+      await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'role_name',
+        columnNames: ['name_id'],
+        referencedColumnNames: ['translation_id'],
+        referencedTableName: 'translation',
+        onDelete: 'RESTRICT',
+      }));
+
+      await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'role_description_translation',
+        columnNames: ['description_id'],
+        referencedColumnNames: ['translation_id'],
+        referencedTableName: 'translation',
+        onDelete: 'RESTRICT',
+      }));
 
       const textSA = [
         {
@@ -45,8 +64,7 @@ export default class Role1601324674992 implements MigrationInterface {
 
       const roleSA = new Role();
       roleSA.roleID = roles.superAdmin;
-      roleSA.translationID = translationSA.translationID;
-      roleSA.description = 'Right to modify anything in the system';
+      roleSA.nameID = translationSA.translationID;
       await queryRunner.manager.save(roleSA);
 
       const textA = [
@@ -63,8 +81,7 @@ export default class Role1601324674992 implements MigrationInterface {
 
       const roleA = new Role();
       roleA.roleID = roles.admin;
-      roleA.translationID = translationA.translationID;
-      roleA.description = 'Right to modify ... to be defined';
+      roleA.nameID = translationA.translationID;
       await queryRunner.manager.save(roleA);
     }
 

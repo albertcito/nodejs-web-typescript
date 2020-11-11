@@ -15,7 +15,7 @@ export default class RolesTest implements GenericTestData {
           }
           data {
             roleID
-            description
+            descriptionID
           }
         }
       }`,
@@ -26,7 +26,7 @@ export default class RolesTest implements GenericTestData {
     return {
       'roles.data': 'requiredArray',
       'roles.data.*.roleID': 'required|string',
-      'roles.data.*.description': 'required|string',
+      'roles.data.*.descriptionID': 'integer',
     };
   }
 }

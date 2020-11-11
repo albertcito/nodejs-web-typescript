@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
 import { __ } from 'i18n';
 import {
-  Resolver, Mutation, Arg, ObjectType,
+  Resolver, Mutation, Arg, ObjectType, Int,
 } from 'type-graphql';
 
 import MessageResponse from '../../type/MessageResponse';
@@ -21,13 +21,13 @@ class RoleUpdateResolver {
   @isAuthRolesGraphQL([roles.superAdmin])
   async roleUpdate(
     @Arg('roleID', () => roles) roleID: roles,
-    @Arg('description') description: string,
+    @Arg('descriptionID', () => Int) descriptionID: number,
   ): Promise<RoleUpdateResponse> {
     const role = await Role.findOne(roleID);
     if (!role) {
       throw new MessageError(__('The item %s does not exists', roleID));
     }
-    role.description = description;
+    role.descriptionID = descriptionID;
     await role.save();
     return {
       data: role,
