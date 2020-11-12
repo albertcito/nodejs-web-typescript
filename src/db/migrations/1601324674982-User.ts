@@ -1,8 +1,12 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface, QueryRunner, Table, TableForeignKey,
+} from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
 import User from '../entities/User';
 import dbUsers from '../util/dbUser';
+
+import userStatus from '~src/logic/userStatus/userStatus.enum';
 
 class User1601324674982 implements MigrationInterface {
     private readonly tableName = 'user';
@@ -40,10 +44,30 @@ class User1601324674982 implements MigrationInterface {
             type: 'boolean',
             default: false,
           },
+          {
+            name: 'user_status_id',
+            type: 'varchar',
+          },
           ...columns,
         ],
       }), true);
 
+      await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
+        name: 'user_status',
+        columnNames: ['user_status_id'],
+        referencedColumnNames: ['user_status_id'],
+        referencedTableName: 'user_status',
+        onDelete: 'RESTRICT',
+      }));
+
+      await this.addDefaultData();
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+      await queryRunner.dropTable(this.tableName);
+    }
+
+    async addDefaultData() {
       const { superAdmin } = dbUsers();
       const user = new User();
       user.firstName = superAdmin.firstName;
@@ -51,7 +75,8 @@ class User1601324674982 implements MigrationInterface {
       user.email = superAdmin.email;
       user.password = superAdmin.password;
       user.emailVerified = true;
-      await queryRunner.manager.save(user);
+      user.userStatusID = userStatus.active;
+      await user.save();
 
       const { admin } = dbUsers();
       const userAdmin = new User();
@@ -60,11 +85,8 @@ class User1601324674982 implements MigrationInterface {
       userAdmin.email = admin.email;
       userAdmin.password = admin.password;
       userAdmin.emailVerified = true;
-      await queryRunner.manager.save(userAdmin);
-    }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable(this.tableName);
+      userAdmin.userStatusID = userStatus.active;
+      await userAdmin.save();
     }
 }
 

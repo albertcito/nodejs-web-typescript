@@ -44,7 +44,12 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
     .expect(200)
     .end(async (err, res) => {
       await Lang.delete(langID);
-      await assertJsonStructureGraphQL(done, res, err, rules);
+      const result = await assertJsonStructureGraphQL(res, err, rules);
+      if (result.status) {
+        done();
+      } else {
+        done.fail(result.description);
+      }
     });
 };
 

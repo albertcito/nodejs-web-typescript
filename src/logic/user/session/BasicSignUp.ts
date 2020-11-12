@@ -5,6 +5,7 @@ import UserTokenEnum from './UserTokenEnum';
 
 import User from '~src/db/entities/User';
 import Email from '~src/util/email/Email';
+import userStatus from '~src/logic/userStatus/userStatus.enum';
 
 @validateClass()
 class BasicSignUp {
@@ -34,6 +35,7 @@ class BasicSignUp {
     user.firstName = this.firstName;
     user.lastName = this.lastName;
     user.password = this.password;
+    user.userStatusID = userStatus.active;
     await user.save();
 
     const userToken = new UserToken(user.userID);

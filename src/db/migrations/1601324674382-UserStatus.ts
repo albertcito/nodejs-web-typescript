@@ -3,21 +3,21 @@ import {
 } from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
-import Role from '../entities/Role';
 
-import roles from '~src/logic/role/role.enum';
+import UserStatus from '~src/db/entities/UserStatus';
 import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import userStatus from '~src/logic/userStatus/userStatus.enum';
 
-export default class Role1601324674992 implements MigrationInterface {
-    private readonly tableName = 'role';
+export default class UserStatus1601324674982 implements MigrationInterface {
+    private readonly tableName = 'user_status';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
         name: this.tableName,
         columns: [
           {
-            name: 'role_id',
-            type: 'varchar',
+            name: 'user_status_id',
+            type: 'string',
             isPrimary: true,
             isUnique: true,
           },
@@ -30,12 +30,17 @@ export default class Role1601324674992 implements MigrationInterface {
             type: 'integer',
             isNullable: true,
           },
+          {
+            name: 'available',
+            type: 'boolean',
+            default: true,
+          },
           ...columns,
         ],
       }), true);
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
-        name: 'role_name',
+        name: 'user_status_name_translation',
         columnNames: ['name_id'],
         referencedColumnNames: ['translation_id'],
         referencedTableName: 'translation',
@@ -43,13 +48,12 @@ export default class Role1601324674992 implements MigrationInterface {
       }));
 
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
-        name: 'role_description_translation',
+        name: 'user_status_description_translation',
         columnNames: ['description_id'],
         referencedColumnNames: ['translation_id'],
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
-
       await this.addDefaultValues();
     }
 
@@ -58,38 +62,40 @@ export default class Role1601324674992 implements MigrationInterface {
     }
 
     private async addDefaultValues() {
-      const textSA = [
+      const activeText = [
         {
-          text: 'Super Admin',
+          text: 'Active',
           langID: 'EN',
         },
         {
-          text: 'Super Admin',
+          text: 'Activo',
           langID: 'ES',
         },
       ];
-      const translationSA = await (new TranslationCreate(textSA)).save();
+      const activeTranslation = await (new TranslationCreate(activeText)).save();
 
-      const roleSA = new Role();
-      roleSA.roleID = roles.superAdmin;
-      roleSA.nameID = translationSA.translationID;
-      await roleSA.save();
+      const active = new UserStatus();
+      active.userStatusID = userStatus.active;
+      active.nameID = activeTranslation.translationID;
+      active.available = true;
+      await active.save();
 
-      const textA = [
+      const inactiveText = [
         {
-          text: 'Super Admin',
+          text: 'Inactive',
           langID: 'EN',
         },
         {
-          text: 'Super Admin',
+          text: 'Inactivo',
           langID: 'ES',
         },
       ];
-      const translationA = await (new TranslationCreate(textA)).save();
+      const inactiveTranslation = await (new TranslationCreate(inactiveText)).save();
 
-      const roleA = new Role();
-      roleA.roleID = roles.admin;
-      roleA.nameID = translationA.translationID;
-      await roleA.save();
+      const inactive = new UserStatus();
+      inactive.userStatusID = userStatus.inactive;
+      inactive.nameID = inactiveTranslation.translationID;
+      inactive.available = true;
+      await inactive.save();
     }
 }

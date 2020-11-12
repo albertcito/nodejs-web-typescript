@@ -35,6 +35,10 @@ class User extends BaseEntity {
   @Column({ name: 'email_verified' })
   emailVerified: boolean;
 
+  @Field(() => String)
+  @Column({ name: 'user_status_id' })
+  userStatusID: string;
+
   @Field()
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

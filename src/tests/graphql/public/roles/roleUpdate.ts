@@ -5,10 +5,11 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class RoleUpdateTest implements GenericTestData {
   async resolver() {
     return {
-      query: `mutation roleUpdate($roleID: roles!, $descriptionID: Int!){
-        roleUpdate(roleID: $roleID, descriptionID: $descriptionID) {
+      query: `mutation roleUpdate($roleID: roles!, $nameID: Int! $descriptionID: Int!){
+        roleUpdate(roleID: $roleID, nameID: $nameID, descriptionID: $descriptionID) {
           data {
             roleID
+            nameID
             descriptionID
           }
           message {
@@ -19,6 +20,7 @@ export default class RoleUpdateTest implements GenericTestData {
       }`,
       variables: {
         roleID: roles.superAdmin,
+        nameID: 1,
         descriptionID: 1,
       },
     };
@@ -28,6 +30,7 @@ export default class RoleUpdateTest implements GenericTestData {
     return {
       roleUpdate: 'required',
       'roleUpdate.data.roleID': 'required|string',
+      'roleUpdate.data.nameID': 'required|integer',
       'roleUpdate.data.descriptionID': 'required|integer',
       'roleUpdate.message.type': 'required|string',
       'roleUpdate.message.message': 'required|string',
