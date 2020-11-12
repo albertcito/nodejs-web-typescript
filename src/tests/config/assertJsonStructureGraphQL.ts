@@ -18,6 +18,7 @@ const assertJsonStructureGraphQL = async (
   }
 
   if (res.serverError) {
+    // eslint-disable-next-line no-console
     console.log({ serverError: res.error });
     return {
       status: false,

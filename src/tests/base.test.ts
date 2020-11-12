@@ -34,7 +34,7 @@ import TranslationCreateTest from './graphql/public/translation/translationCreat
 import TranslationUpdateTest from './graphql/public/translation/translationUpdate';
 import TranslationDeleteTest from './graphql/public/translation/translationDelete';
 import UserStatusUpdateTest from './graphql/public/user/status/userStatusUpdate';
-import UserStatusUpdateOauthTest from './graphql/public/user/status/UserStatusUpdateOauth';
+import UserStatusUpdateOauthTest from './graphql/public/user/status/userStatusUpdateOauth';
 
 let genericTest: GenericTest;
 let app: Express;
