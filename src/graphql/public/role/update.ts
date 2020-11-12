@@ -21,12 +21,14 @@ class RoleUpdateResolver {
   @isAuthRolesGraphQL([roles.superAdmin])
   async roleUpdate(
     @Arg('roleID', () => roles) roleID: roles,
+    @Arg('nameID', () => Int) nameID: number,
     @Arg('descriptionID', () => Int) descriptionID: number,
   ): Promise<RoleUpdateResponse> {
     const role = await Role.findOne(roleID);
     if (!role) {
       throw new MessageError(__('The item %s does not exists', roleID));
     }
+    role.nameID = nameID;
     role.descriptionID = descriptionID;
     await role.save();
     return {

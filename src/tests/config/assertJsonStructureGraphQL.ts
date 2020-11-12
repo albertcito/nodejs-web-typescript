@@ -11,6 +11,8 @@ const assertJsonStructureGraphQL = async (
   rules: Validator.Rules,
 ): Promise<AssertJsonStructureGraphQLResult> => {
   if (err) {
+    // eslint-disable-next-line no-console
+    console.log({ serverError: res.error });
     return {
       status: false,
       description: 'assert unknown error',
