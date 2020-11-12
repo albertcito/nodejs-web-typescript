@@ -1,44 +1,65 @@
 import { Response } from 'supertest';
 import { Validator, getAsyncErrors } from 'validatorjs-decorator/dist';
 
+interface AssertJsonStructureGraphQLResult {
+  status: boolean;
+  description: string;
+}
 const assertJsonStructureGraphQL = async (
-  done: jest.DoneCallback,
   res: Response,
   err: any,
   rules: Validator.Rules,
-): Promise<boolean> => {
+): Promise<AssertJsonStructureGraphQLResult> => {
   if (err) {
-    done.fail(err);
-    return false;
+    return {
+      status: false,
+      description: 'assert unknown error',
+    };
+  }
+
+  if (res.serverError) {
+    console.log({ serverError: res.error });
+    return {
+      status: false,
+      description: 'Server Error',
+    };
   }
 
   if (res.body.errors) {
     // eslint-disable-next-line no-console
-    console.info(res.body);
-    done.fail('The query return errors');
-    return false;
+    console.info({ status: res.status, body: res.body });
+    return {
+      status: false,
+      description: 'The query return errors',
+    };
   }
 
   if (!res.body.data) {
     // eslint-disable-next-line no-console
-    console.info(res.body);
-    done.fail('The query data is empty');
-    return false;
+    console.info({ body: res.body });
+    return {
+      status: false,
+      description: 'The query data is empty',
+    };
   }
 
   const errors = await getAsyncErrors(res.body.data, rules);
 
   if (errors) {
     // eslint-disable-next-line no-console
-    console.error(errors);
+    console.error({ errors });
     // eslint-disable-next-line no-console
-    console.info(res.body);
-    done.fail('The response does not match with the expected result');
-    return false;
+    console.info({ body: res.body });
+    return {
+      status: false,
+      description: 'The response does not match with the expected result',
+    };
   }
 
-  done();
-  return true;
+  return {
+    status: true,
+    description: 'It works !',
+  };
 };
 
 export default assertJsonStructureGraphQL;

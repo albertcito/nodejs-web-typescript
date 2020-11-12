@@ -29,7 +29,14 @@ class GenericTest {
       .send(resolver)
       .expect('Content-Type', /json/)
       .expect(200)
-      .end(async (err, res) => assertJsonStructureGraphQL(done, res, err, data.rules()));
+      .end(async (err, res) => {
+        const result = await assertJsonStructureGraphQL(res, err, data.rules());
+        if (result.status) {
+          done();
+        } else {
+          done.fail(result.description);
+        }
+      });
   }
 }
 

@@ -42,9 +42,8 @@ export default class UserStatusUpdate {
       };
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new Error(error);
-    } finally {
       await queryRunner.release();
+      throw new Error(error);
     }
   }
 }
