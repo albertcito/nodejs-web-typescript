@@ -1,13 +1,13 @@
 import { registerEnumType } from 'type-graphql';
 
-enum userStatus {
+enum userStatusEnum {
   active='active',
   inactive='inactive',
 }
 
-registerEnumType(userStatus, {
-  name: 'userStatus',
+registerEnumType(userStatusEnum, {
+  name: 'userStatusEnum',
   description: 'All possible user status',
 });
 
-export default userStatus;
+export default userStatusEnum;
