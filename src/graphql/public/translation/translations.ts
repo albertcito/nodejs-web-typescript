@@ -6,7 +6,7 @@ import {
 import PaginationResponse from '../../type/PaginationResponse';
 
 import Translation from '~src/db/entities/Translation';
-import Paginate from '~src/util/db/paginate';
+import TranslationsPagination from '~src/logic/translation/TranslationPagination';
 
 @ObjectType()
 class TranslationPaginationResponse extends PaginationResponse(Translation) {}
@@ -17,7 +17,18 @@ export default class TranslationsResolver {
   translations(
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
+    @Arg('orderBy', () => String, { defaultValue: 'translation.translation_id', nullable: true }) orderBy: string,
+    @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
+    @Arg('search', () => String, { description: 'Search by text or ID', nullable: true }) search: string,
+    @Arg('langID', () => String, { nullable: true }) langID: string,
   ): Promise<TranslationPaginationResponse> {
-    return (new Paginate(Translation.createQueryBuilder())).get(page, limit);
+    return (new TranslationsPagination()).getAll({
+      page,
+      limit,
+      orderBy,
+      order,
+      langID,
+      search,
+    });
   }
 }

@@ -1,13 +1,13 @@
 import { registerEnumType } from 'type-graphql';
 
-enum roles {
+enum rolesEnum {
   superAdmin='superAdmin',
   admin='admin',
 }
 
-registerEnumType(roles, {
-  name: 'roles',
+registerEnumType(rolesEnum, {
+  name: 'rolesEnum',
   description: 'All possible roles',
 });
 
-export default roles;
+export default rolesEnum;

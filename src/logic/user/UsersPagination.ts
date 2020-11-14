@@ -24,24 +24,31 @@ export default class UsersPagination {
       search,
     } = parameters;
 
-    if (search) {
-      if (/^[-]?\d+$/.test(search)) {
-        this.query.where(
-          'user_id like :search',
-          { search: `%${search}%` },
-        );
-      } else {
-        this.query.where(
-          `first_name like :search
-          OR last_name like :search
-          OR email like :search`,
-          { search: `%${search}%` },
-        );
-      }
+    if (search && /^[-]?\d+$/.test(search)) {
+      this.findByID(search);
+    } else if (search) {
+      this.findByString(search);
     }
+
     if (orderBy && order) {
       this.query.orderBy(orderBy, order);
     }
     return (new Paginate(this.query)).get(page, limit);
+  }
+
+  private findByID(search:string) {
+    this.query.where(
+      'user_id = :search',
+      { search: `${search}` },
+    );
+  }
+
+  private findByString(search:string) {
+    this.query.where(
+      `first_name like :search
+      OR last_name like :search
+      OR email like :search`,
+      { search: `%${search}%` },
+    );
   }
 }

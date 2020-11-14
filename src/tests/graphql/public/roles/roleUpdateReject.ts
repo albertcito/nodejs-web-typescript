@@ -15,7 +15,7 @@ export default class RoleUpdateTest {
 
   resolver() {
     return {
-      query: `mutation roleUpdate($roleID: roles!, $nameID: Int! $descriptionID: Int!){
+      query: `mutation roleUpdate($roleID: rolesEnum!, $nameID: Int! $descriptionID: Int!){
         roleUpdate(roleID: $roleID, nameID: $nameID, descriptionID: $descriptionID) {
           data {
             roleID
