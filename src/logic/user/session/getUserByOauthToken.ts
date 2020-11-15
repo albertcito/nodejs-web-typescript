@@ -1,7 +1,7 @@
 import { Request } from 'express';
 
 import rolesEnum from '../../role/role.enum';
-import verifyRolesUser from '../../userRole/verifyRolesUser';
+import { verifyRolesUser } from '../../userRole/verifyRolesUser';
 
 import User from '~src/db/entities/User';
 import OauthAccessToken from '~src/db/entities/OauthAccessToken';

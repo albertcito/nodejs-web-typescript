@@ -19,6 +19,7 @@ export default class Translation1601324673092 implements MigrationInterface {
           {
             name: 'code',
             type: 'varchar',
+            isUnique: true,
           },
           {
             name: 'is_blocked',

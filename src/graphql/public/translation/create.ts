@@ -9,7 +9,7 @@ import MessageResponse from '../../type/MessageResponse';
 import Translation from '~src/db/entities/Translation';
 import isAuth from '~src/util/graphql/isAuth';
 import TextInputCreate from '~src/graphql/input/TextInputCreate';
-import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import TranslationCreate from '~src/logic/translation/TranslationCreate';
 import MessageType from '~src/graphql/type/MessageType.enum';
 
 @ObjectType()

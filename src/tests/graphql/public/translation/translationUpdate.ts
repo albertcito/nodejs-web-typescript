@@ -1,5 +1,5 @@
 import GenericTestData from '~src/tests/config/GenericTestData';
-import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import TranslationCreate from '~src/logic/translation/TranslationCreate';
 
 export default class TranslationUpdateTest implements GenericTestData {
   async resolver() {
@@ -15,7 +15,7 @@ export default class TranslationUpdateTest implements GenericTestData {
     ]);
     const translation = await translationCreate.save();
     return {
-      query: `mutation translationUpdate($translationID: Int!, $texts: [TextInputUpdate!]!){
+      query: `mutation translationUpdate($translationID: Int!, $texts: [TextInputCreate!]!){
         translationUpdate(translationID: $translationID, texts: $texts) {
           data {
             translationID

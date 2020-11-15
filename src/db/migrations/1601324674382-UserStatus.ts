@@ -5,7 +5,7 @@ import {
 import columns from './BaseTableColumns/columns';
 
 import UserStatus from '~src/db/entities/UserStatus';
-import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import TranslationCreate from '~src/logic/translation/TranslationCreate';
 import userStatus from '~src/logic/userStatus/userStatus.enum';
 
 export default class UserStatus1601324674982 implements MigrationInterface {

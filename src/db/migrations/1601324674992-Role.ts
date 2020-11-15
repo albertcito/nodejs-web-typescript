@@ -6,7 +6,7 @@ import columns from './BaseTableColumns/columns';
 import Role from '../entities/Role';
 
 import roles from '~src/logic/role/role.enum';
-import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import TranslationCreate from '~src/logic/translation/TranslationCreate';
 
 export default class Role1601324674992 implements MigrationInterface {
     private readonly tableName = 'role';
