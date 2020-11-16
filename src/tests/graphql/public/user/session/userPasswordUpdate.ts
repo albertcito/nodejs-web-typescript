@@ -9,7 +9,7 @@ export default class UserPasswordUpdate implements GenericTestData {
       query: `mutation userUpdatePassword($userID: Int!, $password: String!) {
         userUpdatePassword(userID: $userID, password: $password) {
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -31,7 +31,7 @@ export default class UserPasswordUpdate implements GenericTestData {
   rules() {
     return {
       userUpdatePassword: 'required',
-      'userUpdatePassword.data.userID': 'required|integer',
+      'userUpdatePassword.data.id': 'required|integer',
       'userUpdatePassword.data.firstName': 'required|string',
       'userUpdatePassword.data.lastName': 'required|string',
       'userUpdatePassword.data.email': 'required|email',

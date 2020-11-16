@@ -35,7 +35,7 @@ class Login {
       throw new MessageError(__('emailPasswordError'));
     }
 
-    const auth = await userOauthCreate(user.userID);
+    const auth = await userOauthCreate(user.id);
 
     Auth.setData({
       user,

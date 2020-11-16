@@ -9,7 +9,7 @@ export default class LoginTest implements GenericTestData {
       query: `mutation login($email: String!, $password:String!) {
         login(email:$email, password:$password) {
           user {
-            userID
+            id
             firstName
             lastName
             email
@@ -28,7 +28,7 @@ export default class LoginTest implements GenericTestData {
     return {
       login: 'required',
       'login.token': 'required|string',
-      'login.user.userID': 'required|integer',
+      'login.user.id': 'required|integer',
       'login.user.firstName': 'required|string',
       'login.user.lastName': 'required|string',
       'login.user.email': 'required|email',

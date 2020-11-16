@@ -46,7 +46,7 @@ class OauthAccessToken1601770752669 implements MigrationInterface {
     await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
       name: 'oauth_access_tokens_user_id',
       columnNames: ['user_id'],
-      referencedColumnNames: ['user_id'],
+      referencedColumnNames: ['id'],
       referencedTableName: 'user',
       onDelete: 'RESTRICT',
     }));

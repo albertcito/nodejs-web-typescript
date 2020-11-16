@@ -25,7 +25,7 @@ export default class UserStatusUpdate {
       await this.user.save();
 
       const userReason = new UserStatusReason();
-      userReason.userID = this.user.userID;
+      userReason.userID = this.user.id;
       userReason.userStatusID = userStatusID;
       userReason.reason = reason;
       await userReason.save();
@@ -37,7 +37,7 @@ export default class UserStatusUpdate {
       await queryRunner.commitTransaction();
 
       return {
-        message: __('The item %s was updated', `${this.user.userID}`),
+        message: __('The item %s was updated', `${this.user.id}`),
         type: MessageType.success,
       };
     } catch (error) {

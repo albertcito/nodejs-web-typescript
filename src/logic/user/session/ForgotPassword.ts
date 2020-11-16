@@ -21,7 +21,7 @@ class ForgotPassword {
     if (!user) {
       throw new MessageError(__('The item %s does not exists', this.email));
     }
-    const userToken = new UserToken(user.userID);
+    const userToken = new UserToken(user.id);
     const token = await userToken.newToken(48, UserTypeEnum.RECOVERY_PASSWORD);
     return token;
   }

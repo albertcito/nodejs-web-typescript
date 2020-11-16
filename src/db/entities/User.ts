@@ -13,8 +13,8 @@ import Role from './Role';
 @Entity({ name: 'user' })
 class User extends BaseEntity {
   @Field(() => Int)
-  @PrimaryGeneratedColumn({ name: 'user_id' })
-  userID: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Field(() => String)
   @Column({ name: 'first_name' })

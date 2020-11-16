@@ -32,7 +32,7 @@ export default class ProfileBasicUpdateResolver {
     return {
       data: user,
       message: {
-        message: __('The item %s was updated', `${user.userID}`),
+        message: __('The item %s was updated', `${user.id}`),
         type: MessageType.success,
       },
     };

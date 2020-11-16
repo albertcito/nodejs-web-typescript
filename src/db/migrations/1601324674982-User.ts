@@ -16,7 +16,7 @@ class User1601324674982 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,

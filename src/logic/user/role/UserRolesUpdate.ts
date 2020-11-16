@@ -21,17 +21,17 @@ export default class UserRolesUpdate {
       .createQueryBuilder(UserRole, 'user_role')
       .where({
         role_id: Not(In(rolesID)),
-        user_id: this.user.userID,
+        user_id: this.user.id,
       })
       .delete()
       .execute();
 
     rolesID.forEach(async (roleID) => {
       const userRole = UserRole.findOne({
-        where: { role_id: rolesID, user_id: this.user.userID },
+        where: { role_id: rolesID, user_id: this.user.id },
       });
       if (!userRole) {
-        await UserRole.insert({ role_id: roleID, user_id: this.user.userID });
+        await UserRole.insert({ role_id: roleID, user_id: this.user.id });
       }
     });
     return {

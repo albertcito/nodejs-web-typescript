@@ -27,7 +27,7 @@ export default class UserStatusUpdateOauthTest {
         }
       }`,
       variables: {
-        userID: user.userID,
+        userID: user.id,
         userStatusID: userStatus.inactive,
         reason: 'test environment: updating user inactive user and verify revoke token',
       },
@@ -70,12 +70,12 @@ export default class UserStatusUpdateOauthTest {
         } else {
           const noRevoked = await OauthAccessToken.find({
             where: {
-              userID: user.userID,
+              userID: user.id,
               revoked: false,
             },
           });
           if (noRevoked.length > 0) {
-            done.fail(`All token must be revoked ${user.userID}`);
+            done.fail(`All token must be revoked ${user.id}`);
           }
           done();
         }

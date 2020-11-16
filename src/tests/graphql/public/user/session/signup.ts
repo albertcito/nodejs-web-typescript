@@ -23,7 +23,7 @@ export default class SignUpTest implements GenericTestData {
           firstName: $firstName,
           lastName: $lastName,
         ) {
-          userID
+          id
           firstName
           lastName
           email
@@ -41,7 +41,7 @@ export default class SignUpTest implements GenericTestData {
 
   rules() {
     return {
-      'signUp.userID': 'required|integer',
+      'signUp.id': 'required|integer',
       'signUp.firstName': 'required|string',
       'signUp.lastName': 'required|string',
       'signUp.email': 'required|email',
