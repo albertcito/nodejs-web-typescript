@@ -8,6 +8,7 @@ export default class TranslationTest implements GenericTestData {
           id
           code
           texts {
+            id
             text
             langID
           }

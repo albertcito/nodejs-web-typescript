@@ -21,6 +21,7 @@ export default class TranslationUpdateTest implements GenericTestData {
             id
             code
             texts {
+              id
               text
               langID
             }
