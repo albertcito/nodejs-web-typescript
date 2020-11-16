@@ -29,5 +29,6 @@
 	"Your session was suscefully closed": "Your session was suscefully closed",
 	"The item %s was deleted": "The item %s was deleted",
 	"You do not have right to use this area": "You do not have right to use this area",
-	"The item %s was Updated": "The item %s was Updated"
+	"Only empty texts were updated in the item %s": "Only empty texts were updated in the item %s",
+	"The item %s is blocked, only a super admin can modify it": "The item %s is blocked, only a super admin can modify it"
 }

@@ -1,4 +1,4 @@
-import TranslationCreate from '~src/logic/lang/TranslationCreate';
+import TranslationCreate from '~src/logic/translation/TranslationCreate';
 import GenericTestData from '~src/tests/config/GenericTestData';
 
 export default class TranslationDeleteTest implements GenericTestData {

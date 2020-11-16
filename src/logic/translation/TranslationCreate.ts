@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import TextsCreate from './TextsCreate';
+
 import Translation from '~src/db/entities/Translation';
-import Text from '~src/db/entities/Text';
 import TextInputCreate from '~src/graphql/input/TextInputCreate';
 
 interface TranslationCreateSave {
@@ -18,7 +19,7 @@ export default class TranslationCreate {
 
   async save(options: TranslationCreateSave = {}): Promise<Translation> {
     const translation = await this.saveTranslation(options);
-    await this.saveTexts(translation.translationID);
+    await (new TextsCreate(translation.translationID)).save(this.texts);
     return translation;
   }
 
@@ -29,22 +30,5 @@ export default class TranslationCreate {
     translation.isBlocked = isBlocked;
     await translation.save();
     return translation;
-  }
-
-  private async saveTexts(translationID: number) {
-    const textPromises = [];
-    for (let i = 0; i < this.texts.length; i += 1) {
-      const text = this.texts[i];
-      textPromises.push(this.saveText(translationID, text));
-    }
-    await Promise.all(textPromises);
-  }
-
-  private async saveText(translationID: number, text: TextInputCreate) {
-    const textEntity = new Text();
-    textEntity.text = text.text;
-    textEntity.langID = text.langID;
-    textEntity.translationID = translationID;
-    await textEntity.save();
   }
 }

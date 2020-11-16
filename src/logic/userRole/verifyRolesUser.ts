@@ -2,19 +2,25 @@ import rolesEnum from '../role/role.enum';
 
 import Role from '~src/db/entities/Role';
 
+export const isUserRole = (userRoles: Role[], roles: rolesEnum) => userRoles.some(
+  (userRole) => userRole.roleID === roles,
+);
+
+export const isSuperAdmin = (userRoles: Role[]) => userRoles.some(
+  (userRole) => userRole.roleID === rolesEnum.superAdmin,
+);
+
 /**
  * The user has to have at least one of those roles
  * @param userRoles
  * @param roles
  */
-const verifyRolesUser = (userRoles: Role[], roles: rolesEnum[]): boolean => {
+export const verifyRolesUser = (userRoles: Role[], roles: rolesEnum[]): boolean => {
   for (let i = 0; i < roles.length; i += 1) {
-    const exists = userRoles.some((userRole) => userRole.roleID === roles[i]);
+    const exists = isUserRole(userRoles, roles[i]);
     if (exists) {
       return true;
     }
   }
   return false;
 };
-
-export default verifyRolesUser;
