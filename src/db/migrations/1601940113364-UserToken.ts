@@ -12,7 +12,7 @@ class UserToken1601940113364 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_token_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,

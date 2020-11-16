@@ -12,7 +12,7 @@ class OauthAccessToken1601770752669 implements MigrationInterface {
       name: this.tableName,
       columns: [
         {
-          name: 'oauth_access_token_id',
+          name: 'id',
           type: 'integer',
           isPrimary: true,
           isGenerated: true,

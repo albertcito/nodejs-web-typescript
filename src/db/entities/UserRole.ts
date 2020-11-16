@@ -10,8 +10,8 @@ import BaseEntity from './BaseEntity';
 @Entity({ name: 'user_role' })
 export default class UserRole extends BaseEntity {
   @Field(() => Int)
-  @PrimaryGeneratedColumn({ name: 'user_role_id' })
-  userRoleID: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   /**
    * If I change the column name as camelcase typeORM will print error

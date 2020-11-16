@@ -13,7 +13,7 @@ export default class UserRole1601324675000 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_role_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
