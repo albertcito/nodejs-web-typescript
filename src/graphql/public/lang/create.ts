@@ -35,7 +35,7 @@ class LangCreateResolver {
     @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked: boolean,
   ): Promise<LangCreateResponse> {
     const lang = new Lang();
-    lang.langID = langID;
+    lang.id = langID;
     lang.name = name;
     lang.localname = localname;
     lang.isBlocked = isBlocked ?? false;

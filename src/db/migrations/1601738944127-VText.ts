@@ -11,7 +11,7 @@ export default class VText1601738944127 implements MigrationInterface {
           translation.translation_id,
           translation.is_blocked,
           translation.code,
-          lang.lang_id,
+          lang.id as lang_id,
           lang.active,
           lang.localname,
           lang.name,
@@ -50,7 +50,7 @@ export default class VText1601738944127 implements MigrationInterface {
           AND text.lang_id = 'EN'
       LEFT JOIN text originalText
           ON originalText.translation_id = translation.translation_id
-          AND originalText.lang_id= lang.lang_id`;
+          AND originalText.lang_id= lang.id`;
       await queryRunner.query(view);
     }
 
