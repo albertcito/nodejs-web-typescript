@@ -7,7 +7,7 @@ export default class RoleTest implements GenericTestData {
     return {
       query: `query role($roleID: rolesEnum!) {
         role(roleID: $roleID) {
-          roleID
+          id
           descriptionID
         }
       }`,
@@ -20,7 +20,7 @@ export default class RoleTest implements GenericTestData {
   rules() {
     return {
       role: 'required',
-      'role.roleID': 'required|string',
+      'role.id': 'required|string',
       'role.descriptionID': 'integer',
     };
   }

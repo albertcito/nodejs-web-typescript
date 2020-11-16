@@ -16,7 +16,7 @@ export default class Role1601324674992 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'role_id',
+            name: 'id',
             type: 'varchar',
             isPrimary: true,
             isUnique: true,
@@ -71,7 +71,7 @@ export default class Role1601324674992 implements MigrationInterface {
       const translationSA = await (new TranslationCreate(textSA)).save();
 
       const roleSA = new Role();
-      roleSA.roleID = roles.superAdmin;
+      roleSA.id = roles.superAdmin;
       roleSA.nameID = translationSA.id;
       await roleSA.save();
 
@@ -88,7 +88,7 @@ export default class Role1601324674992 implements MigrationInterface {
       const translationA = await (new TranslationCreate(textA)).save();
 
       const roleA = new Role();
-      roleA.roleID = roles.admin;
+      roleA.id = roles.admin;
       roleA.nameID = translationA.id;
       await roleA.save();
     }

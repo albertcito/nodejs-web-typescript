@@ -14,7 +14,7 @@ export default class RolesTest implements GenericTestData {
             length
           }
           data {
-            roleID
+            id
             descriptionID
           }
         }
@@ -25,7 +25,7 @@ export default class RolesTest implements GenericTestData {
   rules() {
     return {
       'roles.data': 'requiredArray',
-      'roles.data.*.roleID': 'required|string',
+      'roles.data.*.id': 'required|string',
       'roles.data.*.descriptionID': 'integer',
     };
   }

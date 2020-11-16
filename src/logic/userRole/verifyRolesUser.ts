@@ -3,11 +3,11 @@ import rolesEnum from '../role/role.enum';
 import Role from '~src/db/entities/Role';
 
 export const isUserRole = (userRoles: Role[], roles: rolesEnum) => userRoles.some(
-  (userRole) => userRole.roleID === roles,
+  (userRole) => userRole.id === roles,
 );
 
 export const isSuperAdmin = (userRoles: Role[]) => userRoles.some(
-  (userRole) => userRole.roleID === rolesEnum.superAdmin,
+  (userRole) => userRole.id === rolesEnum.superAdmin,
 );
 
 /**

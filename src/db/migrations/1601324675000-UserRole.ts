@@ -42,7 +42,7 @@ export default class UserRole1601324675000 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_role_role_id',
         columnNames: ['role_id'],
-        referencedColumnNames: ['role_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'role',
         onDelete: 'RESTRICT',
       }));
