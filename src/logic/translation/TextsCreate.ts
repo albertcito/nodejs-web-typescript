@@ -2,10 +2,10 @@ import Text from '~src/db/entities/Text';
 import TextInputCreate from '~src/graphql/input/TextInputCreate';
 
 export default class SaveTexts {
-  private readonly translationID: number;
+  private readonly id: number;
 
-  constructor(translationID: number) {
-    this.translationID = translationID;
+  constructor(id: number) {
+    this.id = id;
   }
 
   async save(texts: TextInputCreate[]) {
@@ -21,7 +21,7 @@ export default class SaveTexts {
     const textEntity = new Text();
     textEntity.text = text.text;
     textEntity.langID = text.langID;
-    textEntity.translationID = this.translationID;
+    textEntity.translationID = this.id;
     await textEntity.save();
   }
 }

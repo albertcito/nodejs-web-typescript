@@ -20,7 +20,7 @@ export default class TranslationUpdate {
 
   async save(options: TranslationUpdateSave): Promise<Translation> {
     await this.updateTranslation(options);
-    await (new TextsUpdate(this.translation.translationID)).save(this.texts);
+    await (new TextsUpdate(this.translation.id)).save(this.texts);
     return this.translation;
   }
 

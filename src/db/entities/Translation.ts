@@ -12,8 +12,8 @@ import VText from './VText';
 @Entity({ name: 'translation' })
 export default class Translation extends BaseEntity {
   @Field(() => Int)
-  @PrimaryGeneratedColumn({ name: 'translation_id' })
-  translationID: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Field(() => String)
   @Column()
@@ -25,14 +25,14 @@ export default class Translation extends BaseEntity {
 
   @Field(() => [VText])
   async texts() {
-    return VText.find({ where: { translationID: this.translationID } });
+    return VText.find({ where: { translationID: this.id } });
   }
 
   @Field(() => VText)
   async text(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
     return VText.findOne({
       where: {
-        translationID: this.translationID,
+        translationID: this.id,
         langID,
       },
     });

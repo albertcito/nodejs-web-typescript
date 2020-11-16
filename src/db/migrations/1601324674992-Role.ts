@@ -37,7 +37,7 @@ export default class Role1601324674992 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'role_name',
         columnNames: ['name_id'],
-        referencedColumnNames: ['translation_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
@@ -45,7 +45,7 @@ export default class Role1601324674992 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'role_description_translation',
         columnNames: ['description_id'],
-        referencedColumnNames: ['translation_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
@@ -72,7 +72,7 @@ export default class Role1601324674992 implements MigrationInterface {
 
       const roleSA = new Role();
       roleSA.roleID = roles.superAdmin;
-      roleSA.nameID = translationSA.translationID;
+      roleSA.nameID = translationSA.id;
       await roleSA.save();
 
       const textA = [
@@ -89,7 +89,7 @@ export default class Role1601324674992 implements MigrationInterface {
 
       const roleA = new Role();
       roleA.roleID = roles.admin;
-      roleA.nameID = translationA.translationID;
+      roleA.nameID = translationA.id;
       await roleA.save();
     }
 }

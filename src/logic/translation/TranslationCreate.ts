@@ -19,7 +19,7 @@ export default class TranslationCreate {
 
   async save(options: TranslationCreateSave = {}): Promise<Translation> {
     const translation = await this.saveTranslation(options);
-    await (new TextsCreate(translation.translationID)).save(this.texts);
+    await (new TextsCreate(translation.id)).save(this.texts);
     return translation;
   }
 

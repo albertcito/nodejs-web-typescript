@@ -10,7 +10,7 @@ export default class Translation1601324673092 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'translation_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,

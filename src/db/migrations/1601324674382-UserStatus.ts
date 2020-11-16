@@ -42,7 +42,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_status_name_translation',
         columnNames: ['name_id'],
-        referencedColumnNames: ['translation_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
@@ -50,7 +50,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_status_description_translation',
         columnNames: ['description_id'],
-        referencedColumnNames: ['translation_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
@@ -76,7 +76,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
 
       const active = new UserStatus();
       active.userStatusID = userStatus.active;
-      active.nameID = activeTranslation.translationID;
+      active.nameID = activeTranslation.id;
       active.available = true;
       await active.save();
 
@@ -94,7 +94,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
 
       const inactive = new UserStatus();
       inactive.userStatusID = userStatus.inactive;
-      inactive.nameID = inactiveTranslation.translationID;
+      inactive.nameID = inactiveTranslation.id;
       inactive.available = true;
       await inactive.save();
     }

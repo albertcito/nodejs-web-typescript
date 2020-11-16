@@ -17,7 +17,7 @@ export default class TranslationsResolver {
   translations(
     @Arg('page', () => Int, { defaultValue: 1, nullable: true }) page: number,
     @Arg('limit', () => Int, { defaultValue: 10, nullable: true }) limit: number,
-    @Arg('orderBy', () => String, { defaultValue: 'translation.translation_id', nullable: true }) orderBy: string,
+    @Arg('orderBy', () => String, { defaultValue: 'translation.id', nullable: true }) orderBy: string,
     @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
     @Arg('search', () => String, { description: 'Search by text or ID', nullable: true }) search: string,
     @Arg('langID', () => String, { nullable: true }) langID: string,

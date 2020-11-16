@@ -8,7 +8,7 @@ export default class VText1601738944127 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
       const view = `
         CREATE VIEW vtext AS SELECT
-          translation.translation_id,
+          translation.id as translation_id,
           translation.is_blocked,
           translation.code,
           lang.id as lang_id,
@@ -46,10 +46,10 @@ export default class VText1601738944127 implements MigrationInterface {
       FROM translation
       CROSS JOIN lang
       LEFT JOIN text text
-          ON text.translation_id = translation.translation_id
+          ON text.translation_id = translation.id
           AND text.lang_id = 'EN'
       LEFT JOIN text originalText
-          ON originalText.translation_id = translation.translation_id
+          ON originalText.translation_id = translation.id
           AND originalText.lang_id= lang.id`;
       await queryRunner.query(view);
     }

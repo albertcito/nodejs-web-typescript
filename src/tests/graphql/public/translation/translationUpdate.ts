@@ -15,10 +15,10 @@ export default class TranslationUpdateTest implements GenericTestData {
     ]);
     const translation = await translationCreate.save();
     return {
-      query: `mutation translationUpdate($translationID: Int!, $texts: [TextInputCreate!]!){
-        translationUpdate(translationID: $translationID, texts: $texts) {
+      query: `mutation translationUpdate($id: Int!, $texts: [TextInputCreate!]!){
+        translationUpdate(id: $id, texts: $texts) {
           data {
-            translationID
+            id
             code
             texts {
               text
@@ -32,7 +32,7 @@ export default class TranslationUpdateTest implements GenericTestData {
         }
       }`,
       variables: {
-        translationID: translation.translationID,
+        id: translation.id,
         texts: [
           {
             text: 'TEST_CREATE',
@@ -50,7 +50,7 @@ export default class TranslationUpdateTest implements GenericTestData {
   rules() {
     return {
       translationUpdate: 'required',
-      'translationUpdate.data.translationID': 'required|integer',
+      'translationUpdate.data.id': 'required|integer',
       'translationUpdate.data.code': 'required|string',
       'translationUpdate.texts': 'requiredArray',
       'translationUpdate.texts.*.text': 'required|string',

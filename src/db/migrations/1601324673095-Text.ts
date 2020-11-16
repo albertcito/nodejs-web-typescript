@@ -30,7 +30,7 @@ export default class Text1601324673095 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'text_translation',
         columnNames: ['translation_id'],
-        referencedColumnNames: ['translation_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'translation',
         onDelete: 'CASCADE',
       }));

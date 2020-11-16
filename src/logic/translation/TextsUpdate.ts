@@ -2,10 +2,10 @@ import Text from '~src/db/entities/Text';
 import TextInputCreate from '~src/graphql/input/TextInputCreate';
 
 export default class TextsUpdate {
-  private readonly translationID: number;
+  private readonly id: number;
 
-  constructor(translationID: number) {
-    this.translationID = translationID;
+  constructor(id: number) {
+    this.id = id;
   }
 
   async save(texts: TextInputCreate[]) {
@@ -20,7 +20,7 @@ export default class TextsUpdate {
   private async saveText(text: TextInputCreate) {
     const textEntity = await Text.findOne({
       where: {
-        translationID: this.translationID,
+        translationID: this.id,
         langID: text.langID,
       },
     });
@@ -31,7 +31,7 @@ export default class TextsUpdate {
       const newText = new Text();
       newText.text = text.text;
       newText.langID = text.langID;
-      newText.translationID = this.translationID;
+      newText.translationID = this.id;
       await newText.save();
     }
   }

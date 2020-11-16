@@ -3,9 +3,9 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class TranslationTest implements GenericTestData {
   resolver() {
     return {
-      query: `query translation($translationID: Int!) {
-        translation(translationID: $translationID) {
-          translationID
+      query: `query translation($id: Int!) {
+        translation(id: $id) {
+          id
           code
           texts {
             text
@@ -14,7 +14,7 @@ export default class TranslationTest implements GenericTestData {
         }
       }`,
       variables: {
-        translationID: 1,
+        id: 1,
       },
     };
   }
@@ -22,7 +22,7 @@ export default class TranslationTest implements GenericTestData {
   rules() {
     return {
       translation: 'required',
-      'translation.translationID': 'required|integer',
+      'translation.id': 'required|integer',
       'translation.code': 'required|string',
       'translation.texts': 'requiredArray',
       'translation.texts.*.text': 'required|string',

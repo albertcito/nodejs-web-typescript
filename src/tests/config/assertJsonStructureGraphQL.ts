@@ -30,7 +30,11 @@ const assertJsonStructureGraphQL = async (
 
   if (res.body.errors) {
     // eslint-disable-next-line no-console
-    console.info({ status: res.status, body: res.body });
+    console.info({
+      status: res.status,
+      body: res.body,
+      errors: res.body.errors,
+    });
     return {
       status: false,
       description: 'The query return errors',
