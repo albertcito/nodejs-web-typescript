@@ -5,16 +5,16 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class LangUpdateTest implements GenericTestData {
   async resolver() {
     const lang = new Lang();
-    const langID = 'langUpdate';
-    lang.langID = langID;
+    const id = 'langUpdate';
+    lang.id = id;
     lang.name = 'TEST';
     lang.localname = 'TEST';
     await lang.save();
     return {
-      query: `mutation langUpdate($langID: String!, $name: String!, $localname: String!){
-        langUpdate(langID: $langID, name: $name, localname: $localname) {
+      query: `mutation langUpdate($id: String!, $name: String!, $localname: String!){
+        langUpdate(id: $id, name: $name, localname: $localname) {
           data {
-            langID
+            id
             name
             localname
           }
@@ -25,7 +25,7 @@ export default class LangUpdateTest implements GenericTestData {
         }
       }`,
       variables: {
-        langID,
+        id,
         name: 'Test',
         localname: 'Test',
       },
@@ -35,7 +35,7 @@ export default class LangUpdateTest implements GenericTestData {
   rules() {
     return {
       langUpdate: 'required',
-      'langUpdate.data.langID': 'required|string',
+      'langUpdate.data.id': 'required|string',
       'langUpdate.data.localname': 'required|string',
       'langUpdate.data.name': 'required|string',
       'langUpdate.message.type': 'required|string',

@@ -14,7 +14,7 @@ export default class LangTest implements GenericTestData {
             length
           }
           data {
-            langID
+            id
             localname
             name
           }
@@ -26,7 +26,7 @@ export default class LangTest implements GenericTestData {
   rules() {
     return {
       'langs.data': 'requiredArray',
-      'langs.data.*.langID': 'required|string',
+      'langs.data.*.id': 'required|string',
       'langs.data.*.localname': 'required|string',
       'langs.data.*.name': 'required|string',
     };

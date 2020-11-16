@@ -5,17 +5,17 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class LangDeleteTest implements GenericTestData {
   async resolver() {
     const lang = new Lang();
-    const langID = 'langDelete';
-    lang.langID = langID;
+    const id = 'langDelete';
+    lang.id = id;
     lang.name = 'TEST';
     lang.localname = 'TEST';
     await lang.save();
     return {
-      query: `mutation langDelete($langID: String!){
-        langDelete(langID:$langID)
+      query: `mutation langDelete($id: String!){
+        langDelete(id:$id)
       }`,
       variables: {
-        langID,
+        id,
       },
     };
   }

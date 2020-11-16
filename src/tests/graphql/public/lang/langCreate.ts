@@ -5,12 +5,12 @@ import assertJsonStructureGraphQL from '~src/tests/config/assertJsonStructureGra
 import Lang from '~src/db/entities/Lang';
 
 const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) => {
-  const langID = 'langCreate';
+  const id = 'langCreate';
   const data = {
-    query: `mutation langCreate($langID: String!, $name: String!, $localname: String!){
-      langCreate(langID: $langID, name: $name, localname: $localname) {
+    query: `mutation langCreate($id: String!, $name: String!, $localname: String!){
+      langCreate(id: $id, name: $name, localname: $localname) {
         data {
-          langID
+          id
           name
           localname
         }
@@ -21,14 +21,14 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
       }
     }`,
     variables: {
-      langID,
+      id,
       name: 'Test',
       localname: 'Test',
     },
   };
 
   const rules = {
-    'langCreate.data.langID': 'required|string',
+    'langCreate.data.id': 'required|string',
     'langCreate.data.localname': 'required|string',
     'langCreate.data.name': 'required|string',
     'langCreate.message.type': 'required|string',
@@ -43,7 +43,7 @@ const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) =>
     .expect('Content-Type', /json/)
     .expect(200)
     .end(async (err, res) => {
-      await Lang.delete(langID);
+      await Lang.delete(id);
       const result = await assertJsonStructureGraphQL(res, err, rules);
       if (result.status) {
         done();

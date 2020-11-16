@@ -12,15 +12,15 @@ import Validate from '~src/util/validatorjs/validateGraphQL';
 class LangDeleteResolver {
   @Mutation(() => String)
   @UseMiddleware(isAuth)
-  @Validate({ langID: 'required|string' })
-  async langDelete(@Arg('langID') langID: string): Promise<string> {
-    const lang = await Lang.findOne(langID);
+  @Validate({ id: 'required|string' })
+  async langDelete(@Arg('id') id: string): Promise<string> {
+    const lang = await Lang.findOne(id);
     if (!lang) {
-      throw new MessageError(__('The item %s was removed', langID));
+      throw new MessageError(__('The item %s was removed', id));
     }
 
     if (lang.isBlocked) {
-      throw new MessageError(__('The item %s is blocked', langID));
+      throw new MessageError(__('The item %s is blocked', id));
     }
 
     await lang.remove();
