@@ -14,8 +14,8 @@ import userStatus from '~src/logic/userStatus/userStatus.enum';
 @Entity({ name: 'user_status' })
 export default class UserStatus extends BaseEntity {
   @Field(() => userStatus)
-  @PrimaryColumn({ name: 'user_status_id' })
-  userStatusID: userStatus;
+  @PrimaryColumn()
+  id: userStatus;
 
   @Field(() => Int)
   @Column({ name: 'name_id' })

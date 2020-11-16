@@ -16,7 +16,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_status_id',
+            name: 'id',
             type: 'string',
             isPrimary: true,
             isUnique: true,
@@ -75,7 +75,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
       const activeTranslation = await (new TranslationCreate(activeText)).save();
 
       const active = new UserStatus();
-      active.userStatusID = userStatus.active;
+      active.id = userStatus.active;
       active.nameID = activeTranslation.id;
       active.available = true;
       await active.save();
@@ -93,7 +93,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
       const inactiveTranslation = await (new TranslationCreate(inactiveText)).save();
 
       const inactive = new UserStatus();
-      inactive.userStatusID = userStatus.inactive;
+      inactive.id = userStatus.inactive;
       inactive.nameID = inactiveTranslation.id;
       inactive.available = true;
       await inactive.save();
