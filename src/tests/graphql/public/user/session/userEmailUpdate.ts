@@ -6,7 +6,7 @@ export default class UserEmailUpdate implements GenericTestData {
       query: `mutation userUpdateEmail($userID: Int!, $email: String!) {
         userUpdateEmail(userID: $userID, email: $email) {
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -27,7 +27,7 @@ export default class UserEmailUpdate implements GenericTestData {
   rules() {
     return {
       userUpdateEmail: 'required',
-      'userUpdateEmail.data.userID': 'required|integer',
+      'userUpdateEmail.data.id': 'required|integer',
       'userUpdateEmail.data.firstName': 'required|string',
       'userUpdateEmail.data.lastName': 'required|string',
       'userUpdateEmail.data.email': 'required|email',

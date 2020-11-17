@@ -12,7 +12,7 @@ export default class ProfileEmailUpdate implements GenericTestData {
       ) {
         profileUpdateEmail(email: $email, password: $password) {
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -33,7 +33,7 @@ export default class ProfileEmailUpdate implements GenericTestData {
   rules() {
     return {
       profileUpdateEmail: 'required',
-      'profileUpdateEmail.data.userID': 'required|integer',
+      'profileUpdateEmail.data.id': 'required|integer',
       'profileUpdateEmail.data.firstName': 'required|string',
       'profileUpdateEmail.data.lastName': 'required|string',
       'profileUpdateEmail.data.email': 'required|email',

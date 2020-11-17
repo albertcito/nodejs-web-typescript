@@ -31,7 +31,7 @@ class BaseDataEntity extends BaseEntity {
     protected updateRowAt() {
       this.updatedAt = new Date();
       const data = Auth.data();
-      this.updatedBy = data ? data.user.userID : undefined;
+      this.updatedBy = data ? data.user.id : undefined;
     }
 
     /**
@@ -42,7 +42,7 @@ class BaseDataEntity extends BaseEntity {
       this.createdAt = new Date();
       const data = Auth.data();
       if (data) {
-        this.createdBy = data.user.userID;
+        this.createdBy = data.user.id;
       }
     }
 }

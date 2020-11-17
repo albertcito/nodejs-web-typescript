@@ -38,7 +38,7 @@ class BasicSignUp {
     user.userStatusID = userStatus.active;
     await user.save();
 
-    const userToken = new UserToken(user.userID);
+    const userToken = new UserToken(user.id);
     const link = await userToken.tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
     const email = new Email('emails.activateAccount');
     await email.send({ to: this.email }, { name: user.fullName, link });

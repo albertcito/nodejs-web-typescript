@@ -9,8 +9,8 @@ import BaseEntity from './BaseEntity';
 @Entity({ name: 'oauth_access_tokens' })
 class OauthAccessToken extends BaseEntity {
  @Field(() => Int)
-    @PrimaryGeneratedColumn({ name: 'oauth_access_token_id' })
-    oauthAccessTokenID: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Field(() => Int)
     @Column({ name: 'user_id' })

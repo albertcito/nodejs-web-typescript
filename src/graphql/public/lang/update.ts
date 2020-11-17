@@ -20,22 +20,22 @@ class LangUpdateResolver {
   @Mutation(() => LangUpdateResponse)
   @UseMiddleware(isAuth)
   @Validate({
-    langID: 'required|string',
+    id: 'required|string',
     name: 'required|string',
     localname: 'required|string|min:1',
     active: 'boolean',
     isBlocked: 'boolean',
   })
   async langUpdate(
-    @Arg('langID') langID: string,
+    @Arg('id') id: string,
     @Arg('name') name: string,
     @Arg('localname') localname: string,
     @Arg('active', { nullable: true }) active: boolean,
     @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
   ): Promise<LangUpdateResponse> {
-    const lang = await Lang.findOne(langID);
+    const lang = await Lang.findOne(id);
     if (!lang) {
-      throw new MessageError(__('The item %s does not exists', langID));
+      throw new MessageError(__('The item %s does not exists', id));
     }
     lang.name = name;
     lang.localname = localname;
@@ -49,7 +49,7 @@ class LangUpdateResolver {
     return {
       data: lang,
       message: {
-        message: __('The item %s was updated', `${langID}`),
+        message: __('The item %s was updated', `${id}`),
         type: MessageType.success,
       },
     };

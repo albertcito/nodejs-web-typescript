@@ -16,7 +16,7 @@ class User1601324674982 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
@@ -55,7 +55,7 @@ class User1601324674982 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_status',
         columnNames: ['user_status_id'],
-        referencedColumnNames: ['user_status_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'user_status',
         onDelete: 'RESTRICT',
       }));

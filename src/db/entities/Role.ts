@@ -14,8 +14,8 @@ import roles from '~src/logic/role/role.enum';
 @Entity({ name: 'role' })
 export default class Role extends BaseEntity {
   @Field(() => roles)
-  @PrimaryColumn({ name: 'role_id' })
-  roleID: roles;
+  @PrimaryColumn()
+  id: roles;
 
   @Field(() => Int)
   @Column({ name: 'name_id' })

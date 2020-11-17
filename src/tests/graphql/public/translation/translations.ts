@@ -14,9 +14,10 @@ export default class TranslationsTest implements GenericTestData {
             length
           }
           data {
-            translationID
+            id
             code
             texts {
+              id
               text
               langID
             }
@@ -29,7 +30,7 @@ export default class TranslationsTest implements GenericTestData {
   rules() {
     return {
       'translations.data': 'requiredArray',
-      'translations.data.*.translationID': 'required|integer',
+      'translations.data.*.id': 'required|integer',
       'translations.data.*.code': 'required|string',
       'translations.data.*.texts': 'requiredArray',
       'translations.data.*.texts.*.text': 'required|string',

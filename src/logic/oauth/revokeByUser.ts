@@ -10,7 +10,7 @@ export default class RevokeByUser {
 
   async revoke() {
     const promises = [];
-    const oAuths = await OauthAccessToken.find({ where: { userID: this.user.userID } });
+    const oAuths = await OauthAccessToken.find({ where: { userID: this.user.id } });
     for (let i = 0; i < oAuths.length; i += 1) {
       const oAuth = oAuths[i];
       oAuth.revoked = true;

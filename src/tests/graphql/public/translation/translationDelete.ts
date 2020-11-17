@@ -15,14 +15,14 @@ export default class TranslationDeleteTest implements GenericTestData {
     ]);
     const translation = await translationCreate.save();
     return {
-      query: `mutation translationDelete($translationID: Int!){
-        translationDelete(translationID:$translationID) {
+      query: `mutation translationDelete($id: Int!){
+        translationDelete(id:$id) {
           message
           type
         }
       }`,
       variables: {
-        translationID: translation.translationID,
+        id: translation.id,
       },
     };
   }

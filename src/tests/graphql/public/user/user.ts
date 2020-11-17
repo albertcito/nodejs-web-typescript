@@ -5,7 +5,7 @@ export default class UserTest implements GenericTestData {
     return {
       query: `query user($userID: Int!) {
         user(userID: $userID) {
-          userID
+          id
           email
           firstName
           lastName
@@ -20,7 +20,7 @@ export default class UserTest implements GenericTestData {
   rules() {
     return {
       user: 'required',
-      'user.userID': 'required|integer',
+      'user.id': 'required|integer',
       'user.firstName': 'required|string',
       'user.lastName': 'required|string',
       'user.email': 'required|email',

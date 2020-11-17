@@ -9,6 +9,11 @@ import BaseEntity from './BaseEntity';
 @Entity({ name: 'vtext' })
 export default class VText extends BaseEntity {
   @Field(() => String)
+  id() {
+    return `${this.langID}-${this.translationID}`;
+  }
+
+  @Field(() => String)
   @Column()
   text: string;
 

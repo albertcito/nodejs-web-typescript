@@ -6,9 +6,10 @@ export default class TranslationCreateTest implements GenericTestData {
       query: `mutation translationCreate($texts: [TextInputCreate!]!){
         translationCreate(texts: $texts) {
           data {
-            translationID
+            id
             code
             texts {
+              id
               text
               langID
             }
@@ -36,7 +37,7 @@ export default class TranslationCreateTest implements GenericTestData {
 
   rules() {
     return {
-      'translationCreate.data.translationID': 'required|integer',
+      'translationCreate.data.id': 'required|integer',
       'translationCreate.message.type': 'required|string',
       'translationCreate.message.message': 'required|string',
       'translationCreate.data.code': 'required|string',

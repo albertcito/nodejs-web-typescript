@@ -8,7 +8,7 @@ export default class RoleUpdateTest implements GenericTestData {
       query: `mutation roleUpdate($roleID: rolesEnum!, $nameID: Int! $descriptionID: Int!){
         roleUpdate(roleID: $roleID, nameID: $nameID, descriptionID: $descriptionID) {
           data {
-            roleID
+            id
             nameID
             descriptionID
           }
@@ -29,7 +29,7 @@ export default class RoleUpdateTest implements GenericTestData {
   rules() {
     return {
       roleUpdate: 'required',
-      'roleUpdate.data.roleID': 'required|string',
+      'roleUpdate.data.id': 'required|string',
       'roleUpdate.data.nameID': 'required|integer',
       'roleUpdate.data.descriptionID': 'required|integer',
       'roleUpdate.message.type': 'required|string',

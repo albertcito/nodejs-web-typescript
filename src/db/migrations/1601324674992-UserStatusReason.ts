@@ -30,7 +30,7 @@ export default class UserStatusReason1601324674992 implements MigrationInterface
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_status_reason_status',
         columnNames: ['user_status_id'],
-        referencedColumnNames: ['user_status_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'user_status',
         onDelete: 'RESTRICT',
       }));
@@ -38,7 +38,7 @@ export default class UserStatusReason1601324674992 implements MigrationInterface
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_status_reason_user',
         columnNames: ['user_id'],
-        referencedColumnNames: ['user_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'user',
         onDelete: 'RESTRICT',
       }));

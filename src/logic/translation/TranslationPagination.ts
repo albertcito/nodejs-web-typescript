@@ -32,7 +32,7 @@ export default class TranslationsPagination {
       this.query.innerJoin(
         'vtext',
         'vtext',
-        'translation.translation_id = vtext.translation_id',
+        'translation.id = vtext.translation_id',
       );
       if (search) {
         this.findByString(search);
@@ -53,8 +53,8 @@ export default class TranslationsPagination {
     return /^[-]?\d+$/.test(search);
   }
 
-  private findByID(translationID: string) {
-    this.query.where('translation.translation_id = :translationID', { translationID });
+  private findByID(id: string) {
+    this.query.where('translation.id = :id', { id });
   }
 
   private findByString(search:string) {

@@ -12,7 +12,7 @@ export default class ProfileBasicUpdate implements GenericTestData {
       ) {
         profileBasicUpdate(firstName: $firstName, lastName: $lastName) {
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -33,7 +33,7 @@ export default class ProfileBasicUpdate implements GenericTestData {
   rules() {
     return {
       profileBasicUpdate: 'required',
-      'profileBasicUpdate.data.userID': 'required|integer',
+      'profileBasicUpdate.data.id': 'required|integer',
       'profileBasicUpdate.data.firstName': 'required|string',
       'profileBasicUpdate.data.lastName': 'required|string',
       'profileBasicUpdate.data.email': 'required|email',

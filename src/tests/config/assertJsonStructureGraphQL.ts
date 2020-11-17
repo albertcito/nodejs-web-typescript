@@ -30,7 +30,11 @@ const assertJsonStructureGraphQL = async (
 
   if (res.body.errors) {
     // eslint-disable-next-line no-console
-    console.info({ status: res.status, body: res.body });
+    console.info({
+      status: res.status,
+      body: res.body,
+      errors: res.body.errors,
+    });
     return {
       status: false,
       description: 'The query return errors',
@@ -52,7 +56,9 @@ const assertJsonStructureGraphQL = async (
     // eslint-disable-next-line no-console
     console.error({ errors });
     // eslint-disable-next-line no-console
-    console.info({ body: res.body });
+    console.info({
+      data: res.body.data,
+    });
     return {
       status: false,
       description: 'The response does not match with the expected result',

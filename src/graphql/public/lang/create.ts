@@ -21,21 +21,21 @@ class LangCreateResolver {
   @Mutation(() => LangCreateResponse)
   @UseMiddleware(isAuth)
   @Validate({
-    langID: `required|string|unique:${tablePath},lang_id`,
+    id: `required|string|unique:${tablePath},id`,
     name: 'required|string',
     localname: 'required|string|min:1',
     active: 'boolean',
     isBlocked: 'boolean',
   })
   async langCreate(
-    @Arg('langID') langID: string,
+    @Arg('id') id: string,
     @Arg('name') name: string,
     @Arg('localname') localname: string,
     @Arg('active', { nullable: true, defaultValue: false }) active: boolean,
     @Arg('isBlocked', { nullable: true, defaultValue: false }) isBlocked: boolean,
   ): Promise<LangCreateResponse> {
     const lang = new Lang();
-    lang.langID = langID;
+    lang.id = id;
     lang.name = name;
     lang.localname = localname;
     lang.isBlocked = isBlocked ?? false;
@@ -44,7 +44,7 @@ class LangCreateResolver {
     return {
       data: lang,
       message: {
-        message: __('The item %s was created', `${langID}`),
+        message: __('The item %s was created', `${id}`),
         type: MessageType.success,
       },
     };

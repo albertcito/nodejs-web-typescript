@@ -19,9 +19,9 @@ const notify = (error: Error, req: Request) => {
       httpVersion: req.httpVersion,
       httpVersionMajor: req.httpVersionMajor,
       httpVersionMinor: req.httpVersionMinor,
-      userID: user?.userID,
+      userID: user?.id,
       emailVerified: user?.emailVerified,
-      oauthAccessTokenID: auth?.oauthAccessTokenID,
+      oauthAccessTokenID: auth?.id,
       ...req.headers,
     });
   });

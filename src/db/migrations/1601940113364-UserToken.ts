@@ -12,7 +12,7 @@ class UserToken1601940113364 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'user_token_id',
+            name: 'id',
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
@@ -46,7 +46,7 @@ class UserToken1601940113364 implements MigrationInterface {
       await queryRunner.createForeignKey(this.tableName, new TableForeignKey({
         name: 'user_token_user_id',
         columnNames: ['user_id'],
-        referencedColumnNames: ['user_id'],
+        referencedColumnNames: ['id'],
         referencedTableName: 'user',
         onDelete: 'RESTRICT',
       }));

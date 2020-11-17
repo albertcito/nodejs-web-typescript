@@ -25,23 +25,23 @@ export default class TranslationUpdateResolver {
   @isAuthRolesGraphQL([roles.superAdmin, roles.admin])
   @Mutation(() => TranslationUpdateResponse)
   async translationUpdate(
-    @Arg('translationID', () => Int) translationID: number,
+    @Arg('id', () => Int) id: number,
     @Arg('texts', () => [TextInputBase]) texts: TextInputBase[],
     @Arg('code', { nullable: true }) code: string,
     @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
   ): Promise<TranslationUpdateResponse> {
-    const translation = await Translation.findOne(translationID);
+    const translation = await Translation.findOne(id);
     if (!translation) {
-      throw new MessageError(__('The item %s does not exists', `${translationID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
 
     const userRoles = Auth.data()?.user.roles ?? [];
     if (translation.isBlocked && !isSuperAdmin(userRoles)) {
-      await (new TextsUpdateEmpty(translation.translationID)).save(texts);
+      await (new TextsUpdateEmpty(translation.id)).save(texts);
       return {
         data: translation,
         message: {
-          message: __('Only empty texts were updated in the item %s', `${translation.translationID}`),
+          message: __('Only empty texts were updated in the item %s', `${translation.id}`),
           type: MessageType.warning,
         },
       };
@@ -55,7 +55,7 @@ export default class TranslationUpdateResolver {
     return {
       data: translationUpdated,
       message: {
-        message: __('The item %s was updated', `${translationUpdated.translationID}`),
+        message: __('The item %s was updated', `${translationUpdated.id}`),
         type: MessageType.success,
       },
     };

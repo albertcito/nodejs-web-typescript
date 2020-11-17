@@ -10,7 +10,7 @@ export default class ActivateEmailTest implements GenericTestData {
     const user = getFakerUser();
     await user.save();
     // add token to activate email
-    const userToken = new UserToken(user.userID);
+    const userToken = new UserToken(user.id);
     const token = await userToken.newToken(48, UserTokenEnum.ACTIVATE_EMAIL);
     return {
       query: `mutation activateEmail($token: String!) {

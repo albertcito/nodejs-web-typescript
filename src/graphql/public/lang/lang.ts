@@ -10,11 +10,11 @@ import Validate from '~src/util/validatorjs/validateGraphQL';
 @Resolver()
 class LangResolver {
   @Query(() => Lang)
-  @Validate({ langID: 'required|string' })
-  async lang(@Arg('langID') langID: string): Promise<Lang> {
-    const lang = await Lang.findOne(langID);
+  @Validate({ id: 'required|string' })
+  async lang(@Arg('id') id: string): Promise<Lang> {
+    const lang = await Lang.findOne(id);
     if (!lang) {
-      throw new MessageError(__('The item %s does not exists', langID));
+      throw new MessageError(__('The item %s does not exists', id));
     }
     return lang;
   }

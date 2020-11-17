@@ -3,15 +3,15 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class LangTest implements GenericTestData {
   resolver() {
     return {
-      query: `query lang($langID: String!) {
-        lang(langID: $langID) {
-          langID
+      query: `query lang($id: String!) {
+        lang(id: $id) {
+          id
           localname
           name
         }
       }`,
       variables: {
-        langID: 'EN',
+        id: 'EN',
       },
     };
   }
@@ -19,7 +19,7 @@ export default class LangTest implements GenericTestData {
   rules() {
     return {
       lang: 'required',
-      'lang.langID': 'required|string',
+      'lang.id': 'required|string',
       'lang.localname': 'required|string',
       'lang.name': 'required|string',
     };

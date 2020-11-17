@@ -9,10 +9,10 @@ import MessageError from '~src/util/exceptions/MessageError';
 @Resolver()
 class TranslationResolver {
   @Query(() => Translation)
-  async translation(@Arg('translationID', () => Int) translationID: number): Promise<Translation> {
-    const translation = await Translation.findOne(translationID);
+  async translation(@Arg('id', () => Int) id: number): Promise<Translation> {
+    const translation = await Translation.findOne(id);
     if (!translation) {
-      throw new MessageError(__('The item %s does not exists', `${translationID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     return translation;
   }

@@ -4,7 +4,7 @@ export default class LoggedUserTest implements GenericTestData {
   async resolver() {
     const query = `mutation {
       loggedUser {
-        userID
+        id
         firstName
         lastName
         email
@@ -16,7 +16,7 @@ export default class LoggedUserTest implements GenericTestData {
   rules() {
     return {
       loggedUser: 'required',
-      'loggedUser.userID': 'required|integer',
+      'loggedUser.id': 'required|integer',
       'loggedUser.firstName': 'required|string',
       'loggedUser.lastName': 'required|string',
       'loggedUser.email': 'required|email',

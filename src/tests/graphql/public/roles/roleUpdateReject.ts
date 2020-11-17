@@ -18,7 +18,7 @@ export default class RoleUpdateTest {
       query: `mutation roleUpdate($roleID: rolesEnum!, $nameID: Int! $descriptionID: Int!){
         roleUpdate(roleID: $roleID, nameID: $nameID, descriptionID: $descriptionID) {
           data {
-            roleID
+            id
             nameID
             descriptionID
           }

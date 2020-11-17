@@ -11,7 +11,7 @@ export default class Lang1601324673082 implements MigrationInterface {
         name: this.tableName,
         columns: [
           {
-            name: 'lang_id',
+            name: 'id',
             type: 'varchar',
             isPrimary: true,
             isUnique: true,
@@ -39,14 +39,14 @@ export default class Lang1601324673082 implements MigrationInterface {
       }), true);
 
       const langEN = new Lang();
-      langEN.langID = 'EN';
+      langEN.id = 'EN';
       langEN.localname = 'English';
       langEN.name = 'English';
       langEN.active = true;
       langEN.isBlocked = true;
 
       const langES = new Lang();
-      langES.langID = 'ES';
+      langES.id = 'ES';
       langES.localname = 'Español';
       langES.name = 'Spanish';
       langES.active = true;

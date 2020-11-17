@@ -28,7 +28,7 @@ export default class TranslationCreateResolver {
     return {
       data: translation,
       message: {
-        message: __('The item %s was created', `${translation.translationID}`),
+        message: __('The item %s was created', `${translation.id}`),
         type: MessageType.success,
       },
     };

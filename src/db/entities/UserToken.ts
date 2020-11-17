@@ -10,8 +10,8 @@ import BaseEntity from './BaseEntity';
 @Entity()
 class UserToken extends BaseEntity {
  @Field(() => Int)
-    @PrimaryGeneratedColumn({ name: 'user_token_id' })
-    userTokenID: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Field(() => Int)
     @Column({ name: 'user_id' })

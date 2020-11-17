@@ -9,8 +9,8 @@ import BaseEntity from './BaseEntity';
 @Entity({ name: 'lang' })
 class Lang extends BaseEntity {
   @Field(() => String)
-  @PrimaryColumn({ name: 'lang_id' })
-  langID: string;
+  @PrimaryColumn()
+  id: string;
 
   @Field(() => String)
   @Column()

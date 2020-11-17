@@ -14,7 +14,7 @@ export default class UsersTest implements GenericTestData {
             length
           }
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -27,7 +27,7 @@ export default class UsersTest implements GenericTestData {
   rules() {
     return {
       'langs.data': 'requiredArray',
-      'users.data.*.userID': 'required|integer',
+      'users.data.*.id': 'required|integer',
       'users.data.*.firstName': 'required|string',
       'users.data.*.lastName': 'required|string',
       'users.data.*.email': 'required|email',

@@ -6,7 +6,7 @@ export default class UserBasicUpdateTest implements GenericTestData {
       query: `mutation userBasicUpdate($userID: Int!, $firstName: String!, $lastName: String!) {
         userBasicUpdate(userID: $userID, lastName: $lastName, firstName: $firstName) {
           data {
-            userID
+            id
             firstName
             lastName
             email
@@ -28,7 +28,7 @@ export default class UserBasicUpdateTest implements GenericTestData {
   rules() {
     return {
       userBasicUpdate: 'required',
-      'userBasicUpdate.data.userID': 'required|integer',
+      'userBasicUpdate.data.id': 'required|integer',
       'userBasicUpdate.data.firstName': 'required|string',
       'userBasicUpdate.data.lastName': 'required|string',
       'userBasicUpdate.data.email': 'required|email',
