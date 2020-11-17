@@ -4,6 +4,7 @@ import {
 
 import columns from './BaseTableColumns/columns';
 import roles from '../../logic/role/role.enum';
+import UserRole from '../entities/UserRole';
 
 export default class UserRole1601324675000 implements MigrationInterface {
     private readonly tableName = 'user_role';
@@ -52,18 +53,15 @@ export default class UserRole1601324675000 implements MigrationInterface {
         columnNames: ['role_id', 'user_id'],
       }));
 
-      await queryRunner.manager.query(
-        'INSERT INTO user_role (user_id, role_id, created_at, updated_at) VALUES (?, ?, datetime(\'now\'), datetime(\'now\'))',
-        [
-          1, roles.superAdmin,
-        ],
-      );
-      await queryRunner.manager.query(
-        'INSERT INTO user_role (user_id, role_id, created_at, updated_at) VALUES (?, ?, datetime(\'now\'), datetime(\'now\'))',
-        [
-          2, roles.admin,
-        ],
-      );
+      const superAdmin = new UserRole();
+      superAdmin.user_id = 1;
+      superAdmin.role_id = roles.superAdmin;
+      await superAdmin.save();
+
+      const admin = new UserRole();
+      admin.user_id = 1;
+      admin.role_id = roles.admin;
+      await admin.save();
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
