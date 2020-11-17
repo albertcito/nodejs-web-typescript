@@ -21,7 +21,7 @@ const notify = (error: Error, req: Request) => {
       httpVersionMinor: req.httpVersionMinor,
       userID: user?.id,
       emailVerified: user?.emailVerified,
-      oauthAccessTokenID: auth?.oauthAccessTokenID,
+      oauthAccessTokenID: auth?.id,
       ...req.headers,
     });
   });
