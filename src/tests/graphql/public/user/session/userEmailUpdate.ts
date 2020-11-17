@@ -3,8 +3,8 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class UserEmailUpdate implements GenericTestData {
   resolver() {
     return {
-      query: `mutation userUpdateEmail($userID: Int!, $email: String!) {
-        userUpdateEmail(userID: $userID, email: $email) {
+      query: `mutation userUpdateEmail($id: Int!, $email: String!) {
+        userUpdateEmail(id: $id, email: $email) {
           data {
             id
             firstName
@@ -18,7 +18,7 @@ export default class UserEmailUpdate implements GenericTestData {
         }
       }`,
       variables: {
-        userID: 1,
+        id: 1,
         email: 'me@albertcito.com',
       },
     };

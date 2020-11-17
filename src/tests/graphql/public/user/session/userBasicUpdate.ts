@@ -3,8 +3,8 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class UserBasicUpdateTest implements GenericTestData {
   resolver() {
     return {
-      query: `mutation userBasicUpdate($userID: Int!, $firstName: String!, $lastName: String!) {
-        userBasicUpdate(userID: $userID, lastName: $lastName, firstName: $firstName) {
+      query: `mutation userBasicUpdate($id: Int!, $firstName: String!, $lastName: String!) {
+        userBasicUpdate(id: $id, lastName: $lastName, firstName: $firstName) {
           data {
             id
             firstName
@@ -18,7 +18,7 @@ export default class UserBasicUpdateTest implements GenericTestData {
         }
       }`,
       variables: {
-        userID: 1,
+        id: 1,
         firstName: 'Albert',
         lastName: 'Tjornehoj',
       },

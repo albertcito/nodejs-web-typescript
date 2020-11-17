@@ -21,19 +21,19 @@ class UserUpdateEmailResolver {
   @Mutation(() => UserUpdateEmailResponse)
   @isAuthRolesGraphQL([roles.superAdmin])
   async userUpdateEmail(
-    @Arg('userID', () => Int) userID: number,
+    @Arg('id', () => Int) id: number,
     @Arg('email', () => String) email: string,
   ): Promise<UserUpdateEmailResponse> {
-    const user = await User.findOne(userID);
+    const user = await User.findOne(id);
     if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${userID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     const updateEmail = new UserUpdateEmail(user);
     await updateEmail.update(email);
     return {
       data: user,
       message: {
-        message: __('The item %s was updated', `${userID}`),
+        message: __('The item %s was updated', `${id}`),
         type: MessageType.success,
       },
     };

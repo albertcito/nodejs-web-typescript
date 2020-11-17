@@ -6,8 +6,8 @@ export default class UserPasswordUpdate implements GenericTestData {
   resolver() {
     const { superAdmin } = dbUsers();
     return {
-      query: `mutation userUpdatePassword($userID: Int!, $password: String!) {
-        userUpdatePassword(userID: $userID, password: $password) {
+      query: `mutation userUpdatePassword($id: Int!, $password: String!) {
+        userUpdatePassword(id: $id, password: $password) {
           data {
             id
             firstName
@@ -22,7 +22,7 @@ export default class UserPasswordUpdate implements GenericTestData {
       }
       `,
       variables: {
-        userID: superAdmin.userID,
+        id: superAdmin.userID,
         password: superAdmin.password,
       },
     };

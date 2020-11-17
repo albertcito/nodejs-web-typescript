@@ -5,14 +5,14 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class RoleTest implements GenericTestData {
   resolver() {
     return {
-      query: `query role($roleID: rolesEnum!) {
-        role(roleID: $roleID) {
+      query: `query role($id: rolesEnum!) {
+        role(id: $id) {
           id
           descriptionID
         }
       }`,
       variables: {
-        roleID: roles.admin,
+        id: roles.admin,
       },
     };
   }

@@ -20,13 +20,13 @@ class RoleUpdateResolver {
   @Mutation(() => RoleUpdateResponse)
   @isAuthRolesGraphQL([roles.superAdmin])
   async roleUpdate(
-    @Arg('roleID', () => roles) roleID: roles,
+    @Arg('id', () => roles) id: roles,
     @Arg('nameID', () => Int) nameID: number,
     @Arg('descriptionID', () => Int) descriptionID: number,
   ): Promise<RoleUpdateResponse> {
-    const role = await Role.findOne(roleID);
+    const role = await Role.findOne(id);
     if (!role) {
-      throw new MessageError(__('The item %s does not exists', roleID));
+      throw new MessageError(__('The item %s does not exists', id));
     }
     role.nameID = nameID;
     role.descriptionID = descriptionID;
@@ -34,7 +34,7 @@ class RoleUpdateResolver {
     return {
       data: role,
       message: {
-        message: __('The item %s was updated', `${roleID}`),
+        message: __('The item %s was updated', `${id}`),
         type: MessageType.success,
       },
     };
