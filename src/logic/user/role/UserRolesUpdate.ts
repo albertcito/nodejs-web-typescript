@@ -25,18 +25,28 @@ export default class UserRolesUpdate {
       })
       .delete()
       .execute();
-
-    rolesID.forEach(async (roleID) => {
-      const userRole = UserRole.findOne({
-        where: { role_id: rolesID, user_id: this.user.id },
-      });
-      if (!userRole) {
-        await UserRole.insert({ role_id: roleID, user_id: this.user.id });
-      }
-    });
+    await this.saveRoles(rolesID);
     return {
       message: __('The item %s was updated', ''),
       type: MessageType.success,
     };
+  }
+
+  private async saveRoles(rolesID: roles[]) {
+    const promises = [];
+    for (let i = 0; i < rolesID.length; i += 1) {
+      const roleID = rolesID[i];
+      promises.push(this.saveRole(roleID));
+    }
+    await Promise.all(promises);
+  }
+
+  private async saveRole(roleID: roles) {
+    const userRole = await UserRole.findOne({
+      where: { role_id: roleID, user_id: this.user.id },
+    });
+    if (!userRole) {
+      UserRole.insert({ role_id: roleID, user_id: this.user.id });
+    }
   }
 }

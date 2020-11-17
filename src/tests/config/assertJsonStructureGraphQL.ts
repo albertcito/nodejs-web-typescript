@@ -57,7 +57,7 @@ const assertJsonStructureGraphQL = async (
     console.error({ errors });
     // eslint-disable-next-line no-console
     console.info({
-      data: res.body.data,
+      data: JSON.stringify(res.body.data),
     });
     return {
       status: false,
