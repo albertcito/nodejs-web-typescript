@@ -59,7 +59,7 @@ export default class UserRole1601324675000 implements MigrationInterface {
       await superAdmin.save();
 
       const admin = new UserRole();
-      admin.user_id = 1;
+      admin.user_id = 2;
       admin.role_id = roles.admin;
       await admin.save();
     }
