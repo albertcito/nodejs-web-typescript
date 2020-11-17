@@ -12,11 +12,11 @@ class UserResolver {
   @Query(() => User)
   @UseMiddleware(isAuth)
   async user(
-    @Arg('userID', () => Int, { defaultValue: 1, nullable: true }) userID: number,
+    @Arg('id', () => Int, { defaultValue: 1, nullable: true }) id: number,
   ): Promise<User> {
-    const user = await User.findOne(userID);
+    const user = await User.findOne(id);
     if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${userID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     return user;
   }

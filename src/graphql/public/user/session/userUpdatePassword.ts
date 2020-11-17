@@ -21,18 +21,18 @@ class UserUpdatePasswordResolver {
   @Mutation(() => UserUpdatePasswordResponse)
   @isAuthRolesGraphQL([roles.superAdmin])
   async userUpdatePassword(
-    @Arg('userID', () => Int) userID: number,
+    @Arg('id', () => Int) id: number,
     @Arg('password', () => String) password: string,
   ): Promise<UserUpdatePasswordResponse> {
-    const user = await User.findOne(userID);
+    const user = await User.findOne(id);
     if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${userID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     await (new UserUpdatePassword(user)).update(password);
     return {
       data: user,
       message: {
-        message: __('The item %s was updated', `${userID}`),
+        message: __('The item %s was updated', `${id}`),
         type: MessageType.success,
       },
     };

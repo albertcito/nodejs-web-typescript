@@ -13,11 +13,11 @@ export default class RoleDeleteResolver {
   @Mutation(() => String)
   @isAuthRolesGraphQL([roles.superAdmin])
   async roleDelete(
-    @Arg('roleID', () => roles) roleID: roles,
+    @Arg('id', () => roles) id: roles,
   ): Promise<string> {
-    const role = await Role.findOne(roleID);
+    const role = await Role.findOne(id);
     if (!role) {
-      throw new MessageError(__('The item %s was removed', roleID));
+      throw new MessageError(__('The item %s was removed', id));
     }
 
     await role.remove();

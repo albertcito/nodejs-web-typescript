@@ -21,19 +21,19 @@ class UserBasicUpdateResolver {
   @Mutation(() => UserBasicUpdateResponse)
   @isAuthRolesGraphQL([roles.superAdmin])
   async userBasicUpdate(
-    @Arg('userID', () => Int) userID: number,
+    @Arg('id', () => Int) id: number,
     @Arg('firstName', () => String) firstName: string,
     @Arg('lastName', () => String) lastName: string,
   ): Promise<UserBasicUpdateResponse> {
-    const user = await User.findOne(userID);
+    const user = await User.findOne(id);
     if (!user) {
-      throw new MessageError(`The user ${userID} doesn't exists`);
+      throw new MessageError(`The user ${id} doesn't exists`);
     }
     await (new UserBasicUpdate(user)).update(firstName, lastName);
     return {
       data: user,
       message: {
-        message: __('The item %s was updated', `${userID}`),
+        message: __('The item %s was updated', `${id}`),
         type: MessageType.success,
       },
     };

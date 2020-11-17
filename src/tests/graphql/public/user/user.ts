@@ -3,8 +3,8 @@ import GenericTestData from '~src/tests/config/GenericTestData';
 export default class UserTest implements GenericTestData {
   resolver() {
     return {
-      query: `query user($userID: Int!) {
-        user(userID: $userID) {
+      query: `query user($id: Int!) {
+        user(id: $id) {
           id
           email
           firstName
@@ -12,7 +12,7 @@ export default class UserTest implements GenericTestData {
         }
       }`,
       variables: {
-        userID: 1,
+        id: 1,
       },
     };
   }

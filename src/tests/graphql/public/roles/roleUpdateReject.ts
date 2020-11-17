@@ -15,8 +15,8 @@ export default class RoleUpdateTest {
 
   resolver() {
     return {
-      query: `mutation roleUpdate($roleID: rolesEnum!, $nameID: Int! $descriptionID: Int!){
-        roleUpdate(roleID: $roleID, nameID: $nameID, descriptionID: $descriptionID) {
+      query: `mutation roleUpdate($id: rolesEnum!, $nameID: Int! $descriptionID: Int!){
+        roleUpdate(id: $id, nameID: $nameID, descriptionID: $descriptionID) {
           data {
             id
             nameID
@@ -29,7 +29,7 @@ export default class RoleUpdateTest {
         }
       }`,
       variables: {
-        roleID: roles.superAdmin,
+        id: roles.superAdmin,
         nameID: 1,
         descriptionID: 1,
       },

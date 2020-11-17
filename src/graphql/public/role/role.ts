@@ -11,13 +11,13 @@ import roles from '~src/logic/role/role.enum';
 @Resolver()
 export default class RoleResolver {
   @Query(() => Role)
-  @Validate({ roleID: 'required|string' })
+  @Validate({ id: 'required|string' })
   async role(
-    @Arg('roleID', () => roles) roleID: roles,
+    @Arg('id', () => roles) id: roles,
   ): Promise<Role> {
-    const role = await Role.findOne(roleID);
+    const role = await Role.findOne(id);
     if (!role) {
-      throw new MessageError(__('The item %s does not exists', `${roleID}`));
+      throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     return role;
   }
