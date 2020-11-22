@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build/ && link-module-alias && tsc",
+    "build": "rm -rf build/ && link-module-alias && tsc && yarn copy:resources",
+    "copy:resources": "cp -R src/resources dist/src/resources",
     "watch": "tsc -w",
     "typeorm": "link-module-alias && ts-node ./node_modules/typeorm/cli.js",
     "start": "link-module-alias && ts-node src/index.ts",
