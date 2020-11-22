@@ -8,3 +8,4 @@ temp/
 .DS_Store
 sqliteDB.db
 yarn-error.log
+dist/
