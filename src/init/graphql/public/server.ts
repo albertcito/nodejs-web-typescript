@@ -12,7 +12,7 @@ import ErrorHandlePlugin from './errorHandlePlugin';
 
 export const path = '/graphql/public';
 const server = async (app: Express, db: Connection) => {
-  const privatePath = join(__dirname, '../../../graphql/public/**/*.ts');
+  const privatePath = join(__dirname, '../../../graphql/public/**/*{.ts,.js}');
   const apolloSchemeOptions: BuildSchemaOptions = {
     resolvers: [privatePath],
     validate: false,

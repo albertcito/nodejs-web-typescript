@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf build/ && link-module-alias && tsc && yarn copy:resources",
-    "copy:resources": "cp -R src/resources dist/src/resources",
+    "copy:resources": "cp -R src/resources dist/resources",
     "watch": "tsc -w",
     "typeorm": "link-module-alias && ts-node ./node_modules/typeorm/cli.js",
     "start": "link-module-alias && ts-node src/index.ts",
@@ -45,6 +45,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.4.2",
+    "link-module-alias": "^1.2.0",
     "supertest": "^5.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
@@ -67,7 +68,6 @@
     "faker": "^5.1.0",
     "graphql": "^15.3.0",
     "i18n": "^0.13.2",
-    "link-module-alias": "^1.2.0",
     "multer": "^1.4.2",
     "nodemailer": "^6.4.14",
     "nodemon": "^2.0.4",
