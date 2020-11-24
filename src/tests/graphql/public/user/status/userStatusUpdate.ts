@@ -1,5 +1,5 @@
-import GenericTestData from '~src/tests/config/GenericTestData';
-import userStatus from '~src/logic/userStatus/userStatus.enum';
+import GenericTestData from '../../../../config/GenericTestData';
+import userStatus from '../../../../../logic/userStatus/userStatus.enum';
 
 export default class UserStatusUpdateTest implements GenericTestData {
   resolver() {

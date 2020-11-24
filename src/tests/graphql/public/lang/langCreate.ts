@@ -1,8 +1,8 @@
 import request from 'supertest';
 import { Express } from 'express';
 
-import assertJsonStructureGraphQL from '~src/tests/config/assertJsonStructureGraphQL';
-import Lang from '~src/db/entities/Lang';
+import assertJsonStructureGraphQL from '../../../config/assertJsonStructureGraphQL';
+import Lang from '../../../../db/entities/Lang';
 
 const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) => {
   const id = 'langCreate';

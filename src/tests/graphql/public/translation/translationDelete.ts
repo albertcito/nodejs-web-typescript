@@ -1,5 +1,5 @@
-import TranslationCreate from '~src/logic/translation/TranslationCreate';
-import GenericTestData from '~src/tests/config/GenericTestData';
+import TranslationCreate from '../../../../logic/translation/TranslationCreate';
+import GenericTestData from '../../../config/GenericTestData';
 
 export default class TranslationDeleteTest implements GenericTestData {
   async resolver() {
