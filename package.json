@@ -4,22 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist/ && link-module-alias && tsc && yarn copy:resources",
-    "copy:resources": "cp -R src/resources dist/src/resources",
+    "build": "rm -rf build/ && tsc && yarn copy:resources",
+    "copy:resources": "cp -R src/resources build/src/resources",
     "watch": "tsc -w",
-    "typeorm": "link-module-alias && ts-node ./node_modules/typeorm/cli.js",
-    "start": "link-module-alias && ts-node src/index.ts",
-    "dev": "link-module-alias && nodemon --exec ts-node src/index.ts",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node src/index.ts",
     "lint:eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
     "lint:eslint-fix": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}' --fix",
-    "test": "link-module-alias && jest --config ./jest.config.js",
+    "test": "jest --config ./jest.config.js",
     "ci:test": "NODE_ENV=test yarn test",
     "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config",
     "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed",
     "ejslint": "ejslint src/resources/view/*"
-  },
-  "_moduleAliases": {
-    "~src": "src"
   },
   "keywords": [],
   "author": "",
@@ -45,7 +42,6 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.4.2",
-    "link-module-alias": "^1.2.0",
     "supertest": "^5.0.0",
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
