@@ -4,8 +4,7 @@ import { arg, validateClass } from 'validatorjs-decorator/dist';
 
 import UserTokenEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
-
-import User from '~src/db/entities/User';
+import User from '../../../db/entities/User';
 
 @validateClass()
 class ResetPassword {
