@@ -5,12 +5,11 @@ import {
 import { __ } from 'i18n';
 
 import MessageResponse from '../../type/MessageResponse';
-
-import Translation from '~src/db/entities/Translation';
-import isAuth from '~src/util/graphql/isAuth';
-import TextInputCreate from '~src/graphql/input/TextInputCreate';
-import TranslationCreate from '~src/logic/translation/TranslationCreate';
-import MessageType from '~src/graphql/type/MessageType.enum';
+import MessageType from '../../type/MessageType.enum';
+import TextInputCreate from '../../input/TextInputCreate';
+import Translation from '../../../db/entities/Translation';
+import isAuth from '../../../util/graphql/isAuth';
+import TranslationCreate from '../../../logic/translation/TranslationCreate';
 
 @ObjectType()
 class TranslationCreateResponse extends MessageResponse(Translation) {}

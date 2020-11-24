@@ -1,8 +1,8 @@
 import { __ } from 'i18n';
 import { Resolver, Mutation, UseMiddleware } from 'type-graphql';
 
-import isAuth from '~src/util/graphql/isAuth';
-import Auth from '~src/util/session/Auth';
+import isAuth from '../../../../util/graphql/isAuth';
+import Auth from '../../../../util/session/Auth';
 
 @Resolver()
 class LogoutResolver {

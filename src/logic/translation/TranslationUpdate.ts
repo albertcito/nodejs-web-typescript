@@ -1,7 +1,6 @@
 import TextsUpdate from './TextsUpdate';
-
-import Translation from '~src/db/entities/Translation';
-import TextInputCreate from '~src/graphql/input/TextInputCreate';
+import Translation from '../../db/entities/Translation';
+import TextInputCreate from '../../graphql/input/TextInputCreate';
 
 interface TranslationUpdateSave {
   code?: string;

@@ -1,5 +1,5 @@
-import Text from '~src/db/entities/Text';
-import TextInputCreate from '~src/graphql/input/TextInputCreate';
+import Text from '../../db/entities/Text';
+import TextInputCreate from '../../graphql/input/TextInputCreate';
 
 export default class TextsUpdate {
   private readonly id: number;

@@ -3,10 +3,10 @@ import {
   Resolver, Mutation, Arg,
 } from 'type-graphql';
 
-import Role from '~src/db/entities/Role';
-import MessageError from '~src/util/exceptions/MessageError';
-import roles from '~src/logic/role/role.enum';
-import isAuthRolesGraphQL from '~src/util/graphql/isAuthRolesGraphQL';
+import Role from '../../../db/entities/Role';
+import MessageError from '../../../util/exceptions/MessageError';
+import roles from '../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class RoleDeleteResolver {

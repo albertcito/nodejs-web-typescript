@@ -3,9 +3,9 @@ import {
   Resolver, Query, UseMiddleware, Arg, Int,
 } from 'type-graphql';
 
-import isAuth from '~src/util/graphql/isAuth';
-import MessageError from '~src/util/exceptions/MessageError';
-import User from '~src/db/entities/User';
+import isAuth from '../../../util/graphql/isAuth';
+import MessageError from '../../../util/exceptions/MessageError';
+import User from '../../../db/entities/User';
 
 @Resolver()
 class UserResolver {

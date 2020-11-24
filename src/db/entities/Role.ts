@@ -7,8 +7,7 @@ import {
 
 import BaseEntity from './BaseEntity';
 import VText from './VText';
-
-import roles from '~src/logic/role/role.enum';
+import roles from '../../logic/role/role.enum';
 
 @ObjectType()
 @Entity({ name: 'role' })

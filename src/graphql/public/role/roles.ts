@@ -4,9 +4,8 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../type/PaginationResponse';
-
-import Role from '~src/db/entities/Role';
-import Paginate from '~src/util/db/paginate';
+import Role from '../../../db/entities/Role';
+import Paginate from '../../../util/db/paginate';
 
 @ObjectType()
 class RolePaginationResponse extends PaginationResponse(Role) {}
