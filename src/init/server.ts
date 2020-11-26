@@ -10,7 +10,7 @@ import './i18n/index';
 import './bugsnag';
 import '../util/validatorjs/rules';
 import handleErrors from './handleErrors';
-import ormconfig from '../../ormconfig.json';
+import ormconfig from './db/ormconfig';
 import apolloServer from './graphql/public/server';
 import useControllersApi from './controllers';
 
