@@ -15,7 +15,11 @@ export const config = {
   versionCode: '0.0.1',
 };
 
+const CORS_ORIGIN = process.env.CORS_ORIGIN
+  ? process.env.CORS_ORIGIN.split(',')
+  : [];
+
 export const cors = {
-  origin: process.env.FRONTEND_URL,
   credentials: true,
+  origin: CORS_ORIGIN,
 };

@@ -23,6 +23,8 @@ const server = async (app: Express, db: Connection) => {
     context: ({ req, res }): ApolloServerContext => ({ db, req, res }),
     formatError,
     plugins: [ErrorHandlePlugin],
+    playground: true,
+    introspection: true,
   });
   apolloServer.applyMiddleware({
     cors,
