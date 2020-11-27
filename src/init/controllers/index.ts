@@ -8,7 +8,7 @@ import getUserByOauthToken from '../../logic/user/session/getUserByOauthToken';
 
 const useControllersApi = (app: Express) => {
   useExpressServer(app, {
-    controllers: [join(__dirname, '../../../src/controllers/**/*.ts')],
+    controllers: [join(__dirname, '../../controllers/**/*{.ts,.js}')],
     cors,
     routePrefix: 'api',
     defaultErrorHandler: false,

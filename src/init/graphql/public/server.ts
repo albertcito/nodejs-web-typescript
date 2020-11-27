@@ -1,18 +1,18 @@
 import 'reflect-metadata';
 import { Connection } from 'typeorm';
 import { Express } from 'express';
-import { ApolloServer } from 'apollo-server-express';
-import { buildSchema, BuildSchemaOptions } from 'type-graphql';
 import { join } from 'path';
+import { BuildSchemaOptions, buildSchema } from 'type-graphql';
+import { ApolloServer } from 'apollo-server-express';
 
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
-import { cors } from '../../../config';
 import ErrorHandlePlugin from './errorHandlePlugin';
+import { cors } from '../../../config';
 
 export const path = '/graphql/public';
 const server = async (app: Express, db: Connection) => {
-  const privatePath = join(__dirname, '../../../graphql/public/**/*.ts');
+  const privatePath = join(__dirname, '../../../graphql/public/**/*{.ts,.js}');
   const apolloSchemeOptions: BuildSchemaOptions = {
     resolvers: [privatePath],
     validate: false,

@@ -3,10 +3,10 @@ import {
   Resolver, Mutation, UseMiddleware,
 } from 'type-graphql';
 
-import Auth from '~src/util/session/Auth';
-import isAuth from '~src/util/graphql/isAuth';
-import MessageError from '~src/util/exceptions/MessageError';
-import User from '~src/db/entities/User';
+import Auth from '../../../../util/session/Auth';
+import isAuth from '../../../../util/graphql/isAuth';
+import MessageError from '../../../../util/exceptions/MessageError';
+import User from '../../../../db/entities/User';
 
 @Resolver()
 export default class LoggedUserResolver {

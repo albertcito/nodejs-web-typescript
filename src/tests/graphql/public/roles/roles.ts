@@ -1,4 +1,4 @@
-import GenericTestData from '~src/tests/config/GenericTestData';
+import GenericTestData from '../../../config/GenericTestData';
 
 export default class RolesTest implements GenericTestData {
   resolver() {

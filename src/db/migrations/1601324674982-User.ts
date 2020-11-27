@@ -5,8 +5,7 @@ import {
 import columns from './BaseTableColumns/columns';
 import User from '../entities/User';
 import dbUsers from '../util/dbUser';
-
-import userStatus from '~src/logic/userStatus/userStatus.enum';
+import userStatus from '../../logic/userStatus/userStatus.enum';
 
 class User1601324674982 implements MigrationInterface {
     private readonly tableName = 'user';

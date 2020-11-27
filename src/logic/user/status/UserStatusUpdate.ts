@@ -1,12 +1,12 @@
 import { __ } from 'i18n';
 import { getConnection } from 'typeorm';
 
-import User from '~src/db/entities/User';
-import MessageType from '~src/graphql/type/MessageType.enum';
-import MessageField from '~src/graphql/type/MessageField';
-import UserStatusReason from '~src/db/entities/UserStatusReason';
-import userStatus from '~src/logic/userStatus/userStatus.enum';
-import RevokeByUser from '~src/logic/oauth/revokeByUser';
+import userStatus from '../../userStatus/userStatus.enum';
+import RevokeByUser from '../../oauth/revokeByUser';
+import User from '../../../db/entities/User';
+import MessageType from '../../../graphql/type/MessageType.enum';
+import MessageField from '../../../graphql/type/MessageField';
+import UserStatusReason from '../../../db/entities/UserStatusReason';
 
 export default class UserStatusUpdate {
   private readonly user: User

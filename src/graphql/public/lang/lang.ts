@@ -3,9 +3,9 @@ import {
   Resolver, Query, Arg,
 } from 'type-graphql';
 
-import Lang from '~src/db/entities/Lang';
-import MessageError from '~src/util/exceptions/MessageError';
-import Validate from '~src/util/validatorjs/validateGraphQL';
+import Lang from '../../../db/entities/Lang';
+import MessageError from '../../../util/exceptions/MessageError';
+import Validate from '../../../util/validatorjs/validateGraphQL';
 
 @Resolver()
 class LangResolver {

@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.com/albertcito/nodejs-web-typescript.svg?branch=production)](https://travis-ci.com/albertcito/nodejs-web-typescript)
 
 ## Requitements
-- Node v12.16.3
-- PostgreSQL 12.2
+- Node v15
+- SQLite
 
 ## To install:
 - Clone this project

@@ -1,17 +1,17 @@
 import 'reflect-metadata';
 import express, { Express } from 'express';
-import { ConnectionOptions, createConnection } from 'typeorm';
 import dotenv from 'dotenv';
-import i18n from 'i18n';
-import { join } from 'path';
 import Bugsnag from '@bugsnag/js';
+import { join } from 'path';
+import i18n from 'i18n';
+import { ConnectionOptions, createConnection } from 'typeorm';
 
 import './i18n/index';
 import './bugsnag';
-import ormconfig from '../../ormconfig.json';
-import apolloServer from './graphql/public/server';
 import '../util/validatorjs/rules';
 import handleErrors from './handleErrors';
+import ormconfig from './db/ormconfig';
+import apolloServer from './graphql/public/server';
 import useControllersApi from './controllers';
 
 const getApp = async (): Promise<Express> => {
