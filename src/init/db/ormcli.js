@@ -1,12 +1,12 @@
-import { join } from 'path';
+const path = require('path');
 
-import ormconfig from './ormconfig';
+const ormconfig = require('./ormconfig');
 
 module.exports = {
-  ...ormconfig,
+  ...ormconfig.default,
   cli: {
-    ...ormconfig.cli,
-    seeds: [join(__dirname, '../../db/seeds')],
-    factories: [join(__dirname, '../../db/factories')],
+    ...ormconfig.default.cli,
+    seeds: [path.join(__dirname, '../../db/seeds')],
+    factories: [path.join(__dirname, '../../db/factories')],
   },
 };
