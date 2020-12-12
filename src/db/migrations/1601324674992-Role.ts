@@ -5,7 +5,7 @@ import {
 import columns from './BaseTableColumns/columns';
 import Role from '../entities/Role';
 import roles from '../../logic/role/role.enum';
-import TranslationCreate from '../../logic/translation/TranslationCreate';
+import saveTranslation from '../util/saveTranslation';
 
 export default class Role1601324674992 implements MigrationInterface {
     private readonly tableName = 'role';
@@ -49,46 +49,24 @@ export default class Role1601324674992 implements MigrationInterface {
         onDelete: 'RESTRICT',
       }));
 
-      await this.addDefaultValues();
+      await this.addDefaultValues(queryRunner);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.dropTable(this.tableName);
     }
 
-    private async addDefaultValues() {
-      const textSA = [
-        {
-          text: 'Super Admin',
-          langID: 'EN',
-        },
-        {
-          text: 'Super Admin',
-          langID: 'ES',
-        },
-      ];
-      const translationSA = await (new TranslationCreate(textSA)).save();
-
+    private async addDefaultValues(queryRunner: QueryRunner) {
+      const translationSA = await saveTranslation(queryRunner, 'Super Admin', 'Super Admin', 'super-admin');
       const roleSA = new Role();
       roleSA.id = roles.superAdmin;
       roleSA.nameID = translationSA.id;
-      await roleSA.save();
+      await queryRunner.manager.save(roleSA);
 
-      const textA = [
-        {
-          text: 'Super Admin',
-          langID: 'EN',
-        },
-        {
-          text: 'Super Admin',
-          langID: 'ES',
-        },
-      ];
-      const translationA = await (new TranslationCreate(textA)).save();
-
+      const translationA = await saveTranslation(queryRunner, 'Admin', 'Admin', 'admin');
       const roleA = new Role();
       roleA.id = roles.admin;
       roleA.nameID = translationA.id;
-      await roleA.save();
+      await queryRunner.manager.save(roleA);
     }
 }

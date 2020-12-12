@@ -2,9 +2,13 @@ import { ConnectionOptions } from 'typeorm';
 import { join } from 'path';
 
 const ormConfig: ConnectionOptions = {
-  type: 'sqlite',
-  database: 'sqliteDB.db',
-  synchronize: false,
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'albert',
+  password: '1234',
+  database: 'node',
+  synchronize: true,
   logging: false,
   entities: [join(__dirname, '../../db/entities/**/*{.ts,.js}')],
   migrations: [join(__dirname, '../../db/migrations/**/*{.ts,.js}')],

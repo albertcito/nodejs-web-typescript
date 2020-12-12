@@ -37,7 +37,7 @@ class OauthAccessToken1601770752669 implements MigrationInterface {
         },
         {
           name: 'expired_at',
-          type: 'datetime',
+          type: 'timestamp',
         },
         ...columns,
       ],

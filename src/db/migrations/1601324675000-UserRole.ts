@@ -56,12 +56,12 @@ export default class UserRole1601324675000 implements MigrationInterface {
       const superAdmin = new UserRole();
       superAdmin.user_id = 1;
       superAdmin.role_id = roles.superAdmin;
-      await superAdmin.save();
+      await queryRunner.manager.save(superAdmin);
 
       const admin = new UserRole();
       admin.user_id = 2;
       admin.role_id = roles.admin;
-      await admin.save();
+      await queryRunner.manager.save(admin);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

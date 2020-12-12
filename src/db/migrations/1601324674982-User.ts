@@ -59,15 +59,16 @@ class User1601324674982 implements MigrationInterface {
         onDelete: 'RESTRICT',
       }));
 
-      await this.addDefaultData();
+      await this.addDefaultData(queryRunner);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.dropTable(this.tableName);
     }
 
-    async addDefaultData() {
-      const { superAdmin } = dbUsers();
+    async addDefaultData(queryRunner: QueryRunner) {
+      const { superAdmin, admin } = dbUsers();
+
       const user = new User();
       user.firstName = superAdmin.firstName;
       user.lastName = superAdmin.lastName;
@@ -75,9 +76,8 @@ class User1601324674982 implements MigrationInterface {
       user.password = superAdmin.password;
       user.emailVerified = true;
       user.userStatusID = userStatus.active;
-      await user.save();
+      await queryRunner.manager.save(user);
 
-      const { admin } = dbUsers();
       const userAdmin = new User();
       userAdmin.firstName = admin.firstName;
       userAdmin.lastName = admin.lastName;
@@ -85,7 +85,7 @@ class User1601324674982 implements MigrationInterface {
       userAdmin.password = admin.password;
       userAdmin.emailVerified = true;
       userAdmin.userStatusID = userStatus.active;
-      await userAdmin.save();
+      await queryRunner.manager.save(userAdmin);
     }
 }
 

@@ -32,12 +32,12 @@ class UserToken1601940113364 implements MigrationInterface {
           },
           {
             name: 'used_at',
-            type: 'datetime',
+            type: 'timestamp',
             isNullable: true,
           },
           {
             name: 'expired_at',
-            type: 'datetime',
+            type: 'timestamp',
           },
           ...columns,
         ],
