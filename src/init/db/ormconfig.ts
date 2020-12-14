@@ -8,7 +8,7 @@ const ormConfig: ConnectionOptions = {
   username: 'albert',
   password: '1234',
   database: 'node',
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [join(__dirname, '../../db/entities/**/*{.ts,.js}')],
   migrations: [join(__dirname, '../../db/migrations/**/*{.ts,.js}')],

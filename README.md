@@ -4,7 +4,7 @@
 
 ## Requitements
 - Node v15
-- SQLite
+- Postgres
 
 ## To install:
 - Clone this project

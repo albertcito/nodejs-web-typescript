@@ -8,6 +8,7 @@ export default class VText1601738944127 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
       const view = `
         CREATE VIEW vtext AS SELECT
+          CONCAT(lang.id, '-', translation.id) as id,
           translation.id as translation_id,
           translation.is_blocked,
           translation.code,
