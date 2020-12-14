@@ -12,7 +12,7 @@ class SignUpResolver {
   @Mutation(() => User)
   @Validate({
     password: 'confirmed',
-    email: `required|email|unique:${tablePath},email`,
+    email: `required|email|unique:${tablePath},${tablePath}.email`,
   })
   signUp(
     @Arg('firstName') firstName: string,
