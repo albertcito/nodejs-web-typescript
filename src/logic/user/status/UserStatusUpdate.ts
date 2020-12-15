@@ -7,6 +7,7 @@ import User from '../../../db/entities/User';
 import MessageType from '../../../graphql/type/MessageType.enum';
 import MessageField from '../../../graphql/type/MessageField';
 import UserStatusReason from '../../../db/entities/UserStatusReason';
+import MessageError from '../../../util/exceptions/MessageError';
 
 export default class UserStatusUpdate {
   private readonly user: User
@@ -21,6 +22,10 @@ export default class UserStatusUpdate {
 
     await queryRunner.startTransaction();
     try {
+      if (this.user.userStatusID === userStatusID) {
+        throw new MessageError(`The user ${this.user.id} already has the status ${userStatusID}`);
+      }
+
       this.user.userStatusID = userStatusID;
       await this.user.save();
 

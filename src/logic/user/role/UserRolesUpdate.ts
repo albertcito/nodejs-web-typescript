@@ -46,7 +46,10 @@ export default class UserRolesUpdate {
       where: { role_id: roleID, user_id: this.user.id },
     });
     if (!userRole) {
-      UserRole.insert({ role_id: roleID, user_id: this.user.id });
+      const newUserRole = new UserRole();
+      newUserRole.role_id = roleID;
+      newUserRole.user_id = this.user.id;
+      await newUserRole.save();
     }
   }
 }

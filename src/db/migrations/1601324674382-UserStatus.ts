@@ -16,7 +16,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'text',
+            type: 'varchar',
             isPrimary: true,
             isUnique: true,
           },
@@ -62,14 +62,18 @@ export default class UserStatus1601324674982 implements MigrationInterface {
 
     private async addDefaultValues(queryRunner: QueryRunner) {
       const activeTranslation = await saveTranslation(queryRunner, 'Active', 'Activo', 'active');
-      await this.saveUserStatus(queryRunner, activeTranslation.id);
+      await this.saveUserStatus(queryRunner, activeTranslation.id, userStatus.active);
       const inactiveTranslation = await saveTranslation(queryRunner, 'Inactive', 'Inactivo', 'inactive');
-      await this.saveUserStatus(queryRunner, inactiveTranslation.id);
+      await this.saveUserStatus(queryRunner, inactiveTranslation.id, userStatus.inactive);
     }
 
-    private async saveUserStatus(queryRunner:QueryRunner, translationID: number) {
+    private async saveUserStatus(
+      queryRunner:QueryRunner,
+      translationID: number,
+      status: userStatus,
+    ) {
       const active = new UserStatus();
-      active.id = userStatus.active;
+      active.id = status;
       active.nameID = translationID;
       active.available = true;
       await queryRunner.manager.save(active);

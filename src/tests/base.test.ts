@@ -1,5 +1,7 @@
 import { Express } from 'express';
+import { Connection, ConnectionOptions, createConnection } from 'typeorm';
 
+import ormconfig from '../init/db/ormconfig';
 import getServer from '../init/server';
 import { getSuperAdminUserLogin, getAdminLogin } from './config/getUserLogins';
 import GenericTest from './config/GenericTest';
@@ -33,9 +35,9 @@ import TranslationTest from './graphql/public/translation/translation';
 import TranslationCreateTest from './graphql/public/translation/translationCreate';
 import TranslationUpdateTest from './graphql/public/translation/translationUpdate';
 import TranslationDeleteTest from './graphql/public/translation/translationDelete';
-import UserStatusUpdateTest from './graphql/public/user/status/userStatusUpdate';
 import UserStatusUpdateOauthTest from './graphql/public/user/status/userStatusUpdateOauth';
 
+let db: Connection;
 let genericTest: GenericTest;
 let app: Express;
 let superAdminToken = '';
@@ -43,7 +45,8 @@ let tokenLogout = '';
 let adminToken = '';
 
 beforeAll(async () => {
-  app = await getServer();
+  db = await createConnection(ormconfig as ConnectionOptions);
+  app = await getServer(db);
   const superAdmin = await getSuperAdminUserLogin();
   superAdminToken = superAdmin.token;
 
@@ -54,6 +57,10 @@ beforeAll(async () => {
   adminToken = admin.token;
 
   genericTest = new GenericTest(app);
+});
+
+afterAll(async () => {
+  await db.close();
 });
 
 describe('GET /graphql/public', () => {
@@ -80,10 +87,12 @@ describe('GET /graphql/public', () => {
   it('q: roles', (done) => genericTest.test(done, new RolesTest(), superAdminToken));
   it('q: role', (done) => genericTest.test(done, new RoleTest(), superAdminToken));
   it('m: roleUpdate', (done) => genericTest.test(done, new RoleUpdateTest(), superAdminToken));
-  it('m: userRolesCreate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
+  it('m: userRolesUpdate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
   it('m: roleUpdate -> Reject -> 403', (done) => (new RoleUpdateRejectTest(genericTest.url, app)).test(done, adminToken));
-  it('m: userStatusUpdate', (done) => genericTest.test(done, new UserStatusUpdateTest(), superAdminToken));
-  it('m: userStatusUpdate -> revoked oAuthToken', (done) => (new UserStatusUpdateOauthTest(genericTest.url, app)).test(done, superAdminToken));
+  it(
+    'm: userStatusUpdate -> inactive -> revoke oAuthToken',
+    (done) => (new UserStatusUpdateOauthTest(genericTest.url, app)).test(done, superAdminToken),
+  );
   it('q: translations', (done) => genericTest.test(done, new TranslationsTest(), adminToken));
   it('q: translation', (done) => genericTest.test(done, new TranslationTest(), adminToken));
   it('m: translationCreate', (done) => genericTest.test(done, new TranslationCreateTest(), adminToken));

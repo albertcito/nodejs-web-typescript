@@ -3,7 +3,7 @@ import roles from '../../../../../logic/role/role.enum';
 
 export default class UserRolesUpdateTest implements GenericTestData {
   resolver() {
-    return {
+    const data = {
       query: `mutation userRolesUpdate($userID: Int!, $rolesID: [String!]!) {
         userRolesUpdate(userID: $userID, rolesID: $rolesID) {
           message
@@ -15,6 +15,7 @@ export default class UserRolesUpdateTest implements GenericTestData {
         rolesID: [roles.admin, roles.superAdmin],
       },
     };
+    return data;
   }
 
   rules() {

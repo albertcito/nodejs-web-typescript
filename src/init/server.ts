@@ -4,17 +4,16 @@ import dotenv from 'dotenv';
 import Bugsnag from '@bugsnag/js';
 import { join } from 'path';
 import i18n from 'i18n';
-import { ConnectionOptions, createConnection } from 'typeorm';
+import { Connection } from 'typeorm';
 
 import './i18n/index';
 import './bugsnag';
 import '../util/validatorjs/rules';
 import handleErrors from './handleErrors';
-import ormconfig from './db/ormconfig';
 import apolloServer from './graphql/public/server';
 import useControllersApi from './controllers';
 
-const getApp = async (): Promise<Express> => {
+const getApp = async (db: Connection): Promise<Express> => {
   dotenv.config();
   const app = express();
   const middleware = Bugsnag.getPlugin('express');
@@ -27,8 +26,6 @@ const getApp = async (): Promise<Express> => {
   app.use('/public', express.static(join(__dirname, '../../public')));
   // use multi languages
   app.use(i18n.init);
-  // db conection
-  const db = await createConnection(ormconfig as ConnectionOptions);
   // Apollo graphQL
   await apolloServer(app, db);
   // Api
