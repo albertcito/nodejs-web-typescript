@@ -6,7 +6,7 @@ module.exports = {
   coverageDirectory: "coverage",
   preset: 'ts-jest',
   roots: [
-    "src/tests"
+    "build/tests"
   ],
   testEnvironment: "node",
 };
