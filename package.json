@@ -10,8 +10,8 @@
     "eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
     "test": "jest --config ./jest.config.js",
     "ejslint": "ejslint src/resources/view/*",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js --config src/init/db/ormcli.js",
-    "seeding": "ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName src/init/db/ormcli.js",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js --config src/init/db/connectionOptions.ts",
+    "seeding": "ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName src/init/db/connectionOptions.ts",
     "db": "node ./node_modules/typeorm/cli.js --config build/init/db/connectionOptions.js",
     "db:seeding": "node ./node_modules/typeorm-seeding/dist/cli.js --configName build/init/db/connectionOptions.js"
   },

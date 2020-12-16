@@ -4,7 +4,7 @@ import { join } from 'path';
 import { db } from '../../config';
 
 const getConnectionOptions = () => {
-  const connectionOptions: ConnectionOptions = {
+  const connectionOptions = {
     type: 'postgres',
     logging: false,
     entities: [join(__dirname, '../../db/entities/**/*{.ts,.js}')],
@@ -14,6 +14,8 @@ const getConnectionOptions = () => {
       entitiesDir: join(__dirname, '../../db/entities'),
       migrationsDir: join(__dirname, '../../db/migrations'),
       subscribersDir: join(__dirname, '../../db/subscribers'),
+      seeds: [join(__dirname, '../../db/seeds')],
+      factories: [join(__dirname, '../../db/factories')],
     },
   };
   // Heroku
@@ -39,4 +41,4 @@ const getConnectionOptions = () => {
   };
 };
 
-export default getConnectionOptions();
+export default getConnectionOptions() as ConnectionOptions;
