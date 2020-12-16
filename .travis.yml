@@ -5,13 +5,13 @@ node_js:
   - "12.16.3"
 env:
   - NODE_ENV="test" DB_USER="postgres" DB_PASSWORD="" DB_HOST="localhost" DB_NAME="test_postgres_db"
+before_install:
+  - psql -c 'create database test_postgres_db;' -U postgres
 install:
   - cp .env.example .env
   - yarn install
   - yarn typeorm migration:run
   - yarn seed:run
-before_script:
-  - psql -c 'create database test_postgres_db;' -U postgres
 script:
   - yarn test-build
   - yarn lint:eslint
