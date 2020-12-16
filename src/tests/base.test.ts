@@ -1,7 +1,7 @@
 import { Express } from 'express';
-import { Connection, ConnectionOptions, createConnection } from 'typeorm';
+import { Connection, createConnection } from 'typeorm';
 
-import ormconfig from '../init/db/ormconfig';
+import connectionOptions from '../init/db/connectionOptions';
 import getServer from '../init/server';
 import { getSuperAdminUserLogin, getAdminLogin } from './config/getUserLogins';
 import GenericTest from './config/GenericTest';
@@ -45,7 +45,7 @@ let tokenLogout = '';
 let adminToken = '';
 
 beforeAll(async () => {
-  db = await createConnection(ormconfig as ConnectionOptions);
+  db = await createConnection(connectionOptions);
   app = await getServer(db);
   const superAdmin = await getSuperAdminUserLogin();
   superAdminToken = superAdmin.token;
