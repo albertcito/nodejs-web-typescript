@@ -21,7 +21,9 @@ const getConnectionOptions = () => {
     return {
       url: process.env.DATABASE_URL,
       extra: {
-        ssl: true,
+        ssl: {
+          rejectUnauthorized: false,
+        },
       },
       ...connectionOptions,
     };
