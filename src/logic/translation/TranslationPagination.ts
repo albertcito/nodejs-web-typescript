@@ -13,7 +13,7 @@ export default class TranslationsPagination {
   private readonly query: SelectQueryBuilder<Translation>;
 
   public constructor() {
-    this.query = Translation.createQueryBuilder();
+    this.query = Translation.createQueryBuilder('translation');
   }
 
   public getAll(parameters: TranslationsGetAll) {

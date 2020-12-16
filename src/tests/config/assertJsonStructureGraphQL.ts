@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Response } from 'supertest';
 import { Validator, getAsyncErrors } from 'validatorjs-decorator/dist';
 
@@ -11,8 +12,7 @@ const assertJsonStructureGraphQL = async (
   rules: Validator.Rules,
 ): Promise<AssertJsonStructureGraphQLResult> => {
   if (err) {
-    // eslint-disable-next-line no-console
-    console.log({ serverError: res.error });
+    console.error({ serverError: res.error });
     return {
       status: false,
       description: 'assert unknown error',
@@ -20,8 +20,7 @@ const assertJsonStructureGraphQL = async (
   }
 
   if (res.serverError) {
-    // eslint-disable-next-line no-console
-    console.log({ serverError: res.error });
+    console.error({ serverError: res.error });
     return {
       status: false,
       description: 'Server Error',
@@ -29,11 +28,13 @@ const assertJsonStructureGraphQL = async (
   }
 
   if (res.body.errors) {
-    // eslint-disable-next-line no-console
-    console.info({
+    console.error({
       status: res.status,
       body: res.body,
-      errors: res.body.errors,
+      message: res.body.errors[0].message,
+      locations: res.body.errors[0].locations,
+      path: res.body.errors[0].path,
+      extensions: res.body.errors[0].extensions,
     });
     return {
       status: false,
@@ -42,8 +43,7 @@ const assertJsonStructureGraphQL = async (
   }
 
   if (!res.body.data) {
-    // eslint-disable-next-line no-console
-    console.info({ body: res.body });
+    console.error({ body: res.body });
     return {
       status: false,
       description: 'The query data is empty',
@@ -53,10 +53,8 @@ const assertJsonStructureGraphQL = async (
   const errors = await getAsyncErrors(res.body.data, rules);
 
   if (errors) {
-    // eslint-disable-next-line no-console
     console.error({ errors });
-    // eslint-disable-next-line no-console
-    console.info({
+    console.warn({
       data: JSON.stringify(res.body.data),
     });
     return {

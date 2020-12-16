@@ -1,41 +1,43 @@
 import { Express } from 'express';
+import { Connection, ConnectionOptions, createConnection } from 'typeorm';
 
+import ormconfig from '../init/db/ormconfig';
 import getServer from '../init/server';
 import { getSuperAdminUserLogin, getAdminLogin } from './config/getUserLogins';
 import GenericTest from './config/GenericTest';
-import langCreateTest from './graphql/public/lang/langCreate';
-import LangUpdateTest from './graphql/public/lang/langUpdate';
-import LangDeleteTest from './graphql/public/lang/langDelete';
-import LangTest from './graphql/public/lang/lang';
-import LangsTest from './graphql/public/lang/langs';
-import UsersTest from './graphql/public/user/users';
-import UserTest from './graphql/public/user/user';
-import UserBasicUpdateTest from './graphql/public/user/session/userBasicUpdate';
-import UserEmailUpdateTest from './graphql/public/user/session/userEmailUpdate';
-import UserPasswordUpdateTest from './graphql/public/user/session/userPasswordUpdate';
-import ProfileEmailUpdate from './graphql/public/user/session/profileEmailUpdate';
-import ProfilePasswordUpdate from './graphql/public/user/session/profilePasswordUpdate';
-import ProfileBasicUpdate from './graphql/public/user/session/profileBasicUpdate';
-import LoginTest from './graphql/public/user/session/login';
-import LogoutTest from './graphql/public/user/session/logout';
-import LoggedUserTest from './graphql/public/user/session/loggedUser';
-import SignUpTest from './graphql/public/user/session/signup';
-import ForgotPasswordTest from './graphql/public/user/session/forgotPassword';
-import ResetPasswordTest from './graphql/public/user/session/resetPassword';
-import ActivateEmailTest from './graphql/public/user/session/activateEmail';
-import RolesTest from './graphql/public/roles/roles';
-import RoleTest from './graphql/public/roles/role';
-import RoleUpdateTest from './graphql/public/roles/roleUpdate';
-import RoleUpdateRejectTest from './graphql/public/roles/roleUpdateReject';
-import UserRolesUpdateTest from './graphql/public/user/roles/userRolesUpdate';
-import TranslationsTest from './graphql/public/translation/translations';
-import TranslationTest from './graphql/public/translation/translation';
-import TranslationCreateTest from './graphql/public/translation/translationCreate';
-import TranslationUpdateTest from './graphql/public/translation/translationUpdate';
-import TranslationDeleteTest from './graphql/public/translation/translationDelete';
-import UserStatusUpdateTest from './graphql/public/user/status/userStatusUpdate';
-import UserStatusUpdateOauthTest from './graphql/public/user/status/userStatusUpdateOauth';
+import langCreateTest from './graphql/lang/langCreate';
+import LangUpdateTest from './graphql/lang/langUpdate';
+import LangDeleteTest from './graphql/lang/langDelete';
+import LangTest from './graphql/lang/lang';
+import LangsTest from './graphql/lang/langs';
+import UsersTest from './graphql/user/users';
+import UserTest from './graphql/user/user';
+import UserBasicUpdateTest from './graphql/user/session/userBasicUpdate';
+import UserEmailUpdateTest from './graphql/user/session/userEmailUpdate';
+import UserPasswordUpdateTest from './graphql/user/session/userPasswordUpdate';
+import ProfileEmailUpdate from './graphql/user/session/profileEmailUpdate';
+import ProfilePasswordUpdate from './graphql/user/session/profilePasswordUpdate';
+import ProfileBasicUpdate from './graphql/user/session/profileBasicUpdate';
+import LoginTest from './graphql/user/session/login';
+import LogoutTest from './graphql/user/session/logout';
+import LoggedUserTest from './graphql/user/session/loggedUser';
+import SignUpTest from './graphql/user/session/signup';
+import ForgotPasswordTest from './graphql/user/session/forgotPassword';
+import ResetPasswordTest from './graphql/user/session/resetPassword';
+import ActivateEmailTest from './graphql/user/session/activateEmail';
+import RolesTest from './graphql/roles/roles';
+import RoleTest from './graphql/roles/role';
+import RoleUpdateTest from './graphql/roles/roleUpdate';
+import RoleUpdateRejectTest from './graphql/roles/roleUpdateReject';
+import UserRolesUpdateTest from './graphql/user/roles/userRolesUpdate';
+import TranslationsTest from './graphql/translation/translations';
+import TranslationTest from './graphql/translation/translation';
+import TranslationCreateTest from './graphql/translation/translationCreate';
+import TranslationUpdateTest from './graphql/translation/translationUpdate';
+import TranslationDeleteTest from './graphql/translation/translationDelete';
+import UserStatusUpdateOauthTest from './graphql/user/status/userStatusUpdateOauth';
 
+let db: Connection;
 let genericTest: GenericTest;
 let app: Express;
 let superAdminToken = '';
@@ -43,7 +45,8 @@ let tokenLogout = '';
 let adminToken = '';
 
 beforeAll(async () => {
-  app = await getServer();
+  db = await createConnection(ormconfig as ConnectionOptions);
+  app = await getServer(db);
   const superAdmin = await getSuperAdminUserLogin();
   superAdminToken = superAdmin.token;
 
@@ -54,6 +57,10 @@ beforeAll(async () => {
   adminToken = admin.token;
 
   genericTest = new GenericTest(app);
+});
+
+afterAll(async () => {
+  await db.close();
 });
 
 describe('GET /graphql/public', () => {
@@ -80,10 +87,12 @@ describe('GET /graphql/public', () => {
   it('q: roles', (done) => genericTest.test(done, new RolesTest(), superAdminToken));
   it('q: role', (done) => genericTest.test(done, new RoleTest(), superAdminToken));
   it('m: roleUpdate', (done) => genericTest.test(done, new RoleUpdateTest(), superAdminToken));
-  it('m: userRolesCreate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
+  it('m: userRolesUpdate', (done) => genericTest.test(done, new UserRolesUpdateTest(), superAdminToken));
   it('m: roleUpdate -> Reject -> 403', (done) => (new RoleUpdateRejectTest(genericTest.url, app)).test(done, adminToken));
-  it('m: userStatusUpdate', (done) => genericTest.test(done, new UserStatusUpdateTest(), superAdminToken));
-  it('m: userStatusUpdate -> revoked oAuthToken', (done) => (new UserStatusUpdateOauthTest(genericTest.url, app)).test(done, superAdminToken));
+  it(
+    'm: userStatusUpdate -> inactive -> revoke oAuthToken',
+    (done) => (new UserStatusUpdateOauthTest(genericTest.url, app)).test(done, superAdminToken),
+  );
   it('q: translations', (done) => genericTest.test(done, new TranslationsTest(), adminToken));
   it('q: translation', (done) => genericTest.test(done, new TranslationTest(), adminToken));
   it('m: translationCreate', (done) => genericTest.test(done, new TranslationCreateTest(), adminToken));

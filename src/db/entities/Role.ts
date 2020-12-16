@@ -2,7 +2,7 @@ import {
   Field, ObjectType, Int, Arg,
 } from 'type-graphql';
 import {
-  Entity, PrimaryColumn, Column,
+  Entity, PrimaryColumn, Column, getManager,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
@@ -26,12 +26,12 @@ export default class Role extends BaseEntity {
 
   @Field(() => [VText])
   async names() {
-    return VText.find({ where: { translationID: this.nameID } });
+    return getManager().find(VText, { where: { translationID: this.nameID } });
   }
 
   @Field(() => VText)
   async name(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
-    return VText.findOne({
+    return getManager().findOne(VText, {
       where: {
         translationID: this.nameID,
         langID,
@@ -41,12 +41,12 @@ export default class Role extends BaseEntity {
 
   @Field(() => [VText], { nullable: true })
   async descriptions() {
-    return VText.find({ where: { translationID: this.descriptionID } });
+    return getManager().find(VText, { where: { translationID: this.descriptionID } });
   }
 
   @Field(() => VText, { nullable: true })
   async description(@Arg('langID', { defaultValue: 'EN' }) langID: string) {
-    return VText.findOne({
+    return getManager().findOne(VText, {
       where: {
         translationID: this.descriptionID,
         langID,

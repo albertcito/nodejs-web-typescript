@@ -38,7 +38,7 @@ export default class UsersPagination {
 
   private findByID(search:string) {
     this.query.where(
-      'user_id = :search',
+      'id = :search',
       { search: `${search}` },
     );
   }

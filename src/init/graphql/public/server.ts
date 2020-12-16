@@ -10,9 +10,9 @@ import formatError from '../formatError';
 import ErrorHandlePlugin from './errorHandlePlugin';
 import { cors } from '../../../config';
 
-export const path = '/graphql/public';
+export const path = '/graphql';
 const server = async (app: Express, db: Connection) => {
-  const privatePath = join(__dirname, '../../../graphql/public/**/*{.ts,.js}');
+  const privatePath = join(__dirname, '../../../graphql/resolvers/**/*{.ts,.js}');
   const apolloSchemeOptions: BuildSchemaOptions = {
     resolvers: [privatePath],
     validate: false,

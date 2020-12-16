@@ -10,7 +10,7 @@ import BaseEntity from './BaseEntity';
 import Role from './Role';
 
 @ObjectType()
-@Entity({ name: 'user' })
+@Entity({ name: 'user', schema: 'public' })
 class User extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()

@@ -4,7 +4,7 @@
 
 ## Requitements
 - Node v15
-- SQLite
+- Postgres
 
 ## To install:
 - Clone this project
@@ -23,7 +23,7 @@ To populate the DB with faker data. Using [typeorm-seeding](https://github.com/w
 
 ## Contribute
 Before to send a PR please do it:
-- Run `yarn test` to ensure everithing is working well
+- Run `yarn test-build` to ensure everithing is working well.
 - Run `yarn lint:eslint-fix` to validate the code style.
 - Run `yarn ejslint ` to validate the ejs files.
 

@@ -4,8 +4,8 @@ import {
 
 import columns from './BaseTableColumns/columns';
 import UserStatus from '../entities/UserStatus';
-import TranslationCreate from '../../logic/translation/TranslationCreate';
 import userStatus from '../../logic/userStatus/userStatus.enum';
+import saveTranslation from '../util/saveTranslation';
 
 export default class UserStatus1601324674982 implements MigrationInterface {
     private readonly tableName = 'user_status';
@@ -16,7 +16,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'string',
+            type: 'varchar',
             isPrimary: true,
             isUnique: true,
           },
@@ -53,48 +53,29 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         referencedTableName: 'translation',
         onDelete: 'RESTRICT',
       }));
-      await this.addDefaultValues();
+      await this.addDefaultValues(queryRunner);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.dropTable(this.tableName);
     }
 
-    private async addDefaultValues() {
-      const activeText = [
-        {
-          text: 'Active',
-          langID: 'EN',
-        },
-        {
-          text: 'Activo',
-          langID: 'ES',
-        },
-      ];
-      const activeTranslation = await (new TranslationCreate(activeText)).save();
+    private async addDefaultValues(queryRunner: QueryRunner) {
+      const activeTranslation = await saveTranslation(queryRunner, 'Active', 'Activo', 'active');
+      await this.saveUserStatus(queryRunner, activeTranslation.id, userStatus.active);
+      const inactiveTranslation = await saveTranslation(queryRunner, 'Inactive', 'Inactivo', 'inactive');
+      await this.saveUserStatus(queryRunner, inactiveTranslation.id, userStatus.inactive);
+    }
 
+    private async saveUserStatus(
+      queryRunner:QueryRunner,
+      translationID: number,
+      status: userStatus,
+    ) {
       const active = new UserStatus();
-      active.id = userStatus.active;
-      active.nameID = activeTranslation.id;
+      active.id = status;
+      active.nameID = translationID;
       active.available = true;
-      await active.save();
-
-      const inactiveText = [
-        {
-          text: 'Inactive',
-          langID: 'EN',
-        },
-        {
-          text: 'Inactivo',
-          langID: 'ES',
-        },
-      ];
-      const inactiveTranslation = await (new TranslationCreate(inactiveText)).save();
-
-      const inactive = new UserStatus();
-      inactive.id = userStatus.inactive;
-      inactive.nameID = inactiveTranslation.id;
-      inactive.available = true;
-      await inactive.save();
+      await queryRunner.manager.save(active);
     }
 }

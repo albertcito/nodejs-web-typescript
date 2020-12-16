@@ -1,7 +1,7 @@
 import Text from '../../db/entities/Text';
 import TextInputCreate from '../../graphql/input/TextInputCreate';
 
-export default class SaveTexts {
+export default class TextsCreate {
   private readonly id: number;
 
   constructor(id: number) {
@@ -9,12 +9,12 @@ export default class SaveTexts {
   }
 
   async save(texts: TextInputCreate[]) {
-    const textPromises = [];
+    const textsPromises = [];
     for (let i = 0; i < texts.length; i += 1) {
       const text = texts[i];
-      textPromises.push(this.saveText(text));
+      textsPromises.push(this.saveText(text));
     }
-    await Promise.all(textPromises);
+    await Promise.all(textsPromises);
   }
 
   private async saveText(text: TextInputCreate) {
