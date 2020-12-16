@@ -10,11 +10,12 @@ before_install:
 install:
   - cp .env.example .env
   - yarn install
-  - yarn typeorm migration:run
-  - yarn seed:run
+  - yarn build
+  - yarn db migration:run
+  - yarn db:seeding seed
 script:
-  - yarn test-build
-  - yarn lint:eslint
+  - yarn test --roots build/tests
+  - yarn eslint
   - yarn ejslint
 notifications:
   email: false
