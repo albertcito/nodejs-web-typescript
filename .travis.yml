@@ -6,9 +6,11 @@ node_js:
 install:
   - cp .env.example .env
   - yarn install
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+script:
   - yarn typeorm migration:run
   - yarn seed:run
-script:
   - yarn ci:test
   - yarn lint:eslint
   - yarn ejslint
