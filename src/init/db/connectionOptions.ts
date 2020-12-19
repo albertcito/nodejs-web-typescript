@@ -14,9 +14,9 @@ const getConnectionOptions = () => {
       entitiesDir: join(__dirname, '../../db/entities'),
       migrationsDir: join(__dirname, '../../db/migrations'),
       subscribersDir: join(__dirname, '../../db/subscribers'),
-      seeds: [join(__dirname, '../../db/seeds')],
-      factories: [join(__dirname, '../../db/factories')],
     },
+    seeds: [join(__dirname, '../../db/seeds/**/*{.ts,.js}')],
+    factories: [join(__dirname, '../../db/factories/**/*{.ts,.js}')],
   };
   // Heroku
   if (process.env.DATABASE_URL) {
