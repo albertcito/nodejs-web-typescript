@@ -3,6 +3,7 @@ import { SelectQueryBuilder } from 'typeorm';
 import { PaginateArgs, OrderByArgs } from '../../util/db/interfaces';
 import Translation from '../../db/entities/Translation';
 import Paginate from '../../util/db/paginate';
+import isNumber from '../../util/functions/isNumber';
 
 interface TranslationsGetAll extends PaginateArgs, OrderByArgs {
   search?: string;
@@ -26,7 +27,7 @@ export default class TranslationsPagination {
       langID,
     } = parameters;
 
-    if (search && this.isNumber(search)) {
+    if (search && isNumber(search)) {
       this.findByID(search);
     } else if (search || langID) {
       this.query.innerJoin(
@@ -44,13 +45,9 @@ export default class TranslationsPagination {
     }
 
     if (orderBy && order) {
-      this.query.orderBy(orderBy, order);
+      this.query.orderBy(`"translation"."${orderBy}"`, order);
     }
     return (new Paginate(this.query)).get(page, limit);
-  }
-
-  private isNumber(search: string) {
-    return /^[-]?\d+$/.test(search);
   }
 
   private findByID(id: string) {
@@ -58,6 +55,9 @@ export default class TranslationsPagination {
   }
 
   private findByString(search:string) {
-    this.query.where('vtext.text like :search', { search: `%${search}%` });
+    this.query.where(
+      'unaccent(vtext.text) ilike unaccent(:search)',
+      { search: `%${search}%` },
+    );
   }
 }
