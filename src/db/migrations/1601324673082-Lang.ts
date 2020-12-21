@@ -54,9 +54,11 @@ export default class Lang1601324673082 implements MigrationInterface {
 
       await queryRunner.manager.save(langEN);
       await queryRunner.manager.save(langES);
+      await queryRunner.manager.query('CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;');
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+      queryRunner.manager.query('DROP EXTENSION IF EXISTS unaccent;');
       await queryRunner.dropTable(this.tableName);
     }
 }

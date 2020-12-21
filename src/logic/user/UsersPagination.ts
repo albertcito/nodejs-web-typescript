@@ -3,6 +3,7 @@ import { SelectQueryBuilder } from 'typeorm';
 import { PaginateArgs, OrderByArgs } from '../../util/db/interfaces';
 import User from '../../db/entities/User';
 import Paginate from '../../util/db/paginate';
+import isNumber from '../../util/functions/isNumber';
 
 interface UsersGetAll extends PaginateArgs, OrderByArgs {
   search: string;
@@ -24,7 +25,7 @@ export default class UsersPagination {
       search,
     } = parameters;
 
-    if (search && /^[-]?\d+$/.test(search)) {
+    if (search && isNumber(search)) {
       this.findByID(search);
     } else if (search) {
       this.findByString(search);
@@ -45,9 +46,9 @@ export default class UsersPagination {
 
   private findByString(search:string) {
     this.query.where(
-      `first_name like :search
-      OR last_name like :search
-      OR email like :search`,
+      `unaccent(first_name) ilike unaccent(:search)
+      OR unaccent(last_name) ilike unaccent(:search)
+      OR unaccent(email) ilike unaccent(:search)`,
       { search: `%${search}%` },
     );
   }
