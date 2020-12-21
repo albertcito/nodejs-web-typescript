@@ -15,17 +15,17 @@
 
 ## Faker Data
 To populate the DB with faker data. Using [typeorm-seeding](https://github.com/w3tecch/typeorm-seeding)
-- `yarn seed:run`
+- `yarn seeding seed`
 
 ## Run the server
 - Run `yarn dev`
-- Go to http://localhost:4000/graphql/public
+- Go to http://localhost:4000/graphql/
 
 ## Contribute
 Before to send a PR please do it:
 - Run `yarn test-build` to ensure everithing is working well.
-- Run `yarn lint:eslint-fix` to validate the code style.
-- Run `yarn ejslint ` to validate the ejs files.
+- Run `yarn eslint --fix` to validate the code style.
+- Run `yarn ejslint` to validate the ejs files.
 
 ## Email Debug
 - To debug email in your localhost use this software: https://nodemailer.com/app/

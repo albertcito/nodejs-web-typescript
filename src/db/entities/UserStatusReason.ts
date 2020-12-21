@@ -1,5 +1,5 @@
 import { Field, ObjectType, Int } from 'type-graphql';
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
 import userStatus from '../../logic/userStatus/userStatus.enum';
@@ -8,11 +8,15 @@ import userStatus from '../../logic/userStatus/userStatus.enum';
 @Entity({ name: 'user_status_reason' })
 export default class UserStatusReason extends BaseEntity {
   @Field(() => Int)
-  @PrimaryColumn({ name: 'user_id' })
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field(() => Int)
+  @Column({ name: 'user_id' })
   userID: number;
 
   @Field(() => userStatus)
-  @PrimaryColumn({ name: 'user_status_id' })
+  @Column({ name: 'user_status_id' })
   userStatusID: userStatus;
 
   @Field(() => String)

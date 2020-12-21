@@ -1,3 +1,4 @@
+import { getConnection } from 'typeorm';
 import { Seeder } from 'typeorm-seeding';
 import * as faker from 'faker';
 
@@ -13,10 +14,22 @@ const createTranslation = async () => {
 
 export default class CreateUsers implements Seeder {
   public async run(): Promise<void> {
-    const promises = [];
-    for (let index = 0; index < 50; index += 1) {
-      promises.push(createTranslation());
+    const connection = getConnection();
+    const queryRunner = connection.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const promises = [];
+      for (let index = 0; index < 50; index += 1) {
+        promises.push(createTranslation());
+      }
+      await Promise.all(promises);
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      throw error;
+    } finally {
+      await queryRunner.release();
     }
-    await Promise.all(promises);
   }
 }
