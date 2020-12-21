@@ -4,8 +4,8 @@ import Bugsnag from '@bugsnag/js';
 import Auth from '../../util/session/Auth';
 
 const notify = (error: Error, req: Request) => {
-  const auth = Auth.data()?.auth;
-  const user = Auth.data()?.user;
+  const auth = Auth.sessionOrEmpty()?.auth;
+  const user = Auth.sessionOrEmpty()?.user;
   Bugsnag.notify(error, (event) => {
     event.addMetadata('query', req.query);
     event.addMetadata('body', req.body);

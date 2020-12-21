@@ -1,14 +1,23 @@
-import Global, { GlobalData } from './Global';
+import Session, { SessionData } from './Session';
 
 class Auth {
-  public static data(): GlobalData | undefined {
-    const global = Global.getInstance();
-    return global.getData();
+  public static sessionOrEmpty(): SessionData | undefined {
+    const global = Session.getInstance();
+    return global.getSession();
   }
 
-  public static setData(data?: GlobalData) {
-    const global = Global.getInstance();
-    global.setData(data);
+  public static session(): SessionData {
+    const global = Session.getInstance();
+    const data = global.getSession();
+    if (!data) {
+      throw new Error('Session does not exists');
+    }
+    return data;
+  }
+
+  public static setSession(session?: SessionData) {
+    const global = Session.getInstance();
+    global.setSession(session);
   }
 }
 

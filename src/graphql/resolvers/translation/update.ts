@@ -34,8 +34,7 @@ export default class TranslationUpdateResolver {
       throw new MessageError(__('The item %s does not exists', `${id}`));
     }
 
-    const userRoles = Auth.data()?.user.roles ?? [];
-    if (translation.isBlocked && !isSuperAdmin(userRoles)) {
+    if (translation.isBlocked && !isSuperAdmin(Auth.session().user.roles)) {
       await (new TextsUpdateEmpty(translation.id)).save(texts);
       return {
         data: translation,

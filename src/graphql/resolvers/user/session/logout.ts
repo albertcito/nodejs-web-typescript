@@ -9,12 +9,10 @@ class LogoutResolver {
   @UseMiddleware(isAuth)
   @Mutation(() => String, { description: 'Logout from current session' })
   async logout(): Promise<String> {
-    const auth = Auth.data();
-    if (auth) {
-      auth.auth.revoked = true;
-      await auth.auth.save();
-      Auth.setData();
-    }
+    const auth = Auth.session();
+    auth.auth.revoked = true;
+    await auth.auth.save();
+    Auth.setSession();
     return __('Your session was suscefully closed');
   }
 }
