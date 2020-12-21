@@ -3,7 +3,7 @@
 import User from '../../db/entities/User';
 import OauthAccessToken from '../../db/entities/OauthAccessToken';
 
-export interface GlobalData {
+export interface SessionData {
   user: User;
   auth: OauthAccessToken;
 }
@@ -16,27 +16,27 @@ export interface GlobalData {
  *
  * To read: https://www.yegor256.com/2016/06/27/singletons-must-die.html
  */
-class Global {
-  private static instance: Global;
+class Session {
+  private static instance: Session;
 
-  private data?: GlobalData;
+  private session?: SessionData;
 
   private constructor() {}
 
-  static getInstance(): Global {
-    if (!Global.instance) {
-      Global.instance = new Global();
+  static getInstance(): Session {
+    if (!Session.instance) {
+      Session.instance = new Session();
     }
-    return Global.instance;
+    return Session.instance;
   }
 
-  public setData(data?: GlobalData): void {
-    this.data = data;
+  public setSession(session?: SessionData): void {
+    this.session = session;
   }
 
-  public getData(): GlobalData | undefined {
-    return this.data;
+  public getSession(): SessionData | undefined {
+    return this.session;
   }
 }
 
-export default Global;
+export default Session;

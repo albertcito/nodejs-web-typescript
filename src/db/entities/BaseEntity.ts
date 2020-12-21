@@ -30,7 +30,7 @@ class BaseDataEntity extends BaseEntity {
     @BeforeUpdate()
     protected updateRowAt() {
       this.updatedAt = new Date();
-      const data = Auth.data();
+      const data = Auth.sessionOrEmpty();
       this.updatedBy = data ? data.user.id : undefined;
     }
 
@@ -40,7 +40,7 @@ class BaseDataEntity extends BaseEntity {
     @BeforeInsert()
     protected insertRowAt() {
       this.createdAt = new Date();
-      const data = Auth.data();
+      const data = Auth.sessionOrEmpty();
       if (data) {
         this.createdBy = data.user.id;
       }

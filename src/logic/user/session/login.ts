@@ -36,7 +36,7 @@ class Login {
 
     const auth = await userOauthCreate(user.id);
 
-    Auth.setData({
+    Auth.setSession({
       user,
       auth,
     });

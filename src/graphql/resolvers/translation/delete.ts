@@ -22,8 +22,7 @@ class TranslationDeleteResolver {
       throw new MessageError(__('The item %s does not exists', `${id}`));
     }
 
-    const userRoles = Auth.data()?.user.roles ?? [];
-    if (translation.isBlocked && !isSuperAdmin(userRoles)) {
+    if (translation.isBlocked && !isSuperAdmin(Auth.session().user.roles)) {
       throw new MessageError(__('The item %s is blocked, only a super admin can modify it', `${id}`));
     }
 

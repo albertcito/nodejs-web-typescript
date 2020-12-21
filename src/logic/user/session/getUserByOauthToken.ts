@@ -41,7 +41,7 @@ const getUserByOauthToken = async (req: Request, roles: rolesEnum[] = []) => {
     throw new HttpStatusError('You do not have right to use this area', 403);
   }
 
-  Auth.setData({
+  Auth.setSession({
     user,
     auth,
   });

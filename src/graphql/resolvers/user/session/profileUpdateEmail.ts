@@ -8,7 +8,6 @@ import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
 import Auth from '../../../../util/session/Auth';
 import isAuth from '../../../../util/graphql/isAuth';
-import MessageError from '../../../../util/exceptions/MessageError';
 import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
 import User from '../../../../db/entities/User';
 
@@ -23,10 +22,7 @@ export default class ProfileUpdateEmailResolver {
     @Arg('email', () => String) email: string,
     @Arg('password', () => String) password: string,
   ): Promise<ProfileUpdateEmailResponse> {
-    const user = Auth.data()?.user;
-    if (!user) {
-      throw new MessageError(__('The item %s does not exists', ''));
-    }
+    const { user } = Auth.session();
     await (new UserUpdateEmail(user)).update(email, password);
     return {
       data: user,

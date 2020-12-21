@@ -9,7 +9,6 @@ import MessageType from '../../../type/MessageType.enum';
 import UserBasicUpdate from '../../../../logic/user/session/UserBasicUpdate';
 import isAuth from '../../../../util/graphql/isAuth';
 import Auth from '../../../../util/session/Auth';
-import MessageError from '../../../../util/exceptions/MessageError';
 import User from '../../../../db/entities/User';
 
 @ObjectType()
@@ -23,10 +22,7 @@ export default class ProfileBasicUpdateResolver {
     @Arg('firstName', () => String) firstName: string,
     @Arg('lastName', () => String) lastName: string,
   ): Promise<ProfileBasicUpdateResponse> {
-    const user = Auth.data()?.user;
-    if (!user) {
-      throw new MessageError(__('The item %s does not exists', ''));
-    }
+    const { user } = Auth.session();
     await (new UserBasicUpdate(user)).update(firstName, lastName);
     return {
       data: user,

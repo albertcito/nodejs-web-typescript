@@ -8,10 +8,12 @@ import User from '../../../../db/entities/User';
 import MessageError from '../../../../util/exceptions/MessageError';
 import UserRolesUpdate from '../../../../logic/user/role/UserRolesUpdate';
 import roles from '../../../../logic/role/role.enum';
+import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class UserRoleUpdateResolver {
   @Mutation(() => MessageField)
+  @isAuthRolesGraphQL([roles.superAdmin])
   async userRolesUpdate(
     @Arg('rolesID', () => [String]) rolesID: roles[],
     @Arg('userID', () => Int) userID: number,
