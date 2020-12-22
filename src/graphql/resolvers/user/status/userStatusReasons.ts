@@ -1,9 +1,8 @@
 // eslint-disable-next-line max-classes-per-file
 import {
-  Resolver, Mutation, Arg, Int, ObjectType,
+  Resolver, Query, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import MessageField from '../../../type/MessageField';
 import roles from '../../../../logic/role/role.enum';
 import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
 import UserStatusReasonPagination from '../../../../logic/user/status/UserStatusReasonPagination';
@@ -15,7 +14,7 @@ class UserStatusReasonPaginationResponse extends PaginationResponse(UserStatusRe
 
 @Resolver()
 export default class UserStatusUpdateResolver {
-  @Mutation(() => MessageField)
+  @Query(() => UserStatusReasonPaginationResponse)
   @isAuthRolesGraphQL([roles.superAdmin])
   async userStatusReasons(
     @Arg('userID', () => Int) userID: number,
