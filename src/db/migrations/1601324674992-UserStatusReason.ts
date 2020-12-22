@@ -12,6 +12,13 @@ export default class UserStatusReason1601324674992 implements MigrationInterface
         name: this.tableName,
         columns: [
           {
+            name: 'id',
+            type: 'integer',
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: 'increment',
+          },
+          {
             name: 'user_id',
             type: 'integer',
           },
@@ -42,8 +49,6 @@ export default class UserStatusReason1601324674992 implements MigrationInterface
         referencedTableName: 'user',
         onDelete: 'RESTRICT',
       }));
-
-      await queryRunner.createPrimaryKey(this.tableName, ['user_id', 'user_status_id']);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
