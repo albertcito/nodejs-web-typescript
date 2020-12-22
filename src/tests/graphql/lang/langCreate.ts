@@ -2,7 +2,7 @@ import request from 'supertest';
 import { Express } from 'express';
 
 import assertJsonStructureGraphQL from '../../config/assertJsonStructureGraphQL';
-import Lang from '../../../db/entities/Lang';
+import Lang from 'src/db/entities/Lang';
 
 const langCreateTest = (app: Express, token: string, done: jest.DoneCallback) => {
   const id = 'langCreate';

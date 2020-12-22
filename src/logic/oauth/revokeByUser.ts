@@ -1,5 +1,5 @@
-import OauthAccessToken from '../../db/entities/OauthAccessToken';
-import User from '../../db/entities/User';
+import OauthAccessToken from 'src/db/entities/OauthAccessToken';
+import User from 'src/db/entities/User';
 
 export default class RevokeByUser {
   private readonly user: User;

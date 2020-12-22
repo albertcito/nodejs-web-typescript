@@ -4,7 +4,7 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../type/PaginationResponse';
-import Translation from '../../../db/entities/Translation';
+import Translation from 'src/db/entities/Translation';
 import TranslationsPagination from '../../../logic/translation/TranslationPagination';
 
 @ObjectType()

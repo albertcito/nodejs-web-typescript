@@ -1,8 +1,8 @@
 import { ApolloServerPlugin, GraphQLRequestContextWillSendResponse } from 'apollo-server-plugin-base';
 import { HttpQueryError } from 'apollo-server-core';
 
-import HttpStatusError from '../../../util/exceptions/HttpStatusError';
-import isValidException from '../../../util/exceptions/isValidException';
+import HttpStatusError from 'src/util/exceptions/HttpStatusError';
+import isValidException from 'src/util/exceptions/isValidException';
 import { ApolloServerContext } from '../ApolloServerContext';
 import notify from '../../bugsnag/notify';
 

@@ -1,6 +1,6 @@
 import argon2 from 'argon2';
 
-import OauthAccessToken from '../../db/entities/OauthAccessToken';
+import OauthAccessToken from 'src/db/entities/OauthAccessToken';
 
 const userOauthCreate = async (userID: number): Promise<OauthAccessToken> => {
   const signature = 'MySuP3R_z3kr3t';

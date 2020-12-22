@@ -1,6 +1,6 @@
 import { validate, arg } from 'validatorjs-decorator';
 
-import User from '../../../db/entities/User';
+import User from 'src/db/entities/User';
 
 class UserBasicUpdate {
     private readonly user: User;

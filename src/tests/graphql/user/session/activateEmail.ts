@@ -1,5 +1,5 @@
 import GenericTestData from '../../../config/GenericTestData';
-import getFakerUser from 'src/db//factories/user.factory';
+import getFakerUser from 'src/db/factories/user.factory';
 import UserToken from '../../../../logic/user/session/UserToken';
 import UserTokenEnum from '../../../../logic/user/session/UserTokenEnum';
 

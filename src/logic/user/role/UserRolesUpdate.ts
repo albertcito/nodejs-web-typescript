@@ -4,8 +4,8 @@ import {
 } from 'typeorm';
 
 import roles from '../../role/role.enum';
-import User from '../../../db/entities/User';
-import UserRole from '../../../db/entities/UserRole';
+import User from 'src/db/entities/User';
+import UserRole from 'src/db/entities/UserRole';
 import MessageType from '../../../graphql/type/MessageType.enum';
 import MessageField from '../../../graphql/type/MessageField';
 

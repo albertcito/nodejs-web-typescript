@@ -3,9 +3,9 @@ import {
   Resolver, Query, Arg,
 } from 'type-graphql';
 
-import Role from '../../../db/entities/Role';
-import MessageError from '../../../util/exceptions/MessageError';
-import Validate from '../../../util/validatorjs/validateGraphQL';
+import Role from 'src/db/entities/Role';
+import MessageError from 'src/util/exceptions/MessageError';
+import Validate from 'src/util/validatorjs/validateGraphQL';
 import roles from '../../../logic/role/role.enum';
 
 @Resolver()

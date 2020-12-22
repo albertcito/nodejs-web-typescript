@@ -4,8 +4,8 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../type/PaginationResponse';
-import Lang from '../../../db/entities/Lang';
-import Paginate from '../../../util/db/paginate';
+import Lang from 'src/db/entities/Lang';
+import Paginate from 'src/util/db/paginate';
 
 @ObjectType()
 class LangPaginationResponse extends PaginationResponse(Lang) {}

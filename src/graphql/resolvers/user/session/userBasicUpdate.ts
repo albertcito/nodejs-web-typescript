@@ -7,10 +7,10 @@ import { __ } from 'i18n';
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
 import UserBasicUpdate from '../../../../logic/user/session/UserBasicUpdate';
-import MessageError from '../../../../util/exceptions/MessageError';
-import User from 'src/db//entities/User';
+import MessageError from 'src/util/exceptions/MessageError';
+import User from 'src/db/entities/User';
 import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class UserBasicUpdateResponse extends MessageResponse(User) {}

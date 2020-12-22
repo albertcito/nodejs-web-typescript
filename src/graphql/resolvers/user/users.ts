@@ -4,8 +4,8 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../type/PaginationResponse';
-import isAuth from '../../../util/graphql/isAuth';
-import User from '../../../db/entities/User';
+import isAuth from 'src/util/graphql/isAuth';
+import User from 'src/db/entities/User';
 import UsersPagination from '../../../logic/user/UsersPagination';
 
 @ObjectType()

@@ -3,10 +3,10 @@ import { validateClass, arg } from 'validatorjs-decorator';
 import { __ } from 'i18n';
 
 import userOauthCreate from '../../oauth/userOauthCreate';
-import User from '../../../db/entities/User';
-import MessageError from '../../../util/exceptions/MessageError';
+import User from 'src/db/entities/User';
+import MessageError from 'src/util/exceptions/MessageError';
 import LoginResponse from '../../../graphql/type/LoginResponse';
-import Auth from '../../../util/session/Auth';
+import Auth from 'src/util/session/Auth';
 
 @validateClass()
 class Login {

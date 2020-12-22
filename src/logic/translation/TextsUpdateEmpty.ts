@@ -1,4 +1,4 @@
-import Text from '../../db/entities/Text';
+import Text from 'src/db/entities/Text';
 import TextInputCreate from '../../graphql/input/TextInputCreate';
 
 export default class TextsUpdateEmpty {

@@ -7,8 +7,8 @@ import { __ } from 'i18n';
 import MessageResponse from '../../type/MessageResponse';
 import MessageType from '../../type/MessageType.enum';
 import TextInputCreate from '../../input/TextInputCreate';
-import Translation from '../../../db/entities/Translation';
-import isAuth from '../../../util/graphql/isAuth';
+import Translation from 'src/db/entities/Translation';
+import isAuth from 'src/util/graphql/isAuth';
 import TranslationCreate from '../../../logic/translation/TranslationCreate';
 
 @ObjectType()

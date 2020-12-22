@@ -5,11 +5,11 @@ import {
 
 import MessageField from '../../type/MessageField';
 import MessageType from '../../type/MessageType.enum';
-import Translation from '../../../db/entities/Translation';
-import MessageError from '../../../util/exceptions/MessageError';
+import Translation from 'src/db/entities/Translation';
+import MessageError from 'src/util/exceptions/MessageError';
 import roles from '../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
-import Auth from '../../../util/session/Auth';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
+import Auth from 'src/util/session/Auth';
 import { isSuperAdmin } from '../../../logic/userRole/verifyRolesUser';
 
 @Resolver()

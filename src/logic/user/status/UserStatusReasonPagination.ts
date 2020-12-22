@@ -1,8 +1,8 @@
 import { SelectQueryBuilder } from 'typeorm';
 
-import { PaginateArgs, OrderByArgs } from '../../../util/db/interfaces';
-import UserStatuReason from '../../../db/entities/UserStatusReason';
-import Paginate from '../../../util/db/paginate';
+import { PaginateArgs, OrderByArgs } from 'src/util/db/interfaces';
+import UserStatuReason from 'src/db/entities/UserStatusReason';
+import Paginate from 'src/util/db/paginate';
 
 interface UserStatusReasonPaginationGetAll extends PaginateArgs, OrderByArgs {
   userID: number;

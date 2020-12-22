@@ -4,9 +4,9 @@ import {
 } from 'type-graphql';
 
 import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 import UserStatusReasonPagination from '../../../../logic/user/status/UserStatusReasonPagination';
-import UserStatusReason from 'src/db//entities/UserStatusReason';
+import UserStatusReason from 'src/db/entities/UserStatusReason';
 import PaginationResponse from '../../../type/PaginationResponse';
 
 @ObjectType()

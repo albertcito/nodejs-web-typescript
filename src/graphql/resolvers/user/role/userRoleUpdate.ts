@@ -4,11 +4,11 @@ import {
 } from 'type-graphql';
 
 import MessageField from '../../../type/MessageField';
-import User from 'src/db//entities/User';
-import MessageError from '../../../../util/exceptions/MessageError';
+import User from 'src/db/entities/User';
+import MessageError from 'src/util/exceptions/MessageError';
 import UserRolesUpdate from '../../../../logic/user/role/UserRolesUpdate';
 import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class UserRoleUpdateResolver {

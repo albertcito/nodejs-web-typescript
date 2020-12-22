@@ -1,5 +1,5 @@
 import GenericTestData from '../../../config/GenericTestData';
-import dbUsers from 'src/db//util/dbUser';
+import dbUsers from 'src/db/util/dbUser';
 import ForgotPassword from '../../../../logic/user/session/ForgotPassword';
 
 export default class ResetPasswordTest implements GenericTestData {

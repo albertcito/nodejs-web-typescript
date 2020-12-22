@@ -6,10 +6,10 @@ import {
 
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
-import Auth from '../../../../util/session/Auth';
-import isAuth from '../../../../util/graphql/isAuth';
+import Auth from 'src/util/session/Auth';
+import isAuth from 'src/util/graphql/isAuth';
 import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
-import User from 'src/db//entities/User';
+import User from 'src/db/entities/User';
 
 @ObjectType()
 class ProfileUpdatePasswordResponse extends MessageResponse(User) {}
