@@ -64,7 +64,7 @@ afterAll(async () => {
   await db.close();
 });
 
-describe('GET /graphql/public', () => {
+describe('GET /graphql', () => {
   it('m: langCreate', (done) => langCreateTest(app, superAdminToken, done));
   it('m: langUpdate', async (done) => genericTest.test(done, new LangUpdateTest(), superAdminToken));
   it('m: langDelete', async (done) => genericTest.test(done, new LangDeleteTest(), superAdminToken));
