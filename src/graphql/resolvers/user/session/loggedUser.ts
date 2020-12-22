@@ -4,7 +4,7 @@ import {
 
 import Auth from '../../../../util/session/Auth';
 import isAuth from '../../../../util/graphql/isAuth';
-import User from '../../../../db/entities/User';
+import User from 'src/db//entities/User';
 
 @Resolver()
 export default class LoggedUserResolver {

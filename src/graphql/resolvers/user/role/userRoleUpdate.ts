@@ -4,7 +4,7 @@ import {
 } from 'type-graphql';
 
 import MessageField from '../../../type/MessageField';
-import User from '../../../../db/entities/User';
+import User from 'src/db//entities/User';
 import MessageError from '../../../../util/exceptions/MessageError';
 import UserRolesUpdate from '../../../../logic/user/role/UserRolesUpdate';
 import roles from '../../../../logic/role/role.enum';

@@ -3,10 +3,10 @@ import { Express } from 'express';
 
 import assertJsonStructureGraphQL from '../../../config/assertJsonStructureGraphQL';
 import userStatus from '../../../../logic/userStatus/userStatus.enum';
-import getFakerUser from '../../../../db/factories/user.factory';
+import getFakerUser from 'src/db//factories/user.factory';
 import Login from '../../../../logic/user/session/login';
-import OauthAccessToken from '../../../../db/entities/OauthAccessToken';
-import User from '../../../../db/entities/User';
+import OauthAccessToken from 'src/db//entities/OauthAccessToken';
+import User from 'src/db//entities/User';
 
 export default class UserStatusUpdateOauthTest {
   private readonly url: string;

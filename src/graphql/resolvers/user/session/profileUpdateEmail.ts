@@ -9,7 +9,7 @@ import MessageType from '../../../type/MessageType.enum';
 import Auth from '../../../../util/session/Auth';
 import isAuth from '../../../../util/graphql/isAuth';
 import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
-import User from '../../../../db/entities/User';
+import User from 'src/db//entities/User';
 
 @ObjectType()
 class ProfileUpdateEmailResponse extends MessageResponse(User) {}

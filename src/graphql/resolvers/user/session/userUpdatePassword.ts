@@ -7,7 +7,7 @@ import { __ } from 'i18n';
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
 import MessageError from '../../../../util/exceptions/MessageError';
-import User from '../../../../db/entities/User';
+import User from 'src/db//entities/User';
 import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
 import roles from '../../../../logic/role/role.enum';
 import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';

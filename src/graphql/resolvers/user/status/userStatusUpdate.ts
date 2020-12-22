@@ -3,7 +3,7 @@ import {
   Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
-import User from '../../../../db/entities/User';
+import User from 'src/db//entities/User';
 import MessageError from '../../../../util/exceptions/MessageError';
 import MessageField from '../../../type/MessageField';
 import UserStatusUpdate from '../../../../logic/user/status/UserStatusUpdate';
