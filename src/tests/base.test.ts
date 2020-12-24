@@ -31,6 +31,7 @@ import RoleUpdateTest from './graphql/roles/roleUpdate';
 import RoleUpdateRejectTest from './graphql/roles/roleUpdateReject';
 import UserRolesUpdateTest from './graphql/user/roles/userRolesUpdate';
 import UserStatusReasonsTest from './graphql/user/status/userStatusReasons';
+import UserStatusesTest from './graphql/user/status/userStatuses';
 import TranslationsTest from './graphql/translation/translations';
 import TranslationTest from './graphql/translation/translation';
 import TranslationCreateTest from './graphql/translation/translationCreate';
@@ -95,6 +96,7 @@ describe('GET /graphql', () => {
     (done) => (new UserStatusUpdateOauthTest(genericTest.url, app)).test(done, superAdminToken),
   );
   it('m: userStatusReasons', (done) => genericTest.test(done, new UserStatusReasonsTest(), superAdminToken));
+  it('m: UserStatuses', (done) => genericTest.test(done, new UserStatusesTest(), superAdminToken));
   it('q: translations', (done) => genericTest.test(done, new TranslationsTest(), adminToken));
   it('q: translation', (done) => genericTest.test(done, new TranslationTest(), adminToken));
   it('m: translationCreate', (done) => genericTest.test(done, new TranslationCreateTest(), adminToken));

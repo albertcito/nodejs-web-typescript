@@ -63,8 +63,10 @@ export default class UserStatus1601324674982 implements MigrationInterface {
     private async addDefaultValues(queryRunner: QueryRunner) {
       const activeTranslation = await saveTranslation(queryRunner, 'Active', 'Activo', 'active');
       await this.saveUserStatus(queryRunner, activeTranslation.id, userStatus.active);
-      const inactiveTranslation = await saveTranslation(queryRunner, 'Inactive', 'Inactivo', 'inactive');
-      await this.saveUserStatus(queryRunner, inactiveTranslation.id, userStatus.inactive);
+      const disabledTranslation = await saveTranslation(queryRunner, 'Disabled', 'desactivado', 'disabled');
+      await this.saveUserStatus(queryRunner, disabledTranslation.id, userStatus.disabled);
+      const lockedTranslation = await saveTranslation(queryRunner, 'Locked', 'Bloqueado', 'locked');
+      await this.saveUserStatus(queryRunner, lockedTranslation.id, userStatus.locked);
     }
 
     private async saveUserStatus(
