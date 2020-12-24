@@ -19,7 +19,7 @@ export default class TranslationsResolver {
     @Arg('orderBy', () => String, { defaultValue: 'id', nullable: true }) orderBy: string,
     @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
     @Arg('search', () => String, { description: 'Search by text or ID', nullable: true }) search: string,
-    @Arg('langID', () => String, { nullable: true }) langID: string,
+    @Arg('langID', () => String, { defaultValue: 'EN', nullable: true }) langID: string,
   ): Promise<TranslationPaginationResponse> {
     return (new TranslationsPagination()).getAll({
       page,

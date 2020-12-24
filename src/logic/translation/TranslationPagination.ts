@@ -27,20 +27,26 @@ export default class TranslationsPagination {
       langID,
     } = parameters;
 
-    if (search && isNumber(search)) {
-      this.findByID(search);
-    } else if (search || langID) {
+    if (langID || search) {
       this.query.innerJoin(
         'vtext',
         'vtext',
         'translation.id = vtext.translation_id',
       );
-      if (search) {
-        this.findByString(search);
-      }
+    }
 
-      if (langID) {
-        this.query.where('vtext.lang_id = :langID', { langID });
+    if (langID) {
+      this.query.where('vtext.lang_id = :langID', { langID });
+    }
+
+    if (search) {
+      if (isNumber(search)) {
+        this.query.andWhere('translation.id = :id', { search });
+      } else {
+        this.query.andWhere(
+          'unaccent(vtext.text) ilike unaccent(:search)',
+          { search: `%${search}%` },
+        );
       }
     }
 
@@ -48,16 +54,5 @@ export default class TranslationsPagination {
       this.query.orderBy(`"translation"."${orderBy}"`, order);
     }
     return (new Paginate(this.query)).get(page, limit);
-  }
-
-  private findByID(id: string) {
-    this.query.where('translation.id = :id', { id });
-  }
-
-  private findByString(search:string) {
-    this.query.where(
-      'unaccent(vtext.text) ilike unaccent(:search)',
-      { search: `%${search}%` },
-    );
   }
 }
