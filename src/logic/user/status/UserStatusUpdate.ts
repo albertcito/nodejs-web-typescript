@@ -35,7 +35,7 @@ export default class UserStatusUpdate {
       userReason.reason = reason;
       await userReason.save();
 
-      if (userStatusID === userStatus.inactive) {
+      if (userStatusID !== userStatus.active) {
         await (new RevokeByUser(this.user)).revoke();
       }
 

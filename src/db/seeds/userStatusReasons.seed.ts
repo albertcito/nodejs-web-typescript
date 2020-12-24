@@ -17,7 +17,7 @@ const createUserStatusReasons = async (userID: number, userStatusID: userStatusE
 const createManyReasons = async (userID: number, many = 20) => {
   const promises = [];
   for (let index = 0; index < many; index += 1) {
-    const status = (many % 2) ? userStatusEnum.active : userStatusEnum.inactive;
+    const status = (many % 2) ? userStatusEnum.active : userStatusEnum.disabled;
     promises.push(createUserStatusReasons(userID, status));
   }
   await Promise.all(promises);

@@ -2,7 +2,8 @@ import { registerEnumType } from 'type-graphql';
 
 enum userStatusEnum {
   active='active',
-  inactive='inactive',
+  disabled='disabled',
+  locked='locked',
 }
 
 registerEnumType(userStatusEnum, {

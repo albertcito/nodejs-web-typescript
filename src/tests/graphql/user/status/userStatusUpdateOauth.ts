@@ -28,7 +28,7 @@ export default class UserStatusUpdateOauthTest {
       }`,
       variables: {
         userID: user.id,
-        userStatusID: userStatus.inactive,
+        userStatusID: userStatus.locked,
         reason: 'test environment: updating user inactive user and verify revoke token',
       },
     };
