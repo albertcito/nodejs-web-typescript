@@ -2,11 +2,10 @@ import {
   Field, ObjectType, Int, Float,
 } from 'type-graphql';
 import {
-  CreateDateColumn, BeforeInsert, BeforeUpdate, BaseEntity, getManager,
+  CreateDateColumn, BeforeInsert, BeforeUpdate, BaseEntity,
 } from 'typeorm';
 
 import Auth from '../../util/session/Auth';
-import User from './User';
 
 @ObjectType()
 class BaseDataEntity extends BaseEntity {
@@ -21,22 +20,6 @@ class BaseDataEntity extends BaseEntity {
     @Field(() => Int, { nullable: true })
     @CreateDateColumn({ name: 'created_by', nullable: true })
     createdBy?: number;
-
-    @Field(() => User, { nullable: true })
-    createdByUser() {
-      if (this.createdBy) {
-        return getManager().findOne(User, this.createdBy);
-      }
-      return null;
-    }
-
-    @Field(() => User, { nullable: true })
-    updatedByUser() {
-      if (this.updatedBy) {
-        return getManager().findOne(User, this.updatedBy);
-      }
-      return null;
-    }
 
     @Field(() => Int, { nullable: true })
     @CreateDateColumn({ name: 'updated_by', nullable: true })
