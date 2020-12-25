@@ -4,12 +4,12 @@ import {
   Resolver, Mutation, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import MessageResponse from '../../../type/MessageResponse';
-import MessageType from '../../../type/MessageType.enum';
+import MessageResponse from 'src/graphql/type/MessageResponse';
+import MessageType from 'src/graphql/type/MessageType.enum';
 import MessageError from 'src/util/exceptions/MessageError';
 import User from 'src/db/entities/User';
-import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
-import roles from '../../../../logic/role/role.enum';
+import UserUpdateEmail from 'src/logic/user/session/UserUpdateEmail';
+import roles from 'src/logic/role/role.enum';
 import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()

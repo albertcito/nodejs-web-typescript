@@ -4,8 +4,8 @@ import {
   Resolver, Mutation, Arg, UseMiddleware, ObjectType,
 } from 'type-graphql';
 
-import MessageResponse from '../../type/MessageResponse';
-import MessageType from '../../type/MessageType.enum';
+import MessageResponse from 'src/graphql/type/MessageResponse';
+import MessageType from 'src/graphql/type/MessageType.enum';
 import Lang from 'src/db/entities/Lang';
 import MessageError from 'src/util/exceptions/MessageError';
 import isAuth from 'src/util/graphql/isAuth';

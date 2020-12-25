@@ -5,7 +5,7 @@ import { __ } from 'i18n';
 import userOauthCreate from '../../oauth/userOauthCreate';
 import User from 'src/db/entities/User';
 import MessageError from 'src/util/exceptions/MessageError';
-import LoginResponse from '../../../graphql/type/LoginResponse';
+import LoginResponse from 'src/graphql/type/LoginResponse';
 import Auth from 'src/util/session/Auth';
 
 @validateClass()

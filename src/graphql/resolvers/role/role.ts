@@ -6,7 +6,7 @@ import {
 import Role from 'src/db/entities/Role';
 import MessageError from 'src/util/exceptions/MessageError';
 import Validate from 'src/util/validatorjs/validateGraphQL';
-import roles from '../../../logic/role/role.enum';
+import roles from 'src/logic/role/role.enum';
 
 @Resolver()
 export default class RoleResolver {

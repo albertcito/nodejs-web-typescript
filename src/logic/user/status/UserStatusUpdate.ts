@@ -4,8 +4,8 @@ import { getConnection } from 'typeorm';
 import userStatus from '../../userStatus/userStatus.enum';
 import RevokeByUser from '../../oauth/revokeByUser';
 import User from 'src/db/entities/User';
-import MessageType from '../../../graphql/type/MessageType.enum';
-import MessageField from '../../../graphql/type/MessageField';
+import MessageType from 'src/graphql/type/MessageType.enum';
+import MessageField from 'src/graphql/type/MessageField';
 import UserStatusReason from 'src/db/entities/UserStatusReason';
 import MessageError from 'src/util/exceptions/MessageError';
 

@@ -8,7 +8,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
 import ErrorHandlePlugin from './errorHandlePlugin';
-import { cors } from '../../../config';
+import { cors } from 'src/config';
 
 export const path = '/graphql';
 const server = async (app: Express, db: Connection) => {

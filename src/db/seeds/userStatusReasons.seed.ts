@@ -2,7 +2,7 @@ import * as faker from 'faker';
 import { Factory, Seeder } from 'typeorm-seeding';
 
 import User from '../entities/User';
-import userStatusEnum from '../../logic/userStatus/userStatus.enum';
+import userStatusEnum from 'src/logic/userStatus/userStatus.enum';
 import UserStatusReason from '../entities/UserStatusReason';
 
 const createUserStatusReasons = async (userID: number, userStatusID: userStatusEnum) => {

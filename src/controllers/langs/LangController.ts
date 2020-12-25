@@ -6,7 +6,7 @@ import {
 import Lang from 'src/db/entities/Lang';
 import Paginate from 'src/util/db/paginate';
 import MessageError from 'src/util/exceptions/MessageError';
-import roles from '../../logic/role/role.enum';
+import roles from 'src/logic/role/role.enum';
 
 @Controller()
 export default class LangController {

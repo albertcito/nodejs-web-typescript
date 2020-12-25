@@ -3,14 +3,14 @@ import {
   Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
-import MessageField from '../../type/MessageField';
-import MessageType from '../../type/MessageType.enum';
+import MessageField from 'src/graphql/type/MessageField';
+import MessageType from 'src/graphql/type/MessageType.enum';
 import Translation from 'src/db/entities/Translation';
 import MessageError from 'src/util/exceptions/MessageError';
-import roles from '../../../logic/role/role.enum';
+import roles from 'src/logic/role/role.enum';
 import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 import Auth from 'src/util/session/Auth';
-import { isSuperAdmin } from '../../../logic/userRole/verifyRolesUser';
+import { isSuperAdmin } from 'src/logic/userRole/verifyRolesUser';
 
 @Resolver()
 class TranslationDeleteResolver {

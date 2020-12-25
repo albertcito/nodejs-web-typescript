@@ -4,11 +4,11 @@ import {
   Resolver, Mutation, UseMiddleware, Arg, ObjectType,
 } from 'type-graphql';
 
-import MessageResponse from '../../../type/MessageResponse';
-import MessageType from '../../../type/MessageType.enum';
+import MessageResponse from 'src/graphql/type/MessageResponse';
+import MessageType from 'src/graphql/type/MessageType.enum';
 import Auth from 'src/util/session/Auth';
 import isAuth from 'src/util/graphql/isAuth';
-import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
+import UserUpdatePassword from 'src/logic/user/session/UserUpdatePassword';
 import User from 'src/db/entities/User';
 
 @ObjectType()

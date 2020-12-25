@@ -6,8 +6,8 @@ import {
 import roles from '../../role/role.enum';
 import User from 'src/db/entities/User';
 import UserRole from 'src/db/entities/UserRole';
-import MessageType from '../../../graphql/type/MessageType.enum';
-import MessageField from '../../../graphql/type/MessageField';
+import MessageType from 'src/graphql/type/MessageType.enum';
+import MessageField from 'src/graphql/type/MessageField';
 
 export default class UserRolesUpdate {
   private readonly user: User

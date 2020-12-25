@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class SignUpTest implements GenericTestData {
   resolver() {

@@ -3,7 +3,7 @@ import {
 } from 'typeorm';
 
 import columns from './BaseTableColumns/columns';
-import roles from '../../logic/role/role.enum';
+import roles from 'src/logic/role/role.enum';
 import UserRole from '../entities/UserRole';
 
 export default class UserRole1601324675000 implements MigrationInterface {

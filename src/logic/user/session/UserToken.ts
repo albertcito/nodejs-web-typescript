@@ -1,6 +1,6 @@
 import UserTokenEnum from './UserTokenEnum';
 import UserTokenEntity from 'src/db/entities/UserToken';
-import { frontend } from '../../../config';
+import { frontend } from 'src/config';
 
 class UserToken {
   private readonly userID: number;

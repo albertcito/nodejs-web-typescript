@@ -5,8 +5,8 @@ import {
 } from 'type-graphql';
 import { getManager } from 'typeorm';
 
-import MessageResponse from '../../type/MessageResponse';
-import MessageType from '../../type/MessageType.enum';
+import MessageResponse from 'src/graphql/type/MessageResponse';
+import MessageType from 'src/graphql/type/MessageType.enum';
 import Lang from 'src/db/entities/Lang';
 import isAuth from 'src/util/graphql/isAuth';
 import Validate from 'src/util/validatorjs/validateGraphQL';

@@ -1,10 +1,10 @@
 import request from 'supertest';
 import { Express } from 'express';
 
-import assertJsonStructureGraphQL from '../../../config/assertJsonStructureGraphQL';
-import userStatus from '../../../../logic/userStatus/userStatus.enum';
+import assertJsonStructureGraphQL from 'src/tests/config/assertJsonStructureGraphQL';
+import userStatus from 'src/logic/userStatus/userStatus.enum';
 import getFakerUser from 'src/db/factories/user.factory';
-import Login from '../../../../logic/user/session/login';
+import Login from 'src/logic/user/session/login';
 import OauthAccessToken from 'src/db/entities/OauthAccessToken';
 import User from 'src/db/entities/User';
 
