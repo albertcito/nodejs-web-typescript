@@ -1,4 +1,6 @@
-import { Field, ObjectType, Int } from 'type-graphql';
+import {
+  Field, ObjectType, Int, Float,
+} from 'type-graphql';
 import {
   CreateDateColumn, BeforeInsert, BeforeUpdate, BaseEntity, getManager,
 } from 'typeorm';
@@ -8,11 +10,11 @@ import User from './User';
 
 @ObjectType()
 class BaseDataEntity extends BaseEntity {
-    @Field(() => String)
+    @Field(() => Float)
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 
-    @Field(() => String)
+    @Field(() => Float)
     @CreateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 
