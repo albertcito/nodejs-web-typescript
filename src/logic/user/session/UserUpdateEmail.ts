@@ -4,6 +4,7 @@ import { __ } from 'i18n';
 
 import User from '../../../db/entities/User';
 import MessageError from '../../../util/exceptions/MessageError';
+import EmailUpdate from '../../../db/entities/EmailUpdate';
 
 export default class UserUpdateEmail {
   private readonly user: User;
@@ -20,6 +21,13 @@ export default class UserUpdateEmail {
         throw new MessageError(__('passwordNotRight'));
       }
     }
+
+    const emailUpdate = new EmailUpdate();
+    emailUpdate.userID = this.user.id;
+    emailUpdate.emailOld = this.user.email;
+    emailUpdate.emailNew = email;
+    await emailUpdate.save();
+
     this.user.email = email;
     return this.user.save();
   }
