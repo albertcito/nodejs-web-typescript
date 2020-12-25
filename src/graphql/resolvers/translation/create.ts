@@ -6,10 +6,10 @@ import { __ } from 'i18n';
 
 import MessageResponse from 'src/graphql/type/MessageResponse';
 import MessageType from 'src/graphql/type/MessageType.enum';
-import TextInputCreate from '../../input/TextInputCreate';
 import Translation from 'src/db/entities/Translation';
 import isAuth from 'src/util/graphql/isAuth';
 import TranslationCreate from 'src/logic/translation/TranslationCreate';
+import TextInputCreate from 'src/graphql/input/TextInputCreate';
 
 @ObjectType()
 class TranslationCreateResponse extends MessageResponse(Translation) {}

@@ -2,9 +2,9 @@ import {
   MigrationInterface, QueryRunner, Table, TableForeignKey,
 } from 'typeorm';
 
+import roles from 'src/logic/role/role.enum';
 import columns from './BaseTableColumns/columns';
 import Role from '../entities/Role';
-import roles from 'src/logic/role/role.enum';
 import saveTranslation from '../util/saveTranslation';
 
 export default class Role1601324674992 implements MigrationInterface {

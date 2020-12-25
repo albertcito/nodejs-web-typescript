@@ -5,10 +5,10 @@ import { join } from 'path';
 import { BuildSchemaOptions, buildSchema } from 'type-graphql';
 import { ApolloServer } from 'apollo-server-express';
 
+import { cors } from 'src/config';
 import { ApolloServerContext } from '../ApolloServerContext';
 import formatError from '../formatError';
 import ErrorHandlePlugin from './errorHandlePlugin';
-import { cors } from 'src/config';
 
 export const path = '/graphql';
 const server = async (app: Express, db: Connection) => {

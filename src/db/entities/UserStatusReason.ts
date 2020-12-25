@@ -1,8 +1,8 @@
 import { Field, ObjectType, Int } from 'type-graphql';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-import BaseEntity from './BaseEntity';
 import userStatus from 'src/logic/userStatus/userStatus.enum';
+import BaseEntity from './BaseEntity';
 
 @ObjectType()
 @Entity({ name: 'user_status_reason' })

@@ -5,9 +5,9 @@ import {
   Entity, PrimaryColumn, Column, getManager,
 } from 'typeorm';
 
+import userStatus from 'src/logic/userStatus/userStatus.enum';
 import BaseEntity from './BaseEntity';
 import VText from './VText';
-import userStatus from 'src/logic/userStatus/userStatus.enum';
 
 @ObjectType()
 @Entity({ name: 'user_status' })

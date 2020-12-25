@@ -1,8 +1,8 @@
 import { __ } from 'i18n';
 
-import UserTokenEnum from './UserTokenEnum';
 import UserToken from 'src/db/entities/UserToken';
 import MessageError from 'src/util/exceptions/MessageError';
+import UserTokenEnum from './UserTokenEnum';
 
 class VerifyUserToken {
   private readonly token: string;

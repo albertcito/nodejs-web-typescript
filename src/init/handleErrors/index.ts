@@ -1,9 +1,9 @@
 import { NextFunction, Response, Request } from 'express';
 import { __ } from 'i18n';
 
+import isValidException from 'src/util/exceptions/isValidException';
 import notify from '../bugsnag/notify';
 import { config } from '../../config';
-import isValidException from 'src/util/exceptions/isValidException';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handleErrors = (error: Error, req: Request, res: Response, _: NextFunction) => {

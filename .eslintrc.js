@@ -44,9 +44,7 @@ module.exports = {
 			node: {
 				extensions: [".js", ".jsx", ".ts", ".tsx"],
 				moduleDirectory: ["node_modules", "src/"],
-			},
-			node: {
-				paths: ["src"],
+				paths: [""],
 			},
 		},
 	},

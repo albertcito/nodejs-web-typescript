@@ -5,9 +5,9 @@ import {
   Entity, PrimaryColumn, Column, getManager,
 } from 'typeorm';
 
+import roles from 'src/logic/role/role.enum';
 import BaseEntity from './BaseEntity';
 import VText from './VText';
-import roles from 'src/logic/role/role.enum';
 
 @ObjectType()
 @Entity({ name: 'role' })

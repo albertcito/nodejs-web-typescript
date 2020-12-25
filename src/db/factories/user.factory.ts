@@ -1,8 +1,8 @@
 import * as faker from 'faker';
 import { define } from 'typeorm-seeding';
 
-import User from '../entities/User';
 import userStatus from 'src/logic/userStatus/userStatus.enum';
+import User from '../entities/User';
 
 const getFakerUser = (password: string = '123456') => {
   const email = `faker@${faker.random.uuid()}.com`;
