@@ -6,7 +6,7 @@ import {
 import roles from '../../../../logic/role/role.enum';
 import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
 import EmailLogPagination from '../../../../logic/user/emaillog/EmailLogPagination';
-import Email from '../../../../db/entities/Email';
+import Email from '../../../../db/entities/EmailLog';
 import PaginationResponse from '../../../type/PaginationResponse';
 
 @ObjectType()

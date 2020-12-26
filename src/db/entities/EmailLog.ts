@@ -9,8 +9,8 @@ import BaseEntity from './BaseEntity';
 import EmailRecipient from './EmailRecipient';
 
 @ObjectType()
-@Entity({ name: 'email' })
-export default class Email extends BaseEntity {
+@Entity({ name: 'email_log' })
+export default class EmailLog extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;

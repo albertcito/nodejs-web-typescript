@@ -51,14 +51,13 @@ class Email {
     const render = new Render(this.view);
     const html = await render.getHtml(params);
 
-    /* if (process.env.NODE_ENV !== 'test') {
-
-    } */
-    const newOptions = {
-      ...options, to, from, html,
-    };
-    await transporter.sendMail(newOptions);
-    (new EmailLog()).save(newOptions, userID);
+    if (process.env.NODE_ENV !== 'travis') {
+      const newOptions = {
+        ...options, to, from, html,
+      };
+      await transporter.sendMail(newOptions);
+      (new EmailLog()).save(newOptions, userID);
+    }
   }
 
   private getTo(to: Address | Address[]) {

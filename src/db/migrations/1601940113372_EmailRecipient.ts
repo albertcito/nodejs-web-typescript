@@ -39,7 +39,7 @@ export default class EmailRecipient1601940113372 implements MigrationInterface {
         name: 'email_recipient_email',
         columnNames: ['email_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'email',
+        referencedTableName: 'email_log',
         onDelete: 'RESTRICT',
       }));
 

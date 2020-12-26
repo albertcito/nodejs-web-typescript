@@ -1,7 +1,7 @@
 import { Address } from 'nodemailer/lib/mailer';
 
 import EmailRecipient from '../../db/entities/EmailRecipient';
-import Email from '../../db/entities/Email';
+import Email from '../../db/entities/EmailLog';
 import { EmailOptions as EmailBaseOptions } from './Email';
 import EmailRecipientTypeEnum from './EmailRecipientType.enum';
 

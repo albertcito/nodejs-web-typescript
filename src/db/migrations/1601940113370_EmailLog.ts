@@ -4,8 +4,8 @@ import {
 
 import columns from './BaseTableColumns/columns';
 
-export default class Email1601940113370 implements MigrationInterface {
-    private readonly tableName = 'email';
+export default class EmailLog1601940113370 implements MigrationInterface {
+    private readonly tableName = 'email_log';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
