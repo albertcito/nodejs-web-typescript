@@ -10,6 +10,7 @@ import Auth from '../../../../util/session/Auth';
 import isAuth from '../../../../util/graphql/isAuth';
 import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
 import User from '../../../../db/entities/User';
+import Transaction from '../../../../util/db/Transaction';
 
 @ObjectType()
 class ProfileUpdateEmailResponse extends MessageResponse(User) {}
@@ -23,7 +24,7 @@ export default class ProfileUpdateEmailResolver {
     @Arg('password', () => String) password: string,
   ): Promise<ProfileUpdateEmailResponse> {
     const { user } = Auth.session();
-    await (new UserUpdateEmail(user)).update(email, password);
+    await Transaction.run(() => (new UserUpdateEmail(user)).update(email, password));
     return {
       data: user,
       message: {

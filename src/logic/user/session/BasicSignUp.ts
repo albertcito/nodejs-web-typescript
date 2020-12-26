@@ -1,4 +1,3 @@
-import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 
 import UserToken from './UserToken';
@@ -30,41 +29,23 @@ class BasicSignUp {
   }
 
   async save() {
-    const connection = getConnection();
-    const queryRunner = connection.createQueryRunner();
-    await queryRunner.connect();
+    const user = new User();
+    user.email = this.email;
+    user.firstName = this.firstName;
+    user.lastName = this.lastName;
+    user.password = this.password;
+    user.userStatusID = userStatus.active;
+    await user.save();
 
-    await queryRunner.startTransaction();
-    try {
-      const user = new User();
-      user.email = this.email;
-      user.firstName = this.firstName;
-      user.lastName = this.lastName;
-      user.password = this.password;
-      user.userStatusID = userStatus.active;
-      await user.save();
+    const link = await (new UserToken(user.id)).tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
+    const to = { name: user.fullName, address: this.email };
+    await (new Email('emails.activateAccount')).send(
+      { to, subject: 'signup' },
+      { name: user.fullName, link },
+      user.id,
+    );
 
-      const userToken = new UserToken(user.id);
-      const link = await userToken.tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
-      const email = new Email('emails.activateAccount');
-      const to = {
-        name: user.fullName,
-        address: this.email,
-      };
-      await email.send(
-        { to, subject: 'signup' },
-        { name: user.fullName, link },
-        user.id,
-      );
-
-      await queryRunner.commitTransaction();
-      return user;
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      throw new Error(error);
-    } finally {
-      await queryRunner.release();
-    }
+    return user;
   }
 }
 

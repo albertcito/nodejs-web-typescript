@@ -4,6 +4,7 @@ import { Resolver, Mutation, Arg } from 'type-graphql';
 import BasicSignUp from '../../../../logic/user/session/BasicSignUp';
 import User from '../../../../db/entities/User';
 import Validate from '../../../../util/validatorjs/validateGraphQL';
+import Transaction from '../../../../util/db/Transaction';
 
 const { tablePath } = getManager().getRepository(User).metadata;
 
@@ -22,13 +23,13 @@ class SignUpResolver {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Arg('password_confirmation') _: string,
   ): Promise<User> {
-    const basicSignUp = new BasicSignUp(
+    const signUp = new BasicSignUp(
       firstName,
       lastName,
       email,
       password,
     );
-    return basicSignUp.save();
+    return Transaction.run(() => signUp.save());
   }
 }
 

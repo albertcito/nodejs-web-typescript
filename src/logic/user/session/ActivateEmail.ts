@@ -1,4 +1,3 @@
-import { getConnection } from 'typeorm';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 
 import UserTypeEnum from './UserTokenEnum';
@@ -21,26 +20,11 @@ class ActivateEmail {
     if (!user) {
       throw new Error('The user does not exist. It never should happens.');
     }
+    user.emailVerified = true;
+    await user.save();
 
-    const connection = getConnection();
-    const queryRunner = connection.createQueryRunner();
-    await queryRunner.connect();
-
-    await queryRunner.startTransaction();
-    try {
-      user.emailVerified = true;
-      await user.save();
-
-      userToken.usedAt = new Date();
-      await userToken.save();
-
-      await queryRunner.commitTransaction();
-    } catch (error) {
-      await queryRunner.rollbackTransaction();
-      throw new Error(error);
-    } finally {
-      await queryRunner.release();
-    }
+    userToken.usedAt = new Date();
+    await userToken.save();
   }
 }
 

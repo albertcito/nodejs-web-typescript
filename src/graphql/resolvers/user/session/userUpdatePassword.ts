@@ -11,6 +11,7 @@ import User from '../../../../db/entities/User';
 import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
 import roles from '../../../../logic/role/role.enum';
 import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import Transaction from '../../../../util/db/Transaction';
 
 @ObjectType()
 class UserUpdatePasswordResponse extends MessageResponse(User) {}
@@ -27,7 +28,7 @@ class UserUpdatePasswordResolver {
     if (!user) {
       throw new MessageError(__('The item %s does not exists', `${id}`));
     }
-    await (new UserUpdatePassword(user)).update(password);
+    await Transaction.run(() => (new UserUpdatePassword(user)).update(password));
     return {
       data: user,
       message: {
