@@ -2,21 +2,21 @@ import {
   Field, ObjectType, Int, Float,
 } from 'type-graphql';
 import {
-  Entity, PrimaryColumn, Column,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity({ name: 'email_update' })
+@Entity({ name: 'email' })
 export default class Email extends BaseEntity {
   @Field(() => Int)
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   @Column({ name: 'user_id' })
-  userID: number;
+  userID?: number;
 
   @Field(() => String)
   @Column()
@@ -36,9 +36,18 @@ export default class Email extends BaseEntity {
 
   @Field(() => String, { nullable: true })
   @Column({ name: 'reply_to' })
-  replyTo: string;
+  replyTo?: string;
+
+  @Field(() => String, { nullable: true })
+  @Column({ name: 'reply_to_name' })
+  replyToName?: string;
 
   @Field(() => Float)
   @Column({ name: 'sent_at' })
   sentAt: Date;
+
+  @BeforeInsert()
+  protected insertRow() {
+    this.sentAt = new Date();
+  }
 }

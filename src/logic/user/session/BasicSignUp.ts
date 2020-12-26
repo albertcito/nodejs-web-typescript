@@ -47,7 +47,11 @@ class BasicSignUp {
       const userToken = new UserToken(user.id);
       const link = await userToken.tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
       const email = new Email('emails.activateAccount');
-      await email.send({ to: this.email }, { name: user.fullName, link });
+      const to = {
+        name: user.fullName,
+        address: this.email,
+      };
+      await email.send({ to, subject: 'signup' }, { name: user.fullName, link });
 
       await queryRunner.commitTransaction();
       return user;

@@ -46,6 +46,11 @@ export default class Email1601940113370 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'reply_to_name',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'sent_at',
             type: 'timestamp',
           },

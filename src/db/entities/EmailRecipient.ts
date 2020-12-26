@@ -5,6 +5,7 @@ import {
   Entity, PrimaryColumn, Column,
 } from 'typeorm';
 
+import EmailRecipientTypeEnum from '../../util/email/EmailRecipientType.enum';
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
@@ -26,7 +27,7 @@ export default class EmailRecipient extends BaseEntity {
   @Column()
   name: string;
 
-  @Field(() => String)
+  @Field(() => EmailRecipientTypeEnum)
   @Column()
-  type: string;
+  type: EmailRecipientTypeEnum;
 }
