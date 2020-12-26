@@ -28,7 +28,8 @@ export default class UserUpdatePassword {
     passwordUpdate.userID = this.user.id;
     passwordUpdate.passwordOld = this.user.password;
     this.user.password = await argon2.hash(newPassword);
-    await this.user.save();
+    this.user.save();
+
     passwordUpdate.passwordNew = this.user.password;
     await passwordUpdate.save();
   }

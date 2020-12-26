@@ -10,6 +10,7 @@ import Auth from '../../../../util/session/Auth';
 import isAuth from '../../../../util/graphql/isAuth';
 import UserUpdatePassword from '../../../../logic/user/session/UserUpdatePassword';
 import User from '../../../../db/entities/User';
+import Transaction from '../../../../util/db/Transaction';
 
 @ObjectType()
 class ProfileUpdatePasswordResponse extends MessageResponse(User) {}
@@ -24,7 +25,7 @@ export default class ProfileUpdatePasswordResolver {
   ): Promise<ProfileUpdatePasswordResponse> {
     const { user } = Auth.session();
     const updatePassword = new UserUpdatePassword(user);
-    await updatePassword.update(newPassword, password);
+    await Transaction.run(() => updatePassword.update(newPassword, password));
     return {
       data: user,
       message: {

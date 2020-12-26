@@ -11,6 +11,7 @@ import User from '../../../../db/entities/User';
 import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
 import roles from '../../../../logic/role/role.enum';
 import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import Transaction from '../../../../util/db/Transaction';
 
 @ObjectType()
 class UserUpdateEmailResponse extends MessageResponse(User) {}
@@ -28,7 +29,7 @@ class UserUpdateEmailResolver {
       throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     const updateEmail = new UserUpdateEmail(user);
-    await updateEmail.update(email);
+    await Transaction.run(() => updateEmail.update(email));
     return {
       data: user,
       message: {
