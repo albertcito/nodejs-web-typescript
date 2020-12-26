@@ -51,7 +51,11 @@ class BasicSignUp {
         name: user.fullName,
         address: this.email,
       };
-      await email.send({ to, subject: 'signup' }, { name: user.fullName, link });
+      await email.send(
+        { to, subject: 'signup' },
+        { name: user.fullName, link },
+        user.id,
+      );
 
       await queryRunner.commitTransaction();
       return user;

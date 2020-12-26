@@ -41,7 +41,7 @@ class Email {
     return nodemailer.createTransport(transport);
   }
 
-  async send(options: EmailOptions, params?: ejsParams) {
+  async send(options: EmailOptions, params?: ejsParams, userID?: number) {
     const transporter = await this.getTransporter();
     const to = this.getTo(options.to);
     const from = options.from ?? {
@@ -58,7 +58,7 @@ class Email {
       ...options, to, from, html,
     };
     await transporter.sendMail(newOptions);
-    (new EmailLog()).save(newOptions);
+    (new EmailLog()).save(newOptions, userID);
   }
 
   private getTo(to: Address | Address[]) {

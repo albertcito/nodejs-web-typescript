@@ -2,10 +2,11 @@ import {
   Field, ObjectType, Int, Float,
 } from 'type-graphql';
 import {
-  Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
+  Entity, PrimaryGeneratedColumn, Column, BeforeInsert, getManager,
 } from 'typeorm';
 
 import BaseEntity from './BaseEntity';
+import EmailRecipient from './EmailRecipient';
 
 @ObjectType()
 @Entity({ name: 'email' })
@@ -49,5 +50,10 @@ export default class Email extends BaseEntity {
   @BeforeInsert()
   protected insertRow() {
     this.sentAt = new Date();
+  }
+
+  @Field(() => [EmailRecipient])
+  async recipients() {
+    return getManager().find(EmailRecipient, { where: { emailID: this.id } });
   }
 }
