@@ -5,10 +5,9 @@ import userStatus from '../../userStatus/userStatus.enum';
 import UserTokenEnum from './UserTokenEnum';
 import User from '../../../db/entities/User';
 import Email from '../../../util/email/Email';
-import TransactionInterface from 'util/db/TransactionInterface';
 
 @validateClass()
-class BasicSignUp implements TransactionInterface<User> {
+class BasicSignUp {
   private readonly firstName: string;
 
   private readonly lastName: string;

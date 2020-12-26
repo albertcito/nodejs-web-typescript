@@ -37,6 +37,7 @@ mutation {
 
 ## Contribute
 Before to send a PR please do it:
+- Run `yarn test` to run the test in dev environment.
 - Run `yarn build` to ensure build is working.
 - Run `yarn test --roots build/tests` to run the test in with the js files.
 - Run `yarn eslint --fix` to validate the code style.
