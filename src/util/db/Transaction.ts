@@ -13,7 +13,7 @@ export default class Transaction {
       return data;
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      throw new Error(error);
+      throw error;
     } finally {
       await queryRunner.release();
     }
