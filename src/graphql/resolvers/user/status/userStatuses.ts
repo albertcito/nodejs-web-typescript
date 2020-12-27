@@ -1,8 +1,8 @@
 import { Resolver, Query } from 'type-graphql';
 
-import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
-import UserStatus from '../../../../db/entities/UserStatus';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
+import UserStatus from 'src/db/entities/UserStatus';
 
 @Resolver()
 export default class UserStatusUpdateResolver {

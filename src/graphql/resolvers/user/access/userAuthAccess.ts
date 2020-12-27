@@ -4,10 +4,10 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../../type/PaginationResponse';
-import OauthAccessToken from '../../../../db/entities/OauthAccessToken';
-import Paginate from '../../../../util/db/paginate';
-import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import OauthAccessToken from 'src/db/entities/OauthAccessToken';
+import Paginate from 'src/util/db/paginate';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class OauthAccessTokenPaginationResponse extends PaginationResponse(OauthAccessToken) {}
