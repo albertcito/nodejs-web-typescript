@@ -1,4 +1,6 @@
-import { Field, Int, ObjectType } from 'type-graphql';
+import {
+  Field, Int, ObjectType, Float,
+} from 'type-graphql';
 import {
   Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
@@ -16,11 +18,9 @@ class OauthAccessToken extends BaseEntity {
     @Column({ name: 'user_id' })
     userID: number;
 
-    @Field(() => String)
     @Column()
     signature: string;
 
-    @Field(() => String)
     @Column()
     token: string;
 
@@ -28,6 +28,7 @@ class OauthAccessToken extends BaseEntity {
     @Column()
     revoked: boolean;
 
+    @Field(() => Float)
     @Column({ name: 'expired_at' })
     expiredAt: Date;
 

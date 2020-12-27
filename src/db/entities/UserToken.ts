@@ -1,4 +1,6 @@
-import { Field, Int, ObjectType } from 'type-graphql';
+import {
+  Field, Int, ObjectType, Float,
+} from 'type-graphql';
 import {
   Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
@@ -25,9 +27,11 @@ class UserToken extends BaseEntity {
     @Column()
     type: string;
 
+    @Field(() => Float, { nullable: true })
     @Column({ name: 'used_at' })
     usedAt: Date;
 
+    @Field(() => Float)
     @Column({ name: 'expired_at' })
     expiredAt: Date;
 
