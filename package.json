@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf build/ && tsc && tscpaths -p tsconfig.json -s ./src -o ./build && cp -R src/resources build/resources",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "test": "jest --config ./jest.dev.config.js --roots src/tests",
     "eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
-    "test": "jest --config ./jest.config.js",
     "ejslint": "ejslint src/resources/view/*",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js --config src/init/db/connectionOptions.ts",
     "seeding": "ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName src/init/db/connectionOptions.ts",
+    "prod:test": "jest --config ./jest.config.js --roots build/tests",
     "db": "node ./node_modules/typeorm/cli.js --config build/init/db/connectionOptions.js",
     "db:seeding": "node ./node_modules/typeorm-seeding/dist/cli.js --configName build/init/db/connectionOptions.js"
   },
