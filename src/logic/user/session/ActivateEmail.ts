@@ -1,8 +1,8 @@
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 
+import User from 'src/db/entities/User';
 import UserTypeEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
-import User from '../../../db/entities/User';
 
 @validateClass()
 class ActivateEmail {

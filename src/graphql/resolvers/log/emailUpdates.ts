@@ -4,10 +4,10 @@ import {
 } from 'type-graphql';
 
 import PaginationResponse from '../../type/PaginationResponse';
-import EmailUpdate from '../../../db/entities/EmailUpdate';
-import Paginate from '../../../util/db/paginate';
-import roles from '../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
+import EmailUpdate from 'src/db/entities/EmailUpdate';
+import Paginate from 'src/util/db/paginate';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @ObjectType()
 class PasswordUpdatePaginationResponse extends PaginationResponse(EmailUpdate) {}

@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-server-core';
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
 import { ValidatorError } from 'validatorjs-decorator';
 
-import MessageError from '../../util/exceptions/MessageError';
+import MessageError from 'src/util/exceptions/MessageError';
 
 const formatError = (error: GraphQLError): GraphQLFormattedError => {
   const { originalError } = error;

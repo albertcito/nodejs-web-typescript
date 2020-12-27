@@ -1,4 +1,4 @@
-import GenericTestData from '../../config/GenericTestData';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class TranslationsTest implements GenericTestData {
   resolver() {

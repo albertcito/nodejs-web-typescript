@@ -1,5 +1,5 @@
-import GenericTestData from '../../../config/GenericTestData';
-import dbUSers from '../../../../db/util/dbUser';
+import GenericTestData from 'src/tests/config/GenericTestData';
+import dbUSers from 'src/db/util/dbUser';
 
 export default class LoginTest implements GenericTestData {
   resolver() {

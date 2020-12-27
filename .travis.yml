@@ -14,8 +14,8 @@ install:
   - yarn db migration:run
   - yarn db:seeding seed
 script:
-  - yarn test --roots build/tests
   - yarn test
+  - yarn prod:test
   - yarn eslint
   - yarn ejslint
 notifications:

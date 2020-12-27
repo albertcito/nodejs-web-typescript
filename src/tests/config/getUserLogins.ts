@@ -1,5 +1,5 @@
-import Login from '../../logic/user/session/login';
-import dbUsers from '../../db/util/dbUser';
+import Login from 'src/logic/user/session/login';
+import dbUsers from 'src/db/util/dbUser';
 
 export const getSuperAdminUserLogin = async () => {
   const { superAdmin } = dbUsers();

@@ -1,9 +1,9 @@
 import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
-import Validate from '../../../../util/validatorjs/validateGraphQL';
-import ResetPassword from '../../../../logic/user/session/ResetPassword';
-import Transaction from '../../../../util/db/Transaction';
+import Validate from 'src/util/validatorjs/validateGraphQL';
+import ResetPassword from 'src/logic/user/session/ResetPassword';
+import Transaction from 'src/util/db/Transaction';
 
 @Resolver()
 class ResetPasswordResolver {

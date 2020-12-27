@@ -3,10 +3,10 @@ import {
   Resolver, Query, UseMiddleware, ObjectType, Arg, Int,
 } from 'type-graphql';
 
-import PaginationResponse from '../../type/PaginationResponse';
-import isAuth from '../../../util/graphql/isAuth';
-import User from '../../../db/entities/User';
-import UsersPagination from '../../../logic/user/UsersPagination';
+import PaginationResponse from 'src/graphql/type/PaginationResponse';
+import isAuth from 'src/util/graphql/isAuth';
+import User from 'src/db/entities/User';
+import UsersPagination from 'src/logic/user/UsersPagination';
 
 @ObjectType()
 class UserPaginationResponse extends PaginationResponse(User) {}

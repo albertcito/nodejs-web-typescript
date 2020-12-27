@@ -3,10 +3,10 @@ import {
   Resolver, Query, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import roles from '../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../util/graphql/isAuthRolesGraphQL';
-import EmailLogPagination from '../../../logic/user/emaillog/EmailLogPagination';
-import Email from '../../../db/entities/EmailLog';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
+import EmailLogPagination from 'src/logic/user/emaillog/EmailLogPagination';
+import Email from 'src/db/entities/EmailLog';
 import PaginationResponse from '../../type/PaginationResponse';
 
 @ObjectType()

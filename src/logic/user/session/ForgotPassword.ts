@@ -1,11 +1,11 @@
 import { __ } from 'i18n';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 
-import UserToken from './UserToken';
+import User from 'src/db/entities/User';
+import UserTokenEntity from 'src/db/entities/UserToken';
+import MessageError from 'src/util/exceptions/MessageError';
 import UserTypeEnum from './UserTokenEnum';
-import User from '../../../db/entities/User';
-import UserTokenEntity from '../../../db/entities/UserToken';
-import MessageError from '../../../util/exceptions/MessageError';
+import UserToken from './UserToken';
 
 @validateClass()
 class ForgotPassword {

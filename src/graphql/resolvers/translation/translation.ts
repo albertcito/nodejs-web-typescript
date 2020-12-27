@@ -3,8 +3,8 @@ import {
   Resolver, Query, Arg, Int,
 } from 'type-graphql';
 
-import Translation from '../../../db/entities/Translation';
-import MessageError from '../../../util/exceptions/MessageError';
+import Translation from 'src/db/entities/Translation';
+import MessageError from 'src/util/exceptions/MessageError';
 
 @Resolver()
 class TranslationResolver {

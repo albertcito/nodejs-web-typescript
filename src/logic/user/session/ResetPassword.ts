@@ -1,9 +1,9 @@
 import argon2 from 'argon2';
 import { arg, validateClass } from 'validatorjs-decorator/dist';
 
+import User from 'src/db/entities/User';
 import UserTokenEnum from './UserTokenEnum';
 import VerifyUserToken from './VerifyUserToken';
-import User from '../../../db/entities/User';
 
 @validateClass()
 class ResetPassword {

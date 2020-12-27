@@ -1,0 +1,52 @@
+version: "3"
+networks:
+  backend:
+
+services:
+  #backend:
+  #  build:
+  #    context: ./
+  #    dockerfile: dev.Dockerfile
+  #  environment:
+  #    PORT: 5000
+  #    NODE_ENV: development
+  #
+  #    APP_URL: http://localhost:4000/
+  #    FRONTEND_URL: http://localhost:3000
+  #    CORS_ORIGIN: http://localhost:3000,http://192.168.1.8:3000,https://codesandbox.io
+  #
+  #    # db configuration
+  #    DB_USER: albert
+  #    DB_PASSWORD: 1234
+  #    DB_HOST: db
+  #    DB_PORT: 5432
+  #    DB_NAME: node
+  #
+  #    # mail configuration
+  #    MAIL_HOST: localhost
+  #    MAIL_PORT: 1025
+  #    MAIL_USERNAME: project.1
+  #    MAIL_PASSWORD: secret.1
+  #    MAIL_FROM_ADDRESS: me@albertcito.com
+  #    MAIL_FROM_NAME: "Albert Tjornehoj"
+  #    UNIVERSAL_TO: me@albertcito.com
+  #
+  #    # Report Error
+  #    BUGSNAG_API_KEY: 3e34070a24af2d643b1ea24d1218d4b9
+  #  depends_on:
+  #    - db
+  #  networks:
+  #    - backend
+  #  volumes:
+  #    - ./:/usr
+  #  ports:
+  #    - 5000:5000
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: albert
+      POSTGRES_DB: node
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5432:5432

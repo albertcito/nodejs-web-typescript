@@ -1,10 +1,10 @@
 import { getManager } from 'typeorm';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
-import BasicSignUp from '../../../../logic/user/session/BasicSignUp';
-import User from '../../../../db/entities/User';
-import Validate from '../../../../util/validatorjs/validateGraphQL';
-import Transaction from '../../../../util/db/Transaction';
+import BasicSignUp from 'src/logic/user/session/BasicSignUp';
+import User from 'src/db/entities/User';
+import Validate from 'src/util/validatorjs/validateGraphQL';
+import Transaction from 'src/util/db/Transaction';
 
 const { tablePath } = getManager().getRepository(User).metadata;
 

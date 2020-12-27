@@ -2,9 +2,9 @@ import {
   MigrationInterface, QueryRunner, Table, TableForeignKey,
 } from 'typeorm';
 
+import userStatus from 'src/logic/userStatus/userStatus.enum';
 import columns from './BaseTableColumns/columns';
 import UserStatus from '../entities/UserStatus';
-import userStatus from '../../logic/userStatus/userStatus.enum';
 import saveTranslation from '../util/saveTranslation';
 
 export default class UserStatus1601324674982 implements MigrationInterface {

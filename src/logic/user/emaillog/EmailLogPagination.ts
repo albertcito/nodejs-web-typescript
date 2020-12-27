@@ -1,8 +1,8 @@
 import { SelectQueryBuilder } from 'typeorm';
 
-import { PaginateArgs, OrderByArgs } from '../../../util/db/interfaces';
-import Email from '../../../db/entities/EmailLog';
-import Paginate from '../../../util/db/paginate';
+import { PaginateArgs, OrderByArgs } from 'src/util/db/interfaces';
+import Email from 'src/db/entities/EmailLog';
+import Paginate from 'src/util/db/paginate';
 
 interface EmailLogPaginationGetAll extends PaginateArgs, OrderByArgs {
   userID: number;
