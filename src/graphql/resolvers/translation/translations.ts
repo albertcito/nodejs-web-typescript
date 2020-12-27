@@ -3,9 +3,9 @@ import {
   Resolver, Query, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import PaginationResponse from '../../type/PaginationResponse';
-import Translation from '../../../db/entities/Translation';
-import TranslationsPagination from '../../../logic/translation/TranslationPagination';
+import PaginationResponse from 'src/graphql/type/PaginationResponse';
+import Translation from 'src/db/entities/Translation';
+import TranslationsPagination from 'src/logic/translation/TranslationPagination';
 
 @ObjectType()
 class TranslationPaginationResponse extends PaginationResponse(Translation) {}

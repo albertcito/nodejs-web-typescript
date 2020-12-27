@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import Translation from 'src/db/entities/Translation';
 import TextsCreate from './TextsCreate';
-import Translation from '../../db/entities/Translation';
 import TextInputCreate from '../../graphql/input/TextInputCreate';
 
 interface TranslationCreateSave {

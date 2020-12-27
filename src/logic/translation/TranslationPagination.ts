@@ -1,9 +1,9 @@
 import { SelectQueryBuilder } from 'typeorm';
 
-import { PaginateArgs, OrderByArgs } from '../../util/db/interfaces';
-import Translation from '../../db/entities/Translation';
-import Paginate from '../../util/db/paginate';
-import isNumber from '../../util/functions/isNumber';
+import { PaginateArgs, OrderByArgs } from 'src/util/db/interfaces';
+import Translation from 'src/db/entities/Translation';
+import Paginate from 'src/util/db/paginate';
+import isNumber from 'src/util/functions/isNumber';
 
 interface TranslationsGetAll extends PaginateArgs, OrderByArgs {
   search?: string;

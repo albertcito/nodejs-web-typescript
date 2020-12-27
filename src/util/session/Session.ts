@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable no-empty-function */
-import User from '../../db/entities/User';
-import OauthAccessToken from '../../db/entities/OauthAccessToken';
+import User from 'src/db/entities/User';
+import OauthAccessToken from 'src/db/entities/OauthAccessToken';
 
 export interface SessionData {
   user: User;

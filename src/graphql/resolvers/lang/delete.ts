@@ -3,10 +3,10 @@ import {
   Resolver, Mutation, Arg, UseMiddleware,
 } from 'type-graphql';
 
-import Lang from '../../../db/entities/Lang';
-import MessageError from '../../../util/exceptions/MessageError';
-import isAuth from '../../../util/graphql/isAuth';
-import Validate from '../../../util/validatorjs/validateGraphQL';
+import Lang from 'src/db/entities/Lang';
+import MessageError from 'src/util/exceptions/MessageError';
+import isAuth from 'src/util/graphql/isAuth';
+import Validate from 'src/util/validatorjs/validateGraphQL';
 
 @Resolver()
 class LangDeleteResolver {

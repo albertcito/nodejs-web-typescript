@@ -2,7 +2,7 @@ import { getConnection } from 'typeorm';
 import { Seeder } from 'typeorm-seeding';
 import * as faker from 'faker';
 
-import TranslationCreate from '../../logic/translation/TranslationCreate';
+import TranslationCreate from 'src/logic/translation/TranslationCreate';
 
 const createTranslation = async () => {
   const translationCreate = new TranslationCreate([{

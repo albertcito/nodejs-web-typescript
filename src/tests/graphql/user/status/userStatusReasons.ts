@@ -1,5 +1,5 @@
-import UserStatusReason from '../../../../db/entities/UserStatusReason';
-import GenericTestData from '../../../config/GenericTestData';
+import UserStatusReason from 'src/db/entities/UserStatusReason';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class UserStatusReasonsTest implements GenericTestData {
   async resolver() {

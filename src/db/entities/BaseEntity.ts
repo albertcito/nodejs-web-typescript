@@ -5,7 +5,7 @@ import {
   CreateDateColumn, BeforeInsert, BeforeUpdate, BaseEntity,
 } from 'typeorm';
 
-import Auth from '../../util/session/Auth';
+import Auth from 'src/util/session/Auth';
 
 @ObjectType()
 class BaseDataEntity extends BaseEntity {

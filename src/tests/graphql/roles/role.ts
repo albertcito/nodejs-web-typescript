@@ -1,5 +1,5 @@
-import roles from '../../../logic/role/role.enum';
-import GenericTestData from '../../config/GenericTestData';
+import roles from 'src/logic/role/role.enum';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class RoleTest implements GenericTestData {
   resolver() {

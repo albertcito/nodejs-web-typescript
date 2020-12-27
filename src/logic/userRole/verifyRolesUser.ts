@@ -1,5 +1,5 @@
+import Role from 'src/db/entities/Role';
 import rolesEnum from '../role/role.enum';
-import Role from '../../db/entities/Role';
 
 export const isUserRole = (userRoles: Role[], roles: rolesEnum) => userRoles.some(
   (userRole) => userRole.id === roles,

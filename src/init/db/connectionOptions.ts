@@ -1,7 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 import { join } from 'path';
 
-import { db } from '../../config';
+import { db } from 'src/config';
 
 const getConnectionOptions = () => {
   const connectionOptions = {

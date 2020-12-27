@@ -1,4 +1,4 @@
-import GenericTestData from '../../../config/GenericTestData';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class LogoutTest implements GenericTestData {
   async resolver() {
