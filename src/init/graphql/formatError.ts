@@ -1,6 +1,8 @@
 import { ApolloError } from 'apollo-server-core';
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
 import { ValidatorError } from 'validatorjs-decorator';
+import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError'
+import { __ } from 'i18n';
 
 import MessageError from 'src/util/exceptions/MessageError';
 
@@ -23,6 +25,15 @@ const formatError = (error: GraphQLError): GraphQLFormattedError => {
       {
         message: error.message,
       },
+    ));
+  }
+
+  if (originalError instanceof EntityNotFoundError) {
+    const message = __('The item %s does not exists', '');
+    return GraphQLFormatError(new ApolloError(
+      message,
+      'EntityNotFoundError',
+      { message },
     ));
   }
 

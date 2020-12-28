@@ -4,7 +4,6 @@
 	"Confirm my email address": "Confirm my email address",
 	"If you received this email by mistake, please disregard it or let us know at %s.": "If you received this email by mistake, please disregard it or let us know at %s.",
 	"%s, welcome to Miaum.": "%s, welcome to Miaum.",
-	"thanks": "Thanks",
 	"Thanks": "Thanks",
 	"Your account have been activated": "Your account have been activated",
 	"recoveryPasswordMessage": "A link to recovery your password was sent to your address",
@@ -30,5 +29,11 @@
 	"The item %s was deleted": "The item %s was deleted",
 	"You do not have right to use this area": "You do not have right to use this area",
 	"Only empty texts were updated in the item %s": "Only empty texts were updated in the item %s",
-	"The item %s is blocked, only a super admin can modify it": "The item %s is blocked, only a super admin can modify it"
+	"The item %s is blocked, only a super admin can modify it": "The item %s is blocked, only a super admin can modify it",
+	"Click the button below to reset your password.": "Click the button below to reset your password.",
+	"Reset Password": "Reset Password",
+	"Hi %s.": "Hi %s.",
+	"ResetPasswordParagraph": "We're sending you this email because you requested a password reset. Click on this link to create a new password:",
+	"ResetPasswordNoRequested": "If you didn't requested a password reset, you can ignore this email. Your password will be not changed.",
+	"Set a new password": "Set a new password"
 }

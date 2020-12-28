@@ -1,10 +1,11 @@
 ## Express + GraphQL
 
 [![Build Status](https://travis-ci.com/albertcito/nodejs-web-typescript.svg?branch=production)](https://travis-ci.com/albertcito/nodejs-web-typescript)
+[![dependencies Status](https://status.david-dm.org/gh/albertcito/nodejs-web-typescript.svg)](https://david-dm.org/albertcito/nodejs-web-typescript)
 
 ## Requitements
-- Node v15
-- Postgres
+- Node v15.2.1
+- PostgreSQL 13.1
 
 ## To install:
 - Clone this project
