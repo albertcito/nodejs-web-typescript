@@ -40,7 +40,7 @@ class BasicSignUp {
     const link = await (new UserToken(user.id)).tokenLink(48, UserTokenEnum.ACTIVATE_EMAIL);
     const to = { name: user.fullName, address: this.email };
     await (new Email('emails.activateAccount')).send(
-      { to, subject: 'signup' },
+      { to, subject: 'Welcome to Albertcito.com' },
       { name: user.fullName, link },
       user.id,
     );

@@ -1,10 +1,10 @@
+import crypto from 'crypto';
 import {
   Field, Int, ObjectType, Float,
 } from 'type-graphql';
 import {
   Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
-import argon2 from 'argon2';
 
 import BaseEntity from './BaseEntity';
 
@@ -37,7 +37,7 @@ class UserToken extends BaseEntity {
 
     @BeforeInsert()
     async insertRow() {
-      this.token = await argon2.hash('signature');
+      this.token = crypto.randomBytes(256).toString('hex');
     }
 }
 

@@ -28,7 +28,7 @@ class UserToken {
 
   async tokenLink(expired: number, type: UserTokenEnum): Promise<string> {
     const token = await this.newToken(expired, type);
-    return frontend.URL.activeEmail.replace('%s', token.token);
+    return frontend.URL.resetPass.replace('%s', token.token);
   }
 }
 
