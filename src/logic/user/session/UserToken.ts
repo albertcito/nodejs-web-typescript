@@ -1,6 +1,6 @@
+import UserTokenEntity from 'src/db/entities/UserToken';
+import { frontend } from 'src/config';
 import UserTokenEnum from './UserTokenEnum';
-import UserTokenEntity from '../../../db/entities/UserToken';
-import { frontend } from '../../../config';
 
 class UserToken {
   private readonly userID: number;
@@ -28,7 +28,7 @@ class UserToken {
 
   async tokenLink(expired: number, type: UserTokenEnum): Promise<string> {
     const token = await this.newToken(expired, type);
-    return frontend.URL.activeEmail.replace('%s', token.token);
+    return frontend.URL.resetPass.replace('%s', token.token);
   }
 }
 

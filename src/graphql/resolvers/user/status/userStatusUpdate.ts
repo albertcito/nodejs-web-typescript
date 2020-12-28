@@ -3,13 +3,13 @@ import {
   Resolver, Mutation, Arg, Int,
 } from 'type-graphql';
 
-import User from '../../../../db/entities/User';
-import MessageError from '../../../../util/exceptions/MessageError';
-import MessageField from '../../../type/MessageField';
-import UserStatusUpdate from '../../../../logic/user/status/UserStatusUpdate';
-import userStatus from '../../../../logic/userStatus/userStatus.enum';
-import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import User from 'src/db/entities/User';
+import MessageError from 'src/util/exceptions/MessageError';
+import MessageField from 'src/graphql/type/MessageField';
+import UserStatusUpdate from 'src/logic/user/status/UserStatusUpdate';
+import userStatus from 'src/logic/userStatus/userStatus.enum';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
 @Resolver()
 export default class UserStatusUpdateResolver {

@@ -1,7 +1,7 @@
 import Bugsnag from '@bugsnag/js';
 import BugsnagPluginExpress from '@bugsnag/plugin-express';
 
-import { config } from '../../config';
+import { config } from 'src/config';
 
 Bugsnag.start({
   apiKey: config.bugsbag,

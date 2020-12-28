@@ -1,11 +1,11 @@
 import { Request } from 'express';
 
-import rolesEnum from '../../role/role.enum';
+import User from 'src/db/entities/User';
+import OauthAccessToken from 'src/db/entities/OauthAccessToken';
+import HttpStatusError from 'src/util/exceptions/HttpStatusError';
+import Auth from 'src/util/session/Auth';
 import { verifyRolesUser } from '../../userRole/verifyRolesUser';
-import User from '../../../db/entities/User';
-import OauthAccessToken from '../../../db/entities/OauthAccessToken';
-import HttpStatusError from '../../../util/exceptions/HttpStatusError';
-import Auth from '../../../util/session/Auth';
+import rolesEnum from '../../role/role.enum';
 
 const getTokenFromHeader = (req: Request) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {

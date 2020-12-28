@@ -4,7 +4,7 @@ language: node_js
 node_js:
   - "12.16.3"
 env:
-  - NODE_ENV="test" DB_USER="postgres" DB_PASSWORD="" DB_HOST="localhost" DB_NAME="test_postgres_db"
+  - NODE_ENV="travis" DB_USER="postgres" DB_PASSWORD="" DB_HOST="localhost" DB_NAME="test_postgres_db"
 before_install:
   - psql -c 'create database test_postgres_db;' -U postgres
 install:
@@ -14,7 +14,8 @@ install:
   - yarn db migration:run
   - yarn db:seeding seed
 script:
-  - yarn test --roots build/tests
+  - yarn test
+  - yarn prod:test
   - yarn eslint
   - yarn ejslint
 notifications:

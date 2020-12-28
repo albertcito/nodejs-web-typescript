@@ -1,8 +1,10 @@
-import { Field, Int, ObjectType } from 'type-graphql';
+import crypto from 'crypto';
+import {
+  Field, Int, ObjectType, Float,
+} from 'type-graphql';
 import {
   Entity, PrimaryGeneratedColumn, Column, BeforeInsert,
 } from 'typeorm';
-import argon2 from 'argon2';
 
 import BaseEntity from './BaseEntity';
 
@@ -25,15 +27,17 @@ class UserToken extends BaseEntity {
     @Column()
     type: string;
 
+    @Field(() => Float, { nullable: true })
     @Column({ name: 'used_at' })
     usedAt: Date;
 
+    @Field(() => Float)
     @Column({ name: 'expired_at' })
     expiredAt: Date;
 
     @BeforeInsert()
     async insertRow() {
-      this.token = await argon2.hash('signature');
+      this.token = crypto.randomBytes(256).toString('hex');
     }
 }
 

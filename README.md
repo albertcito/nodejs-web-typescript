@@ -1,10 +1,11 @@
 ## Express + GraphQL
 
 [![Build Status](https://travis-ci.com/albertcito/nodejs-web-typescript.svg?branch=production)](https://travis-ci.com/albertcito/nodejs-web-typescript)
+[![dependencies Status](https://status.david-dm.org/gh/albertcito/nodejs-web-typescript.svg)](https://david-dm.org/albertcito/nodejs-web-typescript)
 
 ## Requitements
-- Node v15
-- Postgres
+- Node v15.2.1
+- PostgreSQL 13.1
 
 ## To install:
 - Clone this project
@@ -37,8 +38,9 @@ mutation {
 
 ## Contribute
 Before to send a PR please do it:
+- Run `yarn test` to run the test in dev environment.
 - Run `yarn build` to ensure build is working.
-- Run `yarn test --roots build/tests` to run the test in with the js files.
+- Run `yarn prod:test` to run the test in with the js files.
 - Run `yarn eslint --fix` to validate the code style.
 - Run `yarn ejslint --fix` to validate the ejs files.
 

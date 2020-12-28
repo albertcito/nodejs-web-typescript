@@ -1,14 +1,22 @@
 import nodemailer, { SendMailOptions } from 'nodemailer';
 
 import Render from '../template/Render';
+import EmailLog from './EmailLog';
 
 interface Address {
   name: string;
   address: string;
 }
 
-interface EmailOptions extends Omit<SendMailOptions, 'html' | 'to'> {
-  to: string | Address | Array<string | Address>;
+export interface EmailOptions extends Omit<
+  SendMailOptions, 'html' | 'to'| 'cc' | 'bcc' | 'from' | 'subject' | 'replyTo'
+> {
+  subject: string;
+  from?: Address;
+  to: Address | Address[];
+  cc?: Address | Address[];
+  bcc?: Address | Address[];
+  replyTo?: Address;
 }
 type ejsParams = { [key: string]: any };
 
@@ -33,18 +41,33 @@ class Email {
     return nodemailer.createTransport(transport);
   }
 
-  async send(options: EmailOptions, params?: ejsParams) {
+  async send(options: EmailOptions, params?: ejsParams, userID?: number) {
     const transporter = await this.getTransporter();
-    const to = process.env.UNIVERSAL_TO ?? options.to;
-    const from = options.from ?? `${process.env.MAIL_FROM_NAME} <${process.env.MAIL_FROM_ADDRESS}>`;
+    const to = this.getTo(options.to);
+    const from = options.from ?? {
+      name: process.env.MAIL_FROM_NAME as string,
+      address: process.env.MAIL_FROM_ADDRESS as string,
+    };
     const render = new Render(this.view);
     const html = await render.getHtml(params);
 
-    if (process.env.NODE_ENV !== 'test') {
-      await transporter.sendMail({
+    if (process.env.NODE_ENV !== 'travis') {
+      const newOptions = {
         ...options, to, from, html,
-      });
+      };
+      await transporter.sendMail(newOptions);
+      (new EmailLog()).save(newOptions, userID);
     }
+  }
+
+  private getTo(to: Address | Address[]) {
+    if (process.env.UNIVERSAL_TO) {
+      return {
+        name: 'Universal To',
+        address: process.env.UNIVERSAL_TO,
+      };
+    }
+    return to;
   }
 }
 

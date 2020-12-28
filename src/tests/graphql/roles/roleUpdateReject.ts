@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { Express } from 'express';
 
-import roles from '../../../logic/role/role.enum';
+import roles from 'src/logic/role/role.enum';
 
 export default class RoleUpdateTest {
   private readonly url: string;

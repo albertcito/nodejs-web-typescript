@@ -1,13 +1,13 @@
 import { __ } from 'i18n';
 import { getConnection } from 'typeorm';
 
-import userStatus from '../../userStatus/userStatus.enum';
+import User from 'src/db/entities/User';
+import MessageType from 'src/graphql/type/MessageType.enum';
+import MessageField from 'src/graphql/type/MessageField';
+import UserStatusReason from 'src/db/entities/UserStatusReason';
+import MessageError from 'src/util/exceptions/MessageError';
 import RevokeByUser from '../../oauth/revokeByUser';
-import User from '../../../db/entities/User';
-import MessageType from '../../../graphql/type/MessageType.enum';
-import MessageField from '../../../graphql/type/MessageField';
-import UserStatusReason from '../../../db/entities/UserStatusReason';
-import MessageError from '../../../util/exceptions/MessageError';
+import userStatus from '../../userStatus/userStatus.enum';
 
 export default class UserStatusUpdate {
   private readonly user: User
@@ -35,7 +35,7 @@ export default class UserStatusUpdate {
       userReason.reason = reason;
       await userReason.save();
 
-      if (userStatusID === userStatus.inactive) {
+      if (userStatusID !== userStatus.active) {
         await (new RevokeByUser(this.user)).revoke();
       }
 

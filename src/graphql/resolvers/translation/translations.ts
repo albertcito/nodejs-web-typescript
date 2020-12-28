@@ -3,9 +3,9 @@ import {
   Resolver, Query, Arg, Int, ObjectType,
 } from 'type-graphql';
 
-import PaginationResponse from '../../type/PaginationResponse';
-import Translation from '../../../db/entities/Translation';
-import TranslationsPagination from '../../../logic/translation/TranslationPagination';
+import PaginationResponse from 'src/graphql/type/PaginationResponse';
+import Translation from 'src/db/entities/Translation';
+import TranslationsPagination from 'src/logic/translation/TranslationPagination';
 
 @ObjectType()
 class TranslationPaginationResponse extends PaginationResponse(Translation) {}
@@ -19,7 +19,7 @@ export default class TranslationsResolver {
     @Arg('orderBy', () => String, { defaultValue: 'id', nullable: true }) orderBy: string,
     @Arg('order', () => String, { defaultValue: 'DESC', description: 'ASC or DESC', nullable: true }) order: 'ASC' | 'DESC',
     @Arg('search', () => String, { description: 'Search by text or ID', nullable: true }) search: string,
-    @Arg('langID', () => String, { nullable: true }) langID: string,
+    @Arg('langID', () => String, { defaultValue: 'EN', nullable: true }) langID: string,
   ): Promise<TranslationPaginationResponse> {
     return (new TranslationsPagination()).getAll({
       page,

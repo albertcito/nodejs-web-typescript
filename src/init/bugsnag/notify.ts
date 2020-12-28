@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import Bugsnag from '@bugsnag/js';
 
-import Auth from '../../util/session/Auth';
+import Auth from 'src/util/session/Auth';
 
 const notify = (error: Error, req: Request) => {
   const auth = Auth.sessionOrEmpty()?.auth;

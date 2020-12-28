@@ -6,11 +6,12 @@ import {
 
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
-import MessageError from '../../../../util/exceptions/MessageError';
-import User from '../../../../db/entities/User';
-import UserUpdateEmail from '../../../../logic/user/session/UserUpdateEmail';
-import roles from '../../../../logic/role/role.enum';
-import isAuthRolesGraphQL from '../../../../util/graphql/isAuthRolesGraphQL';
+import MessageError from 'src/util/exceptions/MessageError';
+import User from 'src/db/entities/User';
+import UserUpdateEmail from 'src/logic/user/session/UserUpdateEmail';
+import roles from 'src/logic/role/role.enum';
+import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
+import Transaction from 'src/util/db/Transaction';
 
 @ObjectType()
 class UserUpdateEmailResponse extends MessageResponse(User) {}
@@ -28,7 +29,7 @@ class UserUpdateEmailResolver {
       throw new MessageError(__('The item %s does not exists', `${id}`));
     }
     const updateEmail = new UserUpdateEmail(user);
-    await updateEmail.update(email);
+    await Transaction.run(() => updateEmail.update(email));
     return {
       data: user,
       message: {

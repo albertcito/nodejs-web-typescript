@@ -1,5 +1,5 @@
-import Lang from '../../../db/entities/Lang';
-import GenericTestData from '../../config/GenericTestData';
+import Lang from 'src/db/entities/Lang';
+import GenericTestData from 'src/tests/config/GenericTestData';
 
 export default class LangDeleteTest implements GenericTestData {
   async resolver() {

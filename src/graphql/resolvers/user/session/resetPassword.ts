@@ -1,8 +1,9 @@
 import { __ } from 'i18n';
 import { Resolver, Mutation, Arg } from 'type-graphql';
 
-import Validate from '../../../../util/validatorjs/validateGraphQL';
-import ResetPassword from '../../../../logic/user/session/ResetPassword';
+import Validate from 'src/util/validatorjs/validateGraphQL';
+import ResetPassword from 'src/logic/user/session/ResetPassword';
+import Transaction from 'src/util/db/Transaction';
 
 @Resolver()
 class ResetPasswordResolver {
@@ -18,7 +19,7 @@ class ResetPasswordResolver {
     @Arg('password_confirmation') _: string,
   ): Promise<string> {
     const resetPassword = new ResetPassword(token, password);
-    await resetPassword.save();
+    await Transaction.run(() => resetPassword.save());
     return __('Your password was suscefully updated');
   }
 }
