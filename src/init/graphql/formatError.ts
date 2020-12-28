@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server-core';
 import { GraphQLError, GraphQLFormattedError, formatError as GraphQLFormatError } from 'graphql';
 import { ValidatorError } from 'validatorjs-decorator';
-import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError'
+import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError';
 import { __ } from 'i18n';
 
 import MessageError from 'src/util/exceptions/MessageError';
