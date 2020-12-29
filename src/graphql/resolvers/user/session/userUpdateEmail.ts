@@ -6,7 +6,6 @@ import {
 
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
-import MessageError from 'src/util/exceptions/MessageError';
 import User from 'src/db/entities/User';
 import UserUpdateEmail from 'src/logic/user/session/UserUpdateEmail';
 import roles from 'src/logic/role/role.enum';
@@ -24,10 +23,7 @@ class UserUpdateEmailResolver {
     @Arg('id', () => Int) id: number,
     @Arg('email', () => String) email: string,
   ): Promise<UserUpdateEmailResponse> {
-    const user = await User.findOne(id);
-    if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${id}`));
-    }
+    const user = await User.findOneOrFail(id);
     const updateEmail = new UserUpdateEmail(user);
     await Transaction.run(() => updateEmail.update(email));
     return {

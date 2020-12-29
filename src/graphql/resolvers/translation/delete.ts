@@ -17,10 +17,7 @@ class TranslationDeleteResolver {
   @isAuthRolesGraphQL([roles.superAdmin, roles.admin])
   @Mutation(() => MessageField)
   async translationDelete(@Arg('id', () => Int) id: number): Promise<MessageField> {
-    const translation = await Translation.findOne(id);
-    if (!translation) {
-      throw new MessageError(__('The item %s does not exists', `${id}`));
-    }
+    const translation = await Translation.findOneOrFail(id);
 
     if (translation.isBlocked && !isSuperAdmin(Auth.session().user.roles)) {
       throw new MessageError(__('The item %s is blocked, only a super admin can modify it', `${id}`));

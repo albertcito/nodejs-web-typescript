@@ -7,7 +7,6 @@ import {
 import MessageResponse from 'src/graphql/type/MessageResponse';
 import MessageType from 'src/graphql/type/MessageType.enum';
 import Lang from 'src/db/entities/Lang';
-import MessageError from 'src/util/exceptions/MessageError';
 import isAuth from 'src/util/graphql/isAuth';
 import Validate from 'src/util/validatorjs/validateGraphQL';
 
@@ -32,10 +31,7 @@ class LangUpdateResolver {
     @Arg('active', { nullable: true }) active: boolean,
     @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
   ): Promise<LangUpdateResponse> {
-    const lang = await Lang.findOne(id);
-    if (!lang) {
-      throw new MessageError(__('The item %s does not exists', id));
-    }
+    const lang = await Lang.findOneOrFail(id);
     lang.name = name;
     lang.localname = localname;
     if (isBlocked) {
