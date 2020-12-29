@@ -6,7 +6,6 @@ import { __ } from 'i18n';
 
 import MessageResponse from '../../../type/MessageResponse';
 import MessageType from '../../../type/MessageType.enum';
-import MessageError from 'src/util/exceptions/MessageError';
 import User from 'src/db/entities/User';
 import UserUpdatePassword from 'src/logic/user/session/UserUpdatePassword';
 import roles from 'src/logic/role/role.enum';
@@ -24,10 +23,7 @@ class UserUpdatePasswordResolver {
     @Arg('id', () => Int) id: number,
     @Arg('password', () => String) password: string,
   ): Promise<UserUpdatePasswordResponse> {
-    const user = await User.findOne(id);
-    if (!user) {
-      throw new MessageError(__('The item %s does not exists', `${id}`));
-    }
+    const user = await User.findOneOrFail(id);
     await Transaction.run(() => (new UserUpdatePassword(user)).update(password));
     return {
       data: user,

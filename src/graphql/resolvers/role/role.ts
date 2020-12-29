@@ -1,10 +1,8 @@
-import { __ } from 'i18n';
 import {
   Resolver, Query, Arg,
 } from 'type-graphql';
 
 import Role from 'src/db/entities/Role';
-import MessageError from 'src/util/exceptions/MessageError';
 import Validate from 'src/util/validatorjs/validateGraphQL';
 import roles from 'src/logic/role/role.enum';
 
@@ -15,10 +13,6 @@ export default class RoleResolver {
   async role(
     @Arg('id', () => roles) id: roles,
   ): Promise<Role> {
-    const role = await Role.findOne(id);
-    if (!role) {
-      throw new MessageError(__('The item %s does not exists', `${id}`));
-    }
-    return role;
+    return Role.findOneOrFail(id);
   }
 }

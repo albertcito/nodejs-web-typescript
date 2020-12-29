@@ -7,7 +7,6 @@ import {
 import MessageResponse from 'src/graphql/type/MessageResponse';
 import MessageType from 'src/graphql/type/MessageType.enum';
 import Role from 'src/db/entities/Role';
-import MessageError from 'src/util/exceptions/MessageError';
 import roles from 'src/logic/role/role.enum';
 import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 
@@ -23,10 +22,7 @@ class RoleUpdateResolver {
     @Arg('nameID', () => Int) nameID: number,
     @Arg('descriptionID', () => Int) descriptionID: number,
   ): Promise<RoleUpdateResponse> {
-    const role = await Role.findOne(id);
-    if (!role) {
-      throw new MessageError(__('The item %s does not exists', id));
-    }
+    const role = await Role.findOneOrFail(id);
     role.nameID = nameID;
     role.descriptionID = descriptionID;
     await role.save();

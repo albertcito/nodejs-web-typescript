@@ -9,7 +9,6 @@ import MessageResponse from 'src/graphql/type/MessageResponse';
 import Translation from 'src/db/entities/Translation';
 import TranslationUpdate from 'src/logic/translation/TranslationUpdate';
 import TextsUpdateEmpty from 'src/logic/translation/TextsUpdateEmpty';
-import MessageError from 'src/util/exceptions/MessageError';
 import roles from 'src/logic/role/role.enum';
 import isAuthRolesGraphQL from 'src/util/graphql/isAuthRolesGraphQL';
 import Auth from 'src/util/session/Auth';
@@ -29,10 +28,7 @@ export default class TranslationUpdateResolver {
     @Arg('code', { nullable: true }) code: string,
     @Arg('isBlocked', { nullable: true }) isBlocked: boolean,
   ): Promise<TranslationUpdateResponse> {
-    const translation = await Translation.findOne(id);
-    if (!translation) {
-      throw new MessageError(__('The item %s does not exists', `${id}`));
-    }
+    const translation = await Translation.findOneOrFail(id);
 
     if (translation.isBlocked && !isSuperAdmin(Auth.session().user.roles)) {
       await (new TextsUpdateEmpty(translation.id)).save(texts);
