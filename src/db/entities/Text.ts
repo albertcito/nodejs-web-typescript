@@ -6,7 +6,7 @@ import {
 import BaseEntity from './BaseEntity';
 
 @ObjectType()
-@Entity({ name: 'text' })
+@Entity({ name: 'text', schema: 'lang' })
 export default class Text extends BaseEntity {
   @Field(() => String)
   @Column()

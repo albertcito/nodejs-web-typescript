@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 import columns from './BaseTableColumns/columns';
 
 export default class Translation1601324673092 implements MigrationInterface {
-    private readonly tableName = 'translation';
+    private readonly tableName = 'lang.translation';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({

@@ -37,7 +37,7 @@ export default class Role1601324674992 implements MigrationInterface {
         name: 'role_name',
         columnNames: ['name_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'translation',
+        referencedTableName: 'lang.translation',
         onDelete: 'RESTRICT',
       }));
 
@@ -45,7 +45,7 @@ export default class Role1601324674992 implements MigrationInterface {
         name: 'role_description_translation',
         columnNames: ['description_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'translation',
+        referencedTableName: 'lang.translation',
         onDelete: 'RESTRICT',
       }));
 

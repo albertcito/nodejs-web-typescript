@@ -4,9 +4,10 @@ import columns from './BaseTableColumns/columns';
 import Lang from '../entities/Lang';
 
 export default class Lang1601324673082 implements MigrationInterface {
-    private readonly tableName = 'lang';
+    private readonly tableName = 'lang.lang';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+      await queryRunner.manager.query('CREATE SCHEMA IF NOT EXISTS lang;');
       await queryRunner.createTable(new Table({
         name: this.tableName,
         columns: [
@@ -59,6 +60,7 @@ export default class Lang1601324673082 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
       queryRunner.manager.query('DROP EXTENSION IF EXISTS unaccent;');
+      queryRunner.manager.query('DROP SCHEMA IF EXISTS lang;');
       await queryRunner.dropTable(this.tableName);
     }
 }

@@ -5,7 +5,7 @@ import {
 import columns from './BaseTableColumns/columns';
 
 export default class Text1601324673095 implements MigrationInterface {
-    private readonly tableName = 'text';
+    private readonly tableName = 'lang.text';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(new Table({
@@ -31,7 +31,7 @@ export default class Text1601324673095 implements MigrationInterface {
         name: 'text_translation',
         columnNames: ['translation_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'translation',
+        referencedTableName: 'lang.translation',
         onDelete: 'CASCADE',
       }));
 
@@ -39,7 +39,7 @@ export default class Text1601324673095 implements MigrationInterface {
         name: 'text_lang',
         columnNames: ['lang_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'lang',
+        referencedTableName: 'lang.lang',
         onDelete: 'CASCADE',
       }));
 

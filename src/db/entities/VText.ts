@@ -4,7 +4,7 @@ import {
 } from 'typeorm';
 
 @ObjectType()
-@ViewEntity({ name: 'vtext' })
+@ViewEntity({ name: 'vtext', schema: 'lang' })
 export default class VText extends BaseEntity {
   @Field(() => String)
   @ViewColumn()
