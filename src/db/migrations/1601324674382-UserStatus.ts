@@ -42,7 +42,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         name: 'user_status_name_translation',
         columnNames: ['name_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'translation',
+        referencedTableName: 'lang.translation',
         onDelete: 'RESTRICT',
       }));
 
@@ -50,7 +50,7 @@ export default class UserStatus1601324674982 implements MigrationInterface {
         name: 'user_status_description_translation',
         columnNames: ['description_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'translation',
+        referencedTableName: 'lang.translation',
         onDelete: 'RESTRICT',
       }));
       await this.addDefaultValues(queryRunner);

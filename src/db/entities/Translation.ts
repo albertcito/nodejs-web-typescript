@@ -9,7 +9,7 @@ import BaseEntity from './BaseEntity';
 import VText from './VText';
 
 @ObjectType()
-@Entity({ name: 'translation' })
+@Entity({ name: 'translation', schema: 'lang' })
 export default class Translation extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
