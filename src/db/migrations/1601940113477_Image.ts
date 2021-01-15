@@ -33,10 +33,6 @@ export default class Image1601940113477 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'slug',
-            type: 'varchar',
-          },
-          {
             name: 'ext',
             type: 'varchar',
             length: '4',

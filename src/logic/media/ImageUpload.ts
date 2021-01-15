@@ -1,10 +1,11 @@
 import { FileUpload } from 'graphql-upload';
-import { v4 as uuidv4 } from 'uuid';
 import sharp from 'sharp';
 
 import Image from 'src/db/entities/Media/Image';
 import getExtension from 'src/util/files/getExtension';
 import getFileSize from 'src/util/files/getFileSize';
+import imagesAllowed from './imagesAllowed';
+import MessageError from 'src/util/exceptions/MessageError';
 
 export default class ImageUpload {
   private readonly file: FileUpload;
@@ -21,9 +22,14 @@ export default class ImageUpload {
     image.name = this.file.filename;
     image.mime = this.file.mimetype;
     image.path = this.path;
-    image.slug = uuidv4();
     image.ext = await getExtension(this.file);
     image.size = await getFileSize(stream);
+
+    if (!imagesAllowed.includes(image.ext)) {
+      throw new MessageError(
+        `Extension "${image.ext}" not allowed. Please select a file: ${imagesAllowed.join(', ')} `
+      );
+    }
 
     const imageBuffer = await this.getBuffer();
     const imageSharp = sharp(imageBuffer);
@@ -31,12 +37,14 @@ export default class ImageUpload {
     image.width = metadata.width;
     image.height = metadata.height;
     await image.save();
+
     try {
       await imageSharp.toFile(`${this.path}${image.id}.${image.ext}`);
     } catch (error) {
       image.remove();
       throw error;
     }
+
     return image;
   }
 

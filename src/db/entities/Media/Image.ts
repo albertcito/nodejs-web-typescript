@@ -26,15 +26,12 @@ export default class Image extends BaseEntity {
   @Column()
   path: string;
 
-  @Column()
-  slug: string;
-
   url() {
     return `${appURL}/${this.path}/${this.fileName()}`;
   }
 
   fileName() {
-    return `${this.slug}.${this.ext}`;
+    return `${this.id}.${this.ext}`;
   }
 
   @Field(() => String)
