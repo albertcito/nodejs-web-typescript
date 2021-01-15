@@ -4,16 +4,16 @@ import dotenv from 'dotenv';
 import Bugsnag from '@bugsnag/js';
 import { join } from 'path';
 import i18n from 'i18n';
-import { Connection } from 'typeorm';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 import './i18n/index';
 import './bugsnag';
 import '../util/validatorjs/rules';
 import handleErrors from './handleErrors';
-import apolloServer from './graphql/public/server';
+import apolloServer from './graphql/server';
 import useControllersApi from './controllers';
 
-const getApp = async (db: Connection): Promise<Express> => {
+const getApp = async (): Promise<Express> => {
   dotenv.config();
   const app = express();
   const middleware = Bugsnag.getPlugin('express');
@@ -27,7 +27,8 @@ const getApp = async (db: Connection): Promise<Express> => {
   // use multi languages
   app.use(i18n.init);
   // Apollo graphQL
-  await apolloServer(app, db);
+  await apolloServer(app);
+  app.use(graphqlUploadExpress({ maxFileSize: 10000, maxFiles: 10 }));
   // Api
   useControllersApi(app);
   // handle global errors
