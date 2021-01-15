@@ -16,11 +16,12 @@ const server = async () => {
   const apolloSchema = await buildSchema(apolloSchemeOptions);
   return new ApolloServer({
     schema: apolloSchema,
+    context: (context) => context,
     formatError,
     plugins: [ErrorHandlePlugin],
     playground: true,
     introspection: true,
-    uploads: false,
+    uploads: true,
   });
 };
 
