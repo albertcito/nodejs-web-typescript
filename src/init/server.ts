@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import Bugsnag from '@bugsnag/js';
 import { join } from 'path';
 import i18n from 'i18n';
-// import { graphqlUploadExpress } from 'graphql-upload';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 import './i18n/index';
 import './bugsnag';
@@ -27,14 +27,14 @@ const getApp = async (): Promise<Express> => {
   app.use('/public', express.static(join(__dirname, '../../public')));
   // use multi languages
   app.use(i18n.init);
-  // Apollo graphQL
+  // Apollo graphQL config
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
   (await ApolloServer()).applyMiddleware({
     cors,
     app,
     path,
     bodyParserConfig: true,
   });
-  // app.use(graphqlUploadExpress({ maxFileSize: 10000, maxFiles: 10 }));
   // Api
   useControllersApi(app);
   // handle global errors

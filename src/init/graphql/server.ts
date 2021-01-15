@@ -8,9 +8,9 @@ import ErrorHandlePlugin from './errorHandlePlugin';
 
 export const path = '/graphql';
 const server = async () => {
-  const privatePath = join(__dirname, '../../graphql/resolvers/**/*{.ts,.js}');
+  const resolvers = join(__dirname, '../../graphql/resolvers/**/*{.ts,.js}');
   const apolloSchemeOptions: BuildSchemaOptions = {
-    resolvers: [privatePath],
+    resolvers: [resolvers],
     validate: false,
   };
   const apolloSchema = await buildSchema(apolloSchemeOptions);
@@ -21,7 +21,7 @@ const server = async () => {
     plugins: [ErrorHandlePlugin],
     playground: true,
     introspection: true,
-    uploads: true,
+    uploads: false,
   });
 };
 
