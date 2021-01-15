@@ -47,7 +47,7 @@ let tokenLogout = '';
 let adminToken = '';
 
 beforeAll(async () => {
-  await createConnection(connectionOptions);
+  db = await createConnection(connectionOptions);
   app = await getServer();
   const superAdmin = await getSuperAdminUserLogin();
   superAdminToken = superAdmin.token;
