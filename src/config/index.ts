@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+export const appURL = process.env.APP_URL;
+
 export const frontend = {
   URL: {
     activeEmail: `${process.env.FRONTEND_URL}/active-email?token=%s`,
