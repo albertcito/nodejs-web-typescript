@@ -10,8 +10,9 @@ import './i18n/index';
 import './bugsnag';
 import '../util/validatorjs/rules';
 import handleErrors from './handleErrors';
-import apolloServer from './graphql/server';
+import ApolloServer, { path } from './graphql/server';
 import useControllersApi from './controllers';
+import { cors } from 'src/config';
 
 const getApp = async (): Promise<Express> => {
   dotenv.config();
@@ -27,7 +28,13 @@ const getApp = async (): Promise<Express> => {
   // use multi languages
   app.use(i18n.init);
   // Apollo graphQL
-  await apolloServer(app);
+  const apolloServer = await ApolloServer();
+  apolloServer.applyMiddleware({
+    cors,
+    app,
+    path,
+    bodyParserConfig: true,
+  });
   app.use(graphqlUploadExpress({ maxFileSize: 10000, maxFiles: 10 }));
   // Api
   useControllersApi(app);
