@@ -12,7 +12,7 @@
 - Create .env file `cp .env.example .env`
 - Run `yarn install` (Installs all the dependencies for your project)
 - Run postgress: `postgres -D /usr/local/var/postgres`
-  - You can also run the database in docker with `docker-compose up` 
+  - You can also run the database in docker with `docker-compose up`
 - Run `yarn typeorm migration:run` (Creates all of the database tables)
 
 ## Faker Data
