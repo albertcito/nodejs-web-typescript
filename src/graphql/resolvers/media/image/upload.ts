@@ -10,7 +10,7 @@ import imagesAllowed from 'src/logic/media/imagesAllowed';
 @Resolver()
 export default class UploadImageResolver {
   @Mutation(() => Image)
-  async uploadImage(
+  async imageUpload(
     @Arg(
       'file', () => GraphQLUpload,
       { description: `Images allowed ${imagesAllowed.join(', ')}` },

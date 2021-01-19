@@ -27,7 +27,7 @@ export default class ImageUpload {
 
     if (!imagesAllowed.includes(image.ext)) {
       throw new MessageError(
-        `Extension "${image.ext}" not allowed. Please select a file: ${imagesAllowed.join(', ')} `
+        `Extension "${image.ext}" not allowed. Please select a file: ${imagesAllowed.join(', ')} `,
       );
     }
 

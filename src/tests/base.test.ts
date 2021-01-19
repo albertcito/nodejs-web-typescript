@@ -38,6 +38,7 @@ import TranslationCreateTest from './graphql/translation/translationCreate';
 import TranslationUpdateTest from './graphql/translation/translationUpdate';
 import TranslationDeleteTest from './graphql/translation/translationDelete';
 import UserStatusUpdateOauthTest from './graphql/user/status/userStatusUpdateOauth';
+import ImageUploadTest from './graphql/media/imageUpload';
 
 let db: Connection;
 let genericTest: GenericTest;
@@ -102,4 +103,5 @@ describe('GET /graphql', () => {
   it('m: translationCreate', (done) => genericTest.test(done, new TranslationCreateTest(), adminToken));
   it('m: translationUpdate', (done) => genericTest.test(done, new TranslationUpdateTest(), adminToken));
   it('m: translationDelete', (done) => genericTest.test(done, new TranslationDeleteTest(), adminToken));
+  it('m: imageUpload', (done) => ImageUploadTest(app, superAdminToken, done));
 });
