@@ -36,7 +36,7 @@ const imageUploadTest = (app: Express, token: string, done: jest.DoneCallback) =
     'imageUpload.height': 'required|integer',
   };
 
-  const imagePath = join(__dirname, './meme.jpeg');
+  const imagePath = join(__dirname, '../../files/meme.jpeg');
   request(app)
     .post('/graphql')
     .set('Accept', 'application/json')

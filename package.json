@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf build/ && tsc && tscpaths -p tsconfig.json -s ./src -o ./build && cp -R src/resources build/resources",
+    "build": "rm -rf build/ && tsc && tscpaths -p tsconfig.json -s ./src -o ./build && cp -R src/resources build/resources && cp -R src/tests/files build/tests/files",
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest --config ./jest.dev.config.js --roots src/tests",
     "eslint": "eslint --ext=jsx,ts,tsx 'src/**/*.{ts,tsx}'",
